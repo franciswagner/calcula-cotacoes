@@ -1,0 +1,111 @@
+package com.ricardococati.controller;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.ricardococati.controller.converter.SplitInplitConverter;
+import com.ricardococati.service.ISplitInplitService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(controllers = {SplitInplitController.class})
+@AutoConfigureMockMvc(addFilters = false)
+public class SplitInplitControllerTest {
+
+  @MockBean
+  private ISplitInplitService splitInplitService;
+  @MockBean
+  private SplitInplitConverter converter;
+  @Autowired
+  private MockMvc mockMvc;
+
+  @Test
+  public void splitSucesso() throws Exception {
+    //given
+    String dtPregao = "16-02-1978";
+    String codneg = "abc123";
+    String qtdSplitInplit = "3";
+    //when
+    final ResultActions result = this.mockMvc
+        .perform(
+            put(String.format("/api/v1/split-inplit/split"))
+                .param("dtPregrao", dtPregao)
+                .param("codneg", codneg)
+                .param("qtdSplitInplit", qtdSplitInplit)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    //then
+    result
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void splitErrorParameter() throws Exception {
+    //given
+    String dtPregao = "1978-02-16";
+    String codneg = null;
+    String qtdSplitInplit = "d";
+    //when
+    final ResultActions result = this.mockMvc
+        .perform(
+            put(String.format("/api/v1/split-inplit/split"))
+                .param("dtPregrao", dtPregao)
+                .param("codneg", codneg)
+                .param("qtdSplitInplit", qtdSplitInplit)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    //then
+    result
+        .andExpect(status().is4xxClientError());
+  }
+
+  @Test
+  public void inplitSucesso() throws Exception {
+    //given
+    String dtPregao = "16-02-1978";
+    String codneg = "abc123";
+    String qtdSplitInplit = "3";
+    //when
+    final ResultActions result = this.mockMvc
+        .perform(
+            put(String.format("/api/v1/split-inplit/inplit"))
+                .param("dtPregrao", dtPregao)
+                .param("codneg", codneg)
+                .param("qtdSplitInplit", qtdSplitInplit)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    //then
+    result
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void inplitErrorParameter() throws Exception{
+    //given
+    String dtPregao = "1978-02-16";
+    String codneg = null;
+    String qtdSplitInplit = "d";
+    //when
+    final ResultActions result = this.mockMvc
+        .perform(
+            put(String.format("/api/v1/split-inplit/inplit"))
+                .param("dtPregrao", dtPregao)
+                .param("codneg", codneg)
+                .param("qtdSplitInplit", qtdSplitInplit)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    //then
+    result
+        .andExpect(status().is4xxClientError());
+  }
+
+}

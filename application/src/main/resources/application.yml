@@ -1,0 +1,37 @@
+server:
+  port: 8667
+
+#Swagger
+swagger:
+  enabled: true
+
+management:
+  context-path: /
+
+# Spring properties
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/calcula_bmf
+    username: dbbmf
+    password: dbbmf
+    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: local
+  application:
+    name: calcula-cotacoes
+  flyway:
+    url: ${spring.datasource.url}
+    enabled: true
+    checkLocation: false
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    baseline-on-migrate: false
+    schemas: 'public'
+  kafka:
+    auto-offset-reset: true
+    properties.max.request.size: 15728640
+    bootstrap-servers: localhost:9092
+    consumer.group-id: bmf
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
