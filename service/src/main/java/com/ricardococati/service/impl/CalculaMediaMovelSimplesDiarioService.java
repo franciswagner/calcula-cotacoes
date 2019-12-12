@@ -13,7 +13,6 @@ import com.ricardococati.service.converter.ConverteMediaMovelSimples;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.Data;
@@ -33,35 +32,22 @@ public class CalculaMediaMovelSimplesDiarioService
   private final IMediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
 
   @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if(returned.get()) {
-      diarioService
-          .listCodNegocioMediaSimplesFalse()
-          .forEach(
-              codigoNegocio -> {
-                returned.set(executeByCodNeg(codigoNegocio));
-                diarioService.atualizaCandleDiarioMediaSimplesGeradaByCodneg(codigoNegocio);
-              });
-    }
-    return returned.get();
-  }
-
-  @Override
-  public Boolean executeByCodNeg(final String codigoNegocio) {
+  public List<MediaMovelSimplesDiario> executeByCodNeg(final String codigoNegocio) {
     log.info("Código de negociação: " + codigoNegocio);
     List<CandlestickDiarioDTO> candlestickList =
         diarioService.listaCandlestickDiario(buildCandlestickDiarioDTO(codigoNegocio));
     List<MediaMovelSimplesDiario> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
+    diarioService.atualizaCandleDiarioMediaSimplesGeradaByCodneg(codigoNegocio);
     mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
-    return Boolean.TRUE;
+    return mediaMovelSimplesList;
   }
 
   private List<MediaMovelSimplesDiario> calculaMediaMovelSimplesPorPeriodo(
       List<CandlestickDiarioDTO> candlestickDiarios, String codneg) {
     List<MediaMovelSimplesDiario> mediaMovelSimplesList = new ArrayList<>();
-    QuantidadePeriodo.getListQuantidadePeriodo()
+    QuantidadePeriodo
+        .getListQuantidadePeriodo()
         .stream()
         .filter(periodo -> nonNull(candlestickDiarios))
         .filter(periodo -> candlestickDiarios.size() >= periodo.intValue())
@@ -89,7 +75,9 @@ public class CalculaMediaMovelSimplesDiarioService
       soma += candlestickDiario.getCandlestickDTO().getPreult().doubleValue();
       if (indice == posicao) {
         mediaMovelSimples.setDtpreg(candlestickDiario.getDtpreg());
-        mediaMovelSimples.getMediaMovelSimples().setPremedult(new BigDecimal(soma / periodo));
+        mediaMovelSimples.getMediaMovelSimples().setPremedult(
+            new BigDecimal(soma / periodo).setScale(4, BigDecimal.ROUND_HALF_UP)
+        );
       }
     }
     return mediaMovelSimples;

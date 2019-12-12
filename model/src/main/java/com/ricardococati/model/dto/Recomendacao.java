@@ -19,6 +19,6 @@ public class Recomendacao {
   private BigDecimal precoMacd;
   private BigDecimal precoSinalMacd;
   private BigDecimal precoHistograma;
-  private BigDecimal decisao;
+  private String decisao;
 
 }

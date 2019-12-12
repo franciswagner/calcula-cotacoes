@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -34,74 +35,64 @@ public class CalculaMediaMovelSimplesDiarioServiceTest {
   @Mock
   private IMediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
 
+  private Integer countInteger;
+  private LocalDate dtpreg;
+
+  @Before
+  public void setUp() {
+    this.countInteger = 0;
+    this.dtpreg = LocalDate.of(1978, 02, 16);
+  }
+
   @Test
   public void executeOk() {
     //given
-    List<String> listCodneg = getListCodneg();
-    List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario(listCodneg);
-    when(diarioService.listCodNegocioMediaSimplesFalse()).thenReturn(listCodneg);
+    List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
     when(diarioService.listaCandlestickDiario(any())).thenReturn(candlestickList);
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
         .thenCallRealMethod();
     //when
-    Boolean returned = target.execute();
+    List<MediaMovelSimplesDiario> returned = target.executeByCodNeg("MGLU3");
     //then
-    assertTrue(returned);
+    assertTrue(!returned.isEmpty());
   }
 
   @Test
   public void executeByCodNegOk() {
   }
 
-  private List<String> getListCodneg() {
+  private List<CandlestickDiarioDTO> getListCandlestickDiario() {
     return Arrays.asList(
-        "MGLU3",
-        "PETR3",
-        "VALE3",
-        "MGLU4",
-        "PETR4",
-        "VALE4",
-        "MGLU5",
-        "PETR5",
-        "VALE5",
-        "MGLU6",
-        "PETR6",
-        "VALE6"
+        buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.3, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.0, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.4, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 9.8, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 11.0, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.7, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.5, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 9.5, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 9.9, dtpreg.plusDays(countInteger += 1)),
+        buildCandlestickDiarioDTO("MGLU3", 10.0, dtpreg.plusDays(countInteger += 1))
     );
   }
 
-  public List<CandlestickDiarioDTO> getListCandlestickDiario(List<String> listCodneg) {
-    return listCodneg
-        .stream()
-        .map(s -> buildCandlestickDiarioDTO(s))
-        .collect(Collectors.toList());
-  }
-
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(final String codneg) {
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+      final String codneg,
+      final Double preult,
+      final LocalDate dtpreg
+  ) {
     return CandlestickDiarioDTO
         .builder()
-        .dtpreg(LocalDate.of(1978,02,16))
+        .dtpreg(dtpreg)
         .candlestickDTO(CandlestickDTO
             .builder()
-            .preult(new BigDecimal(10.01))
+            .preult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
             .codneg(codneg)
             .build()
         )
         .build();
   }
 
-  public MediaMovelSimplesDiario buildMediaMovelSimples(final CandlestickDiarioDTO dto) {
-    return MediaMovelSimplesDiario
-        .builder()
-        .dtpreg(dto.getDtpreg())
-        .mediaMovelSimples(
-            MediaMovelSimples
-                .builder()
-                .periodo(9)
-                .premedult(new BigDecimal(10.01))
-                .codneg(dto.getCandlestickDTO().getCodneg())
-                .build())
-        .build();
-  }
 }

@@ -1,9 +1,10 @@
 package com.ricardococati.service;
 
+import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import java.util.List;
+
 public interface ICalculaMediaMovelSimplesDiarioService {
 
-	Boolean execute();
-
-	Boolean executeByCodNeg(final String codigoNegocio);
+	List<MediaMovelSimplesDiario> executeByCodNeg(final String codigoNegocio);
 
 }
