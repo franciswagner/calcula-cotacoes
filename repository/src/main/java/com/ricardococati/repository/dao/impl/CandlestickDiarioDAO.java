@@ -7,6 +7,7 @@ import com.ricardococati.repository.dao.ICandlestickDiarioDAO;
 import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -92,6 +93,30 @@ public class CandlestickDiarioDAO implements ICandlestickDiarioDAO {
   public List<String> getListCodNegMediaExponencialFalse() {
     return template.query(
         sqlUtil.getSelectCodNegMediaExponencialFalse(),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public List<String> getListCodNegMacdFalse() {
+    return template.query(
+        sqlUtil.getSelectCodNegMacdFalse(),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public List<String> getListCodNegSinalMacdFalse() {
+    return template.query(
+        sqlUtil.getSelectCodNegSinalMacdFalse(),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public List<String> getListCodNegHistogramaFalse() {
+    return template.query(
+        sqlUtil.getSelectCodNegHistogramaFalse(),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }

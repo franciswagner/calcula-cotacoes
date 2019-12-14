@@ -3,6 +3,7 @@ package com.ricardococati.repository.dao.sqlutil;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
@@ -115,6 +116,43 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL(" from candlestick_diario ");
     sql.appendSQL(" where media_movel_gerada = true ");
     sql.appendSQL(" and media_exponecial_gerada = false ");
+    sql.appendSQL(" group by codneg ");
+    sql.appendSQL(" order by codneg asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public String getSelectCodNegMacdFalse() {
+    final SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("   codneg  ");
+    sql.appendSQL(" from candlestick_diario ");
+    sql.appendSQL(" where media_exponecial_gerada = true ");
+    sql.appendSQL(" and macdGerada = false ");
+    sql.appendSQL(" group by codneg ");
+    sql.appendSQL(" order by codneg asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public String getSelectCodNegSinalMacdFalse() {
+    final SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("   codneg  ");
+    sql.appendSQL(" from candlestick_diario ");
+    sql.appendSQL(" where macdGerada = true ");
+    sql.appendSQL(" and sinalMacdGerada = false ");
+    sql.appendSQL(" group by codneg ");
+    sql.appendSQL(" order by codneg asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public String getSelectCodNegHistogramaFalse() {
+    final SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("   codneg  ");
+    sql.appendSQL(" from candlestick_diario ");
+    sql.appendSQL(" where macdGerada = true ");
+    sql.appendSQL(" and sinalMacdGerada = true ");
+    sql.appendSQL(" and histogramaGerada = true ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();

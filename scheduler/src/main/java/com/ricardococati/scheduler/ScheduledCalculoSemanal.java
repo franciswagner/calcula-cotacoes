@@ -32,7 +32,7 @@ public class ScheduledCalculoSemanal {
     log.info("Inicia execução CALCULOS em " + sdf.format(new Date()));
     try {
       ControleExecucao controleExecucao = calculaService.carregaControleExecucao();
-      if(controleExecucao.getControleExecucaoAtivo()) {
+      if(false) {
         if (controleExecucao.getCalcMediaSimplesSemanalExecutado()) {
           calculaMediaMovelSimples.execute();
           controleExecucao.setCalcMediaSimplesSemanalExecutado(false);

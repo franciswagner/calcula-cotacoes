@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.RecomendacaoDiario;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ICalculaRecomendacaoDiarioService {
+public interface ICalculaGeralDiarioService {
 
   List<RecomendacaoDiario> executeByCodNeg(
       final String codneg,

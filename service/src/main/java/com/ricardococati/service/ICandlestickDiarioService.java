@@ -2,6 +2,9 @@ package com.ricardococati.service;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
+import com.ricardococati.model.dto.HistogramaDiario;
+import com.ricardococati.model.dto.RecomendacaoDiario;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ICandlestickDiarioService {
@@ -11,6 +14,12 @@ public interface ICandlestickDiarioService {
   List<String> listCodNegocioMediaSimplesFalse();
 
   List<String> listCodNegocioMediaExponencialFalse();
+
+  List<String> listCodNegocioMacdFalse();
+
+  List<String> listCodNegocioSinalMacdFalse();
+
+  List<String> listCodNegocioHistogramaFalse();
 
   Boolean incluirCandlestickDiario(final CandlestickDiarioMessage message);
 

@@ -1,13 +1,18 @@
 package com.ricardococati.controller;
 
+import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.service.ICalculaGeralDiarioService;
 import com.ricardococati.service.ICalculaMediaMovelExponencialDiarioService;
 import com.ricardococati.service.ICalculaMediaMovelSimplesDiarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +31,7 @@ public class CalculaController {
 
   private final ICalculaMediaMovelSimplesDiarioService serviceMS;
   private final ICalculaMediaMovelExponencialDiarioService serviceME;
+  private final ICalculaGeralDiarioService geralDiarioService;
 
   @ApiOperation(value = "Calcula a média móvel simples para um codigo de negócio")
   @ApiResponses(
@@ -65,6 +71,28 @@ public class CalculaController {
     serviceME.executeByCodNeg(codneg);
     log.info("Cálculo executado com sucesso!! ");
     return ResponseEntity.ok().build();
+  }
+
+  @ApiOperation(value = "Efetua todos os cálculos(Diário) para um codigo de negócio"
+      + " e retorna as recomendações")
+  @ApiResponses(
+      value = {
+          @ApiResponse(code = 200, message = "OK"),
+          @ApiResponse(code = 400, message = "Bad Request"),
+          @ApiResponse(code = 409, message = "Conflict Request"),
+          @ApiResponse(code = 500, message = "Internal Server Error")
+      }
+  )
+  @ResponseStatus(HttpStatus.OK)
+  @PostMapping(value = "/geral")
+  public ResponseEntity<List<RecomendacaoDiario>> calculaCodNeg(
+      @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
+      @RequestParam(required = false) String codneg
+  ) {
+    log.info("Excutando cálculo ");
+    List<RecomendacaoDiario> listReturn = geralDiarioService.executeByCodNeg(codneg, dtLimitePregao);
+    log.info("Cálculo executado com sucesso!! ");
+    return ResponseEntity.ok().body(listReturn);
   }
 
 }

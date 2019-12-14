@@ -6,6 +6,7 @@ import com.ricardococati.repository.dao.IRecomendacaoDiarioDAO;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,18 @@ public class RecomendacaoDiarioDAO implements IRecomendacaoDiarioDAO {
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersByCodNeg(codneg),
         (rs, rowNum) -> mapper.mapper(rs)
+    );
+  }
+
+  @Override
+  public List<RecomendacaoDiario> getListRecomendacaoByDtPregECodNeg(
+      final LocalDate dtLimitePregao,
+      final String codneg
+  ) {
+    return template.query(
+        sqlUtil.getSelectByCodNegDtPreg(),
+        sqlUtil.toParametersCodNegDtPreg(codneg,dtLimitePregao),
+        (rs, rowNum) -> mapper.mapperConsult(rs)
     );
   }
 }

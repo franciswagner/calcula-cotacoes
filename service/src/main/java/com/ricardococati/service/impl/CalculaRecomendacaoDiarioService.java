@@ -1,6 +1,11 @@
 package com.ricardococati.service.impl;
 
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.dto.Histograma;
+import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.MacdDiario;
+import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.Recomendacao;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
@@ -12,8 +17,11 @@ import com.ricardococati.repository.dao.ISinalMacdDiarioDAO;
 import com.ricardococati.service.ICalculaRecomendacaoDiarioService;
 import com.ricardococati.service.ICalculaService;
 import com.ricardococati.service.ICandlestickDiarioService;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,46 +41,59 @@ public class CalculaRecomendacaoDiarioService
   private final IRecomendacaoDiarioDAO recomendacaoDAO;
   private final IMediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
   private final ICalculaService calculaService;
+  private final String COMPRA = "COMPRA";
+  private final String VENDE = "VENDE";
+  private final String NEUTRO = "NEUTRO";
 
   @Override
-  public List<RecomendacaoDiario> executeByCodNeg(String codneg) {
+  public List<RecomendacaoDiario> executeByCodNeg(
+      final String codneg, LocalDate dtLimitePregao) {
     log.info("Código de negociação: " + codneg);
-    List<MacdDiario> macdList =
-        macdDAO.listMacdByCodNeg(codneg);
-    List<SinalMacdDiario> sinalMacdList =
-        sinalMacdDAO.listSinalMacdByCodNeg(codneg);
-    List<RecomendacaoDiario> diarioList = calculaRecomendacao(macdList, sinalMacdList);
+    List<RecomendacaoDiario> diarioList = calculaRecomendacao(codneg, dtLimitePregao);
     recomendacaoDAO.incluirRecomendacao(diarioList);
-    calculaCandlestickService.atualizaCandleDiarioSinalMacdGeradaByCodneg(codneg);
     return diarioList;
   }
 
   private List<RecomendacaoDiario> calculaRecomendacao(
-      List<MacdDiario> macdList, List<SinalMacdDiario> sinalMacdList) {
-    List<RecomendacaoDiario> RecomendacaoList = new ArrayList<>();
-    for(MacdDiario macd : macdList){
-      for (SinalMacdDiario sinal : sinalMacdList){
-        if (sinal.getDtpreg().isEqual(macd.getDtpreg())
-            && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())){
-          RecomendacaoDiario hist = buildRecomendacao(macd, sinal);
-          if (!RecomendacaoList.contains(hist)){
-            RecomendacaoList.add(hist);
-          }
+      final String codneg, final LocalDate dtLimitePregao) {
+    List<RecomendacaoDiario> recomendacaoList = buildListRecomendacao(
+        codneg,
+        dtLimitePregao
+    );
+    for (int indice = 0; indice < recomendacaoList.size(); indice++) {
+      if (indice > 0 && recomendacaoList.size() >= 2) {
+        if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
+            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0){
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA);
+        } else if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
+            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0){
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE);
+        } else {
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO);
         }
       }
     }
-    return RecomendacaoList;
+    return recomendacaoList;
   }
 
-  private RecomendacaoDiario buildRecomendacao(final MacdDiario macd, final SinalMacdDiario sinal) {
+  private List<RecomendacaoDiario> buildListRecomendacao(final String codneg, final LocalDate dtLimitePregao) {
+    return recomendacaoDAO.getListRecomendacaoByDtPregECodNeg(
+        dtLimitePregao,
+        codneg
+    );
+  }
+
+  private RecomendacaoDiario buildRecomendacao(
+      final HistogramaDiario diario,
+      final String decisao) {
     return RecomendacaoDiario.builder()
-        .dtpreg(macd.getDtpreg())
+        .dtpreg(diario.getDtpreg())
         .recomendacao(
             Recomendacao
                 .builder()
-                .codneg(macd.getMacd().getCodneg())
-                .precoFechamento(macd.getMacd().getPremacd()
-                    .subtract(sinal.getSinalMacd().getPresinal()))
+                .codneg(diario.getHistograma().getCodneg())
+                .precoHistograma(diario.getHistograma().getPrehist())
+                .decisao(decisao)
                 .build())
         .build();
   }

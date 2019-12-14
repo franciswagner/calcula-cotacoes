@@ -3,6 +3,7 @@ package com.ricardococati.service.impl;
 import com.ricardococati.model.dto.ControleExecucao;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.ICandlestickDiarioDAO;
 import com.ricardococati.repository.dao.ICandlestickSemanalDAO;
 import com.ricardococati.repository.dao.IControleExecucaoDAO;

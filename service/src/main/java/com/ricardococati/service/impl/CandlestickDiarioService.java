@@ -2,10 +2,14 @@ package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
+import com.ricardococati.model.dto.HistogramaDiario;
+import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.ICandlestickDiarioDAO;
 import com.ricardococati.service.ICandlestickDiarioService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +39,21 @@ public class CandlestickDiarioService implements ICandlestickDiarioService {
   @Override
   public List<String> listCodNegocioMediaExponencialFalse() {
     return diarioDAO.getListCodNegMediaExponencialFalse();
+  }
+
+  @Override
+  public List<String> listCodNegocioMacdFalse() {
+    return diarioDAO.getListCodNegMacdFalse();
+  }
+
+  @Override
+  public List<String> listCodNegocioSinalMacdFalse() {
+    return diarioDAO.getListCodNegSinalMacdFalse();
+  }
+
+  @Override
+  public List<String> listCodNegocioHistogramaFalse() {
+    return diarioDAO.getListCodNegHistogramaFalse();
   }
 
   @Override

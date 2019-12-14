@@ -17,7 +17,7 @@ public class HistogramaSemanalMapper {
     try {
       return HistogramaSemanal
           .builder()
-          .idHistogramaSemanal(rs.getLong("id_sinal_macd"))
+          .idHistogramaSemanal(rs.getLong("id_histograma"))
           .dtpregini(parseDateWithoutNull(rs, "dtpregini"))
           .dtpregfim(parseDateWithoutNull(rs, "dtpregfim"))
           .histograma(

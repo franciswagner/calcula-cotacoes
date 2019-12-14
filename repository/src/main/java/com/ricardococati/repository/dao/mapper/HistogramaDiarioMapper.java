@@ -16,7 +16,7 @@ public class HistogramaDiarioMapper {
     try {
       return HistogramaDiario
           .builder()
-          .idHistogramaDiario(rs.getLong("id_sinal_macd"))
+          .idHistogramaDiario(rs.getLong("id_histograma"))
           .dtpreg(parseDateWithoutNull(rs, "dtpreg"))
           .histograma(
               Histograma
