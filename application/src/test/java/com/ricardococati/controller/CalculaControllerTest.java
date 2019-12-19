@@ -3,6 +3,7 @@ package com.ricardococati.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.ricardococati.service.ICalculaGeralDiarioService;
 import com.ricardococati.service.ICalculaMediaMovelExponencialDiarioService;
 import com.ricardococati.service.ICalculaMediaMovelSimplesDiarioService;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class CalculaControllerTest {
   private ICalculaMediaMovelSimplesDiarioService serviceMS;
   @MockBean
   private ICalculaMediaMovelExponencialDiarioService serviceME;
+  @MockBean
+  private ICalculaGeralDiarioService geralDiarioService;
   @Autowired
   private MockMvc mockMvc;
 
