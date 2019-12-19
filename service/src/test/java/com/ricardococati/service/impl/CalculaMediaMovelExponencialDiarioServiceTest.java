@@ -7,13 +7,14 @@ import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.repository.dao.IMediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.IMediaMovelSimplesDiarioDAO;
 import com.ricardococati.service.ICandlestickDiarioService;
-import com.ricardococati.service.converter.ConverteMediaMovelSimples;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,16 +26,16 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CalculaMediaMovelSimplesDiarioServiceTest {
+public class CalculaMediaMovelExponencialDiarioServiceTest {
 
   @InjectMocks
-  private CalculaMediaMovelSimplesDiarioService target;
+  private CalculaMediaMovelExponencialDiarioService target;
   @Mock
   private ICandlestickDiarioService diarioService;
   @Mock
-  private ConverteMediaMovelSimples converteMediaMovelSimples;
-  @Mock
   private IMediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  @Mock
+  private IMediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
 
   private Integer countInteger;
   private LocalDate dtpreg;
@@ -46,38 +47,38 @@ public class CalculaMediaMovelSimplesDiarioServiceTest {
   }
 
   @Test
-  public void executeByCodNegOk() {
+  public void executeByCodNeg() {
     //given
     List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
     when(diarioService.listaCandlestickDiario(any())).thenReturn(candlestickList);
-    when(converteMediaMovelSimples
-        .converterCandlestickDiarioToMediaMovelSimples(any()))
-        .thenCallRealMethod();
+    when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
+        .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
+
     //when
-    List<MediaMovelSimplesDiario> returned = target.executeByCodNeg("MGLU3");
+    List<MediaMovelExponencialDiario> returned = target.executeByCodNeg("MGLU3");
+
     //then
     assertTrue(!returned.isEmpty());
     assertThat(returned).isNotNull().size().isEqualTo(3);
-    assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 25));
-    assertThat(returned.get(0).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(0).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.2556"));
+    assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 16));
+    assertThat(returned.get(0).getMediaMovelExponencial().getPeriodo()).isNull();
+    assertThat(returned.get(0).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.1000"));
     assertThat(returned.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 26));
-    assertThat(returned.get(1).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(1).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.2333"));
+    assertThat(returned.get(1).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
+    assertThat(returned.get(1).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.0600"));
     assertThat(returned.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 27));
-    assertThat(returned.get(2).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(2).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.2000"));
+    assertThat(returned.get(2).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
+    assertThat(returned.get(2).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.0480"));
   }
 
   @Test
   public void executeByCodNegCandlestickNull() {
     //given
     when(diarioService.listaCandlestickDiario(any())).thenReturn(null);
-    when(converteMediaMovelSimples
-        .converterCandlestickDiarioToMediaMovelSimples(any()))
-        .thenCallRealMethod();
+    when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
+        .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
     //when
-    List<MediaMovelSimplesDiario> returned = target.executeByCodNeg("MGLU3");
+    List<MediaMovelExponencialDiario> returned = target.executeByCodNeg("MGLU3");
     //then
     assertTrue(returned.isEmpty());
   }
@@ -85,12 +86,11 @@ public class CalculaMediaMovelSimplesDiarioServiceTest {
   @Test
   public void executeByCodNegCandlestickEmpty() {
     //given
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(Collections.EMPTY_LIST);
-    when(converteMediaMovelSimples
-        .converterCandlestickDiarioToMediaMovelSimples(any()))
-        .thenCallRealMethod();
+    when(diarioService.listaCandlestickDiario(any())).thenReturn(null);
+    when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
+        .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
     //when
-    List<MediaMovelSimplesDiario> returned = target.executeByCodNeg("MGLU3");
+    List<MediaMovelExponencialDiario> returned = target.executeByCodNeg("MGLU3");
     //then
     assertTrue(returned.isEmpty());
   }
@@ -122,6 +122,23 @@ public class CalculaMediaMovelSimplesDiarioServiceTest {
         .candlestickDTO(CandlestickDTO
             .builder()
             .preult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
+            .codneg(codneg)
+            .build()
+        )
+        .build();
+  }
+
+  private MediaMovelSimplesDiario buildMediaSimples(
+      final String codneg,
+      final Double preult,
+      final LocalDate dtpreg
+  ) {
+    return MediaMovelSimplesDiario
+        .builder()
+        .dtpreg(dtpreg)
+        .mediaMovelSimples(MediaMovelSimples
+            .builder()
+            .premedult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
             .codneg(codneg)
             .build()
         )

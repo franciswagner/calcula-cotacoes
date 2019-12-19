@@ -9,6 +9,7 @@ import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class MediaMovelSimplesDiarioDAO implements IMediaMovelSimplesDiarioDAO {
     try {
       mediaMovelSimplesList
           .stream()
+          .filter(Objects::nonNull)
           .forEach(mediaMovelSimples -> {
             mediaMovelSimples.setIdMediaMovelSimplesDiario(
                 genericDAO.getSequence("MEDIA_MOVEL_SIMPLES_DIARIO_SEQ", template).longValue()

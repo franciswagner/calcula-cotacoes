@@ -1,9 +1,10 @@
 package com.ricardococati.service;
 
+import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import java.util.List;
+
 public interface ICalculaMediaMovelExponencialDiarioService {
 
-  Boolean execute();
-
-  Boolean executeByCodNeg(String codneg);
+  List<MediaMovelExponencialDiario> executeByCodNeg(String codneg);
 
 }

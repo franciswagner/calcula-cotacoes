@@ -13,6 +13,7 @@ import com.ricardococati.service.converter.ConverteMediaMovelSimples;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.Data;
@@ -50,6 +51,7 @@ public class CalculaMediaMovelSimplesDiarioService
         .getListQuantidadePeriodo()
         .stream()
         .filter(periodo -> nonNull(candlestickDiarios))
+        .filter(Objects::nonNull)
         .filter(periodo -> candlestickDiarios.size() >= periodo.intValue())
         .map(periodo -> calculaMediaMovelSimples(periodo, candlestickDiarios, codneg))
         .forEachOrdered(mediaMovelSimplesList::addAll);
