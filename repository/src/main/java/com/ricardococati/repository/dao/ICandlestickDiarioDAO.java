@@ -15,15 +15,15 @@ public interface ICandlestickDiarioDAO {
 
   List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg);
 
-  List<String> getListCodNegMediaSimplesFalse();
+  List<String> getListCodNegMediaSimplesFalse(final LocalDate dtpregLimite);
 
-  List<String> getListCodNegMediaExponencialFalse();
+  List<String> getListCodNegMediaExponencialFalse(final LocalDate dtpregLimite);
 
-  List<String> getListCodNegMacdFalse();
+  List<String> getListCodNegMacdFalse(final LocalDate dtpregLimite);
 
-  List<String> getListCodNegSinalMacdFalse();
+  List<String> getListCodNegSinalMacdFalse(final LocalDate dtpregLimite);
 
-  List<String> getListCodNegHistogramaFalse();
+  List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite);
 
   Boolean updateCandlestickDiario();
 

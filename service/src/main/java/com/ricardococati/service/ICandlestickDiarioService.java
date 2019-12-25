@@ -2,8 +2,6 @@ package com.ricardococati.service;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.RecomendacaoDiario;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,15 +9,15 @@ public interface ICandlestickDiarioService {
 
   List<CandlestickDiarioDTO> listaCandlestickDiario(CandlestickDiarioDTO candlestickDiarioDTO);
 
-  List<String> listCodNegocioMediaSimplesFalse();
+  List<String> listCodNegocioMediaSimplesFalse(final LocalDate dtpregLimite);
 
-  List<String> listCodNegocioMediaExponencialFalse();
+  List<String> listCodNegocioMediaExponencialFalse(final LocalDate dtpregLimite);
 
-  List<String> listCodNegocioMacdFalse();
+  List<String> listCodNegocioMacdFalse(final LocalDate dtpregLimite);
 
-  List<String> listCodNegocioSinalMacdFalse();
+  List<String> listCodNegocioSinalMacdFalse(final LocalDate dtpregLimite);
 
-  List<String> listCodNegocioHistogramaFalse();
+  List<String> listCodNegocioHistogramaFalse(final LocalDate dtpregLimite);
 
   Boolean incluirCandlestickDiario(final CandlestickDiarioMessage message);
 
