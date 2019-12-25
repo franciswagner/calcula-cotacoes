@@ -104,6 +104,7 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL("   codneg  ");
     sql.appendSQL(" from candlestick_diario ");
     sql.appendSQL(" where media_movel_gerada = false ");
+    sql.appendSQL(" and dtpreg > :dtpreg ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();
@@ -116,6 +117,7 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL(" from candlestick_diario ");
     sql.appendSQL(" where media_movel_gerada = true ");
     sql.appendSQL(" and media_exponecial_gerada = false ");
+    sql.appendSQL(" and dtpreg > :dtpreg ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();
@@ -127,7 +129,8 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL("   codneg  ");
     sql.appendSQL(" from candlestick_diario ");
     sql.appendSQL(" where media_exponecial_gerada = true ");
-    sql.appendSQL(" and macdGerada = false ");
+    sql.appendSQL(" and macd_gerada = false ");
+    sql.appendSQL(" and dtpreg > :dtpreg ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();
@@ -138,8 +141,9 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL(" select ");
     sql.appendSQL("   codneg  ");
     sql.appendSQL(" from candlestick_diario ");
-    sql.appendSQL(" where macdGerada = true ");
-    sql.appendSQL(" and sinalMacdGerada = false ");
+    sql.appendSQL(" where macd_gerada = true ");
+    sql.appendSQL(" and sinal_macd_gerada = false ");
+    sql.appendSQL(" and dtpreg > :dtpreg ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();
@@ -150,12 +154,18 @@ public class CandlestickDiarioSQLUtil {
     sql.appendSQL(" select ");
     sql.appendSQL("   codneg  ");
     sql.appendSQL(" from candlestick_diario ");
-    sql.appendSQL(" where macdGerada = true ");
-    sql.appendSQL(" and sinalMacdGerada = true ");
-    sql.appendSQL(" and histogramaGerada = true ");
+    sql.appendSQL(" where macd_gerada = true ");
+    sql.appendSQL(" and sinal_macd_gerada = true ");
+    sql.appendSQL(" and histograma_gerada = false ");
+    sql.appendSQL(" and dtpreg > :dtpreg ");
     sql.appendSQL(" group by codneg ");
     sql.appendSQL(" order by codneg asc ");
     return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public MapSqlParameterSource toParametersDtPreg(final LocalDate dtpreg) {
+    return new MapSqlParameterSource()
+        .addValue("dtpreg", dtpreg);
   }
 
   public String getSelectByCodNeg() {
