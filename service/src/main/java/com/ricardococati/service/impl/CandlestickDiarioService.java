@@ -2,14 +2,11 @@ package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.ICandlestickDiarioDAO;
 import com.ricardococati.service.ICandlestickDiarioService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,28 +29,28 @@ public class CandlestickDiarioService implements ICandlestickDiarioService {
   }
 
   @Override
-  public List<String> listCodNegocioMediaSimplesFalse() {
-    return diarioDAO.getListCodNegMediaSimplesFalse();
+  public List<String> listCodNegocioMediaSimplesFalse(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegMediaSimplesFalse(dtpregLimite);
   }
 
   @Override
-  public List<String> listCodNegocioMediaExponencialFalse() {
-    return diarioDAO.getListCodNegMediaExponencialFalse();
+  public List<String> listCodNegocioMediaExponencialFalse(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegMediaExponencialFalse(dtpregLimite);
   }
 
   @Override
-  public List<String> listCodNegocioMacdFalse() {
-    return diarioDAO.getListCodNegMacdFalse();
+  public List<String> listCodNegocioMacdFalse(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegMacdFalse(dtpregLimite);
   }
 
   @Override
-  public List<String> listCodNegocioSinalMacdFalse() {
-    return diarioDAO.getListCodNegSinalMacdFalse();
+  public List<String> listCodNegocioSinalMacdFalse(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegSinalMacdFalse(dtpregLimite);
   }
 
   @Override
-  public List<String> listCodNegocioHistogramaFalse() {
-    return diarioDAO.getListCodNegHistogramaFalse();
+  public List<String> listCodNegocioHistogramaFalse(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegHistogramaFalse(dtpregLimite);
   }
 
   @Override
