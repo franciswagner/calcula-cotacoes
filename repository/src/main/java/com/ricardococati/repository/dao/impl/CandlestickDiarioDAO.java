@@ -82,41 +82,46 @@ public class CandlestickDiarioDAO implements ICandlestickDiarioDAO {
   }
 
   @Override
-  public List<String> getListCodNegMediaSimplesFalse() {
+  public List<String> getListCodNegMediaSimplesFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegMediaSimplesFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 
   @Override
-  public List<String> getListCodNegMediaExponencialFalse() {
+  public List<String> getListCodNegMediaExponencialFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegMediaExponencialFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 
   @Override
-  public List<String> getListCodNegMacdFalse() {
+  public List<String> getListCodNegMacdFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegMacdFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 
   @Override
-  public List<String> getListCodNegSinalMacdFalse() {
+  public List<String> getListCodNegSinalMacdFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegSinalMacdFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 
   @Override
-  public List<String> getListCodNegHistogramaFalse() {
+  public List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegHistogramaFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
