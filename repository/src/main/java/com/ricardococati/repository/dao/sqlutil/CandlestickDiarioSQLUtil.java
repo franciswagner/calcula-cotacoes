@@ -163,6 +163,17 @@ public class CandlestickDiarioSQLUtil {
     return sql.getAppendSQLSemQuebra().toString();
   }
 
+  public String getSelectCodNegByDtPreg() {
+    final SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("   codneg  ");
+    sql.appendSQL(" from candlestick_diario ");
+    sql.appendSQL(" where dtpreg > :dtpreg ");
+    sql.appendSQL(" group by codneg ");
+    sql.appendSQL(" order by codneg asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
   public MapSqlParameterSource toParametersDtPreg(final LocalDate dtpreg) {
     return new MapSqlParameterSource()
         .addValue("dtpreg", dtpreg);

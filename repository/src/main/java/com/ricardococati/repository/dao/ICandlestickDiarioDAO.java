@@ -25,6 +25,8 @@ public interface ICandlestickDiarioDAO {
 
   List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite);
 
+  List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite);
+
   Boolean updateCandlestickDiario();
 
   List<String> getListCodNeg();

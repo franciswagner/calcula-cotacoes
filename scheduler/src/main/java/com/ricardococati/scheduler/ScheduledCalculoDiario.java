@@ -15,9 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -42,33 +40,37 @@ public class ScheduledCalculoDiario {
     log.info("Inicia execução CALCULOS em " + sdf.format(new Date()));
     try {
       ControleExecucao controleExecucao = calculaService.carregaControleExecucao();
-      if(controleExecucao.getControleExecucaoAtivo()) {
+      if (controleExecucao.getControleExecucaoAtivo()) {
         if (controleExecucao.getCalcMediaSimplesDiarioExecutado()) {
           executeMediaSimplesDiario(controleExecucao);
           controleExecucao.setCalcMediaSimplesDiarioExecutado(false);
           controleExecucao.setCalcMediaSimplesDiarioExecutadoDtpreg(dtpregLimite);
+          calculaService.updateControleExecucaoDiario(controleExecucao);
         }
         if (controleExecucao.getCalcMediaExponencialDiarioExecutado()) {
           executeMediaExponencialDiario(controleExecucao);
           controleExecucao.setCalcMediaExponencialDiarioExecutado(false);
           controleExecucao.setCalcMediaExponencialDiarioExecutadoDtpreg(dtpregLimite);
+          calculaService.updateControleExecucaoDiario(controleExecucao);
         }
         if (controleExecucao.getCalcMacdDiarioExecutado()) {
           executeMacdDiario(controleExecucao);
           controleExecucao.setCalcMacdDiarioExecutado(false);
           controleExecucao.setCalcMacdDiarioExecutadoDtpreg(dtpregLimite);
+          calculaService.updateControleExecucaoDiario(controleExecucao);
         }
         if (controleExecucao.getCalcSinalMacdDiarioExecutado()) {
           executeSinalMacdDiario(controleExecucao);
           controleExecucao.setCalcSinalMacdDiarioExecutado(false);
           controleExecucao.setCalcSinalMacdDiarioExecutadoDtpreg(dtpregLimite);
+          calculaService.updateControleExecucaoDiario(controleExecucao);
         }
         if (controleExecucao.getCalcHistogramaDiarioExecutado()) {
           executeHistogramaDiario(controleExecucao);
           controleExecucao.setCalcHistogramaDiarioExecutado(false);
           controleExecucao.setCalcHistogramaDiarioExecutadoDtpreg(dtpregLimite);
+          calculaService.updateControleExecucaoDiario(controleExecucao);
         }
-        calculaService.updateControleExecucaoDiario(controleExecucao);
       }
     } catch (Exception e) {
       log.error(" Causa: " + e.getCause() + " Mensagem de Erro: " + e.getMessage());
@@ -77,7 +79,7 @@ public class ScheduledCalculoDiario {
   }
 
   private void executeMediaSimplesDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegocioMediaSimplesFalse(
+    diarioService.listCodNegByDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaSimplesDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -87,7 +89,7 @@ public class ScheduledCalculoDiario {
   }
 
   private void executeMediaExponencialDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegocioMediaExponencialFalse(
+    diarioService.listCodNegByDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaExponencialDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -97,7 +99,7 @@ public class ScheduledCalculoDiario {
   }
 
   private void executeMacdDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegocioMacdFalse(
+    diarioService.listCodNegByDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMacdDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -107,7 +109,7 @@ public class ScheduledCalculoDiario {
   }
 
   private void executeSinalMacdDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegocioSinalMacdFalse(
+    diarioService.listCodNegByDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcSinalMacdDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -117,7 +119,7 @@ public class ScheduledCalculoDiario {
   }
 
   private void executeHistogramaDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegocioHistogramaFalse(
+    diarioService.listCodNegByDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcHistogramaDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -126,11 +128,11 @@ public class ScheduledCalculoDiario {
         });
   }
 
-  private LocalDate verificaUltimaExecucao(final LocalDate dtUltimaExec){
+  private LocalDate verificaUltimaExecucao(final LocalDate dtUltimaExec) {
     LocalDate dataRetorno = dtpregLimite;
-    if(isNull(dtUltimaExec)){
+    if (isNull(dtUltimaExec)) {
       return dataRetorno;
-    } else if(nonNull(dtUltimaExec) && dtUltimaExec.isBefore(dataRetorno)){
+    } else if (nonNull(dtUltimaExec) && dtUltimaExec.isBefore(dataRetorno)) {
       dataRetorno = dtUltimaExec;
     }
     return dataRetorno;

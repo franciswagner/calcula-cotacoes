@@ -91,6 +91,15 @@ public class CandlestickDiarioDAO implements ICandlestickDiarioDAO {
   }
 
   @Override
+  public List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegByDtPreg(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
   public List<String> getListCodNegMediaExponencialFalse(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegMediaExponencialFalse(),

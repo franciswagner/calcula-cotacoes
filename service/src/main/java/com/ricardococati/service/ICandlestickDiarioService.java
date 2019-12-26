@@ -19,6 +19,8 @@ public interface ICandlestickDiarioService {
 
   List<String> listCodNegocioHistogramaFalse(final LocalDate dtpregLimite);
 
+  List<String> listCodNegByDtPreg(final LocalDate dtpregLimite);
+
   Boolean incluirCandlestickDiario(final CandlestickDiarioMessage message);
 
   List<String> listCodNegocio();

@@ -54,6 +54,11 @@ public class CandlestickDiarioService implements ICandlestickDiarioService {
   }
 
   @Override
+  public List<String> listCodNegByDtPreg(final LocalDate dtpregLimite) {
+    return diarioDAO.getListCodNegByDtPreg(dtpregLimite);
+  }
+
+  @Override
   public Boolean incluirCandlestickDiario(final CandlestickDiarioMessage message) {
     return diarioDAO.incluirCandlestickDiario(converter.convert(message));
   }
