@@ -3,9 +3,9 @@ package com.ricardococati.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ricardococati.service.ICalculaGeralDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelSimplesDiarioService;
+import com.ricardococati.service.CalculaGeralDiarioService;
+import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
+import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +23,11 @@ import org.springframework.test.web.servlet.ResultActions;
 public class CalculaControllerTest {
 
   @MockBean
-  private ICalculaMediaMovelSimplesDiarioService serviceMS;
+  private CalculaMediaMovelSimplesDiarioService serviceMS;
   @MockBean
-  private ICalculaMediaMovelExponencialDiarioService serviceME;
+  private CalculaMediaMovelExponencialDiarioService serviceME;
   @MockBean
-  private ICalculaGeralDiarioService geralDiarioService;
+  private CalculaGeralDiarioService geralDiarioService;
   @Autowired
   private MockMvc mockMvc;
 

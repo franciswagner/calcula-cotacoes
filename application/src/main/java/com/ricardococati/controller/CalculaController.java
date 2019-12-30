@@ -1,9 +1,9 @@
 package com.ricardococati.controller;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.service.ICalculaGeralDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelSimplesDiarioService;
+import com.ricardococati.service.CalculaGeralDiarioService;
+import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
+import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -29,9 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CalculaController {
 
-  private final ICalculaMediaMovelSimplesDiarioService serviceMS;
-  private final ICalculaMediaMovelExponencialDiarioService serviceME;
-  private final ICalculaGeralDiarioService geralDiarioService;
+  private final CalculaMediaMovelSimplesDiarioService serviceMS;
+  private final CalculaMediaMovelExponencialDiarioService serviceME;
+  private final CalculaGeralDiarioService geralDiarioService;
 
   @ApiOperation(value = "Calcula a média móvel simples para um codigo de negócio")
   @ApiResponses(

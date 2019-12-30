@@ -8,12 +8,11 @@ import static org.mockito.Mockito.when;
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.repository.dao.IMediaMovelSimplesDiarioDAO;
-import com.ricardococati.service.ICandlestickDiarioService;
-import com.ricardococati.service.converter.ConverteMediaMovelSimples;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,16 +24,16 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CalculaMediaMovelSimplesDiarioServiceTest {
+public class CalculaMediaMovelSimplesDiarioServiceImplTest {
 
   @InjectMocks
-  private CalculaMediaMovelSimplesDiarioService target;
+  private CalculaMediaMovelSimplesDiarioServiceImpl target;
   @Mock
-  private ICandlestickDiarioService diarioService;
+  private CandlestickDiarioService diarioService;
   @Mock
-  private ConverteMediaMovelSimples converteMediaMovelSimples;
+  private MediaMovelSimplesConverter converteMediaMovelSimples;
   @Mock
-  private IMediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
 
   private Integer countInteger;
   private LocalDate dtpreg;

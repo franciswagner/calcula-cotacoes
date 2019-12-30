@@ -10,13 +10,12 @@ import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.repository.dao.IMediaMovelExponencialDiarioDAO;
-import com.ricardococati.repository.dao.IMediaMovelSimplesDiarioDAO;
-import com.ricardococati.service.ICandlestickDiarioService;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.service.CandlestickDiarioService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +25,16 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CalculaMediaMovelExponencialDiarioServiceTest {
+public class CalculaMediaMovelExponencialDiarioServiceImplTest {
 
   @InjectMocks
-  private CalculaMediaMovelExponencialDiarioService target;
+  private CalculaMediaMovelExponencialDiarioServiceImpl target;
   @Mock
-  private ICandlestickDiarioService diarioService;
+  private CandlestickDiarioService diarioService;
   @Mock
-  private IMediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
   @Mock
-  private IMediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
+  private MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
 
   private Integer countInteger;
   private LocalDate dtpreg;

@@ -4,7 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ricardococati.controller.converter.SplitInplitConverter;
-import com.ricardococati.service.ISplitInplitService;
+import com.ricardococati.service.SplitInplitService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.ResultActions;
 public class SplitInplitControllerTest {
 
   @MockBean
-  private ISplitInplitService splitInplitService;
+  private SplitInplitService splitInplitService;
   @MockBean
   private SplitInplitConverter converter;
   @Autowired
