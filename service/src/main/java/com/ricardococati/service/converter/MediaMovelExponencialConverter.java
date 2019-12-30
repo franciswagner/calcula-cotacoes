@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class ConverteMediaMovelExponencial {
+public class MediaMovelExponencialConverter {
 
   public MediaMovelExponencialDiario converterCandlestickDiarioToMediaMovelExponencial(
       CandlestickDiarioDTO candlestickDiario){

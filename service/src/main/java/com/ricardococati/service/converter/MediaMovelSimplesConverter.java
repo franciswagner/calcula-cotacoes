@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class ConverteMediaMovelSimples {
+public class MediaMovelSimplesConverter {
 
   public MediaMovelSimplesDiario converterCandlestickDiarioToMediaMovelSimples(
       CandlestickDiarioDTO candlestickDiario) {
