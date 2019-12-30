@@ -1,16 +1,16 @@
-package com.ricardococati.scheduler;
+package com.ricardococati.agendador;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.ControleExecucao;
-import com.ricardococati.service.ICalculaHistogramaDiarioService;
-import com.ricardococati.service.ICalculaMACDDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.ICalculaMediaMovelSimplesDiarioService;
-import com.ricardococati.service.ICalculaService;
-import com.ricardococati.service.ICalculaSinalMacdDiarioService;
-import com.ricardococati.service.ICandlestickDiarioService;
+import com.ricardococati.service.CalculaHistogramaDiarioService;
+import com.ricardococati.service.CalculaMACDDiarioService;
+import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
+import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
+import com.ricardococati.service.CalculaService;
+import com.ricardococati.service.CalculaSinalMacdDiarioService;
+import com.ricardococati.service.CandlestickDiarioService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -23,15 +23,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ScheduledCalculoDiario {
+public class EfetuaCalculoDiarioAgendado {
 
-  private final ICalculaMediaMovelExponencialDiarioService calculaMediaMovelExponencial;
-  private final ICalculaMediaMovelSimplesDiarioService calculaMediaMovelSimples;
-  private final ICalculaMACDDiarioService calculaMACDService;
-  private final ICalculaSinalMacdDiarioService calculaSinalMacdService;
-  private final ICalculaHistogramaDiarioService calculaHistogramaService;
-  private final ICandlestickDiarioService diarioService;
-  private final ICalculaService calculaService;
+  private final CalculaMediaMovelExponencialDiarioService calculaMediaMovelExponencial;
+  private final CalculaMediaMovelSimplesDiarioService calculaMediaMovelSimples;
+  private final CalculaMACDDiarioService calculaMACDService;
+  private final CalculaSinalMacdDiarioService calculaSinalMacdService;
+  private final CalculaHistogramaDiarioService calculaHistogramaService;
+  private final CandlestickDiarioService diarioService;
+  private final CalculaService calculaService;
   SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
   LocalDate dtpregLimite = LocalDate.of(2017, 01, 01);
 
