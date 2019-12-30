@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.MacdSemanal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IMacdSemanalDAO {
+public interface MacdSemanalDAO {
 
   Boolean incluirMacd(final List<MacdSemanal> macdList);
 

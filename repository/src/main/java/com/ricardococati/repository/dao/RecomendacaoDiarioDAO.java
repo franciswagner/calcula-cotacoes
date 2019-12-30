@@ -5,7 +5,7 @@ import com.ricardococati.model.dto.RecomendacaoDiario;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IRecomendacaoDiarioDAO {
+public interface RecomendacaoDiarioDAO {
 
   Boolean incluirRecomendacao(final List<RecomendacaoDiario> macdList);
 

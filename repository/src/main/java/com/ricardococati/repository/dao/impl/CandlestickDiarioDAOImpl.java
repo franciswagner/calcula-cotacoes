@@ -1,12 +1,13 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.ICandlestickSemanalDAO;
-import com.ricardococati.repository.dao.mapper.CandlestickSemanalMapper;
-import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalSQLUtil;
+import com.ricardococati.repository.dao.CandlestickDiarioDAO;
+import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,33 +19,24 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
+public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
   private final GenericDAO genericDAO;
-  private final CandlestickSemanalSQLUtil sqlUtil;
-  private final CandlestickSemanalMapper mapper;
+  private final CandlestickDiarioSQLUtil sqlUtil;
+  private final CandlestickDiarioMapper mapper;
 
   @Override
-  public Integer contaCandleDiarioSemCandleSemSemanalGerado() {
-    return template.queryForObject(
-        sqlUtil.getSelectCount(),
-        new MapSqlParameterSource(),
-        Integer.class
-    );
-  }
-
-  @Override
-  public Boolean incluirCandlestickSemanal(CandlestickSemanalDTO semanal) {
+  public Boolean incluirCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO) {
     int retorno = 0;
     final SQLAppender sql = new SQLAppender(100);
     try {
-      semanal.setIdCandleSemanal(
-          genericDAO.getSequence("CANDLESTICK_SEMANAL_SEQ", template).longValue()
+      candlestickDiarioDTO.setIdCandleDiario(
+          genericDAO.getSequence("CANDLESTICK_SEQ", template).longValue()
       );
-      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(semanal));
+      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(candlestickDiarioDTO));
     } catch (Exception ex) {
       log.error("Erro na execução do método CANDLESTICK_DIARIO: " + ex.getMessage());
       throw ex;
@@ -52,6 +44,7 @@ public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
     return retorno > 0;
   }
 
+  @Override
   public Boolean split(final SplitInplit splitInplit) {
     int retorno = 0;
     final String operacao = "/";
@@ -65,6 +58,7 @@ public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
     return retorno > 0;
   }
 
+  @Override
   public Boolean inplit(final SplitInplit splitInplit) {
     int retorno = 0;
     final String operacao = "*";
@@ -79,28 +73,7 @@ public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
   }
 
   @Override
-  public Boolean updateCandlestickSemanal() {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.updateCandleStickSemanal(),
-          new MapSqlParameterSource());
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public List<String> listCodNegocioMediaSimplesFalse() {
-    return template.query(
-        sqlUtil.getSelectCodNegMediaSimplesFalse(),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<CandlestickSemanalDTO> findCandleSemanalPorCodNeg(String codneg) {
+  public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),
@@ -109,50 +82,65 @@ public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
   }
 
   @Override
-  public Boolean updateCandleSemanalMediaSimplesGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaMovelByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
+  public List<String> getListCodNegMediaSimplesFalse(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegMediaSimplesFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
   }
 
   @Override
-  public Boolean updateCandleSemanalMediaExponencialGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaExponencialByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
+  public List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegByDtPreg(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
   }
 
   @Override
-  public Boolean updateCandleSemanalMacdGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
+  public List<String> getListCodNegMediaExponencialFalse(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegMediaExponencialFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
   }
 
   @Override
-  public Boolean updateCandleSemanalSinalMacdGeradaByCodNeg(String codneg) {
+  public List<String> getListCodNegMacdFalse(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegMacdFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public List<String> getListCodNegSinalMacdFalse(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegSinalMacdFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite) {
+    return template.query(
+        sqlUtil.getSelectCodNegHistogramaFalse(),
+        sqlUtil.toParametersDtPreg(dtpregLimite),
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+    );
+  }
+
+  @Override
+  public Boolean updateCandlestickDiario() {
     int retorno = 0;
     try {
-      retorno = template.update(sqlUtil.getUpdateSinalMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
+      retorno = template.update(sqlUtil.getUpdateMediaMovel(),
+          new MapSqlParameterSource());
     } catch (Exception ex) {
       log.error("Erro na execução do método update: " + ex.getMessage());
       throw ex;
@@ -167,4 +155,57 @@ public class CandlestickSemanalDAO implements ICandlestickSemanalDAO {
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
+
+  @Override
+  public Boolean updateCandleDiarioMediaSimplesGeradaByCodNeg(final String codneg) {
+    int retorno = 0;
+    try {
+      retorno = template.update(sqlUtil.getUpdateMediaMovelByCodneg(),
+          sqlUtil.toParametersCodNeg(codneg));
+    } catch (Exception ex) {
+      log.error("Erro na execução do método update: " + ex.getMessage());
+      throw ex;
+    }
+    return retorno > 0;
+  }
+
+  @Override
+  public Boolean updateCandleDiarioMediaExponencialGeradaByCodNeg(final String codneg) {
+    int retorno = 0;
+    try {
+      retorno = template.update(sqlUtil.getUpdateMediaExponencialByCodneg(),
+          sqlUtil.toParametersCodNeg(codneg));
+    } catch (Exception ex) {
+      log.error("Erro na execução do método update: " + ex.getMessage());
+      throw ex;
+    }
+    return retorno > 0;
+  }
+
+  @Override
+  public Boolean updateCandleDiarioMacdGeradaByCodNeg(final String codneg) {
+    int retorno = 0;
+    try {
+      retorno = template.update(sqlUtil.getUpdateMacdByCodneg(),
+          sqlUtil.toParametersCodNeg(codneg));
+    } catch (Exception ex) {
+      log.error("Erro na execução do método update: " + ex.getMessage());
+      throw ex;
+    }
+    return retorno > 0;
+  }
+
+  @Override
+  public Boolean updateCandleDiarioSinalMacdGeradaByCodNeg(String codneg) {
+    int retorno = 0;
+    try {
+      retorno = template.update(sqlUtil.getUpdateSinalMacdByCodneg(),
+          sqlUtil.toParametersCodNeg(codneg));
+    } catch (Exception ex) {
+      log.error("Erro na execução do método update: " + ex.getMessage());
+      throw ex;
+    }
+    return retorno > 0;
+  }
+
 }

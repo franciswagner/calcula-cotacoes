@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.dto.SinalMacdSemanal;
 import java.util.List;
 
-public interface ISinalMacdSemanalDAO {
+public interface SinalMacdSemanalDAO {
 
   Boolean incluirSinalMacd(final List<SinalMacdSemanal> macdList);
 

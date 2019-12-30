@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.IMediaMovelExponencialSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.mapper.CandlestickSemanalMapper;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialSemanalSQLUtil;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MediaMovelExponencialSemanalDAO implements IMediaMovelExponencialSemanalDAO {
+public class MediaMovelExponencialSemanalDAOImpl implements MediaMovelExponencialSemanalDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;

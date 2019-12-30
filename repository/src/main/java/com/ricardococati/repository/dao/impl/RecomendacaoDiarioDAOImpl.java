@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.IRecomendacaoDiarioDAO;
+import com.ricardococati.repository.dao.RecomendacaoDiarioDAO;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class RecomendacaoDiarioDAO implements IRecomendacaoDiarioDAO {
+public class RecomendacaoDiarioDAOImpl implements RecomendacaoDiarioDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;

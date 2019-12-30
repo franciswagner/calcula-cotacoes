@@ -5,7 +5,7 @@ import com.ricardococati.model.dto.SplitInplit;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IMediaMovelSimplesDiarioDAO {
+public interface MediaMovelSimplesDiarioDAO {
 
   Boolean incluirMediaMovelSimples(final List<MediaMovelSimplesDiario> mediaMovelSimplesList);
 

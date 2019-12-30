@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.IMacdSemanalDAO;
+import com.ricardococati.repository.dao.MacdSemanalDAO;
 import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MacdSemanalDAO implements IMacdSemanalDAO {
+public class MacdSemanalDAOImpl implements MacdSemanalDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;

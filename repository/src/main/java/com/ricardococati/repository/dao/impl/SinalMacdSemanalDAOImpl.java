@@ -1,10 +1,10 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.SinalMacdDiario;
+import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.ISinalMacdDiarioDAO;
-import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
-import com.ricardococati.repository.dao.sqlutil.SinalMacdDiarioSQLUtil;
+import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
+import com.ricardococati.repository.dao.mapper.SinalMacdSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.SinalMacdSemanalSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,25 +18,25 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class SinalMacdDiarioDAO implements ISinalMacdDiarioDAO {
+public class SinalMacdSemanalDAOImpl implements SinalMacdSemanalDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
   private final GenericDAO genericDAO;
-  private final SinalMacdDiarioSQLUtil sqlUtil;
-  private final SinalMacdDiarioMapper mapper;
+  private final SinalMacdSemanalSQLUtil sqlUtil;
+  private final SinalMacdSemanalMapper mapper;
 
   @Override
-  public Boolean incluirSinalMacd(List<SinalMacdDiario> macdList) {
+  public Boolean incluirSinalMacd(List<SinalMacdSemanal> macdList) {
     AtomicInteger retorno = new AtomicInteger(0);
     final SQLAppender sql = new SQLAppender(100);
     try {
       macdList
           .stream()
           .forEach(sinalMacd -> {
-            sinalMacd.setIdSinalMacdDiario(
-                genericDAO.getSequence("SINAL_MACD_DIARIO_SEQ", template).longValue()
+            sinalMacd.setIdSinalMacdSemanal(
+                genericDAO.getSequence("SINAL_MACD_SEMANAL_SEQ", template).longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(sinalMacd)));
           });
@@ -53,7 +53,7 @@ public class SinalMacdDiarioDAO implements ISinalMacdDiarioDAO {
   }
 
   @Override
-  public List<SinalMacdDiario> listSinalMacdByCodNeg(String codneg) {
+  public List<SinalMacdSemanal> listSinalMacdByCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersByCodNeg(codneg),

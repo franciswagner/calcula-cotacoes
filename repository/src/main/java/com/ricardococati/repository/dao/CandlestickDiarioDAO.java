@@ -5,7 +5,7 @@ import com.ricardococati.model.dto.SplitInplit;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ICandlestickDiarioDAO {
+public interface CandlestickDiarioDAO {
 
   Boolean incluirCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO);
 

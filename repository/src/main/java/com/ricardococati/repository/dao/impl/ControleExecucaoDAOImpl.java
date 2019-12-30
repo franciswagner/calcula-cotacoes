@@ -1,7 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.ControleExecucao;
-import com.ricardococati.repository.dao.IControleExecucaoDAO;
+import com.ricardococati.repository.dao.ControleExecucaoDAO;
 import com.ricardococati.repository.dao.mapper.ControleExecucaoMapper;
 import com.ricardococati.repository.dao.sqlutil.ControleExecucaoSQLUtil;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class ControleExecucaoDAO implements IControleExecucaoDAO {
+public class ControleExecucaoDAOImpl implements ControleExecucaoDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;

@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao;
 
 import com.ricardococati.model.dto.ControleExecucao;
 
-public interface IControleExecucaoDAO {
+public interface ControleExecucaoDAO {
 
   ControleExecucao loadControleExecucao();
 

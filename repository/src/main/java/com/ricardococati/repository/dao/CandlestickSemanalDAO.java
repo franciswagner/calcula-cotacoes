@@ -2,9 +2,10 @@ package com.ricardococati.repository.dao;
 
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
+import java.time.LocalDate;
 import java.util.List;
 
-public interface ICandlestickSemanalDAO {
+public interface CandlestickSemanalDAO {
 
   Integer contaCandleDiarioSemCandleSemSemanalGerado();
 
@@ -29,4 +30,7 @@ public interface ICandlestickSemanalDAO {
   Boolean updateCandleSemanalSinalMacdGeradaByCodNeg(final String codneg);
 
   List<String> getListCodNeg();
+
+  List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite);
+
 }

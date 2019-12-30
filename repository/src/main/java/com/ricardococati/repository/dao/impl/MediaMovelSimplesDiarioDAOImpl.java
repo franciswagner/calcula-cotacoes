@@ -3,7 +3,7 @@ package com.ricardococati.repository.dao.impl;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.IMediaMovelSimplesDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MediaMovelSimplesDiarioDAO implements IMediaMovelSimplesDiarioDAO {
+public class MediaMovelSimplesDiarioDAOImpl implements MediaMovelSimplesDiarioDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;

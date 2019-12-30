@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IMediaMovelSimplesSemanalDAO {
+public interface MediaMovelSimplesSemanalDAO {
 
   Boolean incluirMediaMovelSimples(final List<MediaMovelSimplesSemanal> mediaMovelSimplesList);
 

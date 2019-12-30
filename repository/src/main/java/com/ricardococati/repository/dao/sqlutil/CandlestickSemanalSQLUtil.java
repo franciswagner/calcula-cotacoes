@@ -3,6 +3,7 @@ package com.ricardococati.repository.dao.sqlutil;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
 import java.util.Map;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
@@ -201,4 +202,21 @@ public class CandlestickSemanalSQLUtil {
     sql.appendSQL(" where codneg = :codneg ");
     return sql.getAppendSQLSemQuebra().toString();
   }
+
+  public String getSelectCodNegByDtPreg() {
+    final SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("   codneg  ");
+    sql.appendSQL(" from candlestick_semanal ");
+    sql.appendSQL(" where dtpregini > :dtpregini ");
+    sql.appendSQL(" group by codneg ");
+    sql.appendSQL(" order by codneg asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public MapSqlParameterSource toParametersDtPreg(final LocalDate dtpreg) {
+    return new MapSqlParameterSource()
+        .addValue("dtpregini", dtpreg);
+  }
+
 }

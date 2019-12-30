@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.MacdDiario;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IMacdDiarioDAO {
+public interface MacdDiarioDAO {
 
   Boolean incluirMacd(final List<MacdDiario> macdList);
 

@@ -2,13 +2,12 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.IMediaMovelSimplesSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesSemanalSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MediaMovelSimplesSemanalDAO implements IMediaMovelSimplesSemanalDAO {
+public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanalDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
