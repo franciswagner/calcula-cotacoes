@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.isNull;
+
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.MediaMovelExponencial;
@@ -69,12 +71,17 @@ public class CalculaMediaMovelExponencialSemanalService
   private List<MediaMovelExponencialSemanal> calculaMediaMovelExponencialPorPeriodo(
       List<CandlestickSemanalDTO> candlestickList) {
     List<MediaMovelExponencialSemanal> mediaMovelExponencialList = new ArrayList<>();
-    QuantidadePeriodo
-        .getListQuantidadePeriodo()
-        .stream()
-        .forEach(periodo ->
-            mediaMovelExponencialList
-                .addAll(calculaMediaMovelExponencial(periodo, candlestickList)));
+    try {
+      QuantidadePeriodo
+          .getListQuantidadePeriodo()
+          .stream()
+          .forEach(periodo ->
+              mediaMovelExponencialList
+                  .addAll(calculaMediaMovelExponencial(periodo, candlestickList)));
+    } catch (Exception ex){
+      log.error("Erro no cálculo de média exponencial: {} ", ex.getMessage());
+      throw ex;
+    }
     return mediaMovelExponencialList;
   }
 
@@ -85,8 +92,15 @@ public class CalculaMediaMovelExponencialSemanalService
     Integer posicao = 0;
     for (int indice = periodo - 1; indice < qtdPeriodos; indice++) {
       if (posicao == 0) {
-        listReturn.add(
-            buildMediaMovelExponencialByMMS(getPrimeiraMedia(periodo, candlestickList, indice)));
+        final MediaMovelSimplesSemanal primeiraMedia =
+            getPrimeiraMedia(
+                periodo,
+                candlestickList,
+                indice);
+        if(isNull(primeiraMedia)){
+          return listReturn;
+        }
+        listReturn.add(buildMediaMovelExponencialByMMS(primeiraMedia));
         posicao++;
         continue;
       }

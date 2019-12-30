@@ -8,10 +8,12 @@ import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesSemanalSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -55,11 +57,21 @@ public class MediaMovelSimplesSemanalDAO implements IMediaMovelSimplesSemanalDAO
       final LocalDate dtpregini,
       final LocalDate dtpregfim
   ) {
-    return template.query(
-        sqlUtil.getSelectByCodNegPeriodoDtPreg(),
-        sqlUtil.toParametersSelectByCodNegPeriodoDtPreg(codneg, periodo, dtpregini, dtpregfim),
-        (rs, rowNum) -> mediaMapper.mapper(rs)
-    ).stream().findFirst().get();
+    try {
+      return template.queryForObject(
+          sqlUtil.getSelectByCodNegPeriodoDtPreg(),
+          sqlUtil.toParametersSelectByCodNegPeriodoDtPreg(codneg, periodo, dtpregini, dtpregfim),
+          (rs, rowNum) -> mediaMapper.mapper(rs)
+      );
+    } catch (EmptyResultDataAccessException exc){
+      log.error("Não foi possível encontrar a média simples {} com os parâmetros: {} {} {} {} ",
+          exc.getMessage(),
+          codneg,
+          periodo,
+          dtpregini,
+          dtpregfim);
+      return null;
+    }
   }
 
   @Override

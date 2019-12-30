@@ -59,7 +59,6 @@ public class MediaMovelSimplesSemanalSQLUtil {
     sql.appendSQL("	and periodo = :periodo ");
     sql.appendSQL("	and dtpregini = :dtpregini ");
     sql.appendSQL("	and dtpregfim = :dtpregfim ");
-    sql.appendSQL("	order by dtpregini asc ");
     return sql.getAppendSQLSemQuebra().toString();
   }
 
