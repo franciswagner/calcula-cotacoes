@@ -12,7 +12,9 @@ import com.ricardococati.service.CalculaRecomendacaoDiarioService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickDiarioService;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +40,16 @@ public class CalculaRecomendacaoDiarioServiceImpl
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
-      final String codneg, LocalDate dtLimitePregao) {
-    log.info("Código de negociação: " + codneg);
-    List<RecomendacaoDiario> diarioList = calculaRecomendacao(codneg, dtLimitePregao);
-    recomendacaoDAO.incluirRecomendacao(diarioList);
+      final List<String> listCodneg, final LocalDate dtLimitePregao) {
+    List<RecomendacaoDiario> diarioList =  new ArrayList<>();
+    log.info("Código de negociação: " + listCodneg);
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
+          recomendacaoDAO.incluirRecomendacao(diarioList);
+        });
     return diarioList;
   }
 

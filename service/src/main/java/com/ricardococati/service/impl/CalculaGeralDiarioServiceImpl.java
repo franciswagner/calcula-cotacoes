@@ -1,6 +1,7 @@
 package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.service.CalculaGeralDiarioService;
 import com.ricardococati.service.CalculaHistogramaDiarioService;
 import com.ricardococati.service.CalculaMACDDiarioService;
 import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
@@ -10,6 +11,7 @@ import com.ricardococati.service.CalculaSinalMacdDiarioService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CalculaGeralDiarioServiceImpl implements
-    com.ricardococati.service.CalculaGeralDiarioService {
+    CalculaGeralDiarioService {
 
   private final CalculaMediaMovelSimplesDiarioService mmsService;
   private final CalculaMediaMovelExponencialDiarioService mmeService;
@@ -31,41 +33,66 @@ public class CalculaGeralDiarioServiceImpl implements
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
-      final String codneg, final LocalDate dtLimitePregao) {
+      final List<String> listCodneg, final LocalDate dtLimitePregao) {
     List<RecomendacaoDiario> recomendacaoDiarioList = new ArrayList<>();
-    Boolean controle = executeMediaSimplesDiario(codneg);
-    controle = controle && executeMediaExponencialDiario(codneg);
-    controle = controle && executeMacdDiario(codneg);
-    controle = controle && executeSinalMacdDiario(codneg);
-    controle = controle && executeHistogramaDiario(codneg);
+    Boolean controle = executeMediaSimplesDiario(listCodneg);
+    controle = controle && executeMediaExponencialDiario(listCodneg);
+    controle = controle && executeMacdDiario(listCodneg);
+    controle = controle && executeSinalMacdDiario(listCodneg);
+    controle = controle && executeHistogramaDiario(listCodneg);
     if (controle) {
-      recomendacaoDiarioList = recomendacaoService.executeByCodNeg(codneg, dtLimitePregao);
+      recomendacaoDiarioList = recomendacaoService.executeByCodNeg(listCodneg, dtLimitePregao);
     }
     return recomendacaoDiarioList;
   }
 
-  private Boolean executeMediaSimplesDiario(final String codneg) {
-    mmsService.executeByCodNeg(codneg);
+  private Boolean executeMediaSimplesDiario(final List<String> listCodneg) {
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          mmsService.executeByCodNeg(codneg);
+        });
     return Boolean.TRUE;
   }
 
-  private Boolean executeMediaExponencialDiario(final String codneg) {
-    mmeService.executeByCodNeg(codneg);
+  private Boolean executeMediaExponencialDiario(final List<String> listCodneg) {
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          mmeService.executeByCodNeg(codneg);
+        });
     return Boolean.TRUE;
   }
 
-  private Boolean executeMacdDiario(final String codneg) {
-    macdService.executeByCodNeg(codneg);
+  private Boolean executeMacdDiario(final List<String> listCodneg) {
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          macdService.executeByCodNeg(codneg);
+        });
     return Boolean.TRUE;
   }
 
-  private Boolean executeSinalMacdDiario(final String codneg) {
-    sinalMacdService.executeByCodNeg(codneg);
+  private Boolean executeSinalMacdDiario(final List<String> listCodneg) {
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          sinalMacdService.executeByCodNeg(codneg);
+        });
     return Boolean.TRUE;
   }
 
-  private Boolean executeHistogramaDiario(final String codneg) {
-    histogramaService.executeByCodNeg(codneg);
+  private Boolean executeHistogramaDiario(final List<String> listCodneg) {
+    listCodneg
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(codneg -> {
+          histogramaService.executeByCodNeg(codneg);
+        });
     return Boolean.TRUE;
   }
 

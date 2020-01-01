@@ -7,7 +7,7 @@ import java.util.List;
 public interface CalculaRecomendacaoDiarioService {
 
   List<RecomendacaoDiario> executeByCodNeg(
-      final String codneg,
+      final List<String> listCodneg,
       final LocalDate dtLimitePregao
   );
 

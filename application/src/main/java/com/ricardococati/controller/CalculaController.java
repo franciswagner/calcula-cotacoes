@@ -87,10 +87,10 @@ public class CalculaController {
   @PostMapping(value = "/geral")
   public ResponseEntity<List<RecomendacaoDiario>> calculaCodNeg(
       @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
-      @RequestParam(required = false) String codneg
+      @RequestParam(required = false) List<String> listCodneg
   ) {
     log.info("Excutando cálculo ");
-    List<RecomendacaoDiario> listReturn = geralDiarioService.executeByCodNeg(codneg, dtLimitePregao);
+    List<RecomendacaoDiario> listReturn = geralDiarioService.executeByCodNeg(listCodneg, dtLimitePregao);
     log.info("Cálculo executado com sucesso!! ");
     return ResponseEntity.ok().body(listReturn);
   }
