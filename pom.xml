@@ -41,6 +41,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <spring.profiles.active>develop</spring.profiles.active>
     <docker.image.prefix>springboot</docker.image.prefix>
+    <otj-pg-embedded.version>0.1.1</otj-pg-embedded.version>
   </properties>
 
   <parent>
@@ -139,6 +140,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opentable.components</groupId>
+      <artifactId>otj-pg-embedded</artifactId>
+      <version>${otj-pg-embedded.version}</version>
       <scope>test</scope>
     </dependency>
 
