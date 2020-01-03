@@ -1,5 +1,7 @@
 package com.ricardococati.controller;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,13 +36,16 @@ public class SplitInplitControllerTest {
     String dtPregao = "16-02-1978";
     String codneg = "abc123";
     String qtdSplitInplit = "3";
+    String operacao = "SPLIT";
+    when(converter.convert(any(), any(), any(), any())).thenCallRealMethod();
     //when
     final ResultActions result = this.mockMvc
         .perform(
-            put(String.format("/api/v1/split-inplit/split"))
+            put(String.format("/api/v1/split-inplit"))
                 .param("dtPregrao", dtPregao)
                 .param("codneg", codneg)
                 .param("qtdSplitInplit", qtdSplitInplit)
+                .param("operacao", operacao)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
     //then
@@ -54,6 +59,7 @@ public class SplitInplitControllerTest {
     String dtPregao = "1978-02-16";
     String codneg = null;
     String qtdSplitInplit = "d";
+    String operacao = "SPLIT";
     //when
     final ResultActions result = this.mockMvc
         .perform(
@@ -61,6 +67,7 @@ public class SplitInplitControllerTest {
                 .param("dtPregrao", dtPregao)
                 .param("codneg", codneg)
                 .param("qtdSplitInplit", qtdSplitInplit)
+                .param("operacao", operacao)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
     //then
@@ -74,13 +81,16 @@ public class SplitInplitControllerTest {
     String dtPregao = "16-02-1978";
     String codneg = "abc123";
     String qtdSplitInplit = "3";
+    String operacao = "INPLIT";
+    when(converter.convert(any(), any(), any(), any())).thenCallRealMethod();
     //when
     final ResultActions result = this.mockMvc
         .perform(
-            put(String.format("/api/v1/split-inplit/inplit"))
+            put(String.format("/api/v1/split-inplit"))
                 .param("dtPregrao", dtPregao)
                 .param("codneg", codneg)
                 .param("qtdSplitInplit", qtdSplitInplit)
+                .param("operacao", operacao)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
     //then
@@ -94,6 +104,7 @@ public class SplitInplitControllerTest {
     String dtPregao = "1978-02-16";
     String codneg = null;
     String qtdSplitInplit = "d";
+    String operacao = "INPLIT";
     //when
     final ResultActions result = this.mockMvc
         .perform(
@@ -101,6 +112,7 @@ public class SplitInplitControllerTest {
                 .param("dtPregrao", dtPregao)
                 .param("codneg", codneg)
                 .param("qtdSplitInplit", qtdSplitInplit)
+                .param("operacao", operacao)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
     //then

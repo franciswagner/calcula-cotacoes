@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.SplitInplit;
 
 public interface SplitInplitService {
 
-  Boolean split(final SplitInplit splitInplit);
+  Boolean executeSplitInplit(final SplitInplit splitInplit);
 
   Boolean inplit(SplitInplit splitInplit);
 }

@@ -9,10 +9,6 @@ public interface CandlestickDiarioDAO {
 
   Boolean incluirCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO);
 
-  Boolean split(final SplitInplit splitInplit);
-
-  Boolean inplit(final SplitInplit splitInplit);
-
   List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg);
 
   List<String> getListCodNegMediaSimplesFalse(final LocalDate dtpregLimite);
@@ -26,8 +22,6 @@ public interface CandlestickDiarioDAO {
   List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite);
 
   List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite);
-
-  Boolean updateCandlestickDiario();
 
   List<String> getListCodNeg();
 

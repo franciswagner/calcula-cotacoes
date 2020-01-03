@@ -207,17 +207,6 @@ public class CandlestickDiarioSQLUtil {
         .addValue("codneg", codneg);
   }
 
-  public String getUpdateMediaMovel() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_diario set  ");
-    sql.appendSQL("   media_movel_gerada = false,  ");
-    sql.appendSQL("   media_exponecial_gerada = false,  ");
-    sql.appendSQL("   macd_gerada = false,  ");
-    sql.appendSQL("   sinal_macd_gerada = false,  ");
-    sql.appendSQL("   histograma_gerada = false  ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
   public String getUpdateMediaMovelByCodneg() {
     final SQLAppender sql = new SQLAppender(100);
     sql.appendSQL(" update candlestick_diario set  ");

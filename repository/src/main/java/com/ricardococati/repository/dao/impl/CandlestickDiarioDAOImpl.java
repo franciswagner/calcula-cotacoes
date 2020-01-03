@@ -45,34 +45,6 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
   }
 
   @Override
-  public Boolean split(final SplitInplit splitInplit) {
-    int retorno = 0;
-    final String operacao = "/";
-    try {
-      retorno = template.update(sqlUtil.getUpdate(operacao),
-          sqlUtil.toParametersUpdate(splitInplit));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método split: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean inplit(final SplitInplit splitInplit) {
-    int retorno = 0;
-    final String operacao = "*";
-    try {
-      retorno = template.update(sqlUtil.getUpdate(operacao),
-          sqlUtil.toParametersUpdate(splitInplit));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método inplit: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
   public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
@@ -133,19 +105,6 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
         sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
-  }
-
-  @Override
-  public Boolean updateCandlestickDiario() {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaMovel(),
-          new MapSqlParameterSource());
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
   }
 
   @Override
