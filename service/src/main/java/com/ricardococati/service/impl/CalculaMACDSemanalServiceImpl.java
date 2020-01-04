@@ -8,12 +8,11 @@ import com.ricardococati.repository.dao.MacdSemanalDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.service.CalculaMACDSemanalService;
 import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.CandlestickSemanalService;
+import com.ricardococati.service.BuscarCandlestickSemanalService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ import org.springframework.stereotype.Service;
 public class CalculaMACDSemanalServiceImpl
     implements CalculaMACDSemanalService {
 
-  private final CandlestickSemanalService candleSemanalService;
+  private final BuscarCandlestickSemanalService candleSemanalService;
   private final MediaMovelExponencialSemanalDAO mmeDAO;
   private final MacdSemanalDAO macdDAO;
   private final CalculaService calculaService;

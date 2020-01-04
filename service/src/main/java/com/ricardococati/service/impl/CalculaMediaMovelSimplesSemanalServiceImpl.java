@@ -8,12 +8,11 @@ import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
 import com.ricardococati.service.CalculaMediaMovelSimplesSemanalService;
-import com.ricardococati.service.CandlestickSemanalService;
+import com.ricardococati.service.BuscarCandlestickSemanalService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.Data;
@@ -30,7 +29,7 @@ public class CalculaMediaMovelSimplesSemanalServiceImpl
 
   private static final int PRIMEIRA_POSICAO = 0;
   private static final Boolean MEDIA_MOVEL_SIMPLES_NAO_GERADA = false;
-  private final CandlestickSemanalService semanalService;
+  private final BuscarCandlestickSemanalService semanalService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
 
@@ -38,7 +37,7 @@ public class CalculaMediaMovelSimplesSemanalServiceImpl
   public Boolean executeByCodNeg(final String codigoNegocio) {
     log.info("Código de negociação: " + codigoNegocio);
     List<CandlestickSemanalDTO> candlestickList =
-        semanalService.listaCandlestickSemanal(buildCandlestickSemanalDTO(codigoNegocio));
+        semanalService.buscaCandlestickSemanalPorCodNeg(buildCandlestickSemanalDTO(codigoNegocio));
     List<MediaMovelSimplesSemanal> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
     mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);

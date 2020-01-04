@@ -13,8 +13,8 @@ public interface CandlestickSemanalDAO {
 
   Boolean inplit(SplitInplit splitInplit);
 
-  List<CandlestickSemanalDTO> findCandleSemanalPorCodNeg(final String codneg);
+  List<CandlestickSemanalDTO> buscaCandleSemanalPorCodNeg(final String codneg);
 
-  List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite);
+  List<String> buscaCandleSemanalPorDtPreg(final LocalDate dtpregLimite);
 
 }

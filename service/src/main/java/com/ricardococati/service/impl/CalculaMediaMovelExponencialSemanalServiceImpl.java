@@ -12,13 +12,12 @@ import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
 import com.ricardococati.service.CalculaMediaMovelExponencialSemanalService;
 import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.CandlestickSemanalService;
+import com.ricardococati.service.BuscarCandlestickSemanalService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +33,7 @@ public class CalculaMediaMovelExponencialSemanalServiceImpl
   private static final int PRIMEIRA_POSICAO = 0;
   private static final Boolean MEDIA_MOVEL_SIMPLES_GERADA = true;
   private static final Boolean MEDIA_EXPONENCIAL_NAO_GERADA = false;
-  private final CandlestickSemanalService calculaCandlestickService;
+  private final BuscarCandlestickSemanalService calculaCandlestickService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
   private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
@@ -44,7 +43,7 @@ public class CalculaMediaMovelExponencialSemanalServiceImpl
   public Boolean executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<CandlestickSemanalDTO> candlestickList =
-        calculaCandlestickService.listaCandlestickSemanal(
+        calculaCandlestickService.buscaCandlestickSemanalPorCodNeg(
             buildCandlestickSemanalDTO(codneg));
     List<MediaMovelExponencialSemanal> listMME =
         calculaMediaMovelExponencialPorPeriodo(candlestickList);

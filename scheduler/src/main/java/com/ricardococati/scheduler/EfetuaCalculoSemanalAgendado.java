@@ -10,7 +10,7 @@ import com.ricardococati.service.CalculaMediaMovelExponencialSemanalService;
 import com.ricardococati.service.CalculaMediaMovelSimplesSemanalService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CalculaSinalMacdSemanalService;
-import com.ricardococati.service.CandlestickSemanalService;
+import com.ricardococati.service.BuscarCandlestickSemanalService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -31,7 +31,7 @@ public class EfetuaCalculoSemanalAgendado {
   private final CalculaSinalMacdSemanalService calculaSinalMacdService;
   private final CalculaHistogramaSemanalService histogramaService;
   private final CalculaService calculaService;
-  private final CandlestickSemanalService semanalService;
+  private final BuscarCandlestickSemanalService semanalService;
   SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
   LocalDate dtpregLimite = LocalDate.of(2017, 01, 01);
 
@@ -79,7 +79,7 @@ public class EfetuaCalculoSemanalAgendado {
   }
 
   private void executeMediaSimplesSemanal(final ControleExecucao controleExecucao) {
-    semanalService.listCodNegByDtPreg(
+    semanalService.buscaCandlestickSemanalPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaSimplesSemanalExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -89,7 +89,7 @@ public class EfetuaCalculoSemanalAgendado {
   }
 
   private void executeMediaExponencialSemanal(final ControleExecucao controleExecucao) {
-    semanalService.listCodNegByDtPreg(
+    semanalService.buscaCandlestickSemanalPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaExponencialSemanalExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -99,7 +99,7 @@ public class EfetuaCalculoSemanalAgendado {
   }
 
   private void executeMacdSemanal(final ControleExecucao controleExecucao) {
-    semanalService.listCodNegByDtPreg(
+    semanalService.buscaCandlestickSemanalPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMacdSemanalExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -109,7 +109,7 @@ public class EfetuaCalculoSemanalAgendado {
   }
 
   private void executeSinalMacdSemanal(final ControleExecucao controleExecucao) {
-    semanalService.listCodNegByDtPreg(
+    semanalService.buscaCandlestickSemanalPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcSinalMacdSemanalExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -119,7 +119,7 @@ public class EfetuaCalculoSemanalAgendado {
   }
 
   private void executeHistogramaSemanal(final ControleExecucao controleExecucao) {
-    semanalService.listCodNegByDtPreg(
+    semanalService.buscaCandlestickSemanalPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcHistogramaSemanalExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)

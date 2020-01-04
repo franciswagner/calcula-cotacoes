@@ -70,7 +70,7 @@ public class CandlestickSemanalDAOImpl implements CandlestickSemanalDAO {
   }
 
   @Override
-  public List<CandlestickSemanalDTO> findCandleSemanalPorCodNeg(String codneg) {
+  public List<CandlestickSemanalDTO> buscaCandleSemanalPorCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),
@@ -79,7 +79,7 @@ public class CandlestickSemanalDAOImpl implements CandlestickSemanalDAO {
   }
 
   @Override
-  public List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite) {
+  public List<String> buscaCandleSemanalPorDtPreg(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegByDtPreg(),
         sqlUtil.toParametersDtPreg(dtpregLimite),

@@ -1,9 +1,8 @@
 package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.CandlestickSemanalMessage;
 import com.ricardococati.repository.dao.CandlestickSemanalDAO;
-import com.ricardococati.service.CandlestickSemanalService;
+import com.ricardococati.service.BuscarCandlestickSemanalService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,20 +15,21 @@ import org.springframework.stereotype.Service;
 @Data
 @Service
 @RequiredArgsConstructor
-public class CandlestickSemanalServiceImpl implements CandlestickSemanalService {
+public class BuscarCandlestickSemanalServiceImpl implements BuscarCandlestickSemanalService {
 
   private final CandlestickSemanalDAO semanalDAO;
   private final CandlestickMessageConverter converter;
 
   @Override
-  public List<CandlestickSemanalDTO> listaCandlestickSemanal(
+  public List<CandlestickSemanalDTO> buscaCandlestickSemanalPorCodNeg(
       final CandlestickSemanalDTO semanalDTO) {
-    return semanalDAO.findCandleSemanalPorCodNeg(semanalDTO.getCandlestickDTO().getCodneg());
+    return semanalDAO.buscaCandleSemanalPorCodNeg(semanalDTO.getCandlestickDTO().getCodneg());
   }
 
   @Override
-  public List<String> listCodNegByDtPreg(final LocalDate dtpregLimite) {
-    return semanalDAO.getListCodNegByDtPreg(dtpregLimite);
+  public List<String> buscaCandlestickSemanalPorDtPreg(
+      final LocalDate dtpregLimite) {
+    return semanalDAO.buscaCandleSemanalPorDtPreg(dtpregLimite);
   }
 
 }
