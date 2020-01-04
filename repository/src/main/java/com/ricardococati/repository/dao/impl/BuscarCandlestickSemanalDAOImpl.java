@@ -1,9 +1,9 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.repository.dao.BuscarCandlestickDiarioDAO;
-import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
-import com.ricardococati.repository.dao.sqlutil.BuscarCandlestickDiarioSQLUtil;
+import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.repository.dao.BuscarCandlestickSemanalDAO;
+import com.ricardococati.repository.dao.mapper.BuscarCandlestickSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.BuscarCandlestickSemanalSQLUtil;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class BuscarCandlestickDiarioDAOImpl implements BuscarCandlestickDiarioDAO {
+public class BuscarCandlestickSemanalDAOImpl implements BuscarCandlestickSemanalDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final BuscarCandlestickDiarioSQLUtil sqlUtil;
-  private final CandlestickDiarioMapper mapper;
+  private final BuscarCandlestickSemanalSQLUtil sqlUtil;
+  private final BuscarCandlestickSemanalMapper mapper;
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(String codneg) {
+  public List<CandlestickSemanalDTO> buscaCandleSemanalPorCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),
@@ -33,12 +33,11 @@ public class BuscarCandlestickDiarioDAOImpl implements BuscarCandlestickDiarioDA
   }
 
   @Override
-  public List<String> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite) {
+  public List<String> buscaCandleSemanalPorDtPreg(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegByDtPreg(),
         sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
-
 }

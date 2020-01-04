@@ -6,5 +6,4 @@ public interface SplitInplitService {
 
   Boolean executeSplitInplit(final SplitInplit splitInplit);
 
-  Boolean inplit(SplitInplit splitInplit);
 }

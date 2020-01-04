@@ -10,8 +10,8 @@ import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.BaseOccurrenceJdbcTest;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.sqlutil.IncluirCandlestickDiarioSQLUtil;
-import com.ricardococati.repository.dao.sqlutil.SplitInplitCandlestickDiarioSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.AtualizarCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.junit.Before;
@@ -26,13 +26,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SplitInplitBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
 
   @InjectMocks
-  private SplitInplitCandlestickDiarioDAOImpl target;
+  private AtualizarCandlestickDiarioDAOImpl target;
   @MockBean
-  private IncluirCandlestickDiarioDAOImpl incluirDAO;
+  private InserirCandlestickDiarioDAOImpl incluirDAO;
   @Mock
-  private SplitInplitCandlestickDiarioSQLUtil sqlUtil;
+  private AtualizarCandlestickDiarioSQLUtil sqlUtil;
   @Mock
-  private IncluirCandlestickDiarioSQLUtil incluirSQLUtil;
+  private InserirCandlestickDiarioSQLUtil incluirSQLUtil;
   @Mock
   private GenericDAO genericDAO;
   private Integer countInteger;
@@ -42,16 +42,16 @@ public class SplitInplitBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenc
   public void setUp() {
     this.countInteger = 0;
     this.dtpreg = LocalDate.of(1978, 02, 16);
-    target = new SplitInplitCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
+    target = new AtualizarCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
     incluiCandleAntesDeExecutarTestes();
   }
 
   private void incluiCandleAntesDeExecutarTestes() {
-    incluirDAO = new IncluirCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
+    incluirDAO = new InserirCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
     when(incluirSQLUtil.getInsert()).thenCallRealMethod();
     when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any(), any())).thenReturn(1);
-    incluirDAO.incluirCandlestickDiario(
+    incluirDAO.insereCandlestickDiario(
         buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg.plusDays(countInteger += 1))
     );
   }
@@ -63,7 +63,7 @@ public class SplitInplitBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenc
     when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
     when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
     //when
-    Boolean retorno = target.updateSplitInplit(splitInplit);
+    Boolean retorno = target.atualizaSplitInplit(splitInplit);
     //then
     assertTrue(retorno);
   }
@@ -75,7 +75,7 @@ public class SplitInplitBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenc
     when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
     when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
     //when
-    Boolean retorno = target.updateSplitInplit(splitInplit);
+    Boolean retorno = target.atualizaSplitInplit(splitInplit);
     //then
     assertTrue(retorno);
   }

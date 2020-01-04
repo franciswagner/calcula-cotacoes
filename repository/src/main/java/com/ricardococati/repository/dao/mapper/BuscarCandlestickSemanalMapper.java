@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CandlestickSemanalMapper {
+public class BuscarCandlestickSemanalMapper {
 
   public String mapperCodNeg(ResultSet rs) {
     try {

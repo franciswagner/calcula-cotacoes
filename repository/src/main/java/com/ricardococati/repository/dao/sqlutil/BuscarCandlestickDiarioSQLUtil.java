@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CandlestickDiarioSQLUtil {
+public class BuscarCandlestickDiarioSQLUtil {
 
   public String getSelectCodNegByDtPreg() {
     final SQLAppender sql = new SQLAppender(100);

@@ -1,21 +1,20 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.repository.util.SQLAppender;
-import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IncluirCandlestickDiarioSQLUtil {
+public class InserirCandlestickSemanalSQLUtil {
 
   public String getInsert() {
     SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL("	insert into candlestick_diario ( ");
-    sql.appendSQL("		id_candle_diario, ");
+    sql.appendSQL("	insert into candlestick_semanal ( ");
+    sql.appendSQL("		id_candle_semanal, ");
     sql.appendSQL("		codneg, ");
-    sql.appendSQL("		dtpreg, ");
+    sql.appendSQL("		dtpregini, ");
+    sql.appendSQL("		dtpregfim, ");
     sql.appendSQL("		media_movel_gerada, ");
     sql.appendSQL("		media_exponecial_gerada, ");
     sql.appendSQL("		macd_gerada, ");
@@ -28,9 +27,10 @@ public class IncluirCandlestickDiarioSQLUtil {
     sql.appendSQL("		semana, ");
     sql.appendSQL("		voltot) ");
     sql.appendSQL("	values( ");
-    sql.appendSQL("		:idCandleDiario, ");
+    sql.appendSQL("		:idCandleSemanal, ");
     sql.appendSQL("		:codneg, ");
-    sql.appendSQL("		:dtpreg, ");
+    sql.appendSQL("		:dtpregini, ");
+    sql.appendSQL("		:dtpregfim, ");
     sql.appendSQL("		:mediaMovelGerada, ");
     sql.appendSQL("		:mediaExponencialGerada, ");
     sql.appendSQL("		:macdGerada, ");
@@ -43,9 +43,10 @@ public class IncluirCandlestickDiarioSQLUtil {
     sql.appendSQL("		:semana, ");
     sql.appendSQL("		:voltot ");
     sql.appendSQL("   ) ");
-    sql.appendSQL(" on conflict (codneg, dtpreg) do update set ");
+    sql.appendSQL(" on conflict (codneg, dtpregini, dtpregfim) do update set ");
     sql.appendSQL("		codneg = excluded.codneg, ");
-    sql.appendSQL("		dtpreg = excluded.dtpreg, ");
+    sql.appendSQL("		dtpregini = excluded.dtpregini, ");
+    sql.appendSQL("		dtpregfim = excluded.dtpregfim, ");
     sql.appendSQL("		media_movel_gerada = excluded.media_movel_gerada, ");
     sql.appendSQL("		media_exponecial_gerada = excluded.media_exponecial_gerada, ");
     sql.appendSQL("		macd_gerada = excluded.macd_gerada, ");
@@ -57,26 +58,26 @@ public class IncluirCandlestickDiarioSQLUtil {
     sql.appendSQL("		preult = excluded.preult, ");
     sql.appendSQL("		semana = excluded.semana, ");
     sql.appendSQL("		voltot = excluded.voltot ");
-
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public MapSqlParameterSource toParameters(final CandlestickDiarioDTO candlestickDiarioDTO) {
+  public MapSqlParameterSource toParameters(final CandlestickSemanalDTO candlestickSemanalDTO) {
     return new MapSqlParameterSource()
-        .addValue("idCandleDiario", candlestickDiarioDTO.getIdCandleDiario())
-        .addValue("codneg", candlestickDiarioDTO.getCandlestickDTO().getCodneg())
-        .addValue("dtpreg", candlestickDiarioDTO.getDtpreg())
-        .addValue("mediaMovelGerada", candlestickDiarioDTO.getCandlestickDTO().getMediaMovelGerada())
-        .addValue("mediaExponencialGerada", candlestickDiarioDTO.getCandlestickDTO().getMediaExponencialGerada())
-        .addValue("macdGerada", candlestickDiarioDTO.getCandlestickDTO().getMacdGerada())
-        .addValue("sinalMacdGerada", candlestickDiarioDTO.getCandlestickDTO().getSinalMacdGerada())
-        .addValue("histogramaGerada", candlestickDiarioDTO.getCandlestickDTO().getHistogramaGerada())
-        .addValue("preabe", candlestickDiarioDTO.getCandlestickDTO().getPreabe())
-        .addValue("premax", candlestickDiarioDTO.getCandlestickDTO().getPremax())
-        .addValue("premin", candlestickDiarioDTO.getCandlestickDTO().getPremin())
-        .addValue("preult", candlestickDiarioDTO.getCandlestickDTO().getPreult())
-        .addValue("semana", candlestickDiarioDTO.getCandlestickDTO().getSemana())
-        .addValue("voltot", candlestickDiarioDTO.getCandlestickDTO().getVoltot());
+        .addValue("idCandleSemanal", candlestickSemanalDTO.getIdCandleSemanal())
+        .addValue("codneg", candlestickSemanalDTO.getCandlestickDTO().getCodneg())
+        .addValue("dtpregini", candlestickSemanalDTO.getDtpregini())
+        .addValue("dtpregfim", candlestickSemanalDTO.getDtpregfim())
+        .addValue("mediaMovelGerada", candlestickSemanalDTO.getCandlestickDTO().getMediaMovelGerada())
+        .addValue("mediaExponencialGerada", candlestickSemanalDTO.getCandlestickDTO().getMediaExponencialGerada())
+        .addValue("macdGerada", candlestickSemanalDTO.getCandlestickDTO().getMacdGerada())
+        .addValue("sinalMacdGerada", candlestickSemanalDTO.getCandlestickDTO().getSinalMacdGerada())
+        .addValue("histogramaGerada", candlestickSemanalDTO.getCandlestickDTO().getHistogramaGerada())
+        .addValue("preabe", candlestickSemanalDTO.getCandlestickDTO().getPreabe())
+        .addValue("premax", candlestickSemanalDTO.getCandlestickDTO().getPremax())
+        .addValue("premin", candlestickSemanalDTO.getCandlestickDTO().getPremin())
+        .addValue("preult", candlestickSemanalDTO.getCandlestickDTO().getPreult())
+        .addValue("semana", candlestickSemanalDTO.getCandlestickDTO().getSemana())
+        .addValue("voltot", candlestickSemanalDTO.getCandlestickDTO().getVoltot());
   }
 
 }

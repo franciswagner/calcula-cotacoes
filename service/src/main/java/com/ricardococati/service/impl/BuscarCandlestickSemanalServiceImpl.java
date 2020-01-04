@@ -1,7 +1,7 @@
 package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.repository.dao.CandlestickSemanalDAO;
+import com.ricardococati.repository.dao.BuscarCandlestickSemanalDAO;
 import com.ricardococati.service.BuscarCandlestickSemanalService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BuscarCandlestickSemanalServiceImpl implements BuscarCandlestickSemanalService {
 
-  private final CandlestickSemanalDAO semanalDAO;
+  private final BuscarCandlestickSemanalDAO semanalDAO;
   private final CandlestickMessageConverter converter;
 
   @Override

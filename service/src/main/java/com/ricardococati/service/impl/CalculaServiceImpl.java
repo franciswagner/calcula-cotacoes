@@ -4,7 +4,7 @@ import com.ricardococati.model.dto.ControleExecucao;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.dao.BuscarCandlestickDiarioDAO;
-import com.ricardococati.repository.dao.CandlestickSemanalDAO;
+import com.ricardococati.repository.dao.BuscarCandlestickSemanalDAO;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
 import com.ricardococati.repository.dao.MacdSemanalDAO;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 public class CalculaServiceImpl implements CalculaService {
 
   private final BuscarCandlestickDiarioDAO diarioDAO;
-  private final CandlestickSemanalDAO semanalDAO;
+  private final BuscarCandlestickSemanalDAO semanalDAO;
   private final MacdDiarioDAO macdDiarioDAO;
   private final MacdSemanalDAO macdSemanalDAO;
   private final MediaMovelExponencialDiarioDAO mediaExponencialDAO;
