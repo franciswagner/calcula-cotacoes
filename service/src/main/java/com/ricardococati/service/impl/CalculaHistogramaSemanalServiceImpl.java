@@ -10,10 +10,8 @@ import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
 import com.ricardococati.service.CalculaHistogramaSemanalService;
 import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.CandlestickSemanalService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +24,6 @@ import org.springframework.stereotype.Service;
 public class CalculaHistogramaSemanalServiceImpl
     implements CalculaHistogramaSemanalService {
 
-  private final CandlestickSemanalService calculaCandlestickService;
   private final MacdSemanalDAO macdDAO;
   private final SinalMacdSemanalDAO sinalMacdDAO;
   private final HistogramaSemanalDAO histogramaDAO;
@@ -42,7 +39,6 @@ public class CalculaHistogramaSemanalServiceImpl
         sinalMacdDAO.listSinalMacdByCodNeg(codneg);
     List<HistogramaSemanal> histogramaList = calculaHistograma(macdList, sinalMacdList);
     histogramaDAO.incluirHistograma(histogramaList);
-    calculaCandlestickService.atualizaCandleSemanalSinalMacdGeradaByCodneg(codneg);
     return Boolean.TRUE;
   }
 

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BuscarCandlestickDiarioServiceImpl implements BuscarCandlestickDiarioService {
 
-
   private final BuscarCandlestickDiarioDAO diarioDAO;
   private final CandlestickMessageConverter converter;
 
@@ -28,7 +27,7 @@ public class BuscarCandlestickDiarioServiceImpl implements BuscarCandlestickDiar
   }
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandlestickDiarioPorDtPreg(
+  public List<String> buscaCandlestickDiarioPorDtPreg(
       final LocalDate dtpregLimite) {
     return diarioDAO.buscaCandleDiarioPorDtPreg(dtpregLimite);
   }

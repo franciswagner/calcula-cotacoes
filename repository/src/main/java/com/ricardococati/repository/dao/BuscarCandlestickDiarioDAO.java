@@ -8,6 +8,6 @@ public interface BuscarCandlestickDiarioDAO {
 
   List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg);
 
-  List<CandlestickDiarioDTO> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite);
+  List<String> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite);
 
 }

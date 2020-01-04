@@ -7,11 +7,7 @@ import java.util.List;
 
 public interface CandlestickSemanalService {
 
-  Boolean incluirCandlestickSemanal(final CandlestickSemanalMessage message);
-
   List<CandlestickSemanalDTO> listaCandlestickSemanal(CandlestickSemanalDTO candlestickDiarioDTO);
-
-  Boolean atualizaCandleSemanalSinalMacdGeradaByCodneg(String codneg);
 
   List<String> listCodNegByDtPreg(final LocalDate dtpregLimite);
 

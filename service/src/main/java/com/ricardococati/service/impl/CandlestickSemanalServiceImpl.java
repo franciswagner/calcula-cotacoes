@@ -22,19 +22,9 @@ public class CandlestickSemanalServiceImpl implements CandlestickSemanalService 
   private final CandlestickMessageConverter converter;
 
   @Override
-  public Boolean incluirCandlestickSemanal(final CandlestickSemanalMessage message) {
-    return semanalDAO.incluirCandlestickSemanal(converter.convertSemanal(message));
-  }
-
-  @Override
   public List<CandlestickSemanalDTO> listaCandlestickSemanal(
       final CandlestickSemanalDTO semanalDTO) {
     return semanalDAO.findCandleSemanalPorCodNeg(semanalDTO.getCandlestickDTO().getCodneg());
-  }
-
-  @Override
-  public Boolean atualizaCandleSemanalSinalMacdGeradaByCodneg(final String codneg) {
-    return semanalDAO.updateCandleSemanalSinalMacdGeradaByCodNeg(codneg);
   }
 
   @Override

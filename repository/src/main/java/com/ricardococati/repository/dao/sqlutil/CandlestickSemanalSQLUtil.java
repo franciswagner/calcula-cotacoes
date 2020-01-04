@@ -4,7 +4,6 @@ import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
-import java.util.Map;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
@@ -102,36 +101,6 @@ public class CandlestickSemanalSQLUtil {
         .addValue("qtddivmult", splitInplit.getQtdSplitInplit());
   }
 
-  public String getSelectCount() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" select  ");
-    sql.appendSQL("   count(1)  ");
-    sql.appendSQL(" from candlestick_semanal ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String updateCandleStickSemanal(){
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_semanal set  ");
-    sql.appendSQL("   media_movel_gerada = false,  ");
-    sql.appendSQL("   media_exponecial_gerada = false,  ");
-    sql.appendSQL("   macd_gerada = false,  ");
-    sql.appendSQL("   sinal_macd_gerada = false,  ");
-    sql.appendSQL("   histograma_gerada = false  ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getSelectCodNegMediaSimplesFalse() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" select ");
-    sql.appendSQL("   codneg  ");
-    sql.appendSQL(" from candlestick_semanal ");
-    sql.appendSQL(" where media_movel_gerada = false ");
-    sql.appendSQL(" group by codneg ");
-    sql.appendSQL(" order by codneg asc ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
   public String getSelectByCodNeg() {
     SQLAppender sql = new SQLAppender(100);
     sql.appendSQL(" select ");
@@ -159,48 +128,6 @@ public class CandlestickSemanalSQLUtil {
   public MapSqlParameterSource toParametersCodNeg(final String codneg) {
     return new MapSqlParameterSource()
         .addValue("codneg", codneg);
-  }
-
-  public String getSelectCodNeg() {
-    SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" select ");
-    sql.appendSQL("   codneg  ");
-    sql.appendSQL(" from candlestick_semanal ");
-    sql.appendSQL(" group by codneg ");
-    sql.appendSQL(" order by codneg asc ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getUpdateMediaMovelByCodneg() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_semanal set  ");
-    sql.appendSQL("   media_movel_gerada = true  ");
-    sql.appendSQL(" where codneg = :codneg ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getUpdateMediaExponencialByCodneg() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_semanal set  ");
-    sql.appendSQL("   media_exponecial_gerada = true  ");
-    sql.appendSQL(" where codneg = :codneg ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getUpdateMacdByCodneg() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_semanal set  ");
-    sql.appendSQL("   macd_gerada = true  ");
-    sql.appendSQL(" where codneg = :codneg ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getUpdateSinalMacdByCodneg() {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_semanal set  ");
-    sql.appendSQL("   sinal_macd_gerada = true  ");
-    sql.appendSQL(" where codneg = :codneg ");
-    return sql.getAppendSQLSemQuebra().toString();
   }
 
   public String getSelectCodNegByDtPreg() {

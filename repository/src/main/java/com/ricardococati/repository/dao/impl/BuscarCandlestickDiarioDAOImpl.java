@@ -33,11 +33,11 @@ public class BuscarCandlestickDiarioDAOImpl implements BuscarCandlestickDiarioDA
   }
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite) {
+  public List<String> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegByDtPreg(),
         sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapper(rs)
+        (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 

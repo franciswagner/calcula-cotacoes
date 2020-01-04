@@ -2,7 +2,7 @@ package com.ricardococati.service.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
 import com.ricardococati.repository.dao.IncluirCandlestickDiarioDAO;
-import com.ricardococati.service.IncluirCandlestickDiarioService;
+import com.ricardococati.service.InserirCandlestickDiarioService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Data
 @Service
 @RequiredArgsConstructor
-public class InsereCandlestickDiarioServiceImpl implements IncluirCandlestickDiarioService {
+public class InserirCandlestickDiarioServiceImpl implements InserirCandlestickDiarioService {
 
 
   private final IncluirCandlestickDiarioDAO incluirDiario;

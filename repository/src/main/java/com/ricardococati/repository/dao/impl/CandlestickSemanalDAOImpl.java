@@ -2,8 +2,8 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.CandlestickSemanalDAO;
+import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.mapper.CandlestickSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
@@ -12,7 +12,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,15 +26,6 @@ public class CandlestickSemanalDAOImpl implements CandlestickSemanalDAO {
   private final GenericDAO genericDAO;
   private final CandlestickSemanalSQLUtil sqlUtil;
   private final CandlestickSemanalMapper mapper;
-
-  @Override
-  public Integer contaCandleDiarioSemCandleSemSemanalGerado() {
-    return template.queryForObject(
-        sqlUtil.getSelectCount(),
-        new MapSqlParameterSource(),
-        Integer.class
-    );
-  }
 
   @Override
   public Boolean incluirCandlestickSemanal(CandlestickSemanalDTO semanal) {
@@ -80,92 +70,11 @@ public class CandlestickSemanalDAOImpl implements CandlestickSemanalDAO {
   }
 
   @Override
-  public Boolean updateCandlestickSemanal() {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.updateCandleStickSemanal(),
-          new MapSqlParameterSource());
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public List<String> listCodNegocioMediaSimplesFalse() {
-    return template.query(
-        sqlUtil.getSelectCodNegMediaSimplesFalse(),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
   public List<CandlestickSemanalDTO> findCandleSemanalPorCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),
         (rs, rowNum) -> mapper.mapper(rs)
-    );
-  }
-
-  @Override
-  public Boolean updateCandleSemanalMediaSimplesGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaMovelByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleSemanalMediaExponencialGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaExponencialByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleSemanalMacdGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleSemanalSinalMacdGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateSinalMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public List<String> getListCodNeg() {
-    return template.query(
-        sqlUtil.getSelectCodNeg(),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
   }
 

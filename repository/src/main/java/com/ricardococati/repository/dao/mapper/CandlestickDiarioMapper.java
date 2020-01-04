@@ -12,6 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CandlestickDiarioMapper {
 
+  public String mapperCodNeg(ResultSet rs) {
+    try {
+      return rs.getString("codneg");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public CandlestickDiarioDTO mapper(ResultSet rs) {
     try {
       return CandlestickDiarioDTO
