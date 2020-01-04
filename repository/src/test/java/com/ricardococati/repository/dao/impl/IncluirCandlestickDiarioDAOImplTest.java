@@ -8,8 +8,7 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.BaseOccurrenceJdbcTest;
 import com.ricardococati.repository.dao.GenericDAO;
-import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
-import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.IncluirCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.junit.Before;
@@ -20,16 +19,14 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class CandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
+public class IncluirCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
 
   @InjectMocks
-  private CandlestickDiarioDAOImpl target;
+  private IncluirCandlestickDiarioDAOImpl target;
   @Mock
   private GenericDAO genericDAO;
   @Mock
-  private CandlestickDiarioSQLUtil sqlUtil;
-  @Mock
-  private CandlestickDiarioMapper mapper;
+  private IncluirCandlestickDiarioSQLUtil sqlUtil;
   private Integer countInteger;
   private LocalDate dtpreg;
 
@@ -37,7 +34,7 @@ public class CandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
   public void setUp() {
     this.countInteger = 0;
     this.dtpreg = LocalDate.of(1978, 02, 16);
-    target = new CandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, sqlUtil, mapper);
+    target = new IncluirCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, sqlUtil);
   }
 
   @Test

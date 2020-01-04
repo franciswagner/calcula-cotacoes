@@ -1,18 +1,14 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.SplitInplit;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.CandlestickDiarioDAO;
 import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioSQLUtil;
-import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,25 +20,8 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
   private final CandlestickDiarioSQLUtil sqlUtil;
   private final CandlestickDiarioMapper mapper;
-
-  @Override
-  public Boolean incluirCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO) {
-    int retorno = 0;
-    final SQLAppender sql = new SQLAppender(100);
-    try {
-      candlestickDiarioDTO.setIdCandleDiario(
-          genericDAO.getSequence("CANDLESTICK_SEQ", template).longValue()
-      );
-      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(candlestickDiarioDTO));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método CANDLESTICK_DIARIO: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
 
   @Override
   public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(String codneg) {

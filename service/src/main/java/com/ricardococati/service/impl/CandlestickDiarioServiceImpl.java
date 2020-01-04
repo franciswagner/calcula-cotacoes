@@ -3,6 +3,7 @@ package com.ricardococati.service.impl;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
 import com.ricardococati.repository.dao.CandlestickDiarioDAO;
+import com.ricardococati.repository.dao.IncluirCandlestickDiarioDAO;
 import com.ricardococati.service.CandlestickDiarioService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class CandlestickDiarioServiceImpl implements CandlestickDiarioService {
 
 
   private final CandlestickDiarioDAO diarioDAO;
+  private final IncluirCandlestickDiarioDAO incluirDiario;
   private final CandlestickMessageConverter converter;
 
   @Override
@@ -60,7 +62,7 @@ public class CandlestickDiarioServiceImpl implements CandlestickDiarioService {
 
   @Override
   public Boolean incluirCandlestickDiario(final CandlestickDiarioMessage message) {
-    return diarioDAO.incluirCandlestickDiario(converter.convert(message));
+    return incluirDiario.incluirCandlestickDiario(converter.convert(message));
   }
 
   @Override
