@@ -33,54 +33,9 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
   }
 
   @Override
-  public List<String> getListCodNegMediaSimplesFalse(final LocalDate dtpregLimite) {
-    return template.query(
-        sqlUtil.getSelectCodNegMediaSimplesFalse(),
-        sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
   public List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegByDtPreg(),
-        sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<String> getListCodNegMediaExponencialFalse(final LocalDate dtpregLimite) {
-    return template.query(
-        sqlUtil.getSelectCodNegMediaExponencialFalse(),
-        sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<String> getListCodNegMacdFalse(final LocalDate dtpregLimite) {
-    return template.query(
-        sqlUtil.getSelectCodNegMacdFalse(),
-        sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<String> getListCodNegSinalMacdFalse(final LocalDate dtpregLimite) {
-    return template.query(
-        sqlUtil.getSelectCodNegSinalMacdFalse(),
-        sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<String> getListCodNegHistogramaFalse(final LocalDate dtpregLimite) {
-    return template.query(
-        sqlUtil.getSelectCodNegHistogramaFalse(),
         sqlUtil.toParametersDtPreg(dtpregLimite),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
@@ -92,58 +47,6 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
         sqlUtil.getSelectCodNeg(),
         (rs, rowNum) -> mapper.mapperCodNeg(rs)
     );
-  }
-
-  @Override
-  public Boolean updateCandleDiarioMediaSimplesGeradaByCodNeg(final String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaMovelByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleDiarioMediaExponencialGeradaByCodNeg(final String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMediaExponencialByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleDiarioMacdGeradaByCodNeg(final String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
-  }
-
-  @Override
-  public Boolean updateCandleDiarioSinalMacdGeradaByCodNeg(String codneg) {
-    int retorno = 0;
-    try {
-      retorno = template.update(sqlUtil.getUpdateSinalMacdByCodneg(),
-          sqlUtil.toParametersCodNeg(codneg));
-    } catch (Exception ex) {
-      log.error("Erro na execução do método update: " + ex.getMessage());
-      throw ex;
-    }
-    return retorno > 0;
   }
 
 }

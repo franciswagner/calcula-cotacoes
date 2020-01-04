@@ -39,7 +39,6 @@ public class CalculaMediaMovelSimplesDiarioServiceImpl
         diarioService.listaCandlestickDiario(buildCandlestickDiarioDTO(codigoNegocio));
     List<MediaMovelSimplesDiario> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
-    diarioService.atualizaCandleDiarioMediaSimplesGeradaByCodneg(codigoNegocio);
     mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
     return mediaMovelSimplesList;
   }

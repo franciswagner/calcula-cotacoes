@@ -31,31 +31,6 @@ public class CandlestickDiarioServiceImpl implements CandlestickDiarioService {
   }
 
   @Override
-  public List<String> listCodNegocioMediaSimplesFalse(final LocalDate dtpregLimite) {
-    return diarioDAO.getListCodNegMediaSimplesFalse(dtpregLimite);
-  }
-
-  @Override
-  public List<String> listCodNegocioMediaExponencialFalse(final LocalDate dtpregLimite) {
-    return diarioDAO.getListCodNegMediaExponencialFalse(dtpregLimite);
-  }
-
-  @Override
-  public List<String> listCodNegocioMacdFalse(final LocalDate dtpregLimite) {
-    return diarioDAO.getListCodNegMacdFalse(dtpregLimite);
-  }
-
-  @Override
-  public List<String> listCodNegocioSinalMacdFalse(final LocalDate dtpregLimite) {
-    return diarioDAO.getListCodNegSinalMacdFalse(dtpregLimite);
-  }
-
-  @Override
-  public List<String> listCodNegocioHistogramaFalse(final LocalDate dtpregLimite) {
-    return diarioDAO.getListCodNegHistogramaFalse(dtpregLimite);
-  }
-
-  @Override
   public List<String> listCodNegByDtPreg(final LocalDate dtpregLimite) {
     return diarioDAO.getListCodNegByDtPreg(dtpregLimite);
   }
@@ -68,26 +43,6 @@ public class CandlestickDiarioServiceImpl implements CandlestickDiarioService {
   @Override
   public List<String> listCodNegocio() {
     return diarioDAO.getListCodNeg();
-  }
-
-  @Override
-  public Boolean atualizaCandleDiarioMediaSimplesGeradaByCodneg(String codneg) {
-    return diarioDAO.updateCandleDiarioMediaSimplesGeradaByCodNeg(codneg);
-  }
-
-  @Override
-  public Boolean atualizaCandleDiarioMediaExponencialGeradaByCodneg(String codneg) {
-    return diarioDAO.updateCandleDiarioMediaExponencialGeradaByCodNeg(codneg);
-  }
-
-  @Override
-  public Boolean atualizaCandleDiarioMacdGeradaByCodneg(String codneg) {
-    return diarioDAO.updateCandleDiarioMacdGeradaByCodNeg(codneg);
-  }
-
-  @Override
-  public Boolean atualizaCandleDiarioSinalMacdGeradaByCodneg(String codneg) {
-    return diarioDAO.updateCandleDiarioSinalMacdGeradaByCodNeg(codneg);
   }
 
 }

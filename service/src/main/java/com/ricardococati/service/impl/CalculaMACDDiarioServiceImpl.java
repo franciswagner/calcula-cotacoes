@@ -39,7 +39,6 @@ public class CalculaMACDDiarioServiceImpl
               codigoNegocio -> {
                 log.info("Código de negociação: " + codigoNegocio);
                 returned.set(calculaMACD(codigoNegocio));
-                candleDiarioService.atualizaCandleDiarioMacdGeradaByCodneg(codigoNegocio);
               });
     }
     return returned.get();

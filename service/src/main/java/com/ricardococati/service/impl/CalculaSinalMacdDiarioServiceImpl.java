@@ -57,7 +57,6 @@ public class CalculaSinalMacdDiarioServiceImpl
     List<SinalMacdDiario> sinalMacdList =
         calculaMediaMovelExponencialMacd9Periodos(macdList);
     sinalMacdDAO.incluirSinalMacd(sinalMacdList);
-    calculaCandlestickService.atualizaCandleDiarioSinalMacdGeradaByCodneg(codneg);
     return Boolean.TRUE;
   }
 

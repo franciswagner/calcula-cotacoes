@@ -56,7 +56,6 @@ public class CalculaHistogramaDiarioServiceImpl
         sinalMacdDAO.listSinalMacdByCodNeg(codneg);
     List<HistogramaDiario> histogramaList = calculaHistograma(macdList, sinalMacdList);
     histogramaDAO.incluirHistograma(histogramaList);
-    calculaCandlestickService.atualizaCandleDiarioSinalMacdGeradaByCodneg(codneg);
     return Boolean.TRUE;
   }
 
