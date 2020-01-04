@@ -11,7 +11,7 @@ import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
 import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -33,7 +33,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImpl
   private static final int PRIMEIRA_POSICAO = 0;
   private static final Boolean MEDIA_MOVEL_SIMPLES_GERADA = true;
   private static final Boolean MEDIA_EXPONENCIAL_NAO_GERADA = false;
-  private final CandlestickDiarioService diarioService;
+  private final BuscarCandlestickDiarioService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
   private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
@@ -42,7 +42,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImpl
   public List<MediaMovelExponencialDiario> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<CandlestickDiarioDTO> candlestickList =
-        diarioService.listaCandlestickDiario(
+        diarioService.buscaCandlestickDiarioPorCodNeg(
             buildCandlestickDiarioDTO(codneg));
     List<MediaMovelExponencialDiario> listMME =
         calculaMediaMovelExponencialPorPeriodo(codneg, candlestickList);

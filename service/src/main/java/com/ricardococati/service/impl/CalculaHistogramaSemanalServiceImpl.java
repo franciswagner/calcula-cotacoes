@@ -34,20 +34,6 @@ public class CalculaHistogramaSemanalServiceImpl
   private final CalculaService calculaService;
 
   @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if (returned.get()) {
-      calculaService
-          .listCodNegSemanal()
-          .forEach(
-              codneg -> {
-                returned.set(executeByCodNeg(codneg));
-              });
-    }
-    return returned.get();
-  }
-
-  @Override
   public Boolean executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<MacdSemanal> macdList =

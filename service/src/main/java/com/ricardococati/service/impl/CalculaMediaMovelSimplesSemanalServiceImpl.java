@@ -35,21 +35,6 @@ public class CalculaMediaMovelSimplesSemanalServiceImpl
   private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
 
   @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if(returned.get()) {
-      semanalService
-          .listCodNegocioMediaSimplesFalse()
-          .forEach(
-              codigoNegocio -> {
-                returned.set(executeByCodNeg(codigoNegocio));
-                semanalService.atualizaCandleSemanalMediaSimplesGeradaByCodneg(codigoNegocio);
-              });
-    }
-    return returned.get();
-  }
-
-  @Override
   public Boolean executeByCodNeg(final String codigoNegocio) {
     log.info("Código de negociação: " + codigoNegocio);
     List<CandlestickSemanalDTO> candlestickList =

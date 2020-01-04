@@ -10,7 +10,7 @@ import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
 import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CalculaSinalMacdDiarioService;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class EfetuaCalculoDiarioAgendado {
   private final CalculaMACDDiarioService calculaMACDService;
   private final CalculaSinalMacdDiarioService calculaSinalMacdService;
   private final CalculaHistogramaDiarioService calculaHistogramaService;
-  private final CandlestickDiarioService diarioService;
+  private final BuscarCandlestickDiarioService diarioService;
   private final CalculaService calculaService;
   SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
   LocalDate dtpregLimite = LocalDate.of(2017, 01, 01);
@@ -79,7 +79,7 @@ public class EfetuaCalculoDiarioAgendado {
   }
 
   private void executeMediaSimplesDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegByDtPreg(
+    diarioService.buscaCandlestickDiarioPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaSimplesDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -89,7 +89,7 @@ public class EfetuaCalculoDiarioAgendado {
   }
 
   private void executeMediaExponencialDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegByDtPreg(
+    diarioService.buscaCandlestickDiarioPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMediaExponencialDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -99,7 +99,7 @@ public class EfetuaCalculoDiarioAgendado {
   }
 
   private void executeMacdDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegByDtPreg(
+    diarioService.buscaCandlestickDiarioPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcMacdDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -109,7 +109,7 @@ public class EfetuaCalculoDiarioAgendado {
   }
 
   private void executeSinalMacdDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegByDtPreg(
+    diarioService.buscaCandlestickDiarioPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcSinalMacdDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)
@@ -119,7 +119,7 @@ public class EfetuaCalculoDiarioAgendado {
   }
 
   private void executeHistogramaDiario(final ControleExecucao controleExecucao) {
-    diarioService.listCodNegByDtPreg(
+    diarioService.buscaCandlestickDiarioPorDtPreg(
         verificaUltimaExecucao(controleExecucao.getCalcHistogramaDiarioExecutadoDtpreg()))
         .stream()
         .filter(Objects::nonNull)

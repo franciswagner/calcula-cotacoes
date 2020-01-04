@@ -12,7 +12,7 @@ import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
   @InjectMocks
   private CalculaMediaMovelExponencialDiarioServiceImpl target;
   @Mock
-  private CandlestickDiarioService diarioService;
+  private BuscarCandlestickDiarioService diarioService;
   @Mock
   private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
   @Mock
@@ -49,7 +49,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
   public void executeByCodNeg() {
     //given
     List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(candlestickList);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(candlestickList);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
         .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
 
@@ -73,7 +73,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
   @Test
   public void executeByCodNegCandlestickNull() {
     //given
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(null);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(null);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
         .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
     //when
@@ -85,7 +85,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
   @Test
   public void executeByCodNegCandlestickEmpty() {
     //given
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(null);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(null);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
         .thenReturn(buildMediaSimples("MGLU3", 10.1, dtpreg));
     //when

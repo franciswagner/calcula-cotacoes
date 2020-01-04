@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class IncluirCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
+public class IncluirBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
 
   @InjectMocks
   private IncluirCandlestickDiarioDAOImpl target;

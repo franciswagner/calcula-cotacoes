@@ -29,12 +29,6 @@ public class MacdDiarioSQLUtil {
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from macd_diario ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
   public MapSqlParameterSource toParameters(final MacdDiario macd) {
     return new MapSqlParameterSource()
         .addValue("idMacd", macd.getIdMacdDiario())

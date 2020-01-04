@@ -8,8 +8,6 @@ public interface MacdDiarioDAO {
 
   Boolean incluirMacd(final List<MacdDiario> macdList);
 
-  Boolean deleteAllMacd();
-
   List<MacdDiario> listMacdByCodNeg(final String codneg);
 
   List<MacdDiario> buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos(

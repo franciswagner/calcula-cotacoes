@@ -49,11 +49,6 @@ public class MacdDiarioDAOImpl implements MacdDiarioDAO {
   }
 
   @Override
-  public Boolean deleteAllMacd() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
-  }
-
-  @Override
   public List<MacdDiario> listMacdByCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),

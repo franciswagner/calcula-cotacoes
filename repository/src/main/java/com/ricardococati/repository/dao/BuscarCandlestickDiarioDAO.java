@@ -4,12 +4,10 @@ import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface CandlestickDiarioDAO {
+public interface BuscarCandlestickDiarioDAO {
 
   List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg);
 
-  List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite);
-
-  List<String> getListCodNeg();
+  List<CandlestickDiarioDTO> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite);
 
 }

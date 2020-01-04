@@ -10,7 +10,7 @@ import com.ricardococati.repository.dao.RecomendacaoDiarioDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaRecomendacaoDiarioService;
 import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 public class CalculaRecomendacaoDiarioServiceImpl
     implements CalculaRecomendacaoDiarioService {
 
-  private final CandlestickDiarioService calculaCandlestickService;
+  private final BuscarCandlestickDiarioService calculaCandlestickService;
   private final MacdDiarioDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
   private final HistogramaDiarioDAO histogramaDAO;

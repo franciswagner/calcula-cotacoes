@@ -41,22 +41,6 @@ public class CalculaMediaMovelExponencialSemanalServiceImpl
   private final CalculaService calculaService;
 
   @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if (returned.get()) {
-      calculaService
-          .listCodNegSemanal()
-          .forEach(
-              codigoNegocio -> {
-                returned.set(executeByCodNeg(codigoNegocio));
-                calculaCandlestickService
-                    .atualizaCandleSemanalMediaExponencialGeradaByCodneg(codigoNegocio);
-              });
-    }
-    return returned.get();
-  }
-
-  @Override
   public Boolean executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<CandlestickSemanalDTO> candlestickList =

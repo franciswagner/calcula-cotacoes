@@ -10,13 +10,12 @@ import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CalculaSinalMacdDiarioService;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,25 +28,11 @@ import org.springframework.stereotype.Service;
 public class CalculaSinalMacdDiarioServiceImpl
     implements CalculaSinalMacdDiarioService {
 
-  private final CandlestickDiarioService calculaCandlestickService;
+  private final BuscarCandlestickDiarioService calculaCandlestickService;
   private final MacdDiarioDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
   private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
-
-  @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if (returned.get()) {
-      calculaService
-          .listCodNegDiario()
-          .forEach(
-              codneg -> {
-                returned.set(executeByCodNeg(codneg));
-              });
-    }
-    return returned.get();
-  }
 
   @Override
   public Boolean executeByCodNeg(String codneg) {

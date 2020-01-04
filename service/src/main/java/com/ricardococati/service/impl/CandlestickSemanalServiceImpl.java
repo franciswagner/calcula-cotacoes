@@ -33,38 +33,8 @@ public class CandlestickSemanalServiceImpl implements CandlestickSemanalService 
   }
 
   @Override
-  public List<String> listCodNegocioMediaSimplesFalse() {
-    return semanalDAO.listCodNegocioMediaSimplesFalse();
-  }
-
-  @Override
-  public Boolean atualizaCandleSemanalMediaSimplesGeradaByCodneg(final String codigoNegocio) {
-    return semanalDAO.updateCandleSemanalMediaSimplesGeradaByCodNeg(codigoNegocio);
-  }
-
-  @Override
-  public Boolean atualizaCandleSemanalMediaExponencialGeradaByCodneg(final String codneg) {
-    return semanalDAO.updateCandleSemanalMediaExponencialGeradaByCodNeg(codneg);
-  }
-
-  @Override
-  public Boolean atualizaCandleSemanalMacdGeradaByCodneg(final String codneg) {
-    return semanalDAO.updateCandleSemanalMacdGeradaByCodNeg(codneg);
-  }
-
-  @Override
   public Boolean atualizaCandleSemanalSinalMacdGeradaByCodneg(final String codneg) {
     return semanalDAO.updateCandleSemanalSinalMacdGeradaByCodNeg(codneg);
-  }
-
-  @Override
-  public List<String> listCodNegocioMediaExponencialFalse() {
-    return null;
-  }
-
-  @Override
-  public List<String> listCodNegocioMacdFalse() {
-    return null;
   }
 
   @Override

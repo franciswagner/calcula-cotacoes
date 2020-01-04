@@ -31,22 +31,6 @@ public class CalculaMACDSemanalServiceImpl
   private final MacdSemanalDAO macdDAO;
   private final CalculaService calculaService;
 
-  @Override
-  public Boolean execute() {
-    AtomicBoolean returned = new AtomicBoolean(true);
-    if (returned.get()) {
-      calculaService
-          .listCodNegSemanal()
-          .forEach(
-              codigoNegocio -> {
-                log.info("Código de negociação: " + codigoNegocio);
-                returned.set(calculaMACD(codigoNegocio));
-                candleSemanalService.atualizaCandleSemanalMacdGeradaByCodneg(codigoNegocio);
-              });
-    }
-    return returned.get();
-  }
-
   private List<MediaMovelExponencialSemanal> buscaMME12Periodo(final String codneg) {
     return mmeDAO.getListMMEByCodNegEPeriodo(
         codneg,

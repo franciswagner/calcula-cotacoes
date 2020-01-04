@@ -2,7 +2,8 @@ package com.ricardococati.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ricardococati.model.dto.CandlestickDiarioMessage;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
+import com.ricardococati.service.IncluirCandlestickDiarioService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MessageExecutorCandleDiario {
 
   private final ObjectMapper objectMapper;
-  private final CandlestickDiarioService service;
+  private final IncluirCandlestickDiarioService service;
 
   public void execute(final String payload) {
     final CandlestickDiarioMessage domain = payloadToDomain(payload);

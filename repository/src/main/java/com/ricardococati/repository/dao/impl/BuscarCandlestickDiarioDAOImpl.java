@@ -1,7 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.repository.dao.CandlestickDiarioDAO;
+import com.ricardococati.repository.dao.BuscarCandlestickDiarioDAO;
 import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioSQLUtil;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
+public class BuscarCandlestickDiarioDAOImpl implements BuscarCandlestickDiarioDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
@@ -33,19 +33,11 @@ public class CandlestickDiarioDAOImpl implements CandlestickDiarioDAO {
   }
 
   @Override
-  public List<String> getListCodNegByDtPreg(final LocalDate dtpregLimite) {
+  public List<CandlestickDiarioDTO> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite) {
     return template.query(
         sqlUtil.getSelectCodNegByDtPreg(),
         sqlUtil.toParametersDtPreg(dtpregLimite),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
-    );
-  }
-
-  @Override
-  public List<String> getListCodNeg() {
-    return template.query(
-        sqlUtil.getSelectCodNeg(),
-        (rs, rowNum) -> mapper.mapperCodNeg(rs)
+        (rs, rowNum) -> mapper.mapper(rs)
     );
   }
 

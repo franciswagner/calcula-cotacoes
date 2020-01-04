@@ -9,7 +9,7 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ public class CalculaMediaMovelSimplesDiarioServiceImplTest {
   @InjectMocks
   private CalculaMediaMovelSimplesDiarioServiceImpl target;
   @Mock
-  private CandlestickDiarioService diarioService;
+  private BuscarCandlestickDiarioService diarioService;
   @Mock
   private MediaMovelSimplesConverter converteMediaMovelSimples;
   @Mock
@@ -48,7 +48,7 @@ public class CalculaMediaMovelSimplesDiarioServiceImplTest {
   public void executeByCodNegOk() {
     //given
     List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(candlestickList);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(candlestickList);
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
         .thenCallRealMethod();
@@ -71,7 +71,7 @@ public class CalculaMediaMovelSimplesDiarioServiceImplTest {
   @Test
   public void executeByCodNegCandlestickNull() {
     //given
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(null);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(null);
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
         .thenCallRealMethod();
@@ -84,7 +84,7 @@ public class CalculaMediaMovelSimplesDiarioServiceImplTest {
   @Test
   public void executeByCodNegCandlestickEmpty() {
     //given
-    when(diarioService.listaCandlestickDiario(any())).thenReturn(Collections.EMPTY_LIST);
+    when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(Collections.EMPTY_LIST);
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
         .thenCallRealMethod();

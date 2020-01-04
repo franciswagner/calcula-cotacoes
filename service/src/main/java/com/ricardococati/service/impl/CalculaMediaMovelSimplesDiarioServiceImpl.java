@@ -8,7 +8,7 @@ import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
 import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
-import com.ricardococati.service.CandlestickDiarioService;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class CalculaMediaMovelSimplesDiarioServiceImpl
     implements CalculaMediaMovelSimplesDiarioService {
 
-  private final CandlestickDiarioService diarioService;
+  private final BuscarCandlestickDiarioService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
 
@@ -36,7 +36,7 @@ public class CalculaMediaMovelSimplesDiarioServiceImpl
   public List<MediaMovelSimplesDiario> executeByCodNeg(final String codigoNegocio) {
     log.info("Código de negociação: " + codigoNegocio);
     List<CandlestickDiarioDTO> candlestickList =
-        diarioService.listaCandlestickDiario(buildCandlestickDiarioDTO(codigoNegocio));
+        diarioService.buscaCandlestickDiarioPorCodNeg(buildCandlestickDiarioDTO(codigoNegocio));
     List<MediaMovelSimplesDiario> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
     mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
