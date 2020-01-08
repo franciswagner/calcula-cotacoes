@@ -12,6 +12,10 @@
 
     <artifactId>service</artifactId>
 
+    <properties>
+        <fixture-factory.version>3.1.0</fixture-factory.version>
+    </properties>
+
     <dependencies>
         <!-- INTERNAL -->
         <dependency>
@@ -21,6 +25,11 @@
         <dependency>
             <groupId>com.ricardococati</groupId>
             <artifactId>repository</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>br.com.six2six</groupId>
+            <artifactId>fixture-factory</artifactId>
+            <version>${fixture-factory.version}</version>
         </dependency>
     </dependencies>
 

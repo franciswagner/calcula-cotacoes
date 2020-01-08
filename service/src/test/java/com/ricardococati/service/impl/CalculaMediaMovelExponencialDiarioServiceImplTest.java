@@ -1,10 +1,13 @@
 package com.ricardococati.service.impl;
 
+import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
+import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
@@ -41,6 +44,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
 
   @Before
   public void setUp() {
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
     this.countInteger = 0;
     this.dtpreg = LocalDate.of(1978, 02, 16);
   }
@@ -48,6 +52,8 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
   @Test
   public void executeByCodNeg() {
     //given
+    List<CandlestickDiarioDTO> testDTO = from(CandlestickDiarioDTO.class)
+        .gimme(25, CANDLESTICK_DIARIO_DTO_VALID);
     List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
     when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(candlestickList);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
