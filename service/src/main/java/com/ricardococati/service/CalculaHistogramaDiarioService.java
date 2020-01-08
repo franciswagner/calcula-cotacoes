@@ -1,7 +1,10 @@
 package com.ricardococati.service;
 
+import com.ricardococati.model.dto.HistogramaDiario;
+import java.util.List;
+
 public interface CalculaHistogramaDiarioService {
 
-  Boolean executeByCodNeg(String codneg);
+  List<HistogramaDiario> executeByCodNeg(String codneg);
 
 }

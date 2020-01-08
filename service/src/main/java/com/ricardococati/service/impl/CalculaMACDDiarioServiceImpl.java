@@ -40,7 +40,7 @@ public class CalculaMACDDiarioServiceImpl
         QuantidadePeriodo.SLOW_26.getQuantidade());
   }
 
-  private Boolean calculaMACD(final String codneg) {
+  private List<MacdDiario> calculaMACD(final String codneg) {
     List<MacdDiario> macdList = new ArrayList<>();
     final List<MediaMovelExponencialDiario> listMedia12 = buscaMME12Periodo(codneg);
     final List<MediaMovelExponencialDiario> listMedia26 = buscaMME26Periodo(codneg);
@@ -55,14 +55,13 @@ public class CalculaMACDDiarioServiceImpl
       }
     }
     macdDAO.incluirMacd(macdList);
-    return Boolean.TRUE;
+    return macdList;
   }
 
   @Override
-  public Boolean executeByCodNeg(String codneg) {
+  public List<MacdDiario> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
-    calculaMACD(codneg);
-    return Boolean.TRUE;
+    return calculaMACD(codneg);
   }
 
   private MacdDiario buildMacd(

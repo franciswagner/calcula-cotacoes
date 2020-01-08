@@ -35,14 +35,14 @@ public class CalculaSinalMacdDiarioServiceImpl
   private final CalculaService calculaService;
 
   @Override
-  public Boolean executeByCodNeg(String codneg) {
+  public List<SinalMacdDiario> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<MacdDiario> macdList =
         calculaService.listMacdDiarioByCodNeg(codneg);
     List<SinalMacdDiario> sinalMacdList =
         calculaMediaMovelExponencialMacd9Periodos(macdList);
     sinalMacdDAO.incluirSinalMacd(sinalMacdList);
-    return Boolean.TRUE;
+    return sinalMacdList;
   }
 
   private List<SinalMacdDiario> calculaMediaMovelExponencialMacd9Periodos(

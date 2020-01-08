@@ -1,7 +1,10 @@
 package com.ricardococati.service;
 
+import com.ricardococati.model.dto.MacdDiario;
+import java.util.List;
+
 public interface CalculaMACDDiarioService {
 
-	Boolean executeByCodNeg(final String codigoNegocio);
+	List<MacdDiario> executeByCodNeg(final String codigoNegocio);
 
 }
