@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.repository.dao.BaseOccurrenceJdbcTest;
+import com.ricardococati.repository.dao.BaseJdbcTest;
 import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class IncluirBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
+public class IncluirBuscarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
   private InserirCandlestickDiarioDAOImpl target;

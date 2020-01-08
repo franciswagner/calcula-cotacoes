@@ -3,13 +3,13 @@ package com.ricardococati.service.impl;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.dao.AtualizarCandlestickSemanalDAO;
 import com.ricardococati.repository.dao.AtualizarCandlestickDiarioDAO;
-import com.ricardococati.service.SplitInplitService;
+import com.ricardococati.service.AtualizarCandlestickDiarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SplitInplitServiceImpl implements SplitInplitService {
+public class AtualizarCandlestickDiarioServiceImpl implements AtualizarCandlestickDiarioService {
 
   private final AtualizarCandlestickDiarioDAO atualizarDiarioDAO;
   private final AtualizarCandlestickSemanalDAO atualizarSemanalDAO;

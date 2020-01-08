@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 import org.junit.Rule;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-public abstract class BaseOccurrenceJdbcTest {
+public abstract class BaseJdbcTest {
 
   @Rule
   public PreparedDbRule postgresDB;
 
-  public BaseOccurrenceJdbcTest() {
+  public BaseJdbcTest() {
     postgresDB = EmbeddedPostgresRules.preparedDatabase(
         FlywayPreparer.forClasspathLocation(
             new String[]{"filesystem:./../application/src/main/resources/db/migration"})

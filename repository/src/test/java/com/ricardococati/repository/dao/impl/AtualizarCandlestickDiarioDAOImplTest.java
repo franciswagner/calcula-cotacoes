@@ -8,7 +8,7 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
-import com.ricardococati.repository.dao.BaseOccurrenceJdbcTest;
+import com.ricardococati.repository.dao.BaseJdbcTest;
 import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.AtualizarCandlestickDiarioSQLUtil;
@@ -23,7 +23,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class SplitInplitBuscarCandlestickDiarioDAOImplTest extends BaseOccurrenceJdbcTest {
+public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
   private AtualizarCandlestickDiarioDAOImpl target;
