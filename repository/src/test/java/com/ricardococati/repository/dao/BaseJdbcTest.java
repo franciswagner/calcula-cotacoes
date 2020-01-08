@@ -3,10 +3,13 @@ package com.ricardococati.repository.dao;
 import com.opentable.db.postgres.embedded.FlywayPreparer;
 import com.opentable.db.postgres.junit.EmbeddedPostgresRules;
 import com.opentable.db.postgres.junit.PreparedDbRule;
+import java.sql.SQLException;
 import javax.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+@Slf4j
 public abstract class BaseJdbcTest {
 
   @Rule

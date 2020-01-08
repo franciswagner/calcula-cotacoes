@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CandlestickDiarioMapper {
+public class BuscarCandlestickDiarioMapper {
 
   public String mapperCodNeg(ResultSet rs) {
     try {

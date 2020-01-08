@@ -10,6 +10,7 @@ import com.ricardococati.repository.dao.BaseJdbcTest;
 import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class IncluirBuscarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
+public class InserirCandlestickDiarioDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
   private InserirCandlestickDiarioDAOImpl target;

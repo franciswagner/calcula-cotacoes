@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.BuscarCandlestickDiarioDAO;
-import com.ricardococati.repository.dao.mapper.CandlestickDiarioMapper;
+import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.BuscarCandlestickDiarioSQLUtil;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,10 +21,10 @@ public class BuscarCandlestickDiarioDAOImpl implements BuscarCandlestickDiarioDA
   private final NamedParameterJdbcTemplate template;
 
   private final BuscarCandlestickDiarioSQLUtil sqlUtil;
-  private final CandlestickDiarioMapper mapper;
+  private final BuscarCandlestickDiarioMapper mapper;
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(String codneg) {
+  public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),
