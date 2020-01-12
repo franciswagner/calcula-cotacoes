@@ -1,16 +1,16 @@
-package com.ricardococati.scheduler;
+package com.ricardococati.service.scheduler;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.ControleExecucao;
+import com.ricardococati.service.BuscarCandlestickDiarioService;
 import com.ricardococati.service.CalculaHistogramaDiarioService;
 import com.ricardococati.service.CalculaMACDDiarioService;
 import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
 import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CalculaSinalMacdDiarioService;
-import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EfetuaCalculoDiarioAgendado {
+public class EfetuaCalculoDiarioAgendadoService {
 
   private final CalculaMediaMovelExponencialDiarioService calculaMediaMovelExponencial;
   private final CalculaMediaMovelSimplesDiarioService calculaMediaMovelSimples;
