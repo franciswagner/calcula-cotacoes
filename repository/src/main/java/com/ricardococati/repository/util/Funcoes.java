@@ -55,7 +55,7 @@ public class Funcoes {
       char[] bytesLidos = new char[2 * 1024];
 
       try (InputStream _streamSqlFile = streamSqlFile;
-          InputStreamReader inpRed = new InputStreamReader(_streamSqlFile);) {
+          InputStreamReader inpRed = new InputStreamReader(_streamSqlFile)) {
         builder = new StringBuilder();
         while ((pos = inpRed.read(bytesLidos)) != -1) {
           builder.append(bytesLidos, 0, pos);

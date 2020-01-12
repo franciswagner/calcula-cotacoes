@@ -7,10 +7,8 @@ import static org.mockito.Mockito.when;
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +23,7 @@ public class InserirCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   @InjectMocks
   private InserirCandlestickDiarioDAOImpl target;
   @Mock
-  private GenericDAO genericDAO;
+  private GenericDAOImpl genericDAO;
   @Mock
   private InserirCandlestickDiarioSQLUtil sqlUtil;
   private Integer countInteger;

@@ -2,7 +2,6 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.SplitInplit;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
@@ -26,7 +25,7 @@ public class MediaMovelSimplesDiarioDAOImpl implements MediaMovelSimplesDiarioDA
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final MediaMovelSimplesDiarioSQLUtil sqlUtil;
   private final MediaMovelSimplesDiarioMapper mediaMapper;
 

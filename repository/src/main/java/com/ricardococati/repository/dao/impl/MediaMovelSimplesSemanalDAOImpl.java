@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesSemanalSQLUtil;
@@ -25,7 +24,7 @@ public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanal
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final MediaMovelSimplesSemanalSQLUtil sqlUtil;
   private final MediaMovelSimplesSemanalMapper mediaMapper;
 

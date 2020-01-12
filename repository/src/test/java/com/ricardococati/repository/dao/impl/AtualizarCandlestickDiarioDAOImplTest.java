@@ -9,18 +9,15 @@ import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.AtualizarCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -28,14 +25,12 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
   private AtualizarCandlestickDiarioDAOImpl target;
-  @MockBean
-  private InserirCandlestickDiarioDAOImpl incluirDAO;
   @Mock
   private AtualizarCandlestickDiarioSQLUtil sqlUtil;
   @Mock
   private InserirCandlestickDiarioSQLUtil incluirSQLUtil;
   @Mock
-  private GenericDAO genericDAO;
+  private GenericDAOImpl genericDAO;
   private Integer countInteger;
   private LocalDate dtpreg;
 
@@ -48,19 +43,20 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiCandleAntesDeExecutarTestes() {
-    incluirDAO = new InserirCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
+    InserirCandlestickDiarioDAOImpl incluirDAO = new InserirCandlestickDiarioDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
     when(incluirSQLUtil.getInsert()).thenCallRealMethod();
     when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any(), any())).thenReturn(1);
     incluirDAO.insereCandlestickDiario(
-        buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg.plusDays(countInteger += 1))
+        buildCandlestickDiarioDTO(dtpreg.plusDays(countInteger += 1))
     );
   }
 
   @Test
   public void updateSplit() {
     //given
-    SplitInplit splitInplit = build("MGLU3", LocalDate.now(), 2, "SPLIT");
+    SplitInplit splitInplit = build(LocalDate.now(), "SPLIT");
     when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
     when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
     //when
@@ -72,7 +68,7 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   @Test
   public void updateInplit() {
     //given
-    SplitInplit splitInplit = build("MGLU3", LocalDate.now(), 2, "INPLIT");
+    SplitInplit splitInplit = build(LocalDate.now(), "INPLIT");
     when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
     when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
     //when
@@ -82,23 +78,19 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   }
 
   private SplitInplit build(
-      final String codneg,
       final LocalDate dtpreg,
-      final Integer qtdSplitInplit,
       final String operacao
   ) {
     return SplitInplit
         .builder()
-        .codneg(codneg)
+        .codneg("MGLU3")
         .dtpreg(dtpreg)
-        .qtdSplitInplit(qtdSplitInplit)
+        .qtdSplitInplit(2)
         .operacao(OperacaoSplitInplit.valueOf(operacao))
         .build();
   }
 
   private CandlestickDiarioDTO buildCandlestickDiarioDTO(
-      final String codneg,
-      final Double preult,
       final LocalDate dtpreg
   ) {
     return CandlestickDiarioDTO
@@ -106,8 +98,8 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
         .dtpreg(dtpreg)
         .candlestickDTO(CandlestickDTO
             .builder()
-            .preult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
-            .codneg(codneg)
+            .preult(new BigDecimal(10.1).setScale(4, BigDecimal.ROUND_HALF_UP))
+            .codneg("MGLU3")
             .build()
         ).build();
   }

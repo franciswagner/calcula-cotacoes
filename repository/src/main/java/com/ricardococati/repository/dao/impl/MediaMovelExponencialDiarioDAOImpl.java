@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
@@ -24,7 +23,7 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final MediaMovelExponencialDiarioSQLUtil sqlUtil;
   private final BuscarCandlestickDiarioMapper mapper;
   private final MediaMovelExponencialDiarioMapper mediaMapper;

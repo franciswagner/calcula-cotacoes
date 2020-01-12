@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.InserirCandlestickDiarioDAO;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class InserirCandlestickDiarioDAOImpl implements InserirCandlestickDiario
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final InserirCandlestickDiarioSQLUtil sqlUtil;
 
   @Override

@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioDAO;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioSQLUtil;
@@ -24,7 +23,7 @@ public class RecomendacaoDiarioDAOImpl implements RecomendacaoDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final RecomendacaoDiarioSQLUtil sqlUtil;
   private final RecomendacaoDiarioMapper mapper;
 

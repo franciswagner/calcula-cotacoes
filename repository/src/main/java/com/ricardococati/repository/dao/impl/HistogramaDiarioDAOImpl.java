@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.HistogramaDiarioDAO;
 import com.ricardococati.repository.dao.sqlutil.HistogramaDiarioSQLUtil;
 import com.ricardococati.repository.util.SQLAppender;
@@ -21,7 +20,7 @@ public class HistogramaDiarioDAOImpl implements HistogramaDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final HistogramaDiarioSQLUtil sqlUtil;
 
   @Override

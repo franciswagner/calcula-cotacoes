@@ -8,12 +8,10 @@ import static org.mockito.Mockito.when;
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.BuscarCandlestickDiarioSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.InserirCandlestickDiarioSQLUtil;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -29,8 +27,6 @@ public class BuscarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
   private BuscarCandlestickDiarioDAOImpl target;
-  @MockBean
-  private InserirCandlestickDiarioDAOImpl incluirDAO;
   @Mock
   private BuscarCandlestickDiarioMapper mapper;
   @Mock
@@ -38,7 +34,7 @@ public class BuscarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   @Mock
   private InserirCandlestickDiarioSQLUtil incluirSQLUtil;
   @Mock
-  private GenericDAO genericDAO;
+  private GenericDAOImpl genericDAO;
   private LocalDate dtpreg;
 
   @Before
@@ -49,7 +45,8 @@ public class BuscarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiCandleAntesDeExecutarTestes() {
-    incluirDAO = new InserirCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
+    InserirCandlestickDiarioDAOImpl incluirDAO = new InserirCandlestickDiarioDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
     when(incluirSQLUtil.getInsert()).thenCallRealMethod();
     when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any(), any())).thenReturn(1);

@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
 import com.ricardococati.repository.dao.mapper.MacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MacdDiarioSQLUtil;
@@ -12,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +22,7 @@ public class MacdDiarioDAOImpl implements MacdDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final MacdDiarioSQLUtil sqlUtil;
   private final MacdDiarioMapper macdMapper;
 

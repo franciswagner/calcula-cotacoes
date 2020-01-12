@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.SinalMacdSemanal;
-import com.ricardococati.repository.dao.GenericDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
 import com.ricardococati.repository.dao.mapper.SinalMacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.SinalMacdSemanalSQLUtil;
@@ -23,7 +22,7 @@ public class SinalMacdSemanalDAOImpl implements SinalMacdSemanalDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAO genericDAO;
+  private final GenericDAOImpl genericDAO;
   private final SinalMacdSemanalSQLUtil sqlUtil;
   private final SinalMacdSemanalMapper mapper;
 
