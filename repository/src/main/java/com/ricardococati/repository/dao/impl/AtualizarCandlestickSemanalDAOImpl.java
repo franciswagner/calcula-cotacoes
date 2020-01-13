@@ -20,7 +20,7 @@ public class AtualizarCandlestickSemanalDAOImpl implements AtualizarCandlestickS
   private final AtualizarCandlestickSemanalSQLUtil sqlUtil;
 
   @Override
-  public Boolean atualizaSplitInplit(SplitInplit splitInplit) {
+  public Boolean atualizaSplitInplit(final SplitInplit splitInplit) {
     int retorno = 0;
     try {
       retorno = template.update(

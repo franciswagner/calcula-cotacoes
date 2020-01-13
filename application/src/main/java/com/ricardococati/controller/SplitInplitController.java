@@ -2,7 +2,7 @@ package com.ricardococati.controller;
 
 import com.ricardococati.controller.converter.SplitInplitConverter;
 import com.ricardococati.model.dto.SplitInplit;
-import com.ricardococati.service.AtualizarCandlestickDiarioService;
+import com.ricardococati.service.AtualizarCandlesticksService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SplitInplitController {
 
   private final SplitInplitConverter converter;
-  private final AtualizarCandlestickDiarioService service;
+  private final AtualizarCandlesticksService service;
 
   @ApiOperation(
       value = "Split | Inplit na acao por: "
