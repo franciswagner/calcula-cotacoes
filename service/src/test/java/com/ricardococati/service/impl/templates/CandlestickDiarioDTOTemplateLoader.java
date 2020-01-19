@@ -50,108 +50,109 @@ public class CandlestickDiarioDTOTemplateLoader implements TemplateLoader {
   public static final String CANDLESTICK_DIARIO_DTO_VALID_018 = "CANDLESTICK_DIARIO_DTO_VALID_018";
   public static final String CANDLESTICK_DIARIO_DTO_VALID_019 = "CANDLESTICK_DIARIO_DTO_VALID_019";
   public static final String CANDLESTICK_DIARIO_DTO_VALID_020 = "CANDLESTICK_DIARIO_DTO_VALID_020";
+  private LocalDate localDate = LocalDate.of(1978, 02, 16);
 
   @Override
   public void load() {
     Fixture.of(CandlestickDiarioDTO.class)
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_001, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 16));
+          add("dtpreg", localDate);
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_001));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_002, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 17));
+          add("dtpreg", localDate.plusDays(1));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_002));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_003, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 18));
+          add("dtpreg", localDate.plusDays(2));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_003));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_004, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 19));
+          add("dtpreg", localDate.plusDays(3));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_004));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_005, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 20));
+          add("dtpreg", localDate.plusDays(4));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_005));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_006, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 21));
+          add("dtpreg", localDate.plusDays(5));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_006));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_007, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 22));
+          add("dtpreg", localDate.plusDays(6));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_007));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_008, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 23));
+          add("dtpreg", localDate.plusDays(7));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_008));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_009, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 24));
+          add("dtpreg", localDate.plusDays(8));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_009));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_010, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 25));
+          add("dtpreg", localDate.plusDays(9));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_010));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_011, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 26));
+          add("dtpreg", localDate.plusDays(10));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_011));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_012, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 27));
+          add("dtpreg", localDate.plusDays(11));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_012));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_013, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 28));
+          add("dtpreg", localDate.plusDays(12));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_013));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_014, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 01));
+          add("dtpreg", localDate.plusDays(13));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_014));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_015, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 02));
+          add("dtpreg", localDate.plusDays(14));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_015));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_016, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 03));
+          add("dtpreg", localDate.plusDays(15));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_016));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_017, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 04));
+          add("dtpreg", localDate.plusDays(16));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_017));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_018, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 05));
+          add("dtpreg", localDate.plusDays(17));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_018));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_019, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 06));
+          add("dtpreg", localDate.plusDays(18));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_019));
         }})
         .addTemplate(CANDLESTICK_DIARIO_DTO_VALID_020, new Rule() {{
           add("idCandleDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 03, 07));
+          add("dtpreg", localDate.plusDays(19));
           add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_020));
         }})
     ;

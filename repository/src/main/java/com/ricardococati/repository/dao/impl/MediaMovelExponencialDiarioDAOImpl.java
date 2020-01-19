@@ -66,6 +66,30 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
   }
 
   @Override
+  public List<MediaMovelExponencialDiario> getListMME12ByCodNegEPeriodo(
+      String codneg,
+      Integer periodo
+  ) {
+    return template.query(
+        sqlUtil.getSelectByCodNegEPeriodo(),
+        sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
+        (rs, rowNum) -> mediaMapper.mapper(rs)
+    );
+  }
+
+  @Override
+  public List<MediaMovelExponencialDiario> getListMME26ByCodNegEPeriodo(
+      String codneg,
+      Integer periodo
+  ) {
+    return template.query(
+        sqlUtil.getSelectByCodNegEPeriodo(),
+        sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
+        (rs, rowNum) -> mediaMapper.mapper(rs)
+    );
+  }
+
+  @Override
   public List<MediaMovelExponencialDiario> listMediaExponencialByCodneg(final String codneg) {
     return template.query(
         sqlUtil.getSelect(),

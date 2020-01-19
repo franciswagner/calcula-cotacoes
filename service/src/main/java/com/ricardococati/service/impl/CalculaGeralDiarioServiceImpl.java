@@ -41,7 +41,9 @@ public class CalculaGeralDiarioServiceImpl implements
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
-      final List<String> listCodneg, final LocalDate dtLimitePregao) throws Exception{
+      final List<String> listCodneg,
+      final LocalDate dtLimitePregao
+  ) throws Exception{
     List<RecomendacaoDiario> recomendacaoDiarioList = new ArrayList<>();
     try {
       Boolean controle = executeMediaSimplesDiario(listCodneg);

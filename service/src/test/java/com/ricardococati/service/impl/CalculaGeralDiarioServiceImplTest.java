@@ -15,13 +15,13 @@ import static com.ricardococati.service.impl.templates.MacdDiarioTemplateLoader.
 import static com.ricardococati.service.impl.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_005;
 import static com.ricardococati.service.impl.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_006;
 import static com.ricardococati.service.impl.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_007;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_001;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_002;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_003;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_004;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_005;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_006;
-import static com.ricardococati.service.impl.templates.MediaMovelExponencialDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_007;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_001;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_002;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_003;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_004;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_005;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_006;
+import static com.ricardococati.service.impl.templates.MediaMovelExponencial9PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_007;
 import static com.ricardococati.service.impl.templates.MediaMovelSimplesDiarioTemplateLoader.MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001;
 import static com.ricardococati.service.impl.templates.MediaMovelSimplesDiarioTemplateLoader.MEDIA_MOVEL_SIMPLES_DIARIO_VALID_002;
 import static com.ricardococati.service.impl.templates.MediaMovelSimplesDiarioTemplateLoader.MEDIA_MOVEL_SIMPLES_DIARIO_VALID_003;
@@ -164,13 +164,13 @@ public class CalculaGeralDiarioServiceImplTest {
   private List<MediaMovelExponencialDiario> mediaMovelExponencialDiarioList(){
     return from(MediaMovelExponencialDiario.class)
         .gimme(7,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_001,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_002,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_003,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_004,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_005,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_006,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_VALID_007
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_001,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_002,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_003,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_004,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_005,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_006,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_007
         );
   }
 

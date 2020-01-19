@@ -11,5 +11,9 @@ public interface MediaMovelExponencialDiarioDAO {
 
   List<MediaMovelExponencialDiario> getListMMEByCodNegEPeriodo(final String codneg, final Integer periodo);
 
+  List<MediaMovelExponencialDiario> getListMME12ByCodNegEPeriodo(final String codneg, final Integer periodo);
+
+  List<MediaMovelExponencialDiario> getListMME26ByCodNegEPeriodo(final String codneg, final Integer periodo);
+
   List<MediaMovelExponencialDiario> listMediaExponencialByCodneg(final String codneg);
 }
