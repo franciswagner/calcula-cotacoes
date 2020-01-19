@@ -88,7 +88,7 @@ public class CalculaController {
   public ResponseEntity<List<RecomendacaoDiario>> calculaCodNeg(
       @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
       @RequestParam(required = false) List<String> listCodneg
-  ) {
+  ) throws Exception {
     log.info("Excutando cálculo ");
     List<RecomendacaoDiario> listReturn = geralDiarioService.executeByCodNeg(listCodneg, dtLimitePregao);
     log.info("Cálculo executado com sucesso!! ");

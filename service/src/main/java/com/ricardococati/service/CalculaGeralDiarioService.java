@@ -9,6 +9,6 @@ public interface CalculaGeralDiarioService {
   List<RecomendacaoDiario> executeByCodNeg(
       final List<String> listCodneg,
       final LocalDate dtLimitePregao
-  );
+  ) throws Exception;
 
 }

@@ -1,6 +1,14 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.nonNull;
+
+import com.ricardococati.model.dto.Histograma;
+import com.ricardococati.model.dto.HistogramaDiario;
+import com.ricardococati.model.dto.MacdDiario;
+import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.service.CalculaGeralDiarioService;
 import com.ricardococati.service.CalculaHistogramaDiarioService;
 import com.ricardococati.service.CalculaMACDDiarioService;
@@ -33,67 +41,77 @@ public class CalculaGeralDiarioServiceImpl implements
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
-      final List<String> listCodneg, final LocalDate dtLimitePregao) {
+      final List<String> listCodneg, final LocalDate dtLimitePregao) throws Exception{
     List<RecomendacaoDiario> recomendacaoDiarioList = new ArrayList<>();
-    Boolean controle = executeMediaSimplesDiario(listCodneg);
-    controle = controle && executeMediaExponencialDiario(listCodneg);
-    controle = controle && executeMacdDiario(listCodneg);
-    controle = controle && executeSinalMacdDiario(listCodneg);
-    controle = controle && executeHistogramaDiario(listCodneg);
-    if (controle) {
-      recomendacaoDiarioList = recomendacaoService.executeByCodNeg(listCodneg, dtLimitePregao);
+    try {
+      Boolean controle = executeMediaSimplesDiario(listCodneg);
+      controle = controle && executeMediaExponencialDiario(listCodneg);
+      controle = controle && executeMacdDiario(listCodneg);
+      controle = controle && executeSinalMacdDiario(listCodneg);
+      controle = controle && executeHistogramaDiario(listCodneg);
+      if (controle) {
+        recomendacaoDiarioList = recomendacaoService.executeByCodNeg(listCodneg, dtLimitePregao);
+      }
+    } catch (Exception ex){
+      log.error("Erro ao gerar recomendação: {} ", ex.getMessage());
+      throw ex;
     }
     return recomendacaoDiarioList;
   }
 
-  private Boolean executeMediaSimplesDiario(final List<String> listCodneg) {
+  private Boolean executeMediaSimplesDiario(final List<String> listCodneg) throws Exception {
+    List<MediaMovelSimplesDiario> lisMMS = new ArrayList<>();
     listCodneg
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
-          mmsService.executeByCodNeg(codneg);
+          lisMMS.addAll(mmsService.executeByCodNeg(codneg));
         });
-    return Boolean.TRUE;
+    return nonNull(lisMMS) && !lisMMS.isEmpty();
   }
 
-  private Boolean executeMediaExponencialDiario(final List<String> listCodneg) {
+  private Boolean executeMediaExponencialDiario(final List<String> listCodneg) throws Exception {
+    List<MediaMovelExponencialDiario> lisMME = new ArrayList<>();
     listCodneg
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
-          mmeService.executeByCodNeg(codneg);
+          lisMME.addAll(mmeService.executeByCodNeg(codneg));
         });
-    return Boolean.TRUE;
+    return nonNull(lisMME) && !lisMME.isEmpty();
   }
 
-  private Boolean executeMacdDiario(final List<String> listCodneg) {
+  private Boolean executeMacdDiario(final List<String> listCodneg) throws Exception {
+    List<MacdDiario> listMacd = new ArrayList<>();
     listCodneg
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
-          macdService.executeByCodNeg(codneg);
+          listMacd.addAll(macdService.executeByCodNeg(codneg));
         });
-    return Boolean.TRUE;
+    return nonNull(listMacd) && !listMacd.isEmpty();
   }
 
-  private Boolean executeSinalMacdDiario(final List<String> listCodneg) {
+  private Boolean executeSinalMacdDiario(final List<String> listCodneg) throws Exception {
+    List<SinalMacdDiario> listSinal = new ArrayList<>();
     listCodneg
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
-          sinalMacdService.executeByCodNeg(codneg);
+          listSinal.addAll(sinalMacdService.executeByCodNeg(codneg));
         });
-    return Boolean.TRUE;
+    return nonNull(listSinal) && !listSinal.isEmpty();
   }
 
-  private Boolean executeHistogramaDiario(final List<String> listCodneg) {
+  private Boolean executeHistogramaDiario(final List<String> listCodneg) throws Exception {
+    List<HistogramaDiario> listHistograma = new ArrayList<>();
     listCodneg
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
-          histogramaService.executeByCodNeg(codneg);
+          listHistograma.addAll(histogramaService.executeByCodNeg(codneg));
         });
-    return Boolean.TRUE;
+    return nonNull(listHistograma) && !listHistograma.isEmpty();
   }
 
 }

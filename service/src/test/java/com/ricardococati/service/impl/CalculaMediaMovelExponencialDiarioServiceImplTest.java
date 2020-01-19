@@ -143,23 +143,6 @@ public class CalculaMediaMovelExponencialDiarioServiceImplTest {
             , CANDLESTICK_DIARIO_DTO_VALID_020);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
-      final String codneg,
-      final Double preult,
-      final LocalDate dtpreg
-  ) {
-    return CandlestickDiarioDTO
-        .builder()
-        .dtpreg(dtpreg)
-        .candlestickDTO(CandlestickDTO
-            .builder()
-            .preult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
-            .codneg(codneg)
-            .build()
-        )
-        .build();
-  }
-
   private MediaMovelSimplesDiario buildMediaSimples(
       final String codneg,
       final Double preult,

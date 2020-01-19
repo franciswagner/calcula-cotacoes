@@ -65,7 +65,9 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -88,6 +90,8 @@ public class CalculaGeralDiarioServiceImplTest {
   private CalculaHistogramaDiarioService histogramaService;
   @Mock
   private CalculaRecomendacaoDiarioService recomendacaoService;
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
   private LocalDate dtpreg;
 
@@ -98,7 +102,7 @@ public class CalculaGeralDiarioServiceImplTest {
   }
 
   @Test
-  public void executeByCodNeg() {
+  public void executeByCodNeg() throws Exception {
     //given
     when(mmsService.executeByCodNeg(any())).thenReturn(mediaMovelSimplesDiarioList());
     when(mmeService.executeByCodNeg(any())).thenReturn(mediaMovelExponencialDiarioList());
@@ -111,6 +115,20 @@ public class CalculaGeralDiarioServiceImplTest {
     //then
     assertTrue(!result.isEmpty());
     assertThat(result).isNotNull().size().isEqualTo(7);
+  }
+
+  @Test
+  public void executeByCodNegNull() throws Exception {
+    //given
+    when(mmsService.executeByCodNeg(any())).thenReturn(null);
+    when(mmeService.executeByCodNeg(any())).thenReturn(null);
+    when(macdService.executeByCodNeg(any())).thenReturn(null);
+    when(sinalMacdService.executeByCodNeg(any())).thenReturn(null);
+    when(histogramaService.executeByCodNeg(any())).thenReturn(null);
+    when(recomendacaoService.executeByCodNeg(any(), any())).thenReturn(null);
+    this.thrown.expect(Exception.class);
+    //when
+    List<RecomendacaoDiario> result = target.executeByCodNeg(getListCodNeg(), dtpreg);
   }
 
   private List<String> getListCodNeg() {
