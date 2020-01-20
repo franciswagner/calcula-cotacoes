@@ -6,11 +6,9 @@ import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CalculaSinalMacdDiarioService;
-import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,10 +26,8 @@ import org.springframework.stereotype.Service;
 public class CalculaSinalMacdDiarioServiceImpl
     implements CalculaSinalMacdDiarioService {
 
-  private final BuscarCandlestickDiarioService calculaCandlestickService;
   private final MacdDiarioDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
-  private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
   @Override
@@ -48,11 +44,11 @@ public class CalculaSinalMacdDiarioServiceImpl
   private List<SinalMacdDiario> calculaMediaMovelExponencialMacd9Periodos(
       List<MacdDiario> macdList) {
     List<SinalMacdDiario> mediaMovelExponencialList =
-        calculaMediaMovelExponencial(QuantidadePeriodo.FAST_9.getQuantidade(), macdList);
+        calculaMediaMovelExponencialParaMacd(QuantidadePeriodo.FAST_9.getQuantidade(), macdList);
     return mediaMovelExponencialList;
   }
 
-  private List<SinalMacdDiario> calculaMediaMovelExponencial(
+  private List<SinalMacdDiario> calculaMediaMovelExponencialParaMacd(
       int periodo, List<MacdDiario> macdList) {
     List<SinalMacdDiario> listReturn = new ArrayList<>();
     final Integer qtdPeriodos = macdList.size();
