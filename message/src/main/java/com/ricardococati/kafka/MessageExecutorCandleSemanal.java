@@ -2,7 +2,7 @@ package com.ricardococati.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ricardococati.model.dto.CandlestickSemanalMessage;
-import com.ricardococati.service.InserirCandlestickSemanalService;
+import com.ricardococati.service.CandlestickSemanalInserirService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class MessageExecutorCandleSemanal {
 
   private final ObjectMapper objectMapper;
-  private final InserirCandlestickSemanalService service;
+  private final CandlestickSemanalInserirService service;
 
   public void execute(final String payload) {
     final CandlestickSemanalMessage domain = payloadToDomain(payload);

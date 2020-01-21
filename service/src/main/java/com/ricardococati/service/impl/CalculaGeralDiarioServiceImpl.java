@@ -2,7 +2,6 @@ package com.ricardococati.service.impl;
 
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.Histograma;
 import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
@@ -10,12 +9,12 @@ import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.service.CalculaGeralDiarioService;
-import com.ricardococati.service.CalculaHistogramaDiarioService;
-import com.ricardococati.service.CalculaMACDDiarioService;
-import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
-import com.ricardococati.service.CalculaRecomendacaoDiarioService;
-import com.ricardococati.service.CalculaSinalMacdDiarioService;
+import com.ricardococati.service.HistogramaDiarioCalculaService;
+import com.ricardococati.service.MACDDiarioCalculaService;
+import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
+import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
+import com.ricardococati.service.RecomendacaoDiarioCalculaService;
+import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +31,12 @@ import org.springframework.stereotype.Service;
 public class CalculaGeralDiarioServiceImpl implements
     CalculaGeralDiarioService {
 
-  private final CalculaMediaMovelSimplesDiarioService mmsService;
-  private final CalculaMediaMovelExponencialDiarioService mmeService;
-  private final CalculaMACDDiarioService macdService;
-  private final CalculaSinalMacdDiarioService sinalMacdService;
-  private final CalculaHistogramaDiarioService histogramaService;
-  private final CalculaRecomendacaoDiarioService recomendacaoService;
+  private final MediaMovelSimplesDiarioCalculaService mmsService;
+  private final MediaMovelExponencialDiarioCalculaService mmeService;
+  private final MACDDiarioCalculaService macdService;
+  private final SinalMacdDiarioCalculaService sinalMacdService;
+  private final HistogramaDiarioCalculaService histogramaService;
+  private final RecomendacaoDiarioCalculaService recomendacaoService;
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(

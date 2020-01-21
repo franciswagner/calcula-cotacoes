@@ -55,12 +55,12 @@ import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
-import com.ricardococati.service.CalculaHistogramaDiarioService;
-import com.ricardococati.service.CalculaMACDDiarioService;
-import com.ricardococati.service.CalculaMediaMovelExponencialDiarioService;
-import com.ricardococati.service.CalculaMediaMovelSimplesDiarioService;
-import com.ricardococati.service.CalculaRecomendacaoDiarioService;
-import com.ricardococati.service.CalculaSinalMacdDiarioService;
+import com.ricardococati.service.HistogramaDiarioCalculaService;
+import com.ricardococati.service.MACDDiarioCalculaService;
+import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
+import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
+import com.ricardococati.service.RecomendacaoDiarioCalculaService;
+import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -79,17 +79,17 @@ public class CalculaGeralDiarioServiceImplTest {
   @InjectMocks
   private CalculaGeralDiarioServiceImpl target;
   @Mock
-  private CalculaMediaMovelSimplesDiarioService mmsService;
+  private MediaMovelSimplesDiarioCalculaService mmsService;
   @Mock
-  private CalculaMediaMovelExponencialDiarioService mmeService;
+  private MediaMovelExponencialDiarioCalculaService mmeService;
   @Mock
-  private CalculaMACDDiarioService macdService;
+  private MACDDiarioCalculaService macdService;
   @Mock
-  private CalculaSinalMacdDiarioService sinalMacdService;
+  private SinalMacdDiarioCalculaService sinalMacdService;
   @Mock
-  private CalculaHistogramaDiarioService histogramaService;
+  private HistogramaDiarioCalculaService histogramaService;
   @Mock
-  private CalculaRecomendacaoDiarioService recomendacaoService;
+  private RecomendacaoDiarioCalculaService recomendacaoService;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 

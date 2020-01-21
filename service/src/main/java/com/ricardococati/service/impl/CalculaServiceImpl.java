@@ -3,8 +3,8 @@ package com.ricardococati.service.impl;
 import com.ricardococati.model.dto.ControleExecucao;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.repository.dao.BuscarCandlestickDiarioDAO;
-import com.ricardococati.repository.dao.BuscarCandlestickSemanalDAO;
+import com.ricardococati.repository.dao.CandlestickDiarioBuscarDAO;
+import com.ricardococati.repository.dao.CandlestickSemanalBuscarDAO;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
 import com.ricardococati.repository.dao.MacdSemanalDAO;
@@ -22,8 +22,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CalculaServiceImpl implements CalculaService {
 
-  private final BuscarCandlestickDiarioDAO diarioDAO;
-  private final BuscarCandlestickSemanalDAO semanalDAO;
+  private final CandlestickDiarioBuscarDAO diarioDAO;
+  private final CandlestickSemanalBuscarDAO semanalDAO;
   private final MacdDiarioDAO macdDiarioDAO;
   private final MacdSemanalDAO macdSemanalDAO;
   private final MediaMovelExponencialDiarioDAO mediaExponencialDAO;
