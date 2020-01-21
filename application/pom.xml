@@ -15,6 +15,7 @@
   <properties>
     <flyway-core.version>3.2</flyway-core.version>
     <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
+    <fixture-factory.version>3.1.0</fixture-factory.version>
   </properties>
 
   <dependencies>
@@ -69,6 +70,11 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>br.com.six2six</groupId>
+      <artifactId>fixture-factory</artifactId>
+      <version>${fixture-factory.version}</version>
     </dependency>
   </dependencies>
   <build>

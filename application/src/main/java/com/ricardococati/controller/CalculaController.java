@@ -79,7 +79,6 @@ public class CalculaController {
       value = {
           @ApiResponse(code = 200, message = "OK"),
           @ApiResponse(code = 400, message = "Bad Request"),
-          @ApiResponse(code = 409, message = "Conflict Request"),
           @ApiResponse(code = 500, message = "Internal Server Error")
       }
   )
