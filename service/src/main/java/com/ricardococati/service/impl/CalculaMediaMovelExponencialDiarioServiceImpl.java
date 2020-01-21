@@ -97,7 +97,7 @@ public class CalculaMediaMovelExponencialDiarioServiceImpl
         .buscaMediaSimplesPorCodNegPeriodoDtPreg(
             candlestickList.get(indice).getCandlestickDTO().getCodneg(),
             periodo,
-            candlestickList.get(indice).getDtpreg().plusDays(periodo-1));
+            candlestickList.get(indice).getDtpreg());
   }
 
   private BigDecimal calculaMME(
