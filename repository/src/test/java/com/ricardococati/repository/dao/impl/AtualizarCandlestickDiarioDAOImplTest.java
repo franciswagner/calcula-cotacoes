@@ -37,7 +37,7 @@ public class AtualizarCandlestickDiarioDAOImplTest extends BaseJdbcTest {
   @Before
   public void setUp() {
     this.countInteger = 0;
-    this.dtpreg = LocalDate.of(1978, 02, 16);
+    this.dtpreg = LocalDate.of(1978, 2, 16);
     target = new AtualizarCandlestickDiarioDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
     incluiCandleAntesDeExecutarTestes();
   }

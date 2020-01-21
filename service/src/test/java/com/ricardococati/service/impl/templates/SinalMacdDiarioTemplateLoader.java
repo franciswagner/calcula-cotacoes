@@ -39,57 +39,57 @@ public class SinalMacdDiarioTemplateLoader implements TemplateLoader {
         .addTemplate(SINAL_MACD_DIARIO_VALID_001,
             new Rule() {{
               add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-              add("dtpreg", LocalDate.of(1978, 02, 16));
+              add("dtpreg", LocalDate.of(1978, 2, 16));
               add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_001));
             }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_002, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 17));
+          add("dtpreg", LocalDate.of(1978, 2, 17));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_002));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_003, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 18));
+          add("dtpreg", LocalDate.of(1978, 2, 18));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_003));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_004, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 19));
+          add("dtpreg", LocalDate.of(1978, 2, 19));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_004));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_005, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 20));
+          add("dtpreg", LocalDate.of(1978, 2, 20));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_005));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_006, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 21));
+          add("dtpreg", LocalDate.of(1978, 2, 21));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_006));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_007, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 22));
+          add("dtpreg", LocalDate.of(1978, 2, 22));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_007));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_008, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 23));
+          add("dtpreg", LocalDate.of(1978, 2, 23));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_008));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_009, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 24));
+          add("dtpreg", LocalDate.of(1978, 2, 24));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_009));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_010, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 25));
+          add("dtpreg", LocalDate.of(1978, 2, 25));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_010));
         }})
         .addTemplate(SINAL_MACD_DIARIO_VALID_011, new Rule() {{
           add("idSinalMacdDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 26));
+          add("dtpreg", LocalDate.of(1978, 2, 26));
           add("sinalMacd", one(SinalMacd.class, SINAL_MACD_VALID_011));
         }});
   }

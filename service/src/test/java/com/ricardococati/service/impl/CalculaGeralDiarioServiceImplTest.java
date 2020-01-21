@@ -98,7 +98,7 @@ public class CalculaGeralDiarioServiceImplTest {
   @Before
   public void setUp() {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
-    this.dtpreg = LocalDate.of(1978, 02, 16);
+    this.dtpreg = LocalDate.of(1978, 2, 16);
   }
 
   @Test

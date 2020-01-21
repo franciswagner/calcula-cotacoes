@@ -39,57 +39,57 @@ public class HistogramaDiarioTemplateLoader implements TemplateLoader {
         .addTemplate(HISTOGRAMA_DIARIO_VALID_001,
             new Rule() {{
               add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-              add("dtpreg", LocalDate.of(1978, 02, 16));
+              add("dtpreg", LocalDate.of(1978, 2, 16));
               add("histograma", one(Histograma.class, HISTOGRAMA_VALID_001));
             }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_002, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 17));
+          add("dtpreg", LocalDate.of(1978, 2, 17));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_002));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_003, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 18));
+          add("dtpreg", LocalDate.of(1978, 2, 18));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_003));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_004, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 19));
+          add("dtpreg", LocalDate.of(1978, 2, 19));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_004));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_005, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 20));
+          add("dtpreg", LocalDate.of(1978, 2, 20));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_005));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_006, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 21));
+          add("dtpreg", LocalDate.of(1978, 2, 21));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_006));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_007, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 22));
+          add("dtpreg", LocalDate.of(1978, 2, 22));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_007));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_008, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 23));
+          add("dtpreg", LocalDate.of(1978, 2, 23));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_008));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_009, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 24));
+          add("dtpreg", LocalDate.of(1978, 2, 24));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_009));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_010, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 25));
+          add("dtpreg", LocalDate.of(1978, 2, 25));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_010));
         }})
         .addTemplate(HISTOGRAMA_DIARIO_VALID_011, new Rule() {{
           add("idHistogramaDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 26));
+          add("dtpreg", LocalDate.of(1978, 2, 26));
           add("histograma", one(Histograma.class, HISTOGRAMA_VALID_011));
         }});
   }

@@ -50,7 +50,7 @@ public class CandlestickDiarioDTOTemplateLoader implements TemplateLoader {
   public static final String CANDLESTICK_DIARIO_DTO_VALID_018 = "CANDLESTICK_DIARIO_DTO_VALID_018";
   public static final String CANDLESTICK_DIARIO_DTO_VALID_019 = "CANDLESTICK_DIARIO_DTO_VALID_019";
   public static final String CANDLESTICK_DIARIO_DTO_VALID_020 = "CANDLESTICK_DIARIO_DTO_VALID_020";
-  private LocalDate localDate = LocalDate.of(1978, 02, 16);
+  private LocalDate localDate = LocalDate.of(1978, 2, 16);
 
   @Override
   public void load() {

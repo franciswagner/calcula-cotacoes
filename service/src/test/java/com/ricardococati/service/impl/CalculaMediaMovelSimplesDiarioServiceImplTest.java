@@ -73,16 +73,16 @@ public class CalculaMediaMovelSimplesDiarioServiceImplTest {
     //then
     assertTrue(!returned.isEmpty());
     assertThat(returned).isNotNull().size().isEqualTo(29);
-    assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 24));
+    assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 24));
     assertThat(returned.get(0).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(returned.get(0).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.4111"));
-    assertThat(returned.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 25));
+    assertThat(returned.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 25));
     assertThat(returned.get(1).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(returned.get(1).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5000"));
-    assertThat(returned.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 26));
+    assertThat(returned.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 26));
     assertThat(returned.get(2).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(returned.get(2).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5111"));
-    assertThat(returned.get(28).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 03, 07));
+    assertThat(returned.get(28).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 3, 07));
     assertThat(returned.get(28).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(13);
     assertThat(returned.get(28).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5615"));
   }

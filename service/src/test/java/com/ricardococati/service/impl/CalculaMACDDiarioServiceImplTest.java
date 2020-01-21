@@ -94,11 +94,11 @@ public class CalculaMACDDiarioServiceImplTest {
     //then
     assertTrue(!result.isEmpty());
     assertThat(result).isNotNull().size().isEqualTo(20);
-    assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 16));
+    assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 16));
     assertThat(result.get(0).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
-    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 17));
+    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 17));
     assertThat(result.get(1).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
-    assertThat(result.get(19).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 03, 7));
+    assertThat(result.get(19).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 3, 7));
     assertThat(result.get(19).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
   }
 

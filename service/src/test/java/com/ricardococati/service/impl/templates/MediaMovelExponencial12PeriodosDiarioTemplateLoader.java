@@ -70,7 +70,7 @@ public class MediaMovelExponencial12PeriodosDiarioTemplateLoader implements Temp
   public static final String MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_028 = "MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_028";
   public static final String MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_029 = "MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_029";
   public static final String MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_030 = "MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_030";
-  private LocalDate localDate = LocalDate.of(1978, 02, 16);
+  private LocalDate localDate = LocalDate.of(1978, 2, 16);
 
   @Override
   public void load() {

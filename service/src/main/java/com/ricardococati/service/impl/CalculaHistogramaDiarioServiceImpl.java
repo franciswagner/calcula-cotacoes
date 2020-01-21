@@ -1,16 +1,15 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.nonNull;
+
 import com.ricardococati.model.dto.Histograma;
 import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioDAO;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaHistogramaDiarioService;
-import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.BuscarCandlestickDiarioService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -25,12 +24,9 @@ import org.springframework.stereotype.Service;
 public class CalculaHistogramaDiarioServiceImpl
     implements CalculaHistogramaDiarioService {
 
-  private final BuscarCandlestickDiarioService calculaCandlestickService;
   private final MacdDiarioDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
   private final HistogramaDiarioDAO histogramaDAO;
-  private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
-  private final CalculaService calculaService;
 
   @Override
   public List<HistogramaDiario> executeByCodNeg(String codneg) {
@@ -45,15 +41,19 @@ public class CalculaHistogramaDiarioServiceImpl
   }
 
   private List<HistogramaDiario> calculaHistograma(
-      List<MacdDiario> macdList, List<SinalMacdDiario> sinalMacdList) {
+      final List<MacdDiario> macdList,
+      final List<SinalMacdDiario> sinalMacdList
+  ) {
     List<HistogramaDiario> histogramaList = new ArrayList<>();
-    for(MacdDiario macd : macdList){
-      for (SinalMacdDiario sinal : sinalMacdList){
-        if (sinal.getDtpreg().isEqual(macd.getDtpreg())
-            && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())){
-          HistogramaDiario hist = buildHistograma(macd, sinal);
-          if (!histogramaList.contains(hist)){
-            histogramaList.add(hist);
+    if(nonNull(macdList) && nonNull(sinalMacdList)) {
+      for (MacdDiario macd : macdList) {
+        for (SinalMacdDiario sinal : sinalMacdList) {
+          if (sinal.getDtpreg().isEqual(macd.getDtpreg())
+              && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())) {
+            HistogramaDiario hist = buildHistograma(macd, sinal);
+            if (!histogramaList.contains(hist)) {
+              histogramaList.add(hist);
+            }
           }
         }
       }

@@ -39,57 +39,57 @@ public class MediaMovelSimplesDiarioTemplateLoader implements TemplateLoader {
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001,
             new Rule() {{
               add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-              add("dtpreg", LocalDate.of(1978, 02, 16));
+              add("dtpreg", LocalDate.of(1978, 2, 16));
               add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_001));
             }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_002, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 17));
+          add("dtpreg", LocalDate.of(1978, 2, 17));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_002));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_003, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 18));
+          add("dtpreg", LocalDate.of(1978, 2, 18));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_003));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_004, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 19));
+          add("dtpreg", LocalDate.of(1978, 2, 19));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_004));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_005, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 20));
+          add("dtpreg", LocalDate.of(1978, 2, 20));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_005));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_006, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 21));
+          add("dtpreg", LocalDate.of(1978, 2, 21));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_006));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_007, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 22));
+          add("dtpreg", LocalDate.of(1978, 2, 22));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_007));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_008, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 23));
+          add("dtpreg", LocalDate.of(1978, 2, 23));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_008));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_009, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 24));
+          add("dtpreg", LocalDate.of(1978, 2, 24));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_009));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_010, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 25));
+          add("dtpreg", LocalDate.of(1978, 2, 25));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_010));
         }})
         .addTemplate(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_011, new Rule() {{
           add("idMediaMovelSimplesDiario", random(Long.class, range(1L, 200L)));
-          add("dtpreg", LocalDate.of(1978, 02, 26));
+          add("dtpreg", LocalDate.of(1978, 2, 26));
           add("mediaMovelSimples", one(MediaMovelSimples.class, MEDIA_MOVEL_SIMPLES_VALID_011));
         }});
   }

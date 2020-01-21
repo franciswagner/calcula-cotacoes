@@ -60,13 +60,13 @@ public class CalculaSinalMacdDiarioServiceImplTest {
     //then
     assertTrue(!result.isEmpty());
     assertThat(result).isNotNull().size().isEqualTo(3);
-    assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 24));
+    assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 24));
     assertThat(result.get(0).getSinalMacd().getPeriodo()).isNull();
     assertThat(result.get(0).getSinalMacd().getPresinal()).isNotNull().isEqualTo(new BigDecimal("13.0544"));
-    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 25));
+    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 25));
     assertThat(result.get(1).getSinalMacd().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(result.get(1).getSinalMacd().getPresinal()).isNotNull().isEqualTo(new BigDecimal("12.5555"));
-    assertThat(result.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 02, 26));
+    assertThat(result.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 26));
     assertThat(result.get(2).getSinalMacd().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(result.get(2).getSinalMacd().getPresinal()).isNotNull().isEqualTo(new BigDecimal("12.1964"));
   }
