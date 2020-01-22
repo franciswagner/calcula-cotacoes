@@ -1,18 +1,20 @@
 package com.ricardococati.repository.dao.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.SplitInplit;
-import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalAtualizarSQLUtil;
+import com.ricardococati.repository.dao.mapper.BuscarCandlestickSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalBuscarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +23,14 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
+public class CandlestickSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   @InjectMocks
-  private CandlestickSemanalAtualizarDAOImpl target;
+  private CandlestickSemanalBuscarDAOImpl target;
   @Mock
-  private CandlestickSemanalAtualizarSQLUtil sqlUtil;
+  private CandlestickSemanalBuscarSQLUtil sqlUtil;
+  @Mock
+  private BuscarCandlestickSemanalMapper mapper;
   @Mock
   private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
   @Mock
@@ -38,7 +42,7 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
   public void setUp() {
     this.dtpregini = LocalDate.of(1978, 2, 16);
     this.dtpregfim = dtpregini.plusDays(6);
-    target = new CandlestickSemanalAtualizarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
+    target = new CandlestickSemanalBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
     incluiCandleAntesDeExecutarTestes();
   }
 
@@ -54,38 +58,34 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
   }
 
   @Test
-  public void atualizaInplit() {
-    SplitInplit splitInplit = build(LocalDate.now(), "INPLIT");
-    when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
-    when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
+  public void buscaCandleSemanalPorCodNeg() {
+    //given
+    String codneg = "MGLU3";
+    when(sqlUtil.getSelectByCodNeg()).thenCallRealMethod();
+    when(sqlUtil.toParametersCodNeg(any())).thenCallRealMethod();
+    when(mapper.mapper(any())).thenCallRealMethod();
     //when
-    Boolean retorno = target.atualizaSplitInplit(splitInplit);
+    List<CandlestickSemanalDTO> result = target.buscaCandleSemanalPorCodNeg(codneg);
     //then
-    assertTrue(retorno);
+    assertTrue(!result.isEmpty());
+    assertThat(result).isNotNull().size().isEqualTo(1);
+    assertThat(result.get(0).getCandlestickDTO().getCodneg()).isNotNull().isEqualTo("MGLU3");
+    assertThat(result.get(0).getCandlestickDTO().getPreult()).isNotNull().isEqualTo(new BigDecimal("10.10"));
   }
 
   @Test
-  public void atualizaSplit() {
-    SplitInplit splitInplit = build(LocalDate.now(), "SPLIT");
-    when(sqlUtil.getUpdateSplitInplit(any())).thenCallRealMethod();
-    when(sqlUtil.toParametersUpdateSplitInplit(any())).thenCallRealMethod();
+  public void buscaCandleSemanalPorDtPreg() {
+    //given
+    LocalDate dtpregLocal = dtpregini.minusDays(1);
+    when(sqlUtil.getSelectCodNegByDtPreg()).thenCallRealMethod();
+    when(sqlUtil.toParametersDtPreg(any())).thenCallRealMethod();
+    when(mapper.mapperCodNeg(any())).thenCallRealMethod();
     //when
-    Boolean retorno = target.atualizaSplitInplit(splitInplit);
+    List<String> result = target.buscaCandleSemanalPorDtPreg(dtpregLocal);
     //then
-    assertTrue(retorno);
-  }
-
-  private SplitInplit build(
-      final LocalDate dtpreg,
-      final String operacao
-  ) {
-    return SplitInplit
-        .builder()
-        .codneg("MGLU3")
-        .dtpreg(dtpreg)
-        .qtdSplitInplit(2)
-        .operacao(OperacaoSplitInplit.valueOf(operacao))
-        .build();
+    assertTrue(!result.isEmpty());
+    assertThat(result).isNotNull().size().isEqualTo(1);
+    assertThat(result.get(0)).isNotNull().isEqualTo("MGLU3");
   }
 
   private CandlestickSemanalDTO buildCandlestick(
