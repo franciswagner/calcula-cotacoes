@@ -2,10 +2,8 @@ package com.ricardococati.repository.dao.impl;
 
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
-import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialDiarioSQLUtil;
-import com.ricardococati.repository.util.SQLAppender;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
@@ -25,13 +23,12 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
 
   private final GeraSequenciaDAOImpl genericDAO;
   private final MediaMovelExponencialDiarioSQLUtil sqlUtil;
-  private final BuscarCandlestickDiarioMapper mapper;
   private final MediaMovelExponencialDiarioMapper mediaMapper;
 
   @Override
-  public Boolean incluirMediaMovelExponencial(final List<MediaMovelExponencialDiario> mediaMovelExponencialList) {
+  public Boolean incluirMediaMovelExponencial(
+      final List<MediaMovelExponencialDiario> mediaMovelExponencialList) {
     AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
     try {
       mediaMovelExponencialList
           .stream()
@@ -39,7 +36,8 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
             mediaMovelSimples.setIdMediaMovelExponencialDiario(
                 genericDAO.getSequence("MEDIA_MOVEL_EXPONENCIAL_DIARIO_SEQ").longValue()
             );
-            retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(mediaMovelSimples)));
+            retorno.addAndGet(
+                template.update(sqlUtil.getInsert(), sqlUtil.toParameters(mediaMovelSimples)));
           });
     } catch (Exception ex) {
       log.error("Erro na execução do método CANDLESTICK_DIARIO: " + ex.getMessage());

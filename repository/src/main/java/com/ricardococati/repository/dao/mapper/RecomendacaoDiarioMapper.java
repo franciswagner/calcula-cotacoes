@@ -12,30 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class RecomendacaoDiarioMapper {
 
-  public RecomendacaoDiario mapper(ResultSet rs) {
-    try {
-      return RecomendacaoDiario
-          .builder()
-          .idRecomendacaoDiario(rs.getLong("id_recomendacao"))
-          .dtpreg(parseDateWithoutNull(rs, "dtpreg"))
-          .recomendacao(
-              Recomendacao
-                  .builder()
-                  .codneg(rs.getString("codneg"))
-                  .precoFechamento(rs.getBigDecimal("preco_fechamento"))
-                  .precoMME12p(rs.getBigDecimal("preco_mme12p"))
-                  .precoMME26p(rs.getBigDecimal("preco_mme26p"))
-                  .precoMacd(rs.getBigDecimal("preco_macd"))
-                  .precoSinalMacd(rs.getBigDecimal("preco_sinal_macd"))
-                  .precoHistograma(rs.getBigDecimal("preco_histograma"))
-                  .decisao(rs.getString("decisao"))
-                  .build())
-          .build();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   public RecomendacaoDiario mapperConsult(ResultSet rs) {
     try {
       return RecomendacaoDiario

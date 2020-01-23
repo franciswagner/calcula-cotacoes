@@ -29,7 +29,6 @@ public class MacdDiarioDAOImpl implements MacdDiarioDAO {
   @Override
   public Boolean incluirMacd(List<MacdDiario> macdList) {
     AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
     try {
       macdList
           .stream()

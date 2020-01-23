@@ -24,11 +24,10 @@ public class HistogramaDiarioDAOImpl implements HistogramaDiarioDAO {
   private final HistogramaDiarioSQLUtil sqlUtil;
 
   @Override
-  public Boolean incluirHistograma(List<HistogramaDiario> macdList) {
+  public Boolean incluirHistograma(List<HistogramaDiario> histogramas) {
     AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
     try {
-      macdList
+      histogramas
           .stream()
           .forEach(histograma -> {
             histograma.setIdHistogramaDiario(

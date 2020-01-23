@@ -30,7 +30,6 @@ public class MacdSemanalDAOImpl implements MacdSemanalDAO {
   @Override
   public Boolean incluirMacd(List<MacdSemanal> macdList) {
     AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
     try {
       macdList
           .stream()

@@ -13,14 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MediaMovelExponencialSemanalMapper {
 
-  public String mapperCodNeg(ResultSet rs) {
-    try {
-      return rs.getString("codneg");
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   public MediaMovelExponencialSemanal mapperSemanal(ResultSet rs) {
     try {
       return MediaMovelExponencialSemanal

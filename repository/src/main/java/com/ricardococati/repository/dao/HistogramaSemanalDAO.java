@@ -7,8 +7,4 @@ public interface HistogramaSemanalDAO {
 
   Boolean incluirHistograma(final List<HistogramaSemanal> macdList);
 
-  Boolean deleteAllHistograma();
-
-  List<HistogramaSemanal> listHistogramaByCodNeg(final String codneg);
-
 }
