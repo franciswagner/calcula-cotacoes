@@ -2,8 +2,10 @@ package com.ricardococati.model.enums;
 
 import java.util.Arrays;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@AllArgsConstructor
 public enum QuantidadePeriodo {
 
   FAST_9(9),
@@ -11,10 +13,6 @@ public enum QuantidadePeriodo {
   FAST_13(13),
   SLOW_26(26),
   SLOW_100(100);
-
-  QuantidadePeriodo(Integer quantidade) {
-    this.quantidade = quantidade;
-  }
 
   @Getter
   private Integer quantidade;

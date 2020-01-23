@@ -1,0 +1,48 @@
+package com.ricardococati.repository.dao.sqlutil;
+
+import com.ricardococati.model.enums.QuantidadePeriodo;
+import com.ricardococati.repository.util.SQLAppender;
+import java.time.LocalDate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.stereotype.Component;
+
+@Component
+public class RecomendacaoSemanalBuscarSQLUtil {
+
+  public String getSelectByCodNegDtPreg() {
+    SQLAppender sql = new SQLAppender(100);
+    sql.appendSQL(" select ");
+    sql.appendSQL("     cs.codneg, ");
+    sql.appendSQL("     cs.dtpregini, ");
+    sql.appendSQL("     cs.dtpregfim, ");
+    sql.appendSQL("     cs.preult as preco_fechamento, ");
+    sql.appendSQL("     mme12.premedult as preco_mme12p, ");
+    sql.appendSQL("     mme26.premedult as preco_mme26p, ");
+    sql.appendSQL("     md.premacd as preco_macd, ");
+    sql.appendSQL("     smd.presinal as preco_sinal_macd, ");
+    sql.appendSQL("     hd.prehist as preco_histograma ");
+    sql.appendSQL(" from candlestick_semanal cs ");
+    sql.appendSQL(" inner join histograma_semanal hd on hd.codneg = cs.codneg and hd.dtpregini = cs.dtpregini ");
+    sql.appendSQL(" inner join macd_semanal md on md.codneg = hd.codneg and md.dtpregini = hd.dtpregini ");
+    sql.appendSQL(" inner join sinal_macd_semanal smd on smd.codneg = hd.codneg and smd.dtpregini = hd.dtpregini ");
+    sql.appendSQL(" inner join media_movel_exponencial_semanal mme12 on ");
+    sql.appendSQL("     mme12.codneg = hd.codneg and mme12.dtpregini = hd.dtpregini and mme12.periodo = "
+        + QuantidadePeriodo.FAST_12.getQuantidade());
+    sql.appendSQL(" inner join media_movel_exponencial_semanal mme26 on ");
+    sql.appendSQL("     mme26.codneg = hd.codneg and mme26.dtpregini = hd.dtpregini and mme26.periodo = "
+        + QuantidadePeriodo.SLOW_26.getQuantidade());
+    sql.appendSQL(" where hd.codneg = :codneg ");
+    sql.appendSQL(" and hd.dtpregini >= :dtpregini ");
+    sql.appendSQL(" order by hd.dtpregini asc ");
+    return sql.getAppendSQLSemQuebra().toString();
+  }
+
+  public MapSqlParameterSource toParametersCodNegDtPreg(
+      final String codneg,
+      final LocalDate dtpregini) {
+    return new MapSqlParameterSource()
+        .addValue("codneg", codneg)
+        .addValue("dtpregini", dtpregini);
+  }
+
+}

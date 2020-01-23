@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-public enum OperacaoSplitInplit {
+public enum Decisao {
 
-  SPLIT("/"), INPLIT("*");
+  COMPRA("COMPRA"),
+  VENDE("VENDE"),
+  NEUTRO("NEUTRO");
 
   @Getter
-  private String tipoOperacao;
+  private String texto;
 
 }

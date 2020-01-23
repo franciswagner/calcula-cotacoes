@@ -30,6 +30,13 @@ public class MACDSemanalCalculaServiceImpl
   private final MacdSemanalDAO macdDAO;
   private final CalculaService calculaService;
 
+  @Override
+  public List<MacdSemanal> executeByCodNeg(String codneg) {
+    log.info("Código de negociação: " + codneg);
+    final List<MacdSemanal> macdSemanalList = calculaMACD(codneg);
+    return macdSemanalList;
+  }
+
   private List<MediaMovelExponencialSemanal> buscaMME12Periodo(final String codneg) {
     return mmeDAO.getListMMEByCodNegEPeriodo(
         codneg,
@@ -42,7 +49,7 @@ public class MACDSemanalCalculaServiceImpl
         QuantidadePeriodo.SLOW_26.getQuantidade());
   }
 
-  private Boolean calculaMACD(final String codneg) {
+  private List<MacdSemanal> calculaMACD(final String codneg) {
     List<MacdSemanal> macdList = new ArrayList<>();
     final List<MediaMovelExponencialSemanal> listMedia12 = buscaMME12Periodo(codneg);
     final List<MediaMovelExponencialSemanal> listMedia26 = buscaMME26Periodo(codneg);
@@ -64,14 +71,7 @@ public class MACDSemanalCalculaServiceImpl
       }
     }
     macdDAO.incluirMacd(macdList);
-    return Boolean.TRUE;
-  }
-
-  @Override
-  public Boolean executeByCodNeg(String codneg) {
-    log.info("Código de negociação: " + codneg);
-    calculaMACD(codneg);
-    return Boolean.TRUE;
+    return macdList;
   }
 
   private MacdSemanal buildMacd(

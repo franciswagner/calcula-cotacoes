@@ -31,7 +31,7 @@ public class HistogramaSemanalCalculaServiceImpl
   private final CalculaService calculaService;
 
   @Override
-  public Boolean executeByCodNeg(String codneg) {
+  public List<HistogramaSemanal> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<MacdSemanal> macdList =
         macdDAO.listMacdByCodNeg(codneg);
@@ -39,7 +39,7 @@ public class HistogramaSemanalCalculaServiceImpl
         sinalMacdDAO.listSinalMacdByCodNeg(codneg);
     List<HistogramaSemanal> histogramaList = calculaHistograma(macdList, sinalMacdList);
     histogramaDAO.incluirHistograma(histogramaList);
-    return Boolean.TRUE;
+    return histogramaList;
   }
 
   private List<HistogramaSemanal> calculaHistograma(

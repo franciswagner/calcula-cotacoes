@@ -34,14 +34,14 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
   private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
 
   @Override
-  public Boolean executeByCodNeg(final String codigoNegocio) {
+  public List<MediaMovelSimplesSemanal> executeByCodNeg(final String codigoNegocio) {
     log.info("Código de negociação: " + codigoNegocio);
     List<CandlestickSemanalDTO> candlestickList =
         semanalService.buscaCandlestickSemanalPorCodNeg(buildCandlestickSemanalDTO(codigoNegocio));
     List<MediaMovelSimplesSemanal> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
     mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
-    return Boolean.TRUE;
+    return mediaMovelSimplesList;
   }
 
   private List<MediaMovelSimplesSemanal> calculaMediaMovelSimplesPorPeriodo(

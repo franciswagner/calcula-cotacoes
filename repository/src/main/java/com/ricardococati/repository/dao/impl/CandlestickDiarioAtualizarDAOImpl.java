@@ -24,7 +24,7 @@ public class CandlestickDiarioAtualizarDAOImpl implements CandlestickDiarioAtual
     int retorno = 0;
     try {
       retorno = template.update(
-          sqlUtil.getUpdateSplitInplit(splitInplit.getOperacao().getTipo()),
+          sqlUtil.getUpdateSplitInplit(splitInplit.getOperacao().getTipoOperacao()),
           sqlUtil.toParametersUpdateSplitInplit(splitInplit)
       );
     } catch (Exception ex) {

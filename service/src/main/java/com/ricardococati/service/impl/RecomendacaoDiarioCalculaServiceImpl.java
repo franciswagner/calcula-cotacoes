@@ -1,12 +1,17 @@
 package com.ricardococati.service.impl;
 
+import static com.ricardococati.model.enums.Decisao.COMPRA;
+import static com.ricardococati.model.enums.Decisao.NEUTRO;
+import static com.ricardococati.model.enums.Decisao.VENDE;
+
 import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.Recomendacao;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioDAO;
 import com.ricardococati.repository.dao.MacdDiarioDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
-import com.ricardococati.repository.dao.RecomendacaoDiarioDAO;
+import com.ricardococati.repository.dao.RecomendacaoDiarioBuscarDAO;
+import com.ricardococati.repository.dao.RecomendacaoDiarioInserirDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.RecomendacaoDiarioCalculaService;
 import com.ricardococati.service.CalculaService;
@@ -31,12 +36,10 @@ public class RecomendacaoDiarioCalculaServiceImpl
   private final MacdDiarioDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
   private final HistogramaDiarioDAO histogramaDAO;
-  private final RecomendacaoDiarioDAO recomendacaoDAO;
+  private final RecomendacaoDiarioBuscarDAO buscarRecomendacao;
+  private final RecomendacaoDiarioInserirDAO incluirRecomendacao;
   private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
-  private final String COMPRA = "COMPRA";
-  private final String VENDE = "VENDE";
-  private final String NEUTRO = "NEUTRO";
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
@@ -48,7 +51,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
-          recomendacaoDAO.incluirRecomendacao(diarioList);
+          incluirRecomendacao.incluirRecomendacao(diarioList);
         });
     return diarioList;
   }
@@ -63,12 +66,12 @@ public class RecomendacaoDiarioCalculaServiceImpl
       if (indice > 0 && recomendacaoList.size() >= 2) {
         if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
             .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0){
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA);
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
         } else if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
             .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0){
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE);
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
         } else {
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO);
+          recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
         }
       }
     }
@@ -76,7 +79,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
   }
 
   private List<RecomendacaoDiario> buildListRecomendacao(final String codneg, final LocalDate dtLimitePregao) {
-    return recomendacaoDAO.getListRecomendacaoByDtPregECodNeg(
+    return buscarRecomendacao.getListRecomendacaoByDtPregECodNeg(
         dtLimitePregao,
         codneg
     );

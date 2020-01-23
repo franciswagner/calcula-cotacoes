@@ -40,7 +40,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   private final CalculaService calculaService;
 
   @Override
-  public Boolean executeByCodNeg(String codneg) {
+  public List<MediaMovelExponencialSemanal> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
     List<CandlestickSemanalDTO> candlestickList =
         calculaCandlestickService.buscaCandlestickSemanalPorCodNeg(
@@ -48,7 +48,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     List<MediaMovelExponencialSemanal> listMME =
         calculaMediaMovelExponencialPorPeriodo(candlestickList);
     mediaMovelExponencialDAO.incluirMediaMovelExponencial(listMME);
-    return Boolean.TRUE;
+    return listMME;
   }
 
   private List<MediaMovelExponencialSemanal> calculaMediaMovelExponencialPorPeriodo(

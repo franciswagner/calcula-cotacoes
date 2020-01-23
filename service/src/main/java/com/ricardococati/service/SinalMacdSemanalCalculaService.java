@@ -1,7 +1,10 @@
 package com.ricardococati.service;
 
+import com.ricardococati.model.dto.SinalMacdSemanal;
+import java.util.List;
+
 public interface SinalMacdSemanalCalculaService {
 
-  Boolean executeByCodNeg(String codneg);
+  List<SinalMacdSemanal> executeByCodNeg(String codneg);
 
 }

@@ -1,7 +1,9 @@
 package com.ricardococati.controller;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.service.CalculaGeralDiarioService;
+import com.ricardococati.service.CalculaGeralSemanalService;
 import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import io.swagger.annotations.Api;
@@ -32,6 +34,7 @@ public class CalculaController {
   private final MediaMovelSimplesDiarioCalculaService serviceMS;
   private final MediaMovelExponencialDiarioCalculaService serviceME;
   private final CalculaGeralDiarioService geralDiarioService;
+  private final CalculaGeralSemanalService geralSemanalService;
 
   @ApiOperation(value = "Calcula a média móvel simples para um codigo de negócio")
   @ApiResponses(
@@ -83,13 +86,36 @@ public class CalculaController {
       }
   )
   @ResponseStatus(HttpStatus.OK)
-  @PostMapping(value = "/geral")
-  public ResponseEntity<List<RecomendacaoDiario>> calculaCodNeg(
+  @PostMapping(value = "/geral-diario")
+  public ResponseEntity<List<RecomendacaoDiario>> calculaGeralDiarioPorListCodNegEDtPreg(
       @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
       @RequestParam(required = false) List<String> listCodneg
   ) throws Exception {
     log.info("Excutando cálculo ");
-    List<RecomendacaoDiario> listReturn = geralDiarioService.executeByCodNeg(listCodneg, dtLimitePregao);
+    List<RecomendacaoDiario> listReturn =
+        geralDiarioService.executeByCodNeg(listCodneg, dtLimitePregao);
+    log.info("Cálculo executado com sucesso!! ");
+    return ResponseEntity.ok().body(listReturn);
+  }
+
+  @ApiOperation(value = "Efetua todos os cálculos(Semanal) para um codigo de negócio"
+      + " e retorna as recomendações")
+  @ApiResponses(
+      value = {
+          @ApiResponse(code = 200, message = "OK"),
+          @ApiResponse(code = 400, message = "Bad Request"),
+          @ApiResponse(code = 500, message = "Internal Server Error")
+      }
+  )
+  @ResponseStatus(HttpStatus.OK)
+  @PostMapping(value = "/geral-semanal")
+  public ResponseEntity<List<RecomendacaoSemanal>> calculaGeralSemanalPorListCodNegEDtPreg(
+      @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
+      @RequestParam(required = false) List<String> listCodneg
+  ) throws Exception {
+    log.info("Excutando cálculo ");
+    List<RecomendacaoSemanal> listReturn =
+        geralSemanalService.executeByCodNeg(listCodneg, dtLimitePregao);
     log.info("Cálculo executado com sucesso!! ");
     return ResponseEntity.ok().body(listReturn);
   }

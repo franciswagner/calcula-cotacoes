@@ -91,7 +91,7 @@ public class CalculaControllerTest {
     //when
     final ResultActions result = this.mockMvc
         .perform(
-            post(String.format("/api/v1/calcula/geral"))
+            post(String.format("/api/v1/calcula/geral-diario"))
                 .param("codneg", codneg.toString())
                 .param("dtLimitePregao", dtPregao)
                 .contentType(MediaType.APPLICATION_JSON)
