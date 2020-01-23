@@ -5,7 +5,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.repository.dao.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
@@ -27,7 +26,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   @InjectMocks
   private CandlestickSemanalInserirDAOImpl target;
   @Mock
-  private GenericDAOImpl genericDAO;
+  private GeraSequenciaDAOImpl genericDAO;
   @Mock
   private CandlestickSemanalInserirSQLUtil sqlUtil;
   @Rule

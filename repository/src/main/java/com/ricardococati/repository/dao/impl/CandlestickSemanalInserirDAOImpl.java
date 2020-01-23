@@ -20,7 +20,7 @@ public class CandlestickSemanalInserirDAOImpl implements CandlestickSemanalInser
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final CandlestickSemanalInserirSQLUtil sqlUtil;
 
   @Override

@@ -30,7 +30,7 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
   @Mock
   private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
   @Mock
-  private GenericDAOImpl genericDAO;
+  private GeraSequenciaDAOImpl genericDAO;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
 

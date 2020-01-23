@@ -23,7 +23,7 @@ public class MediaMovelExponencialSemanalDAOImpl implements MediaMovelExponencia
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final MediaMovelExponencialSemanalSQLUtil sqlUtil;
   private final BuscarCandlestickSemanalMapper mapper;
   private final MediaMovelExponencialSemanalMapper mediaMapper;

@@ -24,7 +24,7 @@ public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanal
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final MediaMovelSimplesSemanalSQLUtil sqlUtil;
   private final MediaMovelSimplesSemanalMapper mediaMapper;
 

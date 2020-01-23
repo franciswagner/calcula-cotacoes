@@ -23,7 +23,7 @@ public class RecomendacaoDiarioDAOImpl implements RecomendacaoDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final RecomendacaoDiarioSQLUtil sqlUtil;
   private final RecomendacaoDiarioMapper mapper;
 

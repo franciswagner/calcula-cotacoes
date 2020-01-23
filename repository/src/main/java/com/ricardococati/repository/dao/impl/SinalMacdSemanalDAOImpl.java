@@ -22,7 +22,7 @@ public class SinalMacdSemanalDAOImpl implements SinalMacdSemanalDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final SinalMacdSemanalSQLUtil sqlUtil;
   private final SinalMacdSemanalMapper mapper;
 

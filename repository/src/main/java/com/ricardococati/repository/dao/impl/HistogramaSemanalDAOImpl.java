@@ -22,7 +22,7 @@ public class HistogramaSemanalDAOImpl implements HistogramaSemanalDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final HistogramaSemanalSQLUtil sqlUtil;
   private final HistogramaSemanalMapper mapper;
 

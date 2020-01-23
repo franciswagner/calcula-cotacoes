@@ -22,7 +22,7 @@ public class MacdDiarioDAOImpl implements MacdDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final MacdDiarioSQLUtil sqlUtil;
   private final MacdDiarioMapper macdMapper;
 

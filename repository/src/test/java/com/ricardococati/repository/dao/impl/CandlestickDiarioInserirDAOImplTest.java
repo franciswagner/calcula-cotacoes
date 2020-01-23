@@ -26,7 +26,7 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
   @InjectMocks
   private CandlestickDiarioInserirDAOImpl target;
   @Mock
-  private GenericDAOImpl genericDAO;
+  private GeraSequenciaDAOImpl genericDAO;
   @Mock
   private CandlestickDiarioInserirSQLUtil sqlUtil;
   private Integer countInteger;

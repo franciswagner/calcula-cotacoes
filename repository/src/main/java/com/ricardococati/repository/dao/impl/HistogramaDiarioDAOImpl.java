@@ -20,7 +20,7 @@ public class HistogramaDiarioDAOImpl implements HistogramaDiarioDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GenericDAOImpl genericDAO;
+  private final GeraSequenciaDAOImpl genericDAO;
   private final HistogramaDiarioSQLUtil sqlUtil;
 
   @Override
