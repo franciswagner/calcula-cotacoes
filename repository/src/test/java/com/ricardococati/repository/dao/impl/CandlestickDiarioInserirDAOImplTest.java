@@ -11,10 +11,13 @@ import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -28,6 +31,8 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
   private CandlestickDiarioInserirSQLUtil sqlUtil;
   private Integer countInteger;
   private LocalDate dtpreg;
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
   @Before
   public void setUp() {
@@ -47,6 +52,19 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
     Boolean retorno = target.insereCandlestickDiario(dto);
     //then
     assertTrue(retorno);
+  }
+
+  @Test
+  public void incluirCandlestickDiarioNull() {
+    //given
+    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(sqlUtil.getInsert()).thenCallRealMethod();
+    when(sqlUtil.toParameters(any())).thenCallRealMethod();
+    CandlestickDiarioDTO dto = buildCandlestickDiarioDTO("MGLU3", 10.1, null);
+    this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_DIARIO");
+    this.thrown.expect(DataIntegrityViolationException.class);
+    //when
+    Boolean retorno = target.insereCandlestickDiario(dto);
   }
 
   private CandlestickDiarioDTO buildCandlestickDiarioDTO(
