@@ -37,7 +37,7 @@ public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanal
           .stream()
           .forEach(mediaMovelSimples -> {
             mediaMovelSimples.setIdMediaMovelSimplesSemanal(
-                genericDAO.getSequence("MEDIA_MOVEL_SIMPLES_SEMANAL_SEQ", template).longValue()
+                genericDAO.getSequence("MEDIA_MOVEL_SIMPLES_SEMANAL_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(mediaMovelSimples)));
           });

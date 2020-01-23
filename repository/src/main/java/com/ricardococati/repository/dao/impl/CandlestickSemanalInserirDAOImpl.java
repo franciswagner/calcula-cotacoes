@@ -1,5 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
+import static java.util.Objects.isNull;
+
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.repository.dao.CandlestickSemanalInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
@@ -24,14 +26,17 @@ public class CandlestickSemanalInserirDAOImpl implements CandlestickSemanalInser
   @Override
   public Boolean incluirCandlestickSemanal(CandlestickSemanalDTO semanal) {
     int retorno = 0;
+    if (isNull(semanal)
+        || isNull(semanal.getDtpregini())
+        || isNull(semanal.getDtpregfim())
+        || isNull(semanal.getCandlestickDTO().getCodneg())) {
+      throw new DataIntegrityViolationException("Violação de chave na inserção de CANDLESTICK_SEMANAL");
+    }
     try {
       semanal.setIdCandleSemanal(
-          genericDAO.getSequence("CANDLESTICK_SEMANAL_SEQ", template).longValue()
+          genericDAO.getSequence("CANDLESTICK_SEMANAL_SEQ").longValue()
       );
       retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(semanal));
-    } catch (DataIntegrityViolationException ex) {
-      log.error("Violação de chave na inserção de CANDLESTICK_SEMANAL: " + ex.getMessage());
-      throw new DataIntegrityViolationException("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     } catch (Exception ex) {
       log.error("Erro na execução do método CANDLESTICK_SEMANAL: {} ",  ex.getMessage());
       throw ex;

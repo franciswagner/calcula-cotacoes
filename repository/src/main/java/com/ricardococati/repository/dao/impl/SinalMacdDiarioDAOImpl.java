@@ -35,7 +35,7 @@ public class SinalMacdDiarioDAOImpl implements SinalMacdDiarioDAO {
           .stream()
           .forEach(sinalMacd -> {
             sinalMacd.setIdSinalMacdDiario(
-                genericDAO.getSequence("SINAL_MACD_DIARIO_SEQ", template).longValue()
+                genericDAO.getSequence("SINAL_MACD_DIARIO_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(sinalMacd)));
           });

@@ -45,7 +45,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickSemanal() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), LocalDate.now());
@@ -58,7 +58,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickSemanalDataInicialNull() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, null, LocalDate.now());
@@ -71,7 +71,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickSemanalDataFinalNull() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), null);
@@ -84,7 +84,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickSemanalDatasNull() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, null, null);

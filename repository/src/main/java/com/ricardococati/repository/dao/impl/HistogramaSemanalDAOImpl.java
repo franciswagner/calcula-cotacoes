@@ -35,7 +35,7 @@ public class HistogramaSemanalDAOImpl implements HistogramaSemanalDAO {
           .stream()
           .forEach(histograma -> {
             histograma.setIdHistogramaSemanal(
-                genericDAO.getSequence("HISTOGRAMA_SEMANAL_SEQ", template).longValue()
+                genericDAO.getSequence("HISTOGRAMA_SEMANAL_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(histograma)));
           });

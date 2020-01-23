@@ -39,7 +39,7 @@ public class MediaMovelSimplesDiarioDAOImpl implements MediaMovelSimplesDiarioDA
           .filter(Objects::nonNull)
           .forEach(mediaMovelSimples -> {
             mediaMovelSimples.setIdMediaMovelSimplesDiario(
-                genericDAO.getSequence("MEDIA_MOVEL_SIMPLES_DIARIO_SEQ", template).longValue()
+                genericDAO.getSequence("MEDIA_MOVEL_SIMPLES_DIARIO_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(mediaMovelSimples)));
           });

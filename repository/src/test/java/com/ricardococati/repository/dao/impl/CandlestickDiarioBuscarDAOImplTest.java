@@ -48,7 +48,7 @@ public class CandlestickDiarioBuscarDAOImplTest extends BaseJdbcTest {
         getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
     when(incluirSQLUtil.getInsert()).thenCallRealMethod();
     when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     incluirDAO.insereCandlestickDiario(
         buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg)
     );

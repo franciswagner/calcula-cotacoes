@@ -44,7 +44,7 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickDiario() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickDiarioDTO dto = buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg.plusDays(countInteger += 1));
@@ -57,7 +57,7 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
   @Test
   public void incluirCandlestickDiarioNull() {
     //given
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     CandlestickDiarioDTO dto = buildCandlestickDiarioDTO("MGLU3", 10.1, null);

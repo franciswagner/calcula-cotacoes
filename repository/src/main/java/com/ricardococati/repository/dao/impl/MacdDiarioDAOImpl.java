@@ -35,7 +35,7 @@ public class MacdDiarioDAOImpl implements MacdDiarioDAO {
           .stream()
           .forEach(macd -> {
             macd.setIdMacdDiario(
-                genericDAO.getSequence("MACD_DIARIO_SEQ", template).longValue()
+                genericDAO.getSequence("MACD_DIARIO_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(macd)));
           });

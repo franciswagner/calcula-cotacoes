@@ -36,7 +36,7 @@ public class RecomendacaoDiarioDAOImpl implements RecomendacaoDiarioDAO {
           .stream()
           .forEach(diario -> {
             diario.setIdRecomendacaoDiario(
-                genericDAO.getSequence("RECOMENDACAO_DIARIO_SEQ", template).longValue()
+                genericDAO.getSequence("RECOMENDACAO_DIARIO_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(diario)));
           });

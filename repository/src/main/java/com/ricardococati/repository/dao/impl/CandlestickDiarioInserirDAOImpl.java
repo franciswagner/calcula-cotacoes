@@ -1,5 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
+import static java.util.Objects.isNull;
+
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.CandlestickDiarioInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -22,16 +24,18 @@ public class CandlestickDiarioInserirDAOImpl implements CandlestickDiarioInserir
   private final CandlestickDiarioInserirSQLUtil sqlUtil;
 
   @Override
-  public Boolean insereCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO) {
+  public Boolean insereCandlestickDiario(final CandlestickDiarioDTO diarioDTO) {
     int retorno = 0;
-    try {
-      candlestickDiarioDTO.setIdCandleDiario(
-          genericDAO.getSequence("CANDLESTICK_SEQ", template).longValue()
-      );
-      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(candlestickDiarioDTO));
-    } catch (DataIntegrityViolationException ex) {
-      log.error("Violação de chave na inserção de CANDLESTICK_DIARIO: " + ex.getMessage());
+    if (isNull(diarioDTO)
+        || isNull(diarioDTO.getDtpreg())
+        || isNull(diarioDTO.getCandlestickDTO().getCodneg())) {
       throw new DataIntegrityViolationException("Violação de chave na inserção de CANDLESTICK_DIARIO");
+    }
+    try {
+      diarioDTO.setIdCandleDiario(
+          genericDAO.getSequence("CANDLESTICK_SEQ").longValue()
+      );
+      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(diarioDTO));
     } catch (Exception ex) {
       log.error("Erro na execução do método CANDLESTICK_DIARIO: " + ex.getMessage());
       throw ex;

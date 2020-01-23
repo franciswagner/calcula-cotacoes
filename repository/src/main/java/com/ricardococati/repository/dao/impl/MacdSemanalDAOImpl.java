@@ -36,7 +36,7 @@ public class MacdSemanalDAOImpl implements MacdSemanalDAO {
           .stream()
           .forEach(macd -> {
             macd.setIdMacdSemanal(
-                genericDAO.getSequence("MACD_SEMANAL_SEQ", template).longValue()
+                genericDAO.getSequence("MACD_SEMANAL_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(macd)));
           });

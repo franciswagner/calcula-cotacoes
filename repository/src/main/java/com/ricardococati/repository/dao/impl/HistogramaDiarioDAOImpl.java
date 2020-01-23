@@ -32,7 +32,7 @@ public class HistogramaDiarioDAOImpl implements HistogramaDiarioDAO {
           .stream()
           .forEach(histograma -> {
             histograma.setIdHistogramaDiario(
-                genericDAO.getSequence("HISTOGRAMA_DIARIO_SEQ", template).longValue()
+                genericDAO.getSequence("HISTOGRAMA_DIARIO_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(histograma)));
           });

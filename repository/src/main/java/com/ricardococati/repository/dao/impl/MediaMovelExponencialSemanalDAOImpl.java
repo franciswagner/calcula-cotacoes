@@ -37,7 +37,7 @@ public class MediaMovelExponencialSemanalDAOImpl implements MediaMovelExponencia
           .stream()
           .forEach(mediaMovelSimples -> {
             mediaMovelSimples.setIdMediaMovelExponencialSemanal(
-                genericDAO.getSequence("MEDIA_MOVEL_EXPONENCIAL_SEMANAL_SEQ", template).longValue()
+                genericDAO.getSequence("MEDIA_MOVEL_EXPONENCIAL_SEMANAL_SEQ").longValue()
             );
             retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(mediaMovelSimples)));
           });

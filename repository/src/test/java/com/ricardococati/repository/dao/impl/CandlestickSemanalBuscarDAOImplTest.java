@@ -51,7 +51,7 @@ public class CandlestickSemanalBuscarDAOImplTest extends BaseJdbcTest {
         getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
     when(incluirSQLUtil.getInsert()).thenCallRealMethod();
     when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
-    when(genericDAO.getSequence(any(), any())).thenReturn(1);
+    when(genericDAO.getSequence(any())).thenReturn(1);
     incluirDAO.incluirCandlestickSemanal(
         buildCandlestick(dtpregini, dtpregfim)
     );
