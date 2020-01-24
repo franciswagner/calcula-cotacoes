@@ -34,12 +34,6 @@ public class MediaMovelExponencialSemanalSQLUtil {
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from media_movel_exponencial_semanal ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
   public MapSqlParameterSource toParameters(final MediaMovelExponencialSemanal mediaMovelExponencial) {
     return new MapSqlParameterSource()
         .addValue("idMediaMovelexponencial", mediaMovelExponencial.getIdMediaMovelExponencialSemanal())

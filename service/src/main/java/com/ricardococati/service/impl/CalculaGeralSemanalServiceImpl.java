@@ -64,7 +64,7 @@ public class CalculaGeralSemanalServiceImpl implements
       controle = controle && executeSinalMacdSemanal(listCodneg);
       controle = controle && executeHistogramaSemanal(listCodneg);
       if (controle) {
-        recomendacaoSemanalList = recomendacaoService.executeByCodNeg(listCodneg, dtLimitePregao);
+        recomendacaoSemanalList.addAll(recomendacaoService.executeByCodNeg(listCodneg, dtLimitePregao));
       }
     } catch (Exception ex){
       log.error("Erro ao gerar recomendação: {} ", ex.getMessage());

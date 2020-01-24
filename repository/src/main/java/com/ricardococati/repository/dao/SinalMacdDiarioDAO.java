@@ -7,8 +7,6 @@ public interface SinalMacdDiarioDAO {
 
   Boolean incluirSinalMacd(final List<SinalMacdDiario> macdList);
 
-  Boolean deleteAllSinalMacd();
-
   List<SinalMacdDiario> listSinalMacdByCodNeg(final String codneg);
 
 }

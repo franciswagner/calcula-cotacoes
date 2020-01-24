@@ -9,15 +9,10 @@ public interface MediaMovelSimplesDiarioDAO {
 
   Boolean incluirMediaMovelSimples(final List<MediaMovelSimplesDiario> mediaMovelSimplesList);
 
-  Boolean split(SplitInplit splitInplit);
-
-  Boolean inplit(SplitInplit splitInplit);
-
   MediaMovelSimplesDiario buscaMediaSimplesPorCodNegPeriodoDtPreg(
       final String codneg,
       final Integer periodo,
       final LocalDate dtpreg
   );
 
-  Boolean deleteAllMM();
 }

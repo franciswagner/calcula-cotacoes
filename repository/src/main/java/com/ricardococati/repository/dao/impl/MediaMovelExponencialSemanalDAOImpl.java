@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -49,11 +48,6 @@ public class MediaMovelExponencialSemanalDAOImpl implements MediaMovelExponencia
   }
 
   @Override
-  public Boolean deleteAllMME() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
-  }
-
-  @Override
   public List<MediaMovelExponencialSemanal> getListMMEByCodNegEPeriodo(
       String codneg,
       Integer periodo
@@ -61,15 +55,6 @@ public class MediaMovelExponencialSemanalDAOImpl implements MediaMovelExponencia
     return template.query(
         sqlUtil.getSelectByCodNegEPeriodo(),
         sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
-        (rs, rowNum) -> mediaMapper.mapperSemanal(rs)
-    );
-  }
-
-  @Override
-  public List<MediaMovelExponencialSemanal> listMediaExponencialByCodneg(final String codneg) {
-    return template.query(
-        sqlUtil.getSelect(),
-        new MapSqlParameterSource(),
         (rs, rowNum) -> mediaMapper.mapperSemanal(rs)
     );
   }

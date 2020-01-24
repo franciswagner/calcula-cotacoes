@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -70,11 +69,6 @@ public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanal
           dtpregfim);
       return null;
     }
-  }
-
-  @Override
-  public Boolean deleteAllMM() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
   }
 
 }

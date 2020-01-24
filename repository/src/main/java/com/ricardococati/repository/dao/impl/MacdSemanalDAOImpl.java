@@ -47,11 +47,6 @@ public class MacdSemanalDAOImpl implements MacdSemanalDAO {
   }
 
   @Override
-  public Boolean deleteAllMacd() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
-  }
-
-  @Override
   public List<MacdSemanal> listMacdByCodNeg(String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),

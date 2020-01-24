@@ -9,6 +9,7 @@ import com.ricardococati.repository.dao.HistogramaSemanalDAO;
 import com.ricardococati.repository.dao.MacdSemanalDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalBuscarDAO;
+import com.ricardococati.repository.dao.RecomendacaoSemanalExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalInserirDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
 import com.ricardococati.service.CalculaService;
@@ -36,12 +37,14 @@ public class RecomendacaoSemanalCalculaServiceImpl
   private final HistogramaSemanalDAO histogramaDAO;
   private final RecomendacaoSemanalBuscarDAO buscarRecomendacao;
   private final RecomendacaoSemanalInserirDAO inserirRecomendacao;
+  private final RecomendacaoSemanalExcluirDAO excluirRecomendacao;
   private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
   @Override
   public List<RecomendacaoSemanal> executeByCodNeg(
       final List<String> listCodneg, final LocalDate dtLimitePregao) {
+    excluirRecomendacao.excluirAllRecomendacao();
     List<RecomendacaoSemanal> diarioList = new ArrayList<>();
     log.info("Código de negociação: " + listCodneg);
     listCodneg

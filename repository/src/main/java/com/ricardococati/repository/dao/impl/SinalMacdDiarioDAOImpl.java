@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -44,11 +43,6 @@ public class SinalMacdDiarioDAOImpl implements SinalMacdDiarioDAO {
       throw ex;
     }
     return retorno.get() > 0;
-  }
-
-  @Override
-  public Boolean deleteAllSinalMacd() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
   }
 
   @Override

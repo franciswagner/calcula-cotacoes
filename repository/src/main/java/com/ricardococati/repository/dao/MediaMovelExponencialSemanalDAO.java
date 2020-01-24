@@ -8,10 +8,7 @@ public interface MediaMovelExponencialSemanalDAO {
   Boolean incluirMediaMovelExponencial(
       final List<MediaMovelExponencialSemanal> mediaMovelExponencialList);
 
-  Boolean deleteAllMME();
-
   List<MediaMovelExponencialSemanal> getListMMEByCodNegEPeriodo(final String codneg,
       final Integer periodo);
 
-  List<MediaMovelExponencialSemanal> listMediaExponencialByCodneg(final String codneg);
 }

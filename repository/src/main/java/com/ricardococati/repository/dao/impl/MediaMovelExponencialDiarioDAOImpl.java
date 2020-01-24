@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -47,23 +46,6 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
   }
 
   @Override
-  public Boolean deleteAllMME() {
-    return template.update(sqlUtil.getDelete(), new MapSqlParameterSource()) == 0;
-  }
-
-  @Override
-  public List<MediaMovelExponencialDiario> getListMMEByCodNegEPeriodo(
-      String codneg,
-      Integer periodo
-  ) {
-    return template.query(
-        sqlUtil.getSelectByCodNegEPeriodo(),
-        sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
-        (rs, rowNum) -> mediaMapper.mapper(rs)
-    );
-  }
-
-  @Override
   public List<MediaMovelExponencialDiario> getListMME12ByCodNegEPeriodo(
       String codneg,
       Integer periodo
@@ -83,15 +65,6 @@ public class MediaMovelExponencialDiarioDAOImpl implements MediaMovelExponencial
     return template.query(
         sqlUtil.getSelectByCodNegEPeriodo(),
         sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
-        (rs, rowNum) -> mediaMapper.mapper(rs)
-    );
-  }
-
-  @Override
-  public List<MediaMovelExponencialDiario> listMediaExponencialByCodneg(final String codneg) {
-    return template.query(
-        sqlUtil.getSelect(),
-        new MapSqlParameterSource(),
         (rs, rowNum) -> mediaMapper.mapper(rs)
     );
   }

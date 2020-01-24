@@ -15,6 +15,4 @@ public interface MediaMovelSimplesSemanalDAO {
       final LocalDate dtpregfim
   );
 
-  Boolean deleteAllMM();
-
 }
