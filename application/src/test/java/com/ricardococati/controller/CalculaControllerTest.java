@@ -14,6 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.service.CalculaGeralDiarioService;
+import com.ricardococati.service.CalculaGeralSemanalService;
 import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import java.util.Arrays;
@@ -41,6 +42,8 @@ public class CalculaControllerTest {
   private MediaMovelExponencialDiarioCalculaService serviceME;
   @MockBean
   private CalculaGeralDiarioService geralDiarioService;
+  @MockBean
+  private CalculaGeralSemanalService geralSemanalService;
   @Autowired
   private MockMvc mockMvc;
 
