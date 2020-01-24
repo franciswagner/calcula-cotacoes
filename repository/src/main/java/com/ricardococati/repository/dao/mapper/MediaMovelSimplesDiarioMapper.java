@@ -1,12 +1,11 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static java.util.Objects.nonNull;
+import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
 
 import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,15 +28,6 @@ public class MediaMovelSimplesDiarioMapper {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  public LocalDate parseDateWithoutNull(ResultSet rs, String stringData)
-      throws SQLException {
-    LocalDate date = null;
-    if (nonNull(rs.getDate(stringData))) {
-      date = rs.getDate(stringData).toLocalDate();
-    }
-    return date;
   }
 
 }

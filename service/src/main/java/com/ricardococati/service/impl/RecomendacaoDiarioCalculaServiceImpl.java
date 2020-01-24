@@ -88,19 +88,4 @@ public class RecomendacaoDiarioCalculaServiceImpl
     );
   }
 
-  private RecomendacaoDiario buildRecomendacao(
-      final HistogramaDiario diario,
-      final String decisao) {
-    return RecomendacaoDiario.builder()
-        .dtpreg(diario.getDtpreg())
-        .recomendacao(
-            Recomendacao
-                .builder()
-                .codneg(diario.getHistograma().getCodneg())
-                .precoHistograma(diario.getHistograma().getPrehist())
-                .decisao(decisao)
-                .build())
-        .build();
-  }
-
 }

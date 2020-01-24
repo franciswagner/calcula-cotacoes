@@ -1,9 +1,7 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.repository.util.SQLAppender;
-import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +28,6 @@ public class SinalMacdSemanalSQLUtil {
     sql.appendSQL("		dtpregini = excluded.dtpregini, ");
     sql.appendSQL("		dtpregfim = excluded.dtpregfim, ");
     sql.appendSQL("		presinal = excluded.presinal ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from sinal_macd_semanal ");
     return sql.getAppendSQLSemQuebra().toString();
   }
 
@@ -67,33 +59,6 @@ public class SinalMacdSemanalSQLUtil {
   public MapSqlParameterSource toParametersByCodNeg(final String codneg) {
     return new MapSqlParameterSource()
         .addValue("codneg", codneg);
-  }
-
-  public String getSelectByCodNegEDtpregLimite9Periodos() {
-    SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL("	select ");
-    sql.appendSQL("		id_sinal_macd, ");
-    sql.appendSQL("		codneg, ");
-    sql.appendSQL("		dtpregini,  ");
-    sql.appendSQL("		dtpregfim,  ");
-    sql.appendSQL("		presinal ");
-    sql.appendSQL("	from ");
-    sql.appendSQL("		sinal_macd_semanal ");
-    sql.appendSQL("	where ");
-    sql.appendSQL("		codneg = :codneg ");
-    sql.appendSQL("	  and dtpregini <= :dtpregini ");
-    sql.appendSQL("  order by dtpregini asc");
-    sql.appendSQL("	 limit 9 ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public MapSqlParameterSource toParametersByCodNegDtpregLimite9Periodos(
-      final String codneg,
-      final LocalDate dtpregini
-  ) {
-    return new MapSqlParameterSource()
-        .addValue("codneg", codneg)
-        .addValue("dtpregini", dtpregini);
   }
 
 }
