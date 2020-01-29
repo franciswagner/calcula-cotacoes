@@ -1,9 +1,11 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.repository.dao.HistogramaDiarioDAO;
-import com.ricardococati.repository.dao.sqlutil.HistogramaDiarioSQLUtil;
-import com.ricardococati.repository.util.SQLAppender;
+import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
+import com.ricardococati.repository.dao.MacdSemanalInserirDAO;
+import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
@@ -15,25 +17,26 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class HistogramaDiarioDAOImpl implements HistogramaDiarioDAO {
+public class MacdSemanalInserirDAOImpl implements MacdSemanalInserirDAO {
 
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
   private final GeraSequenciaDAOImpl genericDAO;
-  private final HistogramaDiarioSQLUtil sqlUtil;
+  private final MacdSemanalSQLUtil sqlUtil;
+  private final MacdSemanalMapper macdMapper;
 
   @Override
-  public Boolean incluirHistograma(List<HistogramaDiario> histogramas) {
+  public Boolean incluirMacd(List<MacdSemanal> macdList) {
     AtomicInteger retorno = new AtomicInteger(0);
     try {
-      histogramas
+      macdList
           .stream()
-          .forEach(histograma -> {
-            histograma.setIdHistogramaDiario(
-                genericDAO.getSequence("HISTOGRAMA_DIARIO_SEQ").longValue()
+          .forEach(macd -> {
+            macd.setIdMacdSemanal(
+                genericDAO.getSequence("MACD_SEMANAL_SEQ").longValue()
             );
-            retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(histograma)));
+            retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(macd)));
           });
     } catch (Exception ex) {
       log.error("Erro na execução do método incluir MACD: " + ex.getMessage());

@@ -20,7 +20,6 @@ import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.mapper.MacdDiarioMapper;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
@@ -33,6 +32,7 @@ import com.ricardococati.repository.dao.sqlutil.SinalMacdDiarioSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,8 +57,6 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private MediaMovelExponencialDiarioMapper mediaMapper;
   @Mock
   private MacdDiarioSQLUtil incluirMacd;
-  @Mock
-  private MacdDiarioMapper macdMapper;
   @Mock
   private SinalMacdDiarioSQLUtil incluirSinalMacd;
   @Mock
@@ -161,12 +159,17 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiMacdAntesDeExecutarTestes() {
-    MacdDiarioDAOImpl incluirDAO = new MacdDiarioDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirMacd, macdMapper);
+    MacdDiarioInserirDAOImpl incluirDAO = new MacdDiarioInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirMacd);
     when(incluirMacd.getInsert()).thenCallRealMethod();
     when(incluirMacd.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirMacd(macdDiarioList());
+    macdDiarioList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(macdDiario -> {
+          incluirDAO.incluirMacd(macdDiario);
+        });
   }
 
   private void incluiSinalMacdAntesDeExecutarTestes() {
@@ -179,12 +182,16 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiHistogramaAntesDeExecutarTestes() {
-    HistogramaDiarioDAOImpl incluirDAO = new HistogramaDiarioDAOImpl(
+    HistogramaDiarioInserirDAOImpl incluirDAO = new HistogramaDiarioInserirDAOImpl(
         getNamedParameterJdbcTemplate(), genericDAO, incluirHistograma);
     when(incluirHistograma.getInsert()).thenCallRealMethod();
     when(incluirHistograma.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirHistograma(histogramaDiarioList());
+    histogramaDiarioList()
+        .stream()
+        .forEach(histogramaDiario -> {
+          incluirDAO.incluirHistograma(histogramaDiario);
+        });
   }
 
   private CandlestickDiarioDTO getCandlestickDiario() {

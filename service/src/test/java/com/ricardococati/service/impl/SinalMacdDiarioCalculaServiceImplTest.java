@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaService;
 import java.math.BigDecimal;
@@ -39,7 +39,7 @@ public class SinalMacdDiarioCalculaServiceImplTest {
   @InjectMocks
   private SinalMacdDiarioCalculaServiceImpl target;
   @Mock
-  private MacdDiarioDAO macdDAO;
+  private MacdDiarioBuscarDAO macdDAO;
   @Mock
   private SinalMacdDiarioDAO sinalMacdDAO;
   @Mock

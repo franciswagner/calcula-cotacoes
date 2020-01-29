@@ -6,12 +6,14 @@ import com.ricardococati.model.dto.Histograma;
 import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
-import com.ricardococati.repository.dao.HistogramaDiarioDAO;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.HistogramaDiarioCalculaService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +26,9 @@ import org.springframework.stereotype.Service;
 public class HistogramaDiarioCalculaServiceImpl
     implements HistogramaDiarioCalculaService {
 
-  private final MacdDiarioDAO macdDAO;
+  private final MacdDiarioBuscarDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
-  private final HistogramaDiarioDAO histogramaDAO;
+  private final HistogramaDiarioInserirDAO histogramaDAO;
 
   @Override
   public List<HistogramaDiario> executeByCodNeg(String codneg) {
@@ -36,8 +38,21 @@ public class HistogramaDiarioCalculaServiceImpl
     List<SinalMacdDiario> sinalMacdList =
         sinalMacdDAO.listSinalMacdByCodNeg(codneg);
     List<HistogramaDiario> histogramaList = calculaHistograma(macdList, sinalMacdList);
-    histogramaDAO.incluirHistograma(histogramaList);
+    insereHistograma(histogramaList);
     return histogramaList;
+  }
+
+  private Boolean insereHistograma(List<HistogramaDiario> histogramaList) {
+    AtomicBoolean result = new AtomicBoolean(false);
+    histogramaList
+        .stream()
+        .filter(Objects::nonNull)
+        .filter(histogramaDiario -> nonNull(histogramaDiario.getDtpreg()))
+        .filter(histogramaDiario -> nonNull(histogramaDiario.getHistograma().getCodneg()))
+        .forEach(histogramaDiario -> {
+          result.getAndSet(histogramaDAO.incluirHistograma(histogramaDiario));
+        });
+    return result.get();
   }
 
   private List<HistogramaDiario> calculaHistograma(

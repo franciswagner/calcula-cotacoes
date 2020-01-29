@@ -6,8 +6,8 @@ import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.dao.CandlestickDiarioBuscarDAO;
 import com.ricardococati.repository.dao.CandlestickSemanalBuscarDAO;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
-import com.ricardococati.repository.dao.MacdSemanalDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
+import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.service.CalculaService;
 import java.util.List;
@@ -24,19 +24,19 @@ public class CalculaServiceImpl implements CalculaService {
 
   private final CandlestickDiarioBuscarDAO diarioDAO;
   private final CandlestickSemanalBuscarDAO semanalDAO;
-  private final MacdDiarioDAO macdDiarioDAO;
-  private final MacdSemanalDAO macdSemanalDAO;
+  private final MacdDiarioBuscarDAO macdDiarioBuscarDAO;
+  private final MacdSemanalBuscarDAO macdSemanalBuscarDAO;
   private final MediaMovelExponencialDiarioDAO mediaExponencialDAO;
   private final ControleExecucaoDAO execucaoDAO;
 
   @Override
   public List<MacdDiario> listMacdDiarioByCodNeg(String codneg) {
-    return macdDiarioDAO.listMacdByCodNeg(codneg);
+    return macdDiarioBuscarDAO.listMacdByCodNeg(codneg);
   }
 
   @Override
   public List<MacdSemanal> listMacdSemanalByCodNeg(String codneg) {
-    return macdSemanalDAO.listMacdByCodNeg(codneg);
+    return macdSemanalBuscarDAO.listMacdByCodNeg(codneg);
   }
 
   @Override

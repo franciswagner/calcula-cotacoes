@@ -5,8 +5,8 @@ import static com.ricardococati.model.enums.Decisao.NEUTRO;
 import static com.ricardococati.model.enums.Decisao.VENDE;
 
 import com.ricardococati.model.dto.RecomendacaoSemanal;
-import com.ricardococati.repository.dao.HistogramaSemanalDAO;
-import com.ricardococati.repository.dao.MacdSemanalDAO;
+import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
+import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalExcluirDAO;
@@ -32,9 +32,9 @@ public class RecomendacaoSemanalCalculaServiceImpl
     implements RecomendacaoSemanalCalculaService {
 
   private final CandlestickSemanalBuscarService calculaCandlestickService;
-  private final MacdSemanalDAO macdDAO;
+  private final MacdSemanalBuscarDAO macdDAO;
   private final SinalMacdSemanalDAO sinalMacdDAO;
-  private final HistogramaSemanalDAO histogramaDAO;
+  private final HistogramaSemanalInserirDAO histogramaDAO;
   private final RecomendacaoSemanalBuscarDAO buscarRecomendacao;
   private final RecomendacaoSemanalInserirDAO inserirRecomendacao;
   private final RecomendacaoSemanalExcluirDAO excluirRecomendacao;

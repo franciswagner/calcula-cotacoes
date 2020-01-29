@@ -33,6 +33,7 @@ import com.ricardococati.repository.dao.sqlutil.SinalMacdSemanalSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,7 +55,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   @Mock
   private MediaMovelExponencialSemanalSQLUtil incluirMME;
   @Mock
-  private MediaMovelExponencialSemanalMapper mediaMapper;
+  private MediaMovelExponencialSemanalMapper mapperMME;
   @Mock
   private MacdSemanalSQLUtil incluirMacd;
   @Mock
@@ -153,7 +154,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   private void incluirMMEAntesDeExecutarTestes() {
     MediaMovelExponencialSemanalDAOImpl incluirDAO = new MediaMovelExponencialSemanalDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirMME, mediaMapper);
+        getNamedParameterJdbcTemplate(), genericDAO, incluirMME, mapperMME);
     when(incluirMME.getInsert()).thenCallRealMethod();
     when(incluirMME.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
@@ -161,7 +162,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiMacdAntesDeExecutarTestes() {
-    MacdSemanalDAOImpl incluirDAO = new MacdSemanalDAOImpl(
+    MacdSemanalBuscarDAOImpl incluirDAO = new MacdSemanalBuscarDAOImpl(
         getNamedParameterJdbcTemplate(), genericDAO, incluirMacd, macdMapper);
     when(incluirMacd.getInsert()).thenCallRealMethod();
     when(incluirMacd.toParameters(any())).thenCallRealMethod();
@@ -179,12 +180,17 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiHistogramaAntesDeExecutarTestes() {
-    HistogramaSemanalDAOImpl incluirDAO = new HistogramaSemanalDAOImpl(
+    HistogramaSemanalInserirDAOImpl incluirDAO = new HistogramaSemanalInserirDAOImpl(
         getNamedParameterJdbcTemplate(), genericDAO, incluirHistograma);
     when(incluirHistograma.getInsert()).thenCallRealMethod();
     when(incluirHistograma.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirHistograma(histogramaSemanalList());
+    histogramaSemanalList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(histogramaSemanal -> {
+          incluirDAO.incluirHistograma(histogramaSemanal);
+        });
   }
 
   private CandlestickSemanalDTO getCandlestickSemanal() {

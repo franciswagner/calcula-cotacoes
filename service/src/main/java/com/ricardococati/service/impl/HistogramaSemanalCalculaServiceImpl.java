@@ -4,14 +4,15 @@ import com.ricardococati.model.dto.Histograma;
 import com.ricardococati.model.dto.HistogramaSemanal;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.model.dto.SinalMacdSemanal;
-import com.ricardococati.repository.dao.HistogramaSemanalDAO;
-import com.ricardococati.repository.dao.MacdSemanalDAO;
+import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
+import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
 import com.ricardococati.service.HistogramaSemanalCalculaService;
 import com.ricardococati.service.CalculaService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,9 @@ import org.springframework.stereotype.Service;
 public class HistogramaSemanalCalculaServiceImpl
     implements HistogramaSemanalCalculaService {
 
-  private final MacdSemanalDAO macdDAO;
+  private final MacdSemanalBuscarDAO macdDAO;
   private final SinalMacdSemanalDAO sinalMacdDAO;
-  private final HistogramaSemanalDAO histogramaDAO;
+  private final HistogramaSemanalInserirDAO histogramaDAO;
   private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
@@ -38,8 +39,17 @@ public class HistogramaSemanalCalculaServiceImpl
     List<SinalMacdSemanal> sinalMacdList =
         sinalMacdDAO.listSinalMacdByCodNeg(codneg);
     List<HistogramaSemanal> histogramaList = calculaHistograma(macdList, sinalMacdList);
-    histogramaDAO.incluirHistograma(histogramaList);
+    incluirHistograma(histogramaList);
     return histogramaList;
+  }
+
+  private void incluirHistograma(List<HistogramaSemanal> histogramaList) {
+    histogramaList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(histogramaSemanal -> {
+          histogramaDAO.incluirHistograma(histogramaSemanal);
+        });
   }
 
   private List<HistogramaSemanal> calculaHistograma(

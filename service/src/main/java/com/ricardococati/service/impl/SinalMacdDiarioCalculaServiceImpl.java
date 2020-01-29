@@ -5,7 +5,7 @@ import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdDiarioCalculaService;
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 public class SinalMacdDiarioCalculaServiceImpl
     implements SinalMacdDiarioCalculaService {
 
-  private final MacdDiarioDAO macdDAO;
+  private final MacdDiarioBuscarDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
   private final CalculaService calculaService;
 

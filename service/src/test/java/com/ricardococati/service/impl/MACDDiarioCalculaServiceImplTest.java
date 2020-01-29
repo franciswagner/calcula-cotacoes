@@ -49,7 +49,8 @@ import static org.mockito.Mockito.when;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
+import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -69,7 +70,9 @@ public class MACDDiarioCalculaServiceImplTest {
   @Mock
   private MediaMovelExponencialDiarioDAO mmeDAO;
   @Mock
-  private MacdDiarioDAO macdDAO;
+  private MacdDiarioInserirDAO macdInserirDAO;
+  @Mock
+  private MacdDiarioBuscarDAO macdDAO;
 
   @Before
   public void setUp() throws Exception {

@@ -6,13 +6,15 @@ import com.ricardococati.model.dto.Macd;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
+import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.service.MACDDiarioCalculaService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +28,8 @@ public class MACDDiarioCalculaServiceImpl
     implements MACDDiarioCalculaService {
 
   private final MediaMovelExponencialDiarioDAO mmeDAO;
-  private final MacdDiarioDAO macdDAO;
+  private final MacdDiarioBuscarDAO macdDAO;
+  private final MacdDiarioInserirDAO macdInserirDAO;
 
   @Override
   public List<MacdDiario> executeByCodNeg(String codneg) {
@@ -51,8 +54,17 @@ public class MACDDiarioCalculaServiceImpl
         }
       }
     }
-    macdDAO.incluirMacd(macdList);
+    inserirMacd(macdList);
     return macdList;
+  }
+
+  private void inserirMacd(List<MacdDiario> macdList) {
+    macdList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(macdDiario -> {
+          macdInserirDAO.incluirMacd(macdDiario);
+        });
   }
 
   private List<MediaMovelExponencialDiario> buscaMME12Periodo(final String codneg) {

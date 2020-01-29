@@ -3,8 +3,8 @@ package com.ricardococati.repository.dao;
 import com.ricardococati.model.dto.HistogramaDiario;
 import java.util.List;
 
-public interface HistogramaDiarioDAO {
+public interface HistogramaDiarioInserirDAO {
 
-  Boolean incluirHistograma(final List<HistogramaDiario> macdList);
+  Boolean incluirHistograma(final HistogramaDiario histogramaDiario);
 
 }

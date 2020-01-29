@@ -4,11 +4,9 @@ import static com.ricardococati.model.enums.Decisao.COMPRA;
 import static com.ricardococati.model.enums.Decisao.NEUTRO;
 import static com.ricardococati.model.enums.Decisao.VENDE;
 
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.Recomendacao;
 import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.repository.dao.HistogramaDiarioDAO;
-import com.ricardococati.repository.dao.MacdDiarioDAO;
+import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
+import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioExcluirDAO;
@@ -34,9 +32,9 @@ public class RecomendacaoDiarioCalculaServiceImpl
     implements RecomendacaoDiarioCalculaService {
 
   private final CandlestickDiarioBuscarService calculaCandlestickService;
-  private final MacdDiarioDAO macdDAO;
+  private final MacdDiarioBuscarDAO macdDAO;
   private final SinalMacdDiarioDAO sinalMacdDAO;
-  private final HistogramaDiarioDAO histogramaDAO;
+  private final HistogramaDiarioInserirDAO histogramaDAO;
   private final RecomendacaoDiarioBuscarDAO buscarRecomendacao;
   private final RecomendacaoDiarioInserirDAO incluirRecomendacao;
   private final RecomendacaoDiarioExcluirDAO excluirRecomendacao;
