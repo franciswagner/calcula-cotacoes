@@ -162,12 +162,17 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiMacdAntesDeExecutarTestes() {
-    MacdSemanalBuscarDAOImpl incluirDAO = new MacdSemanalBuscarDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirMacd, macdMapper);
+    MacdSemanalInserirDAOImpl incluirDAO = new MacdSemanalInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirMacd);
     when(incluirMacd.getInsert()).thenCallRealMethod();
     when(incluirMacd.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirMacd(macdSemanalList());
+    macdSemanalList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(macdSemanal -> {
+          incluirDAO.incluirMacd(macdSemanal);
+        });
   }
 
   private void incluiSinalMacdAntesDeExecutarTestes() {

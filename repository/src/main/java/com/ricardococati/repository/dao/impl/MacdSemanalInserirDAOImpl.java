@@ -1,16 +1,14 @@
 package com.ricardococati.repository.dao.impl;
 
+import static java.util.Objects.isNull;
+
 import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MacdSemanalInserirDAO;
-import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,25 +22,27 @@ public class MacdSemanalInserirDAOImpl implements MacdSemanalInserirDAO {
 
   private final GeraSequenciaDAOImpl genericDAO;
   private final MacdSemanalSQLUtil sqlUtil;
-  private final MacdSemanalMapper macdMapper;
 
   @Override
-  public Boolean incluirMacd(List<MacdSemanal> macdList) {
-    AtomicInteger retorno = new AtomicInteger(0);
+  public Boolean incluirMacd(MacdSemanal macdSemanal) {
+    Integer retorno = 0;
+    if (isNull(macdSemanal)
+        || isNull(macdSemanal.getDtpregini())
+        || isNull(macdSemanal.getDtpregfim())
+        || isNull(macdSemanal.getMacd().getCodneg())) {
+      throw new DataIntegrityViolationException(
+          "Violação de integridade na inserção de MACD_SEMANAL");
+    }
     try {
-      macdList
-          .stream()
-          .forEach(macd -> {
-            macd.setIdMacdSemanal(
-                genericDAO.getSequence("MACD_SEMANAL_SEQ").longValue()
-            );
-            retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(macd)));
-          });
+      macdSemanal.setIdMacdSemanal(
+          genericDAO.getSequence("MACD_SEMANAL_SEQ").longValue()
+      );
+      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(macdSemanal));
     } catch (Exception ex) {
-      log.error("Erro na execução do método incluir MACD: " + ex.getMessage());
+      log.error("Erro na execução do método incluir MACD_SEMANAL: " + ex.getMessage());
       throw ex;
     }
-    return retorno.get() > 0;
+    return retorno > 0;
   }
 
 }

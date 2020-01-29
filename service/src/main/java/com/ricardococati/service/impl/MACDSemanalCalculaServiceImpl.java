@@ -5,6 +5,7 @@ import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
+import com.ricardococati.repository.dao.MacdSemanalInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
 import com.ricardococati.service.MACDSemanalCalculaService;
 import com.ricardococati.service.CalculaService;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,7 @@ public class MACDSemanalCalculaServiceImpl
   private final MediaMovelExponencialSemanalDAO mmeDAO;
   private final MacdSemanalBuscarDAO macdDAO;
   private final CalculaService calculaService;
+  private final MacdSemanalInserirDAO incluirMacd;
 
   @Override
   public List<MacdSemanal> executeByCodNeg(String codneg) {
@@ -70,8 +73,17 @@ public class MACDSemanalCalculaServiceImpl
         }
       }
     }
-    macdDAO.incluirMacd(macdList);
+    incluirMacd(macdList);
     return macdList;
+  }
+
+  private void incluirMacd(List<MacdSemanal> macdList) {
+    macdList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(macdSemanal -> {
+          incluirMacd.incluirMacd(macdSemanal);
+        });
   }
 
   private MacdSemanal buildMacd(

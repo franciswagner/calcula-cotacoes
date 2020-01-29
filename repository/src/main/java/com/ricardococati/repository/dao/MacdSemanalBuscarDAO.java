@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface MacdSemanalBuscarDAO {
 
-  Boolean incluirMacd(final List<MacdSemanal> macdList);
-
   List<MacdSemanal> listMacdByCodNeg(final String codneg);
 
   List<MacdSemanal> buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos(
