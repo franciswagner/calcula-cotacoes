@@ -51,7 +51,7 @@ import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -68,7 +68,7 @@ public class MACDDiarioCalculaServiceImplTest {
   @InjectMocks
   private MACDDiarioCalculaServiceImpl target;
   @Mock
-  private MediaMovelExponencialDiarioDAO mmeDAO;
+  private MediaMovelExponencialDiarioBuscarDAO mmeDAO;
   @Mock
   private MacdDiarioInserirDAO macdInserirDAO;
   @Mock

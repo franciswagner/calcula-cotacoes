@@ -7,7 +7,7 @@ import static com.ricardococati.model.enums.Decisao.VENDE;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioInserirDAO;
@@ -38,7 +38,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
   private final RecomendacaoDiarioBuscarDAO buscarRecomendacao;
   private final RecomendacaoDiarioInserirDAO incluirRecomendacao;
   private final RecomendacaoDiarioExcluirDAO excluirRecomendacao;
-  private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
+  private final MediaMovelExponencialDiarioBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
   @Override

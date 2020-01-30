@@ -8,10 +8,10 @@ import com.ricardococati.model.dto.MediaMovelExponencial;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
-import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
+import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -36,7 +36,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
   private final CandlestickDiarioBuscarService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
-  private final MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
+  private final MediaMovelExponencialDiarioInserirDAO mmeInserirDAO;
 
   @Override
   public List<MediaMovelExponencialDiario> executeByCodNeg(String codneg) {
@@ -46,8 +46,17 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
             buildCandlestickDiarioDTO(codneg));
     List<MediaMovelExponencialDiario> listMME =
         calculaMediaMovelExponencialPorPeriodo(codneg, candlestickList);
-    mediaMovelExponencialDAO.incluirMediaMovelExponencial(listMME);
+    incluirMMEDiario(listMME);
     return listMME;
+  }
+
+  private void incluirMMEDiario(List<MediaMovelExponencialDiario> listMME) {
+    listMME
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mmeDiario -> {
+          mmeInserirDAO.incluirMediaMovelExponencial(mmeDiario);
+        });
   }
 
   private List<MediaMovelExponencialDiario> calculaMediaMovelExponencialPorPeriodo(

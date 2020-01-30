@@ -8,7 +8,7 @@ import com.ricardococati.repository.dao.CandlestickSemanalBuscarDAO;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import com.ricardococati.service.CalculaService;
 import java.util.List;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class CalculaServiceImpl implements CalculaService {
   private final CandlestickSemanalBuscarDAO semanalDAO;
   private final MacdDiarioBuscarDAO macdDiarioBuscarDAO;
   private final MacdSemanalBuscarDAO macdSemanalBuscarDAO;
-  private final MediaMovelExponencialDiarioDAO mediaExponencialDAO;
+  private final MediaMovelExponencialDiarioBuscarDAO mediaExponencialDAO;
   private final ControleExecucaoDAO execucaoDAO;
 
   @Override

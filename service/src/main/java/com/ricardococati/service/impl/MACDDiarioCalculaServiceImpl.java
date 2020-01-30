@@ -8,7 +8,7 @@ import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import com.ricardococati.service.MACDDiarioCalculaService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 public class MACDDiarioCalculaServiceImpl
     implements MACDDiarioCalculaService {
 
-  private final MediaMovelExponencialDiarioDAO mmeDAO;
+  private final MediaMovelExponencialDiarioBuscarDAO mmeDAO;
   private final MacdDiarioBuscarDAO macdDAO;
   private final MacdDiarioInserirDAO macdInserirDAO;
 

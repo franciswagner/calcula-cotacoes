@@ -20,7 +20,6 @@ import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -53,8 +52,6 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private CandlestickDiarioInserirSQLUtil incluirCandle;
   @Mock
   private MediaMovelExponencialDiarioSQLUtil incluirMME;
-  @Mock
-  private MediaMovelExponencialDiarioMapper mediaMapper;
   @Mock
   private MacdDiarioSQLUtil incluirMacd;
   @Mock
@@ -150,12 +147,17 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluirMMEAntesDeExecutarTestes() {
-    MediaMovelExponencialDiarioDAOImpl incluirDAO = new MediaMovelExponencialDiarioDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirMME, mediaMapper);
+    MediaMovelExponencialDiarioInserirDAOImpl incluirDAO = new MediaMovelExponencialDiarioInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirMME);
     when(incluirMME.getInsert()).thenCallRealMethod();
     when(incluirMME.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialDiarioPeriodosList());
+    mediaMovelExponencialDiarioPeriodosList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mediaMovelExponencialDiario -> {
+          incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialDiario);
+        });
   }
 
   private void incluiMacdAntesDeExecutarTestes() {

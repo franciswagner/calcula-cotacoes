@@ -31,7 +31,8 @@ import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.repository.dao.MediaMovelExponencialDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import java.math.BigDecimal;
@@ -54,7 +55,9 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
   @Mock
   private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
   @Mock
-  private MediaMovelExponencialDiarioDAO mediaMovelExponencialDAO;
+  private MediaMovelExponencialDiarioBuscarDAO mmeDAO;
+  @Mock
+  private MediaMovelExponencialDiarioInserirDAO mmeInserirDAO;
 
   private LocalDate dtpreg;
 
