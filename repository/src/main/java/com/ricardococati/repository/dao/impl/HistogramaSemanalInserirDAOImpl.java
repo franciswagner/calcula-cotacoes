@@ -31,6 +31,7 @@ public class HistogramaSemanalInserirDAOImpl implements HistogramaSemanalInserir
     if (isNull(histograma)
         || isNull(histograma.getDtpregini())
         || isNull(histograma.getDtpregfim())
+        || isNull(histograma.getHistograma())
         || isNull(histograma.getHistograma().getCodneg())) {
       throw new DataIntegrityViolationException(
           "Violação de integridade na inserção de HISTOGRAMA_SEMANAL");

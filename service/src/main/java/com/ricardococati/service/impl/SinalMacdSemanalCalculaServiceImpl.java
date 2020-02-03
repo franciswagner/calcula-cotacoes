@@ -6,7 +6,7 @@ import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdSemanalCalculaService;
@@ -31,7 +31,7 @@ public class SinalMacdSemanalCalculaServiceImpl
   private final CandlestickSemanalBuscarService calculaCandlestickService;
   private final MacdSemanalBuscarDAO macdDAO;
   private final SinalMacdSemanalDAO sinalMacdDAO;
-  private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
+  private final MediaMovelExponencialSemanalBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
   @Override

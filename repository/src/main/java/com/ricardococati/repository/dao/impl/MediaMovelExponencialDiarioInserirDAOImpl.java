@@ -29,6 +29,7 @@ public class MediaMovelExponencialDiarioInserirDAOImpl implements
       final MediaMovelExponencialDiario mmeDiario) {
     if (isNull(mmeDiario)
         || isNull(mmeDiario.getDtpreg())
+        || isNull(mmeDiario.getMediaMovelExponencial())
         || isNull(mmeDiario.getMediaMovelExponencial().getCodneg())) {
       throw new DataIntegrityViolationException(
           "Violação de integridade na inserção de MEDIA_MOVEL_EXPONENCIAL_DIARIO");

@@ -7,7 +7,7 @@ import static com.ricardococati.model.enums.Decisao.VENDE;
 import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
-import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalInserirDAO;
@@ -38,7 +38,7 @@ public class RecomendacaoSemanalCalculaServiceImpl
   private final RecomendacaoSemanalBuscarDAO buscarRecomendacao;
   private final RecomendacaoSemanalInserirDAO inserirRecomendacao;
   private final RecomendacaoSemanalExcluirDAO excluirRecomendacao;
-  private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
+  private final MediaMovelExponencialSemanalBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
   @Override

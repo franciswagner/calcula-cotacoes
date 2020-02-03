@@ -20,8 +20,6 @@ import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.repository.dao.BaseJdbcTest;
-import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
-import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
 import com.ricardococati.repository.dao.mapper.RecomendacaoSemanalMapper;
 import com.ricardococati.repository.dao.mapper.SinalMacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
@@ -55,11 +53,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   @Mock
   private MediaMovelExponencialSemanalSQLUtil incluirMME;
   @Mock
-  private MediaMovelExponencialSemanalMapper mapperMME;
-  @Mock
   private MacdSemanalSQLUtil incluirMacd;
-  @Mock
-  private MacdSemanalMapper macdMapper;
   @Mock
   private SinalMacdSemanalSQLUtil incluirSinalMacd;
   @Mock
@@ -153,12 +147,21 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluirMMEAntesDeExecutarTestes() {
-    MediaMovelExponencialSemanalDAOImpl incluirDAO = new MediaMovelExponencialSemanalDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirMME, mapperMME);
+    final MediaMovelExponencialSemanalInserirDAOImpl incluirDAO =
+        new MediaMovelExponencialSemanalInserirDAOImpl(
+            getNamedParameterJdbcTemplate(),
+            genericDAO,
+            incluirMME
+        );
     when(incluirMME.getInsert()).thenCallRealMethod();
     when(incluirMME.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialSemanalPeriodosList());
+    mediaMovelExponencialSemanalPeriodosList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mmeSemanal -> {
+          incluirDAO.incluirMediaMovelExponencial(mmeSemanal);
+        });
   }
 
   private void incluiMacdAntesDeExecutarTestes() {

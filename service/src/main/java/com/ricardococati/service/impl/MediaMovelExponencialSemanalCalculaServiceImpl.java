@@ -8,16 +8,17 @@ import com.ricardococati.model.dto.MediaMovelExponencial;
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MediaMovelExponencialSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
-import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
+import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   private final CandlestickSemanalBuscarService calculaCandlestickService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
-  private final MediaMovelExponencialSemanalDAO mediaMovelExponencialDAO;
+  private final MediaMovelExponencialSemanalInserirDAO inserirMMEDAO;
   private final CalculaService calculaService;
 
   @Override
@@ -47,8 +48,17 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
             buildCandlestickSemanalDTO(codneg));
     List<MediaMovelExponencialSemanal> listMME =
         calculaMediaMovelExponencialPorPeriodo(candlestickList);
-    mediaMovelExponencialDAO.incluirMediaMovelExponencial(listMME);
+    inserirMMESemanal(listMME);
     return listMME;
+  }
+
+  private void inserirMMESemanal(List<MediaMovelExponencialSemanal> listMME) {
+    listMME
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mmeSemanal -> {
+          inserirMMEDAO.incluirMediaMovelExponencial(mmeSemanal);
+        });
   }
 
   private List<MediaMovelExponencialSemanal> calculaMediaMovelExponencialPorPeriodo(
