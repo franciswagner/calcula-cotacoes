@@ -82,35 +82,33 @@ public class MACDDiarioCalculaServiceImplTest {
   @Test
   public void executeByCodNeg() {
     //given
-    when(mmeDAO.getListMME12ByCodNegEPeriodo(any(), any())).thenReturn(mediaMovelExponencial12PeriodosDiarioList());
-    when(mmeDAO.getListMME26ByCodNegEPeriodo(any(), any())).thenReturn(mediaMovelExponencial26PeriodosDiarioList());
+    when(mmeDAO.getListMMEByCodNegEPeriodo(any(), any())).thenReturn(mediaMovelExponencialPeriodosDiarioList());
     //when
     List<MacdDiario> result = target.executeByCodNeg("MGLU3");
     //then
     assertTrue(!result.isEmpty());
-    assertThat(result).isNotNull().size().isEqualTo(20);
+    assertThat(result).isNotNull().size().isEqualTo(80);
     assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 16));
-    assertThat(result.get(0).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
-    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 17));
+    assertThat(result.get(0).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("0.0000"));
+    assertThat(result.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 16));
     assertThat(result.get(1).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
-    assertThat(result.get(19).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 3, 7));
+    assertThat(result.get(19).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 25));
     assertThat(result.get(19).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("1.0000"));
   }
 
   @Test
   public void executeByCodNegNull() {
     //given
-    when(mmeDAO.getListMME12ByCodNegEPeriodo(any(), any())).thenReturn(null);
-    when(mmeDAO.getListMME26ByCodNegEPeriodo(any(), any())).thenReturn(null);
+    when(mmeDAO.getListMMEByCodNegEPeriodo(any(), any())).thenReturn(null);
     //when
     List<MacdDiario> result = target.executeByCodNeg("MGLU3");
     //then
     assertThat(result).isNotNull();
   }
 
-  private List<MediaMovelExponencialDiario> mediaMovelExponencial12PeriodosDiarioList(){
+  private List<MediaMovelExponencialDiario> mediaMovelExponencialPeriodosDiarioList(){
     return from(MediaMovelExponencialDiario.class)
-        .gimme(20,
+        .gimme(40,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_002,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_003,
@@ -130,13 +128,7 @@ public class MACDDiarioCalculaServiceImplTest {
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_017,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_018,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_019,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_020
-        );
-  }
-
-  private List<MediaMovelExponencialDiario> mediaMovelExponencial26PeriodosDiarioList(){
-    return from(MediaMovelExponencialDiario.class)
-        .gimme(20,
+            MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_020,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_002,
             MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_003,

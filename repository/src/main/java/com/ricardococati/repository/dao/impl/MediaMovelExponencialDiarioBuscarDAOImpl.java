@@ -24,21 +24,9 @@ public class MediaMovelExponencialDiarioBuscarDAOImpl implements
   private final MediaMovelExponencialDiarioMapper mediaMapper;
 
   @Override
-  public List<MediaMovelExponencialDiario> getListMME12ByCodNegEPeriodo(
-      String codneg,
-      Integer periodo
-  ) {
-    return template.query(
-        sqlUtil.getSelectByCodNegEPeriodo(),
-        sqlUtil.toParametersByCodNegEPeriodo(codneg, periodo),
-        (rs, rowNum) -> mediaMapper.mapper(rs)
-    );
-  }
-
-  @Override
-  public List<MediaMovelExponencialDiario> getListMME26ByCodNegEPeriodo(
-      String codneg,
-      Integer periodo
+  public List<MediaMovelExponencialDiario> getListMMEByCodNegEPeriodo(
+      final String codneg,
+      final Integer periodo
   ) {
     return template.query(
         sqlUtil.getSelectByCodNegEPeriodo(),

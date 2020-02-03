@@ -5,6 +5,7 @@ import static java.util.Objects.nonNull;
 import com.ricardococati.model.dto.Macd;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
@@ -68,13 +69,13 @@ public class MACDDiarioCalculaServiceImpl
   }
 
   private List<MediaMovelExponencialDiario> buscaMME12Periodo(final String codneg) {
-    return mmeDAO.getListMME12ByCodNegEPeriodo(
+    return mmeDAO.getListMMEByCodNegEPeriodo(
         codneg,
         QuantidadePeriodo.FAST_12.getQuantidade());
   }
 
   private List<MediaMovelExponencialDiario> buscaMME26Periodo(final String codneg) {
-    return mmeDAO.getListMME26ByCodNegEPeriodo(
+    return mmeDAO.getListMMEByCodNegEPeriodo(
         codneg,
         QuantidadePeriodo.SLOW_26.getQuantidade());
   }

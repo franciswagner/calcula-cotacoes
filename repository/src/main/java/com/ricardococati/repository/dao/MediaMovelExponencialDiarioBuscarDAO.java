@@ -5,10 +5,7 @@ import java.util.List;
 
 public interface MediaMovelExponencialDiarioBuscarDAO {
 
-  List<MediaMovelExponencialDiario> getListMME12ByCodNegEPeriodo(
-      final String codneg, final Integer periodo);
-
-  List<MediaMovelExponencialDiario> getListMME26ByCodNegEPeriodo(
+  List<MediaMovelExponencialDiario> getListMMEByCodNegEPeriodo(
       final String codneg, final Integer periodo);
 
 }
