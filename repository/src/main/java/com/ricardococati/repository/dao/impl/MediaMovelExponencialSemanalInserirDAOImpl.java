@@ -34,6 +34,7 @@ public class MediaMovelExponencialSemanalInserirDAOImpl
     if (isNull(mmeSemanal)
         || isNull(mmeSemanal.getDtpregini())
         || isNull(mmeSemanal.getDtpregfim())
+        || isNull(mmeSemanal.getMediaMovelExponencial())
         || isNull(mmeSemanal.getMediaMovelExponencial().getCodneg())) {
       throw new DataIntegrityViolationException(
           "Violação de integridade na inserção de MEDIA_MOVEL_EXPONENCIAL_SEMANAL");
