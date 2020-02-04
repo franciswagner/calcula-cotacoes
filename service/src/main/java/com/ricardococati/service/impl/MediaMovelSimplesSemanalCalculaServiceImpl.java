@@ -6,13 +6,14 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
-import com.ricardococati.service.MediaMovelSimplesSemanalCalculaService;
+import com.ricardococati.repository.dao.MediaMovelSimplesSemanalInserirDAO;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
+import com.ricardococati.service.MediaMovelSimplesSemanalCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
   private static final Boolean MEDIA_MOVEL_SIMPLES_NAO_GERADA = false;
   private final CandlestickSemanalBuscarService semanalService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
-  private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
+  private final MediaMovelSimplesSemanalInserirDAO mmsInserirDAO;
 
   @Override
   public List<MediaMovelSimplesSemanal> executeByCodNeg(final String codigoNegocio) {
@@ -40,8 +41,17 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
         semanalService.buscaCandlestickSemanalPorCodNeg(buildCandlestickSemanalDTO(codigoNegocio));
     List<MediaMovelSimplesSemanal> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
-    mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
+    inserirMMS(mediaMovelSimplesList);
     return mediaMovelSimplesList;
+  }
+
+  private void inserirMMS(List<MediaMovelSimplesSemanal> mediaMovelSimplesList) {
+    mediaMovelSimplesList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mediaMovelSimplesSemanal -> {
+          mmsInserirDAO.incluirMediaMovelSimples(mediaMovelSimplesSemanal);
+        });
   }
 
   private List<MediaMovelSimplesSemanal> calculaMediaMovelSimplesPorPeriodo(

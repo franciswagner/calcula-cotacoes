@@ -9,7 +9,7 @@ import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
-import com.ricardococati.repository.dao.MediaMovelSimplesSemanalDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesSemanalBuscarDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
@@ -17,6 +17,8 @@ import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import lombok.Data;
@@ -36,7 +38,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   private static final Boolean MEDIA_EXPONENCIAL_NAO_GERADA = false;
   private final CandlestickSemanalBuscarService calculaCandlestickService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
-  private final MediaMovelSimplesSemanalDAO mediaMovelSimplesDAO;
+  private final MediaMovelSimplesSemanalBuscarDAO mediaMovelSimplesDAO;
   private final MediaMovelExponencialSemanalInserirDAO inserirMMEDAO;
   private final CalculaService calculaService;
 
@@ -114,12 +116,17 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
       final int periodo,
       final List<CandlestickSemanalDTO> candlestickList,
       final int indice) {
-    return mediaMovelSimplesDAO
-        .buscaMediaSimplesPorCodNegPeriodoDtPreg(
-            candlestickList.get(indice).getCandlestickDTO().getCodneg(),
-            periodo,
-            candlestickList.get(indice).getDtpregini(),
-            candlestickList.get(indice).getDtpregfim());
+    try {
+      return mediaMovelSimplesDAO
+          .buscaMediaSimplesPorCodNegPeriodoDtPreg(
+              candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+              periodo,
+              candlestickList.get(indice).getDtpregini(),
+              candlestickList.get(indice).getDtpregfim());
+    } catch (Exception e) {
+      log.error("Erro ao buscar média móvel simples! {}", e.getMessage());
+      return null;
+    }
   }
 
   private BigDecimal calculaMME(
