@@ -6,7 +6,7 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
-import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
@@ -30,7 +30,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
 
   private final CandlestickDiarioBuscarService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
-  private final MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private final MediaMovelSimplesDiarioInserirDAO mmsDAO;
 
   @Override
   public List<MediaMovelSimplesDiario> executeByCodNeg(final String codigoNegocio) {
@@ -39,8 +39,19 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
         diarioService.buscaCandlestickDiarioPorCodNeg(buildCandlestickDiarioDTO(codigoNegocio));
     List<MediaMovelSimplesDiario> mediaMovelSimplesList =
         calculaMediaMovelSimplesPorPeriodo(candlestickList, codigoNegocio);
-    mediaMovelSimplesDAO.incluirMediaMovelSimples(mediaMovelSimplesList);
+    inserirMMSDiario(mediaMovelSimplesList);
     return mediaMovelSimplesList;
+  }
+
+  private void inserirMMSDiario(
+      final List<MediaMovelSimplesDiario> mediaMovelSimplesList
+  ) {
+    mediaMovelSimplesList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(mmsDiario -> {
+          mmsDAO.incluirMediaMovelSimples(mmsDiario);
+        });
   }
 
   private List<MediaMovelSimplesDiario> calculaMediaMovelSimplesPorPeriodo(

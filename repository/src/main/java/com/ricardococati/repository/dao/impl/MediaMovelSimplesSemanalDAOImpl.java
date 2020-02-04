@@ -28,9 +28,9 @@ public class MediaMovelSimplesSemanalDAOImpl implements MediaMovelSimplesSemanal
   private final MediaMovelSimplesSemanalMapper mediaMapper;
 
   @Override
-  public Boolean incluirMediaMovelSimples(final List<MediaMovelSimplesSemanal> mediaMovelSimplesList) {
+  public Boolean incluirMediaMovelSimples(
+      final List<MediaMovelSimplesSemanal> mediaMovelSimplesList) {
     AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
     try {
       mediaMovelSimplesList
           .stream()

@@ -9,7 +9,7 @@ import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
-import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
@@ -35,7 +35,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
   private static final Boolean MEDIA_EXPONENCIAL_NAO_GERADA = false;
   private final CandlestickDiarioBuscarService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
-  private final MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private final MediaMovelSimplesDiarioBuscarDAO mediaMovelSimplesDAO;
   private final MediaMovelExponencialDiarioInserirDAO mmeInserirDAO;
 
   @Override
@@ -69,8 +69,10 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
         .filter(periodo -> nonNull(candlestickList))
         .filter(Objects::nonNull)
         .forEach(periodo ->
-            mediaMovelExponencialList
-                .addAll(calculaMediaMovelExponencial(periodo, candlestickList)));
+            mediaMovelExponencialList.addAll(
+                calculaMediaMovelExponencial(periodo, candlestickList)
+            )
+        );
     return mediaMovelExponencialList;
   }
 
@@ -102,11 +104,17 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
       final int periodo,
       final List<CandlestickDiarioDTO> candlestickList,
       final int indice) {
-    return mediaMovelSimplesDAO
-        .buscaMediaSimplesPorCodNegPeriodoDtPreg(
-            candlestickList.get(indice).getCandlestickDTO().getCodneg(),
-            periodo,
-            candlestickList.get(indice).getDtpreg());
+    MediaMovelSimplesDiario mediaMovelSimplesDiario = null;
+    try{
+      mediaMovelSimplesDiario = mediaMovelSimplesDAO
+          .buscaMediaSimplesPorCodNegPeriodoDtPreg(
+              candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+              periodo,
+              candlestickList.get(indice).getDtpreg());
+    } catch (Exception exc){
+      log.error("Erro ao buscar média móvel simples! {} ", exc.getMessage());
+    }
+    return mediaMovelSimplesDiario;
   }
 
   private BigDecimal calculaMME(

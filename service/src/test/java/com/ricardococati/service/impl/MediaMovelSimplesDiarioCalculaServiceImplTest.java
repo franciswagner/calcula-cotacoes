@@ -29,7 +29,8 @@ import static org.mockito.Mockito.when;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
@@ -53,7 +54,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
   @Mock
   private MediaMovelSimplesConverter converteMediaMovelSimples;
   @Mock
-  private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private MediaMovelSimplesDiarioInserirDAO mmsDAO;
 
   @Before
   public void setUp() {

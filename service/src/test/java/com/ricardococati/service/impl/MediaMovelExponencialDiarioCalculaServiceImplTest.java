@@ -33,7 +33,7 @@ import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
-import com.ricardococati.repository.dao.MediaMovelSimplesDiarioDAO;
+import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -53,7 +53,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
   @Mock
   private CandlestickDiarioBuscarService diarioService;
   @Mock
-  private MediaMovelSimplesDiarioDAO mediaMovelSimplesDAO;
+  private MediaMovelSimplesDiarioBuscarDAO mediaMovelSimplesDAO;
   @Mock
   private MediaMovelExponencialDiarioBuscarDAO mmeDAO;
   @Mock
@@ -68,7 +68,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
   }
 
   @Test
-  public void executeByCodNeg() {
+  public void executeByCodNeg() throws Exception {
     //given
     List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
     when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(candlestickList);
@@ -97,7 +97,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
   }
 
   @Test
-  public void executeByCodNegCandlestickNull() {
+  public void executeByCodNegCandlestickNull() throws Exception {
     //given
     when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(null);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
@@ -109,7 +109,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
   }
 
   @Test
-  public void executeByCodNegCandlestickEmpty() {
+  public void executeByCodNegCandlestickEmpty() throws Exception {
     //given
     when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(null);
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any()))
