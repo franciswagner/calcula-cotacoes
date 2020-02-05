@@ -4,8 +4,6 @@ import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.service.CalculaGeralDiarioService;
 import com.ricardococati.service.CalculaGeralSemanalService;
-import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
-import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -31,50 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CalculaController {
 
-  private final MediaMovelSimplesDiarioCalculaService serviceMS;
-  private final MediaMovelExponencialDiarioCalculaService serviceME;
   private final CalculaGeralDiarioService geralDiarioService;
   private final CalculaGeralSemanalService geralSemanalService;
-
-  @ApiOperation(value = "Calcula a média móvel simples para um codigo de negócio")
-  @ApiResponses(
-      value = {
-          @ApiResponse(code = 200, message = "OK"),
-          @ApiResponse(code = 400, message = "Bad Request"),
-          @ApiResponse(code = 409, message = "Conflict Request"),
-          @ApiResponse(code = 500, message = "Internal Server Error")
-      }
-  )
-  @ResponseStatus(HttpStatus.OK)
-  @PostMapping(value = "/media-simples")
-  public ResponseEntity<?> calculaMMS(
-      @RequestParam(required = false) String codneg
-  ) {
-    log.info("Excutando cálculo ");
-    serviceMS.executeByCodNeg(codneg);
-    log.info("Cálculo executado com sucesso!! ");
-    return ResponseEntity.ok().build();
-  }
-
-  @ApiOperation(value = "Calcula a média móvel exponencial para um codigo de negócio")
-  @ApiResponses(
-      value = {
-          @ApiResponse(code = 200, message = "OK"),
-          @ApiResponse(code = 400, message = "Bad Request"),
-          @ApiResponse(code = 409, message = "Conflict Request"),
-          @ApiResponse(code = 500, message = "Internal Server Error")
-      }
-  )
-  @ResponseStatus(HttpStatus.OK)
-  @PostMapping(value = "/media-exponencial")
-  public ResponseEntity<?> calculaMME(
-      @RequestParam String codneg
-  ) {
-    log.info("Excutando cálculo ");
-    serviceME.executeByCodNeg(codneg);
-    log.info("Cálculo executado com sucesso!! ");
-    return ResponseEntity.ok().build();
-  }
 
   @ApiOperation(value = "Efetua todos os cálculos(Diário) para um codigo de negócio"
       + " e retorna as recomendações")

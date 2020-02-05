@@ -4,6 +4,9 @@ import static br.com.six2six.fixturefactory.Fixture.from;
 import static com.ricardococati.template.RecomendacaoDiarioAppTemplateLoader.RECOMENDACAO_DIARIO_VALID_001;
 import static com.ricardococati.template.RecomendacaoDiarioAppTemplateLoader.RECOMENDACAO_DIARIO_VALID_002;
 import static com.ricardococati.template.RecomendacaoDiarioAppTemplateLoader.RECOMENDACAO_DIARIO_VALID_003;
+import static com.ricardococati.template.RecomendacaoSemanalAppTemplateLoader.RECOMENDACAO_SEMANAL_VALID_001;
+import static com.ricardococati.template.RecomendacaoSemanalAppTemplateLoader.RECOMENDACAO_SEMANAL_VALID_002;
+import static com.ricardococati.template.RecomendacaoSemanalAppTemplateLoader.RECOMENDACAO_SEMANAL_VALID_003;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -13,10 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.service.CalculaGeralDiarioService;
 import com.ricardococati.service.CalculaGeralSemanalService;
-import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
-import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
@@ -37,10 +39,6 @@ import org.springframework.test.web.servlet.ResultActions;
 public class CalculaControllerTest {
 
   @MockBean
-  private MediaMovelSimplesDiarioCalculaService serviceMS;
-  @MockBean
-  private MediaMovelExponencialDiarioCalculaService serviceME;
-  @MockBean
   private CalculaGeralDiarioService geralDiarioService;
   @MockBean
   private CalculaGeralSemanalService geralSemanalService;
@@ -50,38 +48,6 @@ public class CalculaControllerTest {
   @Before
   public void setUp() {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.template");
-  }
-
-  @Test
-  public void calculaMMS() throws Exception {
-    //given
-    String codneg = "abc123";
-    //when
-    final ResultActions result = this.mockMvc
-        .perform(
-            post(String.format("/api/v1/calcula/media-simples"))
-                .param("codneg", codneg)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
-    //then
-    result
-        .andExpect(status().isOk());
-  }
-
-  @Test
-  public void calculaMME() throws Exception {
-    //given
-    String codneg = "abc123";
-    //when
-    final ResultActions result = this.mockMvc
-        .perform(
-            post(String.format("/api/v1/calcula/media-exponencial"))
-                .param("codneg", codneg)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
-    //then
-    result
-        .andExpect(status().isOk());
   }
 
   @Test
@@ -122,12 +88,61 @@ public class CalculaControllerTest {
         .andExpect(jsonPath("$[2].recomendacao.decisao", is("VENDE")));
   }
 
+  @Test
+  public void calculaCodNegSemanal() throws Exception {
+    //given
+    when(geralSemanalService.executeByCodNeg(any(), any()))
+        .thenReturn(recomendacaoSemanalList());
+    List<String> codneg = Arrays.asList("MGLU3", "BPAN4");
+    String dtPregao = "16-02-1978";
+    //when
+    final ResultActions result = this.mockMvc
+        .perform(
+            post(String.format("/api/v1/calcula/geral-semanal"))
+                .param("codneg", codneg.toString())
+                .param("dtLimitePregao", dtPregao)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    //then
+    result
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].dtpregini", is("1978-02-16")))
+        .andExpect(jsonPath("$[0].dtpregfim", is("1978-02-17")))
+        .andExpect(jsonPath("$[0].recomendacao.codneg", is("MGLU3")))
+        .andExpect(jsonPath("$[0].recomendacao.precoFechamento", is(11.1100)))
+        .andExpect(jsonPath("$[0].recomendacao.precoMME12p", is(11.7500)))
+        .andExpect(jsonPath("$[0].recomendacao.precoMME26p", is(12.3600)))
+        .andExpect(jsonPath("$[0].recomendacao.precoMacd", is(-0.6100)))
+        .andExpect(jsonPath("$[0].recomendacao.precoSinalMacd", is(-0.4800)))
+        .andExpect(jsonPath("$[0].recomendacao.precoHistograma", is(-0.1300)))
+        .andExpect(jsonPath("$[0].recomendacao.decisao", is("VENDE")))
+        .andExpect(jsonPath("$[2].dtpregini", is("1978-02-20")))
+        .andExpect(jsonPath("$[2].dtpregfim", is("1978-02-21")))
+        .andExpect(jsonPath("$[2].recomendacao.codneg", is("MGLU3")))
+        .andExpect(jsonPath("$[2].recomendacao.precoFechamento", is(11.0500)))
+        .andExpect(jsonPath("$[2].recomendacao.precoMME12p", is(11.6400)))
+        .andExpect(jsonPath("$[2].recomendacao.precoMME26p", is(12.2700)))
+        .andExpect(jsonPath("$[2].recomendacao.precoMacd", is(-0.6300)))
+        .andExpect(jsonPath("$[2].recomendacao.precoSinalMacd", is(-0.5100)))
+        .andExpect(jsonPath("$[2].recomendacao.precoHistograma", is(-0.1200)))
+        .andExpect(jsonPath("$[2].recomendacao.decisao", is("VENDE")));
+  }
+
   private List<RecomendacaoDiario> recomendacaoDiarioList(){
     return from(RecomendacaoDiario.class)
         .gimme(3,
             RECOMENDACAO_DIARIO_VALID_001,
             RECOMENDACAO_DIARIO_VALID_002,
             RECOMENDACAO_DIARIO_VALID_003
+        );
+  }
+
+  private List<RecomendacaoSemanal> recomendacaoSemanalList(){
+    return from(RecomendacaoSemanal.class)
+        .gimme(3,
+            RECOMENDACAO_SEMANAL_VALID_001,
+            RECOMENDACAO_SEMANAL_VALID_002,
+            RECOMENDACAO_SEMANAL_VALID_003
         );
   }
 }
