@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.repository.dao.BaseJdbcTest;
+import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;

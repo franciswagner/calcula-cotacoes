@@ -8,9 +8,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
-import com.ricardococati.repository.dao.BaseJdbcTest;
+import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.SinalMacdDiarioSQLUtil;
 import java.math.BigDecimal;

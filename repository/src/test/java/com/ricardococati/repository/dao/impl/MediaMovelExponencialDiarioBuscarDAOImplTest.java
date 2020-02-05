@@ -10,12 +10,9 @@ import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.repository.dao.BaseJdbcTest;
+import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
-import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialDiarioSQLUtil;
-import com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioBuscarSQLUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;

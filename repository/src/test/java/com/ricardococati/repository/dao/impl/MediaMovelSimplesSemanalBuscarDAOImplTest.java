@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
-import com.ricardococati.repository.dao.BaseJdbcTest;
+import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesSemanalSQLUtil;
 import java.math.BigDecimal;

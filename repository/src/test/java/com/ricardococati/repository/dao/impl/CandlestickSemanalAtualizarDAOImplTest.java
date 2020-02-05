@@ -8,7 +8,7 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
-import com.ricardococati.repository.dao.BaseJdbcTest;
+import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalAtualizarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import java.math.BigDecimal;

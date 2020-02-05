@@ -1,4 +1,4 @@
-package com.ricardococati.repository.dao;
+package com.ricardococati.repository.dao.config;
 
 import com.opentable.db.postgres.embedded.FlywayPreparer;
 import com.opentable.db.postgres.junit.EmbeddedPostgresRules;
