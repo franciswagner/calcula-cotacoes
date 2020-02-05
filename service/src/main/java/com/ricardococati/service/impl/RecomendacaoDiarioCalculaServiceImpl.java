@@ -11,7 +11,7 @@ import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioInserirDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
 import com.ricardococati.service.RecomendacaoDiarioCalculaService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
@@ -33,7 +33,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
 
   private final CandlestickDiarioBuscarService calculaCandlestickService;
   private final MacdDiarioBuscarDAO macdDAO;
-  private final SinalMacdDiarioDAO sinalMacdDAO;
+  private final SinalMacdDiarioBuscarDAO sinalMacdDAO;
   private final HistogramaDiarioInserirDAO histogramaDAO;
   private final RecomendacaoDiarioBuscarDAO buscarRecomendacao;
   private final RecomendacaoDiarioInserirDAO incluirRecomendacao;

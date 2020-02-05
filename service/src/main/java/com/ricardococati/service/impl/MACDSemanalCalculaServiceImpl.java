@@ -36,8 +36,7 @@ public class MACDSemanalCalculaServiceImpl
   @Override
   public List<MacdSemanal> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
-    final List<MacdSemanal> macdSemanalList = calculaMACD(codneg);
-    return macdSemanalList;
+    return calculaMACD(codneg);
   }
 
   private List<MediaMovelExponencialSemanal> buscaMME12Periodo(final String codneg) {
@@ -81,9 +80,7 @@ public class MACDSemanalCalculaServiceImpl
     macdList
         .stream()
         .filter(Objects::nonNull)
-        .forEach(macdSemanal -> {
-          incluirMacd.incluirMacd(macdSemanal);
-        });
+        .forEach(incluirMacd::incluirMacd);
   }
 
   private MacdSemanal buildMacd(

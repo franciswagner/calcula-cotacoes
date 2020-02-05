@@ -81,7 +81,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .forEach(codneg -> {
           lisMMS.addAll(mmsService.executeByCodNeg(codneg));
         });
-    return nonNull(lisMMS) && !lisMMS.isEmpty();
+    return !lisMMS.isEmpty();
   }
 
   private Boolean executeMediaExponencialSemanal(final List<String> listCodneg) throws Exception {
@@ -92,7 +92,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .forEach(codneg -> {
           lisMME.addAll(mmeService.executeByCodNeg(codneg));
         });
-    return nonNull(lisMME) && !lisMME.isEmpty();
+    return !lisMME.isEmpty();
   }
 
   private Boolean executeMacdSemanal(final List<String> listCodneg) throws Exception {
@@ -103,7 +103,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .forEach(codneg -> {
           listMacd.addAll(macdService.executeByCodNeg(codneg));
         });
-    return nonNull(listMacd) && !listMacd.isEmpty();
+    return !listMacd.isEmpty();
   }
 
   private Boolean executeSinalMacdSemanal(final List<String> listCodneg) throws Exception {
@@ -114,7 +114,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .forEach(codneg -> {
           listSinal.addAll(sinalMacdService.executeByCodNeg(codneg));
         });
-    return nonNull(listSinal) && !listSinal.isEmpty();
+    return !listSinal.isEmpty();
   }
 
   private Boolean executeHistogramaSemanal(final List<String> listCodneg) throws Exception {
@@ -125,7 +125,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .forEach(codneg -> {
           listHistograma.addAll(histogramaService.executeByCodNeg(codneg));
         });
-    return nonNull(listHistograma) && !listHistograma.isEmpty();
+    return !listHistograma.isEmpty();
   }
 
 }

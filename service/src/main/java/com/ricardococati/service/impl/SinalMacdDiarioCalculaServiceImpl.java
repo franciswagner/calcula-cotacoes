@@ -6,7 +6,8 @@ import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioInserirDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import java.math.BigDecimal;
@@ -27,7 +28,7 @@ public class SinalMacdDiarioCalculaServiceImpl
     implements SinalMacdDiarioCalculaService {
 
   private final MacdDiarioBuscarDAO macdDAO;
-  private final SinalMacdDiarioDAO sinalMacdDAO;
+  private final SinalMacdDiarioInserirDAO sinalMacdDAO;
   private final CalculaService calculaService;
 
   @Override
@@ -37,8 +38,15 @@ public class SinalMacdDiarioCalculaServiceImpl
         calculaService.listMacdDiarioByCodNeg(codneg);
     List<SinalMacdDiario> sinalMacdList =
         calculaMediaMovelExponencialMacd9Periodos(macdList);
-    sinalMacdDAO.incluirSinalMacd(sinalMacdList);
+    incluirSinalMacd(sinalMacdList);
     return sinalMacdList;
+  }
+
+  private void incluirSinalMacd(List<SinalMacdDiario> sinalMacdList) {
+    sinalMacdList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(sinalMacdDAO::incluirSinalMacd);
   }
 
   private List<SinalMacdDiario> calculaMediaMovelExponencialMacd9Periodos(

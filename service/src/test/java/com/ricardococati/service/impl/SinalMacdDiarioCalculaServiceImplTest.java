@@ -21,7 +21,7 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
 import com.ricardococati.service.CalculaService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -41,7 +41,7 @@ public class SinalMacdDiarioCalculaServiceImplTest {
   @Mock
   private MacdDiarioBuscarDAO macdDAO;
   @Mock
-  private SinalMacdDiarioDAO sinalMacdDAO;
+  private SinalMacdDiarioBuscarDAO sinalMacdDAO;
   @Mock
   private CalculaService calculaService;
 

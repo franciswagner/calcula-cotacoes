@@ -68,7 +68,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .forEach(codneg -> {
           lisMMS.addAll(mmsService.executeByCodNeg(codneg));
         });
-    return nonNull(lisMMS) && !lisMMS.isEmpty();
+    return !lisMMS.isEmpty();
   }
 
   private Boolean executeMediaExponencialDiario(final List<String> listCodneg) throws Exception {
@@ -79,7 +79,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .forEach(codneg -> {
           lisMME.addAll(mmeService.executeByCodNeg(codneg));
         });
-    return nonNull(lisMME) && !lisMME.isEmpty();
+    return !lisMME.isEmpty();
   }
 
   private Boolean executeMacdDiario(final List<String> listCodneg) throws Exception {
@@ -90,7 +90,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .forEach(codneg -> {
           listMacd.addAll(macdService.executeByCodNeg(codneg));
         });
-    return nonNull(listMacd) && !listMacd.isEmpty();
+    return !listMacd.isEmpty();
   }
 
   private Boolean executeSinalMacdDiario(final List<String> listCodneg) throws Exception {
@@ -101,7 +101,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .forEach(codneg -> {
           listSinal.addAll(sinalMacdService.executeByCodNeg(codneg));
         });
-    return nonNull(listSinal) && !listSinal.isEmpty();
+    return !listSinal.isEmpty();
   }
 
   private Boolean executeHistogramaDiario(final List<String> listCodneg) throws Exception {
@@ -112,7 +112,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .forEach(codneg -> {
           listHistograma.addAll(histogramaService.executeByCodNeg(codneg));
         });
-    return nonNull(listHistograma) && !listHistograma.isEmpty();
+    return !listHistograma.isEmpty();
   }
 
 }

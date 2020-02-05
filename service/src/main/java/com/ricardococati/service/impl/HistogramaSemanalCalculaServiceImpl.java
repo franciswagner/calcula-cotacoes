@@ -47,9 +47,7 @@ public class HistogramaSemanalCalculaServiceImpl
     histogramaList
         .stream()
         .filter(Objects::nonNull)
-        .forEach(histogramaSemanal -> {
-          histogramaDAO.incluirHistograma(histogramaSemanal);
-        });
+        .forEach(histogramaDAO::incluirHistograma);
   }
 
   private List<HistogramaSemanal> calculaHistograma(

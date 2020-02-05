@@ -159,9 +159,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
     mediaMovelExponencialSemanalPeriodosList()
         .stream()
         .filter(Objects::nonNull)
-        .forEach(mmeSemanal -> {
-          incluirDAO.incluirMediaMovelExponencial(mmeSemanal);
-        });
+        .forEach(incluirDAO::incluirMediaMovelExponencial);
   }
 
   private void incluiMacdAntesDeExecutarTestes() {
@@ -173,9 +171,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
     macdSemanalList()
         .stream()
         .filter(Objects::nonNull)
-        .forEach(macdSemanal -> {
-          incluirDAO.incluirMacd(macdSemanal);
-        });
+        .forEach(incluirDAO::incluirMacd);
   }
 
   private void incluiSinalMacdAntesDeExecutarTestes() {
@@ -196,9 +192,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
     histogramaSemanalList()
         .stream()
         .filter(Objects::nonNull)
-        .forEach(histogramaSemanal -> {
-          incluirDAO.incluirHistograma(histogramaSemanal);
-        });
+        .forEach(incluirDAO::incluirHistograma);
   }
 
   private CandlestickSemanalDTO getCandlestickSemanal() {

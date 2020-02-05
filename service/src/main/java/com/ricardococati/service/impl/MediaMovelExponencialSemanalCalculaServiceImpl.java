@@ -58,9 +58,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     listMME
         .stream()
         .filter(Objects::nonNull)
-        .forEach(mmeSemanal -> {
-          inserirMMEDAO.incluirMediaMovelExponencial(mmeSemanal);
-        });
+        .forEach(inserirMMEDAO::incluirMediaMovelExponencial);
   }
 
   private List<MediaMovelExponencialSemanal> calculaMediaMovelExponencialPorPeriodo(

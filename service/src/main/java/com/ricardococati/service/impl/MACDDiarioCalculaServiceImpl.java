@@ -63,9 +63,7 @@ public class MACDDiarioCalculaServiceImpl
     macdList
         .stream()
         .filter(Objects::nonNull)
-        .forEach(macdDiario -> {
-          macdInserirDAO.incluirMacd(macdDiario);
-        });
+        .forEach(macdInserirDAO::incluirMacd);
   }
 
   private List<MediaMovelExponencialDiario> buscaMME12Periodo(final String codneg) {

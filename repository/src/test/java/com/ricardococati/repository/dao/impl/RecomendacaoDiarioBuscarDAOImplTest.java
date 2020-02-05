@@ -21,7 +21,6 @@ import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.RecomendacaoDiarioMapper;
-import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.HistogramaDiarioSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MacdDiarioSQLUtil;
@@ -56,8 +55,6 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private MacdDiarioSQLUtil incluirMacd;
   @Mock
   private SinalMacdDiarioSQLUtil incluirSinalMacd;
-  @Mock
-  private SinalMacdDiarioMapper sinalMapper;
   @Mock
   private HistogramaDiarioSQLUtil incluirHistograma;
   @Mock
@@ -155,9 +152,7 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
     mediaMovelExponencialDiarioPeriodosList()
         .stream()
         .filter(Objects::nonNull)
-        .forEach(mediaMovelExponencialDiario -> {
-          incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialDiario);
-        });
+        .forEach(incluirDAO::incluirMediaMovelExponencial);
   }
 
   private void incluiMacdAntesDeExecutarTestes() {
@@ -169,18 +164,19 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
     macdDiarioList()
         .stream()
         .filter(Objects::nonNull)
-        .forEach(macdDiario -> {
-          incluirDAO.incluirMacd(macdDiario);
-        });
+        .forEach(incluirDAO::incluirMacd);
   }
 
   private void incluiSinalMacdAntesDeExecutarTestes() {
-    SinalMacdDiarioDAOImpl incluirDAO = new SinalMacdDiarioDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirSinalMacd, sinalMapper);
+    SinalMacdDiarioInserirDAOImpl incluirDAO = new SinalMacdDiarioInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirSinalMacd);
     when(incluirSinalMacd.getInsert()).thenCallRealMethod();
     when(incluirSinalMacd.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirSinalMacd(sinalMacdDiarioList());
+    sinalMacdDiarioList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(incluirDAO::incluirSinalMacd);
   }
 
   private void incluiHistogramaAntesDeExecutarTestes() {
@@ -191,9 +187,7 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(genericDAO.getSequence(any())).thenReturn(1);
     histogramaDiarioList()
         .stream()
-        .forEach(histogramaDiario -> {
-          incluirDAO.incluirHistograma(histogramaDiario);
-        });
+        .forEach(incluirDAO::incluirHistograma);
   }
 
   private CandlestickDiarioDTO getCandlestickDiario() {

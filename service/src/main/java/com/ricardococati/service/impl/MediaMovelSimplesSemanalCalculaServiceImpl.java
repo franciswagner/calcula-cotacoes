@@ -49,9 +49,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
     mediaMovelSimplesList
         .stream()
         .filter(Objects::nonNull)
-        .forEach(mediaMovelSimplesSemanal -> {
-          mmsInserirDAO.incluirMediaMovelSimples(mediaMovelSimplesSemanal);
-        });
+        .forEach(mmsInserirDAO::incluirMediaMovelSimples);
   }
 
   private List<MediaMovelSimplesSemanal> calculaMediaMovelSimplesPorPeriodo(

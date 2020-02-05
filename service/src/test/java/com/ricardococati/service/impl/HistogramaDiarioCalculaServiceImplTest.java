@@ -34,7 +34,7 @@ import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -53,7 +53,7 @@ public class HistogramaDiarioCalculaServiceImplTest {
   @Mock
   private MacdDiarioBuscarDAO macdDAO;
   @Mock
-  private SinalMacdDiarioDAO sinalMacdDAO;
+  private SinalMacdDiarioBuscarDAO sinalMacdDAO;
   @Mock
   private HistogramaDiarioInserirDAO histogramaDAO;
 

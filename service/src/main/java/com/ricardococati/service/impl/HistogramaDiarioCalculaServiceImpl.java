@@ -8,12 +8,11 @@ import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioDAO;
+import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
 import com.ricardococati.service.HistogramaDiarioCalculaService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +26,7 @@ public class HistogramaDiarioCalculaServiceImpl
     implements HistogramaDiarioCalculaService {
 
   private final MacdDiarioBuscarDAO macdDAO;
-  private final SinalMacdDiarioDAO sinalMacdDAO;
+  private final SinalMacdDiarioBuscarDAO sinalMacdDAO;
   private final HistogramaDiarioInserirDAO histogramaDAO;
 
   @Override
@@ -42,17 +41,13 @@ public class HistogramaDiarioCalculaServiceImpl
     return histogramaList;
   }
 
-  private Boolean insereHistograma(List<HistogramaDiario> histogramaList) {
-    AtomicBoolean result = new AtomicBoolean(false);
+  private void insereHistograma(List<HistogramaDiario> histogramaList) {
     histogramaList
         .stream()
         .filter(Objects::nonNull)
         .filter(histogramaDiario -> nonNull(histogramaDiario.getDtpreg()))
         .filter(histogramaDiario -> nonNull(histogramaDiario.getHistograma().getCodneg()))
-        .forEach(histogramaDiario -> {
-          result.getAndSet(histogramaDAO.incluirHistograma(histogramaDiario));
-        });
-    return result.get();
+        .forEach(histogramaDAO::incluirHistograma);
   }
 
   private List<HistogramaDiario> calculaHistograma(

@@ -54,9 +54,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
     listMME
         .stream()
         .filter(Objects::nonNull)
-        .forEach(mmeDiario -> {
-          mmeInserirDAO.incluirMediaMovelExponencial(mmeDiario);
-        });
+        .forEach(mmeInserirDAO::incluirMediaMovelExponencial);
   }
 
   private List<MediaMovelExponencialDiario> calculaMediaMovelExponencialPorPeriodo(
