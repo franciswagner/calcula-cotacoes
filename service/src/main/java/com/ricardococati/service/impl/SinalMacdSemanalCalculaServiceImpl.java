@@ -98,7 +98,8 @@ public class SinalMacdSemanalCalculaServiceImpl
         .map(MacdSemanal::getMacd)
         .map(Macd::getPremacd)
         .reduce(BigDecimal::add)
-        .orElse(BigDecimal.ZERO);
+        .orElse(BigDecimal.ZERO)
+        .setScale(4, BigDecimal.ROUND_HALF_UP);
     return buildMacdPremed(
         macdList.get(indice),
         new BigDecimal(valorSomado.doubleValue() / periodo)
@@ -113,7 +114,8 @@ public class SinalMacdSemanalCalculaServiceImpl
     Integer menos1 = 1;
     Double precoHojeMultplFatorK = precoHoje.doubleValue() * coeficienteK;
     Double mmeOntemMultplFatorKMenos1 = precoMMEOntem.doubleValue() * (menos1 - coeficienteK);
-    return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1);
+    return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1)
+        .setScale(4, BigDecimal.ROUND_HALF_UP);
   }
 
   private SinalMacdSemanal buildSinalMacdByMMS(final MacdSemanal macd) {
@@ -121,7 +123,8 @@ public class SinalMacdSemanalCalculaServiceImpl
         .dtpregini(macd.getDtpregini())
         .dtpregfim(macd.getDtpregfim())
         .sinalMacd(SinalMacd.builder().codneg(macd.getMacd().getCodneg())
-            .presinal(macd.getMacd().getPremacd()).build())
+            .presinal(macd.getMacd().getPremacd()
+                .setScale(4, BigDecimal.ROUND_HALF_UP)).build())
         .build();
   }
 
@@ -130,7 +133,7 @@ public class SinalMacdSemanalCalculaServiceImpl
         .dtpregini(macd.getDtpregini())
         .dtpregfim(macd.getDtpregfim())
         .macd(Macd.builder().codneg(macd.getMacd().getCodneg())
-            .premacd(premed).build())
+        .premacd(premed.setScale(4, BigDecimal.ROUND_HALF_UP)).build())
         .build();
   }
 

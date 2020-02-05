@@ -1,6 +1,7 @@
 package com.ricardococati.service.impl;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
@@ -68,6 +69,8 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
       QuantidadePeriodo
           .getListQuantidadePeriodo()
           .stream()
+          .filter(periodo -> nonNull(candlestickList))
+          .filter(Objects::nonNull)
           .forEach(periodo ->
               mediaMovelExponencialList
                   .addAll(calculaMediaMovelExponencial(periodo, candlestickList)));
@@ -159,7 +162,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(mmSimples.getMediaMovelSimples().getCodneg())
                 .periodo(mmSimples.getMediaMovelSimples().getPeriodo())
-                .premedult(mmSimples.getMediaMovelSimples().getPremedult())
+                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, BigDecimal.ROUND_HALF_UP))
                 .build())
         .build();
   }
@@ -178,7 +181,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(codneg)
                 .periodo(periodo)
-                .premedult(premed)
+                .premedult(premed.setScale(4, BigDecimal.ROUND_HALF_UP))
                 .build())
         .build();
   }

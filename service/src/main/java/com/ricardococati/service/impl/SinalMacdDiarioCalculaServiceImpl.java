@@ -118,7 +118,8 @@ public class SinalMacdDiarioCalculaServiceImpl
     return SinalMacdDiario.builder()
         .dtpreg(macd.getDtpreg())
         .sinalMacd(SinalMacd.builder().codneg(macd.getMacd().getCodneg())
-        .presinal(macd.getMacd().getPremacd().setScale(4, BigDecimal.ROUND_HALF_UP)).build())
+        .presinal(macd.getMacd().getPremacd()
+            .setScale(4, BigDecimal.ROUND_HALF_UP)).build())
         .build();
   }
 

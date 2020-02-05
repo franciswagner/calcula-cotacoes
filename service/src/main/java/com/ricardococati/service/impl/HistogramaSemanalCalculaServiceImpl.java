@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.nonNull;
+
 import com.ricardococati.model.dto.Histograma;
 import com.ricardococati.model.dto.HistogramaSemanal;
 import com.ricardococati.model.dto.MacdSemanal;
@@ -51,16 +53,20 @@ public class HistogramaSemanalCalculaServiceImpl
   }
 
   private List<HistogramaSemanal> calculaHistograma(
-      List<MacdSemanal> macdList, List<SinalMacdSemanal> sinalMacdList) {
+      final List<MacdSemanal> macdList,
+      final List<SinalMacdSemanal> sinalMacdList
+  ) {
     List<HistogramaSemanal> histogramaList = new ArrayList<>();
-    for(MacdSemanal macd : macdList){
-      for (SinalMacdSemanal sinal : sinalMacdList){
-        if (sinal.getDtpregini().isEqual(macd.getDtpregini())
-            && sinal.getDtpregfim().isEqual(macd.getDtpregfim())
-            && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())){
-          HistogramaSemanal hist = buildHistograma(macd, sinal);
-          if (!histogramaList.contains(hist)){
-            histogramaList.add(hist);
+    if(nonNull(macdList) && nonNull(sinalMacdList)) {
+      for (MacdSemanal macd : macdList) {
+        for (SinalMacdSemanal sinal : sinalMacdList) {
+          if (sinal.getDtpregini().isEqual(macd.getDtpregini())
+              && sinal.getDtpregfim().isEqual(macd.getDtpregfim())
+              && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())) {
+            HistogramaSemanal hist = buildHistograma(macd, sinal);
+            if (!histogramaList.contains(hist)) {
+              histogramaList.add(hist);
+            }
           }
         }
       }

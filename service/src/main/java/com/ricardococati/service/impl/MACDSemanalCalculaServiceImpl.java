@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.nonNull;
+
 import com.ricardococati.model.dto.Macd;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
@@ -55,20 +57,22 @@ public class MACDSemanalCalculaServiceImpl
     List<MacdSemanal> macdList = new ArrayList<>();
     final List<MediaMovelExponencialSemanal> listMedia12 = buscaMME12Periodo(codneg);
     final List<MediaMovelExponencialSemanal> listMedia26 = buscaMME26Periodo(codneg);
-    for (MediaMovelExponencialSemanal mme12 : listMedia12) {
-      for (MediaMovelExponencialSemanal mme26 : listMedia26) {
-        if (mme12.getDtpregini().isEqual(mme26.getDtpregini())
-        && mme12.getDtpregfim().isEqual(mme26.getDtpregfim())) {
-          BigDecimal premacd = mme12.getMediaMovelExponencial().getPremedult()
-              .subtract(mme26.getMediaMovelExponencial().getPremedult());
-          macdList.add(
-              buildMacd(
-                  mme26.getMediaMovelExponencial().getCodneg(),
-                  mme26.getDtpregini(),
-                  mme26.getDtpregfim(),
-                  premacd
-              )
-          );
+    if(nonNull(listMedia12) && nonNull(listMedia26)) {
+      for (MediaMovelExponencialSemanal mme12 : listMedia12) {
+        for (MediaMovelExponencialSemanal mme26 : listMedia26) {
+          if (mme12.getDtpregini().isEqual(mme26.getDtpregini())
+              && mme12.getDtpregfim().isEqual(mme26.getDtpregfim())) {
+            BigDecimal premacd = mme12.getMediaMovelExponencial().getPremedult()
+                .subtract(mme26.getMediaMovelExponencial().getPremedult());
+            macdList.add(
+                buildMacd(
+                    mme26.getMediaMovelExponencial().getCodneg(),
+                    mme26.getDtpregini(),
+                    mme26.getDtpregfim(),
+                    premacd
+                )
+            );
+          }
         }
       }
     }

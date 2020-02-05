@@ -84,7 +84,9 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
       if (indice == posicao) {
         mediaMovelSimples.setDtpregini(candlestickSemanal.getDtpregini());
         mediaMovelSimples.setDtpregfim(candlestickSemanal.getDtpregfim());
-        mediaMovelSimples.getMediaMovelSimples().setPremedult(new BigDecimal(soma / periodo));
+        mediaMovelSimples.getMediaMovelSimples().setPremedult(
+            new BigDecimal(soma / periodo).setScale(4, BigDecimal.ROUND_HALF_UP)
+        );
       }
     }
     return mediaMovelSimples;
