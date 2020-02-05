@@ -7,7 +7,7 @@ import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
+import com.ricardococati.repository.dao.SinalMacdSemanalBuscarDAO;
 import com.ricardococati.service.HistogramaSemanalCalculaService;
 import com.ricardococati.service.CalculaService;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class HistogramaSemanalCalculaServiceImpl
     implements HistogramaSemanalCalculaService {
 
   private final MacdSemanalBuscarDAO macdDAO;
-  private final SinalMacdSemanalDAO sinalMacdDAO;
+  private final SinalMacdSemanalBuscarDAO sinalMacdDAO;
   private final HistogramaSemanalInserirDAO histogramaDAO;
   private final MediaMovelExponencialSemanalBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;

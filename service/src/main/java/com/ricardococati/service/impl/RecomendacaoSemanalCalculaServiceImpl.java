@@ -11,7 +11,7 @@ import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoSemanalInserirDAO;
-import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
+import com.ricardococati.repository.dao.SinalMacdSemanalBuscarDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.RecomendacaoSemanalCalculaService;
@@ -33,7 +33,7 @@ public class RecomendacaoSemanalCalculaServiceImpl
 
   private final CandlestickSemanalBuscarService calculaCandlestickService;
   private final MacdSemanalBuscarDAO macdDAO;
-  private final SinalMacdSemanalDAO sinalMacdDAO;
+  private final SinalMacdSemanalBuscarDAO sinalMacdDAO;
   private final HistogramaSemanalInserirDAO histogramaDAO;
   private final RecomendacaoSemanalBuscarDAO buscarRecomendacao;
   private final RecomendacaoSemanalInserirDAO inserirRecomendacao;

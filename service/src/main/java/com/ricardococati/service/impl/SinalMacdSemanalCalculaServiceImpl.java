@@ -7,10 +7,10 @@ import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdSemanalDAO;
+import com.ricardococati.repository.dao.SinalMacdSemanalInserirDAO;
 import com.ricardococati.service.CalculaService;
-import com.ricardococati.service.SinalMacdSemanalCalculaService;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
+import com.ricardococati.service.SinalMacdSemanalCalculaService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class SinalMacdSemanalCalculaServiceImpl
 
   private final CandlestickSemanalBuscarService calculaCandlestickService;
   private final MacdSemanalBuscarDAO macdDAO;
-  private final SinalMacdSemanalDAO sinalMacdDAO;
+  private final SinalMacdSemanalInserirDAO sinalMacdDAO;
   private final MediaMovelExponencialSemanalBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
 
@@ -41,8 +41,15 @@ public class SinalMacdSemanalCalculaServiceImpl
         calculaService.listMacdSemanalByCodNeg(codneg);
     List<SinalMacdSemanal> sinalMacdList =
         calculaMediaMovelExponencialMacd9Periodos(macdList);
-    sinalMacdDAO.incluirSinalMacd(sinalMacdList);
+    incluirSinalMacdSemanal(sinalMacdList);
     return sinalMacdList;
+  }
+
+  private void incluirSinalMacdSemanal(List<SinalMacdSemanal> sinalMacdList) {
+    sinalMacdList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(sinalMacdDAO::incluirSinalMacd);
   }
 
   private List<SinalMacdSemanal> calculaMediaMovelExponencialMacd9Periodos(
@@ -114,7 +121,7 @@ public class SinalMacdSemanalCalculaServiceImpl
         .dtpregini(macd.getDtpregini())
         .dtpregfim(macd.getDtpregfim())
         .sinalMacd(SinalMacd.builder().codneg(macd.getMacd().getCodneg())
-        .presinal(macd.getMacd().getPremacd()).build())
+            .presinal(macd.getMacd().getPremacd()).build())
         .build();
   }
 
@@ -123,7 +130,7 @@ public class SinalMacdSemanalCalculaServiceImpl
         .dtpregini(macd.getDtpregini())
         .dtpregfim(macd.getDtpregfim())
         .macd(Macd.builder().codneg(macd.getMacd().getCodneg())
-        .premacd(premed).build())
+            .premacd(premed).build())
         .build();
   }
 
@@ -137,8 +144,8 @@ public class SinalMacdSemanalCalculaServiceImpl
         .dtpregini(dtpregini)
         .dtpregfim(dtpregfim)
         .sinalMacd(SinalMacd.builder().codneg(codneg)
-        .periodo(periodo)
-        .presinal(premed).build())
+            .periodo(periodo)
+            .presinal(premed).build())
         .build();
   }
 

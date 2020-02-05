@@ -57,8 +57,6 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   @Mock
   private SinalMacdSemanalSQLUtil incluirSinalMacd;
   @Mock
-  private SinalMacdSemanalMapper sinalMapper;
-  @Mock
   private HistogramaSemanalSQLUtil incluirHistograma;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
@@ -175,12 +173,15 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   }
 
   private void incluiSinalMacdAntesDeExecutarTestes() {
-    SinalMacdSemanalDAOImpl incluirDAO = new SinalMacdSemanalDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirSinalMacd, sinalMapper);
+    SinalMacdSemanalInserirDAOImpl incluirDAO = new SinalMacdSemanalInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirSinalMacd);
     when(incluirSinalMacd.getInsert()).thenCallRealMethod();
     when(incluirSinalMacd.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirSinalMacd(sinalMacdSemanalList());
+    sinalMacdSemanalList()
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(incluirDAO::incluirSinalMacd);
   }
 
   private void incluiHistogramaAntesDeExecutarTestes() {
