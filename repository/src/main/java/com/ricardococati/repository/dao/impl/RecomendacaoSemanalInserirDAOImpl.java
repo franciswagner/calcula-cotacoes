@@ -1,5 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
+import static java.util.Objects.isNull;
+
 import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.repository.dao.RecomendacaoSemanalInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoSemanalInserirSQLUtil;
@@ -9,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,22 +27,25 @@ public class RecomendacaoSemanalInserirDAOImpl implements RecomendacaoSemanalIns
   private final RecomendacaoSemanalInserirSQLUtil sqlUtil;
 
   @Override
-  public Boolean incluirRecomendacao(List<RecomendacaoSemanal> diarioList) {
-    AtomicInteger retorno = new AtomicInteger(0);
-    final SQLAppender sql = new SQLAppender(100);
+  public Boolean incluirRecomendacao(final RecomendacaoSemanal recomendacaoSemanal) {
+    if (isNull(recomendacaoSemanal)
+        || isNull(recomendacaoSemanal.getDtpregini())
+        || isNull(recomendacaoSemanal.getDtpregfim())
+        || isNull(recomendacaoSemanal.getRecomendacao())
+        || isNull(recomendacaoSemanal.getRecomendacao().getCodneg())) {
+      throw new DataIntegrityViolationException(
+          "Violação de integridade na inserção de RECOMENDACAO_SEMANAL");
+    }
+    int retorno;
     try {
-      diarioList
-          .stream()
-          .forEach(diario -> {
-            diario.setIdRecomendacaoSemanal(
-                genericDAO.getSequence("RECOMENDACAO_SEMANAL_SEQ").longValue()
-            );
-            retorno.addAndGet(template.update(sqlUtil.getInsert(), sqlUtil.toParameters(diario)));
-          });
+      recomendacaoSemanal.setIdRecomendacaoSemanal(
+          genericDAO.getSequence("RECOMENDACAO_SEMANAL_SEQ").longValue()
+      );
+      retorno = template.update(sqlUtil.getInsert(), sqlUtil.toParameters(recomendacaoSemanal));
     } catch (Exception ex) {
-      log.error("Erro na execução do método incluir RECOMENDACAO: " + ex.getMessage());
+      log.error("Erro na execução do método incluir RECOMENDACAO_SEMANAL: " + ex.getMessage());
       throw ex;
     }
-    return retorno.get() > 0;
+    return retorno > 0;
   }
 }

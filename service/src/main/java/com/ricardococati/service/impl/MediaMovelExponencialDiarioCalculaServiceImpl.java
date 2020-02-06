@@ -54,6 +54,9 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
     listMME
         .stream()
         .filter(Objects::nonNull)
+        .filter(mmeDiario -> nonNull(mmeDiario.getDtpreg()))
+        .filter(mmeDiario -> nonNull(mmeDiario.getMediaMovelExponencial()))
+        .filter(mmeDiario -> nonNull(mmeDiario.getMediaMovelExponencial().getCodneg()))
         .forEach(mmeInserirDAO::incluirMediaMovelExponencial);
   }
 

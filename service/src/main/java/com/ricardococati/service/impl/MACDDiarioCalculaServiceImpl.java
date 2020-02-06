@@ -63,6 +63,9 @@ public class MACDDiarioCalculaServiceImpl
     macdList
         .stream()
         .filter(Objects::nonNull)
+        .filter(macdDiario -> nonNull(macdDiario.getDtpreg()))
+        .filter(macdDiario -> nonNull(macdDiario.getMacd()))
+        .filter(macdDiario -> nonNull(macdDiario.getMacd().getCodneg()))
         .forEach(macdInserirDAO::incluirMacd);
   }
 

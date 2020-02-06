@@ -84,6 +84,10 @@ public class MACDSemanalCalculaServiceImpl
     macdList
         .stream()
         .filter(Objects::nonNull)
+        .filter(macdSemanal -> nonNull(macdSemanal.getDtpregini()))
+        .filter(macdSemanal -> nonNull(macdSemanal.getDtpregfim()))
+        .filter(macdSemanal -> nonNull(macdSemanal.getMacd()))
+        .filter(macdSemanal -> nonNull(macdSemanal.getMacd().getCodneg()))
         .forEach(incluirMacd::incluirMacd);
   }
 

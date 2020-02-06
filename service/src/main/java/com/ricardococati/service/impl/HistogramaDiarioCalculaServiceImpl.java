@@ -46,6 +46,7 @@ public class HistogramaDiarioCalculaServiceImpl
         .stream()
         .filter(Objects::nonNull)
         .filter(histogramaDiario -> nonNull(histogramaDiario.getDtpreg()))
+        .filter(histogramaDiario -> nonNull(histogramaDiario.getHistograma()))
         .filter(histogramaDiario -> nonNull(histogramaDiario.getHistograma().getCodneg()))
         .forEach(histogramaDAO::incluirHistograma);
   }

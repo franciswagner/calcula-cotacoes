@@ -49,6 +49,10 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
     mediaMovelSimplesList
         .stream()
         .filter(Objects::nonNull)
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregini()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregfim()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getMediaMovelSimples()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getMediaMovelSimples().getCodneg()))
         .forEach(mmsInserirDAO::incluirMediaMovelSimples);
   }
 

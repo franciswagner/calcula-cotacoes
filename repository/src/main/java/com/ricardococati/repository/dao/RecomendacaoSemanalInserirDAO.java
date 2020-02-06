@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface RecomendacaoSemanalInserirDAO {
 
-  Boolean incluirRecomendacao(final List<RecomendacaoSemanal> macdList);
+  Boolean incluirRecomendacao(final RecomendacaoSemanal recomendacaoSemanal);
 
 }

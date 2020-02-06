@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static java.util.Objects.nonNull;
+
 import com.ricardococati.model.dto.Macd;
 import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.SinalMacd;
@@ -46,6 +48,9 @@ public class SinalMacdDiarioCalculaServiceImpl
     sinalMacdList
         .stream()
         .filter(Objects::nonNull)
+        .filter(sinalMacdDiario -> nonNull(sinalMacdDiario.getDtpreg()))
+        .filter(sinalMacdDiario -> nonNull(sinalMacdDiario.getSinalMacd()))
+        .filter(sinalMacdDiario -> nonNull(sinalMacdDiario.getSinalMacd().getCodneg()))
         .forEach(sinalMacdDAO::incluirSinalMacd);
   }
 

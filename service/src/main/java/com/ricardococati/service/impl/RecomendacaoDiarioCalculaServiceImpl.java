@@ -3,6 +3,7 @@ package com.ricardococati.service.impl;
 import static com.ricardococati.model.enums.Decisao.COMPRA;
 import static com.ricardococati.model.enums.Decisao.NEUTRO;
 import static com.ricardococati.model.enums.Decisao.VENDE;
+import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
@@ -36,7 +37,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
   private final SinalMacdDiarioBuscarDAO sinalMacdDAO;
   private final HistogramaDiarioInserirDAO histogramaDAO;
   private final RecomendacaoDiarioBuscarDAO buscarRecomendacao;
-  private final RecomendacaoDiarioInserirDAO incluirRecomendacao;
+  private final RecomendacaoDiarioInserirDAO inserirRecomendacao;
   private final RecomendacaoDiarioExcluirDAO excluirRecomendacao;
   private final MediaMovelExponencialDiarioBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
@@ -52,9 +53,19 @@ public class RecomendacaoDiarioCalculaServiceImpl
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
-          incluirRecomendacao.incluirRecomendacao(diarioList);
+          incluirRecomendacao(diarioList);
         });
     return diarioList;
+  }
+
+  private void incluirRecomendacao(List<RecomendacaoDiario> diarioList) {
+    diarioList
+        .stream()
+        .filter(Objects::nonNull)
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpreg()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao().getCodneg()))
+        .forEach(inserirRecomendacao::incluirRecomendacao);
   }
 
   private List<RecomendacaoDiario> calculaRecomendacao(
@@ -79,7 +90,10 @@ public class RecomendacaoDiarioCalculaServiceImpl
     return recomendacaoList;
   }
 
-  private List<RecomendacaoDiario> buildListRecomendacao(final String codneg, final LocalDate dtLimitePregao) {
+  private List<RecomendacaoDiario> buildListRecomendacao(
+      final String codneg,
+      final LocalDate dtLimitePregao
+  ) {
     return buscarRecomendacao.getListRecomendacaoByDtPregECodNeg(
         dtLimitePregao,
         codneg

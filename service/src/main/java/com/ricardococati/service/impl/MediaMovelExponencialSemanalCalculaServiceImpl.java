@@ -59,6 +59,10 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     listMME
         .stream()
         .filter(Objects::nonNull)
+        .filter(mmeSemanal -> nonNull(mmeSemanal.getDtpregini()))
+        .filter(mmeSemanal -> nonNull(mmeSemanal.getDtpregfim()))
+        .filter(mmeSemanal -> nonNull(mmeSemanal.getMediaMovelExponencial()))
+        .filter(mmeSemanal -> nonNull(mmeSemanal.getMediaMovelExponencial().getCodneg()))
         .forEach(inserirMMEDAO::incluirMediaMovelExponencial);
   }
 

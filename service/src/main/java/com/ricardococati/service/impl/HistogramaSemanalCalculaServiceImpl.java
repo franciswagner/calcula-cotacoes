@@ -49,6 +49,10 @@ public class HistogramaSemanalCalculaServiceImpl
     histogramaList
         .stream()
         .filter(Objects::nonNull)
+        .filter(histogramaSemanal -> nonNull(histogramaSemanal.getDtpregini()))
+        .filter(histogramaSemanal -> nonNull(histogramaSemanal.getDtpregfim()))
+        .filter(histogramaSemanal -> nonNull(histogramaSemanal.getHistograma()))
+        .filter(histogramaSemanal -> nonNull(histogramaSemanal.getHistograma().getCodneg()))
         .forEach(histogramaDAO::incluirHistograma);
   }
 

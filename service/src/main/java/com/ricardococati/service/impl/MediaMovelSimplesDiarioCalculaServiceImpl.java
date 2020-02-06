@@ -49,6 +49,9 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
     mediaMovelSimplesList
         .stream()
         .filter(Objects::nonNull)
+        .filter(mmsDiario -> nonNull(mmsDiario.getDtpreg()))
+        .filter(mmsDiario -> nonNull(mmsDiario.getMediaMovelSimples()))
+        .filter(mmsDiario -> nonNull(mmsDiario.getMediaMovelSimples().getCodneg()))
         .forEach(mmsDAO::incluirMediaMovelSimples);
   }
 
