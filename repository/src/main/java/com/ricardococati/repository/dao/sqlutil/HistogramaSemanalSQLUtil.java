@@ -1,6 +1,5 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.HistogramaDiario;
 import com.ricardococati.model.dto.HistogramaSemanal;
 import com.ricardococati.repository.util.SQLAppender;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,12 +28,6 @@ public class HistogramaSemanalSQLUtil {
     sql.appendSQL("		dtpregini = excluded.dtpregini, ");
     sql.appendSQL("		dtpregfim = excluded.dtpregfim, ");
     sql.appendSQL("		prehist = excluded.prehist ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from histograma_semanal ");
     return sql.getAppendSQLSemQuebra().toString();
   }
 

@@ -1,6 +1,5 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.MacdDiario;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
@@ -30,12 +29,6 @@ public class MacdSemanalSQLUtil {
     sql.appendSQL("		dtpregini = excluded.dtpregini, ");
     sql.appendSQL("		dtpregfim = excluded.dtpregfim, ");
     sql.appendSQL("		premacd = excluded.premacd ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from macd_semanal ");
     return sql.getAppendSQLSemQuebra().toString();
   }
 

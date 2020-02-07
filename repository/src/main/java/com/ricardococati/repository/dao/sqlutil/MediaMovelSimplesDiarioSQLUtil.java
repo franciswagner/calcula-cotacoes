@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao.sqlutil;
 
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -42,25 +41,6 @@ public class MediaMovelSimplesDiarioSQLUtil {
         .addValue("periodo", mediaMovelSimples.getMediaMovelSimples().getPeriodo());
   }
 
-  public String getUpdate(final String operacao) {
-    final SQLAppender sql = new SQLAppender(100);
-    sql.appendSQL(" update candlestick_diario set  ");
-    sql.appendSQL("   preabe = preabe "+operacao+" :qtddivmult,  ");
-    sql.appendSQL("   premax = premax "+operacao+" :qtddivmult,  ");
-    sql.appendSQL("   premin = premin "+operacao+" :qtddivmult, ");
-    sql.appendSQL("   preult = preult "+operacao+" :qtddivmult ");
-    sql.appendSQL(" where dtpreg < :dtpreg ");
-    sql.appendSQL(" and   codneg = :codneg ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
-
-  public MapSqlParameterSource toParametersUpdate(final SplitInplit splitInplit) {
-    return new MapSqlParameterSource()
-        .addValue("dtpreg", splitInplit.getDtpreg())
-        .addValue("codneg", splitInplit.getCodneg())
-        .addValue("qtddivmult", splitInplit.getQtdSplitInplit());
-  }
-
   public String getSelectByCodNegPeriodoDtPreg() {
     SQLAppender sql = new SQLAppender(100);
     sql.appendSQL(" select ");
@@ -87,9 +67,4 @@ public class MediaMovelSimplesDiarioSQLUtil {
         .addValue("dtpreg", dtpreg);
   }
 
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from media_movel_simples_diario ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
 }
