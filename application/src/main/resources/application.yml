@@ -11,7 +11,7 @@ management:
 # Spring properties
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/calcula_bmf
+    url: jdbc:postgresql://localhost:5433/calcula_bmf
     username: dbbmf
     password: dbbmf
     driver-class-name: org.postgresql.Driver
