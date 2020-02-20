@@ -63,55 +63,45 @@ public class CalculaGeralDiarioServiceImpl implements
   private Boolean executeMediaSimplesDiario(final List<String> listCodneg) throws Exception {
     List<MediaMovelSimplesDiario> lisMMS = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
-          lisMMS.addAll(mmsService.executeByCodNeg(codneg));
-        });
+        .forEach(codneg -> lisMMS.addAll(mmsService.executeByCodNeg(codneg)));
     return !lisMMS.isEmpty();
   }
 
   private Boolean executeMediaExponencialDiario(final List<String> listCodneg) throws Exception {
     List<MediaMovelExponencialDiario> lisMME = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
-          lisMME.addAll(mmeService.executeByCodNeg(codneg));
-        });
+        .forEach(codneg -> lisMME.addAll(mmeService.executeByCodNeg(codneg)));
     return !lisMME.isEmpty();
   }
 
   private Boolean executeMacdDiario(final List<String> listCodneg) throws Exception {
     List<MacdDiario> listMacd = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
-          listMacd.addAll(macdService.executeByCodNeg(codneg));
-        });
+        .forEach(codneg -> listMacd.addAll(macdService.executeByCodNeg(codneg)));
     return !listMacd.isEmpty();
   }
 
   private Boolean executeSinalMacdDiario(final List<String> listCodneg) throws Exception {
     List<SinalMacdDiario> listSinal = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
-          listSinal.addAll(sinalMacdService.executeByCodNeg(codneg));
-        });
+        .forEach(codneg -> listSinal.addAll(sinalMacdService.executeByCodNeg(codneg)));
     return !listSinal.isEmpty();
   }
 
   private Boolean executeHistogramaDiario(final List<String> listCodneg) throws Exception {
     List<HistogramaDiario> listHistograma = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
-          listHistograma.addAll(histogramaService.executeByCodNeg(codneg));
-        });
+        .forEach(codneg -> listHistograma.addAll(histogramaService.executeByCodNeg(codneg)));
     return !listHistograma.isEmpty();
   }
 

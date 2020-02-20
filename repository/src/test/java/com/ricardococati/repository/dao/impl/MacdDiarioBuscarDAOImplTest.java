@@ -84,7 +84,7 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
     macdDiarioList()
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(incluirDAO::incluirMacd);
   }
