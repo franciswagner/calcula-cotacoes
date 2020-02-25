@@ -1,11 +1,12 @@
 package com.ricardococati.service.impl.templates;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.Macd;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 
 public class MacdTemplateLoader implements TemplateLoader {
 
@@ -27,51 +28,51 @@ public class MacdTemplateLoader implements TemplateLoader {
         .addTemplate(MACD_VALID_001,
             new Rule() {{
               add("codneg", "MGLU3");
-              add("premacd", new BigDecimal(11.11).setScale(4, RoundingMode.HALF_UP));
+              add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.11));
             }})
         .addTemplate(MACD_VALID_002).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.9).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.9));
         }})
         .addTemplate(MACD_VALID_003).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.23).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.23));
         }})
         .addTemplate(MACD_VALID_004).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.32).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.32));
         }})
         .addTemplate(MACD_VALID_005).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.54).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.54));
         }})
         .addTemplate(MACD_VALID_006).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(11.2).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.2));
         }})
         .addTemplate(MACD_VALID_007).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(11.3).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.3));
         }})
         .addTemplate(MACD_VALID_007).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
         }})
         .addTemplate(MACD_VALID_008).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.4).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.4));
         }})
         .addTemplate(MACD_VALID_009).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.37).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.37));
         }})
         .addTemplate(MACD_VALID_010).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.56).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.56));
         }})
         .addTemplate(MACD_VALID_011).inherits(MACD_VALID_001,
         new Rule() {{
-          add("premacd", new BigDecimal(10.76).setScale(4, RoundingMode.HALF_UP));
+          add("premacd", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.76));
         }});
   }
 }

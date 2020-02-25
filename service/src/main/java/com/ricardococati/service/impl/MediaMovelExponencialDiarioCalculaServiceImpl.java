@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.CandlestickDTO;
@@ -127,7 +129,9 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
     Integer menos1 = 1;
     Double precoHojeMultplFatorK = precoHoje.doubleValue() * coeficienteK;
     Double mmeOntemMultplFatorKMenos1 = precoMMEOntem.doubleValue() * (menos1 - coeficienteK);
-    return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1);
+    return getDoubleValueBigDecimalHalfUpArredondado4Casas(
+        precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1
+    );
   }
 
   private CandlestickDiarioDTO buildCandlestickDiarioDTO(final String codneg) {
@@ -145,8 +149,11 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
                 .builder()
                 .codneg(mmSimples.getMediaMovelSimples().getCodneg())
                 .periodo(mmSimples.getMediaMovelSimples().getPeriodo())
-                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, RoundingMode.HALF_UP))
-                .build())
+                .premedult(
+                    getValueBigDecimalHalfUpArredondado4Casas(
+                        mmSimples.getMediaMovelSimples().getPremedult()
+                    )
+                ).build())
         .build();
   }
 
@@ -157,9 +164,14 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
       final BigDecimal premed) {
     return MediaMovelExponencialDiario.builder()
         .dtpreg(dtpreg)
-        .mediaMovelExponencial(MediaMovelExponencial.builder().codneg(codneg)
-            .periodo(periodo)
-            .premedult(premed.setScale(4, RoundingMode.HALF_UP)).build())
+        .mediaMovelExponencial(
+            MediaMovelExponencial
+                .builder()
+                .codneg(codneg)
+                .periodo(periodo)
+                .premedult(
+                    getValueBigDecimalHalfUpArredondado4Casas(premed)
+                ).build())
         .build();
   }
 

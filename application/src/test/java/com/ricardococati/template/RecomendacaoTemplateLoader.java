@@ -1,4 +1,4 @@
-package com.ricardococati.repository.dao.templates;
+package com.ricardococati.template;
 
 import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 

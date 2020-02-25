@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
+import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
@@ -24,7 +24,7 @@ public class BuscarCandlestickDiarioMapper {
       return CandlestickDiarioDTO
           .builder()
           .idCandleDiario(rs.getLong("id_candle_diario"))
-          .dtpreg(parseDateWithoutNull(rs, "dtpreg"))
+          .dtpreg(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs, "dtpreg"))
           .candlestickDTO(
               CandlestickDTO
                   .builder()

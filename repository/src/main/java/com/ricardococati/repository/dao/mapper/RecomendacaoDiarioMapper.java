@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
+import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.model.dto.Recomendacao;
 import com.ricardococati.model.dto.RecomendacaoDiario;
@@ -15,7 +15,7 @@ public class RecomendacaoDiarioMapper {
     try {
       return RecomendacaoDiario
           .builder()
-          .dtpreg(parseDateWithoutNull(rs, "dtpreg"))
+          .dtpreg(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs, "dtpreg"))
           .recomendacao(
               Recomendacao
                   .builder()

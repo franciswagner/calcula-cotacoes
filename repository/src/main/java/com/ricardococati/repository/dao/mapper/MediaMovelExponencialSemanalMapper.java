@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
+import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.model.dto.MediaMovelExponencial;
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
@@ -16,8 +16,8 @@ public class MediaMovelExponencialSemanalMapper {
       return MediaMovelExponencialSemanal
           .builder()
           .idMediaMovelExponencialSemanal(rs.getLong("id_media_movel_exponencial"))
-          .dtpregini(parseDateWithoutNull(rs , "dtpregini"))
-          .dtpregfim(parseDateWithoutNull(rs , "dtpregfim"))
+          .dtpregini(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs , "dtpregini"))
+          .dtpregfim(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs , "dtpregfim"))
           .mediaMovelExponencial(
               MediaMovelExponencial
                   .builder()

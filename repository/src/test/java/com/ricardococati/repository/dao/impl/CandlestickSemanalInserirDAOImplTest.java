@@ -1,5 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
+import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -106,7 +107,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
         .dtpregfim(dtpregfim)
         .candlestickDTO(CandlestickDTO
             .builder()
-            .preult(new BigDecimal(preult).setScale(4, RoundingMode.HALF_UP))
+            .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
             .codneg(codneg)
             .build()
         ).build();

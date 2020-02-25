@@ -21,6 +21,7 @@ import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemp
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_018;
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_019;
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_020;
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -35,8 +36,8 @@ import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalBuscarDAO;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -156,7 +157,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImplTest {
         .dtpregini(dtpreg)
         .mediaMovelSimples(MediaMovelSimples
             .builder()
-            .premedult(new BigDecimal(preult).setScale(4, RoundingMode.HALF_UP))
+            .premedult(BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(preult))
             .codneg(codneg)
             .periodo(periodo)
             .build()

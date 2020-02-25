@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -141,7 +143,9 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     Integer menos1 = 1;
     Double precoHojeMultplFatorK = precoHoje.doubleValue() * coeficienteK;
     Double mmeOntemMultplFatorKMenos1 = precoMMEOntem.doubleValue() * (menos1 - coeficienteK);
-    return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1);
+    return getDoubleValueBigDecimalHalfUpArredondado4Casas(
+        precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1
+    );
   }
 
   private CandlestickSemanalDTO buildCandlestickSemanalDTO(final String codneg) {
@@ -165,8 +169,11 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(mmSimples.getMediaMovelSimples().getCodneg())
                 .periodo(mmSimples.getMediaMovelSimples().getPeriodo())
-                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, RoundingMode.HALF_UP))
-                .build())
+                .premedult(
+                    getValueBigDecimalHalfUpArredondado4Casas(
+                        mmSimples.getMediaMovelSimples().getPremedult()
+                    )
+                ).build())
         .build();
   }
 
@@ -184,7 +191,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(codneg)
                 .periodo(periodo)
-                .premedult(premed.setScale(4, RoundingMode.HALF_UP))
+                .premedult(getValueBigDecimalHalfUpArredondado4Casas(premed))
                 .build())
         .build();
   }

@@ -1,16 +1,16 @@
 package com.ricardococati.template;
 
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_001;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_002;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_003;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_004;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_005;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_006;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_007;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_008;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_009;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_010;
-import static com.ricardococati.template.RecomendacaoAppTemplateLoader.RECOMENDACAO_VALID_011;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_001;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_002;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_003;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_004;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_005;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_006;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_007;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_008;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_009;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_010;
+import static com.ricardococati.template.RecomendacaoTemplateLoader.RECOMENDACAO_VALID_011;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;

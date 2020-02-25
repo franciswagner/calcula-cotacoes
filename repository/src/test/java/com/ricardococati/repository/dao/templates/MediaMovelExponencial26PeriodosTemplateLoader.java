@@ -1,11 +1,11 @@
 package com.ricardococati.repository.dao.templates;
 
+import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.MediaMovelExponencial;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class MediaMovelExponencial26PeriodosTemplateLoader implements TemplateLoader {
 
@@ -45,132 +45,132 @@ public class MediaMovelExponencial26PeriodosTemplateLoader implements TemplateLo
     Fixture.of(MediaMovelExponencial.class)
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
-          add("premedult", new BigDecimal("12.11").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.11));
           add("periodo", 26);
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_002)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.9").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.9));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_003)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.23").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.23));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_004)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.32").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.32));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_005)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.54").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.54));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_006)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.2").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.2));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_007)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.3").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.3));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_007)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.1").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.1));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_008)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.4").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.4));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_009)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.37").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.37));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_010)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.56").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.56));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_011)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.76").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.76));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_012)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.12").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.12));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_013)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.13").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.13));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_014)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.14").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.14));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_015)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.15").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.15));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_016)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.16").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.16));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_017)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.17").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.17));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_018)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.18").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.18));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_018)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.18").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.18));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_019)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.19").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.19));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_020)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.20").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.20));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_021)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.21").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.21));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_022)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.22").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.22));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_023)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.23").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.23));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_024)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.24").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.24));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_025)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.25").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.25));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_026)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.26").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.26));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_027)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.27").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.27));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_028)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.28").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.28));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_029)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.29").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.29));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_030)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_26PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("12.30").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", getValueBigDecimalHalfUpArredondado4Casas(12.30));
         }});
   }
 }

@@ -1,11 +1,12 @@
 package com.ricardococati.service.impl.templates;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.MediaMovelExponencial;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 
 public class MediaMovelExponencial12PeriodosTemplateLoader implements TemplateLoader {
 
@@ -45,132 +46,132 @@ public class MediaMovelExponencial12PeriodosTemplateLoader implements TemplateLo
     Fixture.of(MediaMovelExponencial.class)
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
-          add("premedult", new BigDecimal("13.11").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.11));
           add("periodo", 12);
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_002)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.9").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.9));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_003)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.23").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.23));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_004)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.32").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.32));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_005)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.54").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.54));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_006)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.2").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.2));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_007)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.3").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.3));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_007)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.1").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.1));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_008)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.4").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.4));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_009)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.37").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.37));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_010)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.56").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.56));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_011)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.76").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.76));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_012)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.12").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.12));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_013)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.13").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.13));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_014)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.14").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.14));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_015)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.15").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.15));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_016)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.16").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.16));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_017)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.17").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.17));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_018)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.18").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.18));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_018)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.18").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.18));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_019)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.19").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.19));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_020)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.20").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.20));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_021)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.21").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.21));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_022)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.22").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.22));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_023)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.23").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.23));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_024)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.24").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.24));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_025)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.25").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.25));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_026)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.26").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.26));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_027)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.27").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.27));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_028)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.28").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.28));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_029)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.29").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.29));
         }})
         .addTemplate(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_030)
         .inherits(MEDIA_MOVEL_EXPONENCIAL_12PERIODOS_VALID_001, new Rule() {{
-          add("premedult", new BigDecimal("13.30").setScale(4, RoundingMode.HALF_UP));
+          add("premedult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.30));
         }});
   }
 }

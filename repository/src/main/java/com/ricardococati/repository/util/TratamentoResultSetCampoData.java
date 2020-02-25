@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class Funcoes {
+public class TratamentoResultSetCampoData {
 
-  public static LocalDate parseDateWithoutNull(ResultSet rs, String stringData)
+  public static LocalDate retornaDataSeResultSetContemDataSenaoRetornaNulo(ResultSet rs, String stringData)
       throws SQLException {
     LocalDate date = null;
     if (nonNull(rs.getDate(stringData))) {

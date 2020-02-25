@@ -1,11 +1,12 @@
 package com.ricardococati.service.impl.templates;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.SinalMacd;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 
 public class SinalMacdTemplateLoader implements TemplateLoader {
 
@@ -27,51 +28,51 @@ public class SinalMacdTemplateLoader implements TemplateLoader {
         .addTemplate(SINAL_MACD_VALID_001,
             new Rule() {{
               add("codneg", "MGLU3");
-              add("presinal", new BigDecimal("12.11").setScale(4, RoundingMode.HALF_UP));
+              add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.11));
             }})
         .addTemplate(SINAL_MACD_VALID_002).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.9").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.9));
         }})
         .addTemplate(SINAL_MACD_VALID_003).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.23").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.23));
         }})
         .addTemplate(SINAL_MACD_VALID_004).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.32").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.32));
         }})
         .addTemplate(SINAL_MACD_VALID_005).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.54").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.54));
         }})
         .addTemplate(SINAL_MACD_VALID_006).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("12.2").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.2));
         }})
         .addTemplate(SINAL_MACD_VALID_007).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("12.3").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.3));
         }})
         .addTemplate(SINAL_MACD_VALID_007).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("12.1").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.1));
         }})
         .addTemplate(SINAL_MACD_VALID_008).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.4").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.4));
         }})
         .addTemplate(SINAL_MACD_VALID_009).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.37").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.37));
         }})
         .addTemplate(SINAL_MACD_VALID_010).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.56").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.56));
         }})
         .addTemplate(SINAL_MACD_VALID_011).inherits(SINAL_MACD_VALID_001,
         new Rule() {{
-          add("presinal", new BigDecimal("9.76").setScale(4, RoundingMode.HALF_UP));
+          add("presinal", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.76));
         }});
   }
 }

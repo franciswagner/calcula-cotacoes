@@ -1,5 +1,7 @@
 package com.ricardococati.service.impl;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.Macd;
@@ -90,7 +92,7 @@ public class SinalMacdDiarioCalculaServiceImpl
       final Integer indice,
       final Integer periodo
   ) {
-    final BigDecimal valorSomado = macdDAO
+    final BigDecimal valorSomado = getValueBigDecimalHalfUpArredondado4Casas(macdDAO
         .buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos(
             macdList.get(indice).getMacd().getCodneg(),
             macdList.get(indice).getDtpreg())
@@ -99,11 +101,13 @@ public class SinalMacdDiarioCalculaServiceImpl
         .map(MacdDiario::getMacd)
         .map(Macd::getPremacd)
         .reduce(BigDecimal::add)
-        .orElse(BigDecimal.ZERO)
-        .setScale(4, RoundingMode.HALF_UP);
+        .orElse(BigDecimal.ZERO));
     return buildMacdPremed(
         macdList.get(indice),
-        new BigDecimal(valorSomado.doubleValue() / periodo)
+        getDoubleValueBigDecimalHalfUpArredondado4Casas(
+            valorSomado.doubleValue() /
+                periodo
+        )
     );
   }
 
@@ -115,24 +119,34 @@ public class SinalMacdDiarioCalculaServiceImpl
     Integer menos1 = 1;
     Double precoHojeMultplFatorK = precoHoje.doubleValue() * coeficienteK;
     Double mmeOntemMultplFatorKMenos1 = precoMMEOntem.doubleValue() * (menos1 - coeficienteK);
-    return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1)
-        .setScale(4, RoundingMode.HALF_UP);
+    return getDoubleValueBigDecimalHalfUpArredondado4Casas(
+        precoHojeMultplFatorK +
+            mmeOntemMultplFatorKMenos1
+    );
   }
 
   private SinalMacdDiario buildSinalMacdByMMS(final MacdDiario macd) {
     return SinalMacdDiario.builder()
         .dtpreg(macd.getDtpreg())
-        .sinalMacd(SinalMacd.builder().codneg(macd.getMacd().getCodneg())
-        .presinal(macd.getMacd().getPremacd()
-            .setScale(4, RoundingMode.HALF_UP)).build())
-        .build();
+        .sinalMacd(
+            SinalMacd
+                .builder()
+                .codneg(macd.getMacd().getCodneg())
+                .presinal(
+                    getValueBigDecimalHalfUpArredondado4Casas(macd.getMacd().getPremacd()))
+                .build()
+        ).build();
   }
 
   private MacdDiario buildMacdPremed(final MacdDiario macd, final BigDecimal premed) {
     return MacdDiario.builder()
         .dtpreg(macd.getDtpreg())
-        .macd(Macd.builder().codneg(macd.getMacd().getCodneg())
-        .premacd(premed.setScale(4, RoundingMode.HALF_UP)).build())
+        .macd(
+            Macd
+                .builder()
+                .codneg(macd.getMacd().getCodneg())
+                .premacd(getValueBigDecimalHalfUpArredondado4Casas(premed))
+                .build())
         .build();
   }
 
@@ -144,8 +158,8 @@ public class SinalMacdDiarioCalculaServiceImpl
     return SinalMacdDiario.builder()
         .dtpreg(dtpreg)
         .sinalMacd(SinalMacd.builder().codneg(codneg)
-        .periodo(periodo)
-        .presinal(premed).build())
+            .periodo(periodo)
+            .presinal(premed).build())
         .build();
   }
 

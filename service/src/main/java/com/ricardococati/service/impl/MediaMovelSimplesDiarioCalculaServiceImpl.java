@@ -1,5 +1,6 @@
 package com.ricardococati.service.impl;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.dto.CandlestickDTO;
@@ -10,8 +11,7 @@ import com.ricardococati.repository.dao.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -90,7 +90,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
       if (indice == posicao) {
         mediaMovelSimples.setDtpreg(candlestickDiario.getDtpreg());
         mediaMovelSimples.getMediaMovelSimples().setPremedult(
-            new BigDecimal(soma / periodo).setScale(4, RoundingMode.HALF_UP)
+            BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(soma / periodo)
         );
       }
     }

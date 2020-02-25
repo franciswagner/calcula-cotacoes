@@ -1,11 +1,12 @@
 package com.ricardococati.service.impl.templates;
 
+import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.CandlestickDTO;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.service.util.BigDecimalCustomizado;
 
 public class CandlestickDTOTemplateLoader implements TemplateLoader {
 
@@ -35,11 +36,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
     Fixture.of(CandlestickDTO.class)
         .addTemplate(CANDLESTICK_DTO_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(9.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(12.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(9.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(100000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -49,11 +50,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_002, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(2.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(13.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(9.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(100000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(2.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -63,11 +64,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_003, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(3.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(14.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(8.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.2).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(200000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(3.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -77,11 +78,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_004, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(4.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(15.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(4.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.3).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(300000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(4.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(4.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -91,11 +92,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_005, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(6.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(16.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(5.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.4).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(400000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(16.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.4));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -105,11 +106,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_006, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(8.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(17.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(6.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.5).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(500000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(8.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.5));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -119,11 +120,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_007, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(9.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(18.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(7.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.6).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(600000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(18.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(7.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.6));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -133,11 +134,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_008, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(19.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(8.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.7).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(700000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.7));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -147,11 +148,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_009, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(12.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(12.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(9.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.8).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(800000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.8));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -161,11 +162,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_010, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(13.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(2.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.9).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(900000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(2.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.9));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -175,11 +176,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_011, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(10.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(14.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(3.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.2).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(200000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(3.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -189,11 +190,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_012, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(15.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(5.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.3).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(300000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -203,11 +204,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_013, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(6.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(16.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(6.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.4).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(400000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(16.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.4));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -217,11 +218,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_014, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(17.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(8.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.5).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(500000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.5));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -231,11 +232,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_015, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(6.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(17.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(2.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.6).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(600000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(2.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.6));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -245,11 +246,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_016, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(10.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(18.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(3.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.7).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(700000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(18.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(3.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.7));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -259,11 +260,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_017, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(10.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(19.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(4.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.8).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(800000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(4.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.8));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -273,11 +274,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_018, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(19.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(5.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.9).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(900000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.9));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -287,11 +288,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_019, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(12.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(14.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(6.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.2).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(200000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);
@@ -301,11 +302,11 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_020, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", new BigDecimal(13.1).setScale(4, RoundingMode.HALF_UP));
-          add("premax", new BigDecimal(15.1).setScale(4, RoundingMode.HALF_UP));
-          add("premin", new BigDecimal(7.0).setScale(4, RoundingMode.HALF_UP));
-          add("preult", new BigDecimal(11.3).setScale(4, RoundingMode.HALF_UP));
-          add("voltot", new BigDecimal(400000.0).setScale(4, RoundingMode.HALF_UP));
+          add("preabe", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premax", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(7.0));
+          add("preult", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
           add("mediaMovelGerada", Boolean.TRUE);
           add("mediaExponencialGerada", Boolean.TRUE);

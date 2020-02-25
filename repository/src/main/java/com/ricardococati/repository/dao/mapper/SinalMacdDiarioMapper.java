@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
+import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdDiario;
@@ -16,7 +16,7 @@ public class SinalMacdDiarioMapper {
       return SinalMacdDiario
           .builder()
           .idSinalMacdDiario(rs.getLong("id_sinal_macd"))
-          .dtpreg(parseDateWithoutNull(rs , "dtpreg"))
+          .dtpreg(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs , "dtpreg"))
           .sinalMacd(
               SinalMacd
                   .builder()

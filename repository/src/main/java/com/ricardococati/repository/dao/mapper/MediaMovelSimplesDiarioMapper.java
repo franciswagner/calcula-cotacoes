@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.mapper;
 
-import static com.ricardococati.repository.util.Funcoes.parseDateWithoutNull;
+import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.model.dto.MediaMovelSimples;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
@@ -16,7 +16,7 @@ public class MediaMovelSimplesDiarioMapper {
       return MediaMovelSimplesDiario
           .builder()
           .idMediaMovelSimplesDiario(rs.getLong("id_media_movel_simples"))
-          .dtpreg(parseDateWithoutNull(rs, "dtpreg"))
+          .dtpreg(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs, "dtpreg"))
           .mediaMovelSimples(
               MediaMovelSimples
                   .builder()

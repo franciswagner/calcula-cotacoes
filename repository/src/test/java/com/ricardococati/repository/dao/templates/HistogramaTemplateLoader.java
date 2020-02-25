@@ -1,11 +1,11 @@
 package com.ricardococati.repository.dao.templates;
 
+import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.Histograma;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class HistogramaTemplateLoader implements TemplateLoader {
 
@@ -27,51 +27,52 @@ public class HistogramaTemplateLoader implements TemplateLoader {
         .addTemplate(HISTOGRAMA_VALID_001,
             new Rule() {{
               add("codneg", "MGLU3");
-              add("prehist", new BigDecimal(11.11).setScale(4, RoundingMode.HALF_UP));
+              add("prehist",
+                  getValueBigDecimalHalfUpArredondado4Casas(11.11));
             }})
         .addTemplate(HISTOGRAMA_VALID_002).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.9).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.9));
         }})
         .addTemplate(HISTOGRAMA_VALID_003).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.23).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.23));
         }})
         .addTemplate(HISTOGRAMA_VALID_004).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.32).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.32));
         }})
         .addTemplate(HISTOGRAMA_VALID_005).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.54).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.54));
         }})
         .addTemplate(HISTOGRAMA_VALID_006).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(11.2).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(11.2));
         }})
         .addTemplate(HISTOGRAMA_VALID_007).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(11.3).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(11.3));
         }})
         .addTemplate(HISTOGRAMA_VALID_007).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(11.1).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(11.1));
         }})
         .addTemplate(HISTOGRAMA_VALID_008).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.4).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.4));
         }})
         .addTemplate(HISTOGRAMA_VALID_009).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.37).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.37));
         }})
         .addTemplate(HISTOGRAMA_VALID_010).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.56).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.56));
         }})
         .addTemplate(HISTOGRAMA_VALID_011).inherits(HISTOGRAMA_VALID_001,
         new Rule() {{
-          add("prehist", new BigDecimal(10.76).setScale(4, RoundingMode.HALF_UP));
+          add("prehist", getValueBigDecimalHalfUpArredondado4Casas(10.76));
         }});
   }
 }
