@@ -14,6 +14,7 @@ import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,7 +145,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
                 .builder()
                 .codneg(mmSimples.getMediaMovelSimples().getCodneg())
                 .periodo(mmSimples.getMediaMovelSimples().getPeriodo())
-                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, BigDecimal.ROUND_HALF_UP))
+                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, RoundingMode.HALF_UP))
                 .build())
         .build();
   }
@@ -158,7 +159,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
         .dtpreg(dtpreg)
         .mediaMovelExponencial(MediaMovelExponencial.builder().codneg(codneg)
             .periodo(periodo)
-            .premedult(premed.setScale(4, BigDecimal.ROUND_HALF_UP)).build())
+            .premedult(premed.setScale(4, RoundingMode.HALF_UP)).build())
         .build();
   }
 

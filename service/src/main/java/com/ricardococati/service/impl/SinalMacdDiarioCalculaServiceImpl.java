@@ -8,11 +8,11 @@ import com.ricardococati.model.dto.SinalMacd;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
-import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioInserirDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +100,7 @@ public class SinalMacdDiarioCalculaServiceImpl
         .map(Macd::getPremacd)
         .reduce(BigDecimal::add)
         .orElse(BigDecimal.ZERO)
-        .setScale(4, BigDecimal.ROUND_HALF_UP);
+        .setScale(4, RoundingMode.HALF_UP);
     return buildMacdPremed(
         macdList.get(indice),
         new BigDecimal(valorSomado.doubleValue() / periodo)
@@ -116,7 +116,7 @@ public class SinalMacdDiarioCalculaServiceImpl
     Double precoHojeMultplFatorK = precoHoje.doubleValue() * coeficienteK;
     Double mmeOntemMultplFatorKMenos1 = precoMMEOntem.doubleValue() * (menos1 - coeficienteK);
     return new BigDecimal(precoHojeMultplFatorK + mmeOntemMultplFatorKMenos1)
-        .setScale(4, BigDecimal.ROUND_HALF_UP);
+        .setScale(4, RoundingMode.HALF_UP);
   }
 
   private SinalMacdDiario buildSinalMacdByMMS(final MacdDiario macd) {
@@ -124,7 +124,7 @@ public class SinalMacdDiarioCalculaServiceImpl
         .dtpreg(macd.getDtpreg())
         .sinalMacd(SinalMacd.builder().codneg(macd.getMacd().getCodneg())
         .presinal(macd.getMacd().getPremacd()
-            .setScale(4, BigDecimal.ROUND_HALF_UP)).build())
+            .setScale(4, RoundingMode.HALF_UP)).build())
         .build();
   }
 
@@ -132,7 +132,7 @@ public class SinalMacdDiarioCalculaServiceImpl
     return MacdDiario.builder()
         .dtpreg(macd.getDtpreg())
         .macd(Macd.builder().codneg(macd.getMacd().getCodneg())
-        .premacd(premed.setScale(4, BigDecimal.ROUND_HALF_UP)).build())
+        .premacd(premed.setScale(4, RoundingMode.HALF_UP)).build())
         .build();
   }
 

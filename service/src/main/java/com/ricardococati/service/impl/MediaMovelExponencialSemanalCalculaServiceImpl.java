@@ -16,10 +16,9 @@ import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import lombok.Data;
@@ -166,7 +165,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(mmSimples.getMediaMovelSimples().getCodneg())
                 .periodo(mmSimples.getMediaMovelSimples().getPeriodo())
-                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, BigDecimal.ROUND_HALF_UP))
+                .premedult(mmSimples.getMediaMovelSimples().getPremedult().setScale(4, RoundingMode.HALF_UP))
                 .build())
         .build();
   }
@@ -185,7 +184,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
                 .builder()
                 .codneg(codneg)
                 .periodo(periodo)
-                .premedult(premed.setScale(4, BigDecimal.ROUND_HALF_UP))
+                .premedult(premed.setScale(4, RoundingMode.HALF_UP))
                 .build())
         .build();
   }

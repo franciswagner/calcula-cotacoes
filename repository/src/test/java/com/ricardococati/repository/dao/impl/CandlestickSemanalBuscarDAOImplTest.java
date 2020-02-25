@@ -12,6 +12,7 @@ import com.ricardococati.repository.dao.mapper.BuscarCandlestickSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalBuscarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -97,7 +98,7 @@ public class CandlestickSemanalBuscarDAOImplTest extends BaseJdbcTest {
         .dtpregfim(dtpregfim)
         .candlestickDTO(CandlestickDTO
             .builder()
-            .preult(new BigDecimal(10.1).setScale(4, BigDecimal.ROUND_HALF_UP))
+            .preult(new BigDecimal(10.1).setScale(4, RoundingMode.HALF_UP))
             .codneg("MGLU3")
             .build()
         ).build();

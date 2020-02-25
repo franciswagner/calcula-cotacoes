@@ -9,6 +9,7 @@ import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Rule;
@@ -77,7 +78,7 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
         .dtpreg(dtpreg)
         .candlestickDTO(CandlestickDTO
             .builder()
-            .preult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
+            .preult(new BigDecimal(preult).setScale(4, RoundingMode.HALF_UP))
             .codneg(codneg)
             .build()
         ).build();

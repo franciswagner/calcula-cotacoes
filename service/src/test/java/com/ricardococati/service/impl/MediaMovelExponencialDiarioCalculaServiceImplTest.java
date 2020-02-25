@@ -36,6 +36,7 @@ import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -155,7 +156,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
         .dtpreg(dtpreg)
         .mediaMovelSimples(MediaMovelSimples
             .builder()
-            .premedult(new BigDecimal(preult).setScale(4, BigDecimal.ROUND_HALF_UP))
+            .premedult(new BigDecimal(preult).setScale(4, RoundingMode.HALF_UP))
             .codneg(codneg)
             .periodo(periodo)
             .build()

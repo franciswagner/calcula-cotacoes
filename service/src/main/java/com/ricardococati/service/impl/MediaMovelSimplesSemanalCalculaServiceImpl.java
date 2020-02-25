@@ -11,6 +11,7 @@ import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.MediaMovelSimplesSemanalCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -89,7 +90,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
         mediaMovelSimples.setDtpregini(candlestickSemanal.getDtpregini());
         mediaMovelSimples.setDtpregfim(candlestickSemanal.getDtpregfim());
         mediaMovelSimples.getMediaMovelSimples().setPremedult(
-            new BigDecimal(soma / periodo).setScale(4, BigDecimal.ROUND_HALF_UP)
+            new BigDecimal(soma / periodo).setScale(4, RoundingMode.HALF_UP)
         );
       }
     }
