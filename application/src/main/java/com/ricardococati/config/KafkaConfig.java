@@ -42,14 +42,20 @@ public class KafkaConfig {
   @Value("${spring.kafka.enable.auto.commit}")
   private Boolean enableAutoCommit;
 
+  @Value("${spring.kafka.concurrency}")
+  private Integer concurrency;
+
+  @Value("${spring.kafka.polltimeout}")
+  private Integer polltimeout;
+
   @Bean
   KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>>
   kafkaListenerContainerFactory() {
     ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
         new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory());
-    factory.setConcurrency(10);
-    factory.getContainerProperties().setPollTimeout(3000);
+    factory.setConcurrency(concurrency);
+    factory.getContainerProperties().setPollTimeout(polltimeout);
     return factory;
   }
 
