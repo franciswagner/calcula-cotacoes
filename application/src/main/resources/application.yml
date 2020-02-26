@@ -28,10 +28,16 @@ spring:
     baseline-on-migrate: false
     schemas: 'public'
   kafka:
-    auto-offset-reset: true
+    auto-offset-reset: earliest
     properties.max.request.size: 15728640
-    bootstrap-servers: localhost:9092
-    consumer.group-id: bmf
+    enable.auto.commit: false
+    max.poll.records: 10
+    key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    bootstrap:
+      servers: localhost:9092
+    consumer:
+      group-id: bmf
   jackson:
     serialization:
       write-dates-as-timestamps: false
