@@ -52,7 +52,7 @@ public class SinalMacdSemanalCalculaServiceImpl
 
   private void incluirSinalMacdSemanal(List<SinalMacdSemanal> sinalMacdList) {
     sinalMacdList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(sinalMacdSemanal -> nonNull(sinalMacdSemanal.getDtpregini()))
         .filter(sinalMacdSemanal -> nonNull(sinalMacdSemanal.getDtpregfim()))

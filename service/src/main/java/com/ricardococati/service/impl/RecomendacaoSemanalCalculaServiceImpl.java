@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +50,7 @@ public class RecomendacaoSemanalCalculaServiceImpl
     List<RecomendacaoSemanal> diarioList = new ArrayList<>();
     log.info("Código de negociação: " + listCodneg);
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
@@ -60,7 +61,7 @@ public class RecomendacaoSemanalCalculaServiceImpl
 
   private void incluirRecomendacao(final List<RecomendacaoSemanal> semanalList) {
     semanalList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregini()))
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregfim()))
@@ -75,19 +76,19 @@ public class RecomendacaoSemanalCalculaServiceImpl
         codneg,
         dtLimitePregao
     );
-    for (int indice = 0; indice < recomendacaoList.size(); indice++) {
-      if (indice > 0 && recomendacaoList.size() >= 2) {
-        if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
-            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0) {
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
-        } else if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
-            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0) {
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
-        } else {
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
-        }
-      }
-    }
+    IntStream.range(0, recomendacaoList.size())
+        .filter(indice -> indice > 0 && recomendacaoList.size() >= 2)
+        .forEach(indice -> {
+          if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
+              .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0) {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
+          } else if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
+              .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0) {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
+          } else {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
+          }
+        });
     return recomendacaoList;
   }
 

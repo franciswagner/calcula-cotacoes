@@ -43,7 +43,7 @@ public class HistogramaDiarioCalculaServiceImpl
 
   private void insereHistograma(List<HistogramaDiario> histogramaList) {
     histogramaList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(histogramaDiario -> nonNull(histogramaDiario.getDtpreg()))
         .filter(histogramaDiario -> nonNull(histogramaDiario.getHistograma()))
@@ -56,18 +56,19 @@ public class HistogramaDiarioCalculaServiceImpl
       final List<SinalMacdDiario> sinalMacdList
   ) {
     List<HistogramaDiario> histogramaList = new ArrayList<>();
-    if(nonNull(macdList) && nonNull(sinalMacdList)) {
-      for (MacdDiario macd : macdList) {
-        for (SinalMacdDiario sinal : sinalMacdList) {
-          if (sinal.getDtpreg().isEqual(macd.getDtpreg())
-              && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())) {
-            HistogramaDiario hist = buildHistograma(macd, sinal);
-            if (!histogramaList.contains(hist)) {
-              histogramaList.add(hist);
-            }
-          }
-        }
-      }
+    if (nonNull(macdList) && nonNull(sinalMacdList)) {
+      macdList.forEach(macd -> {
+        sinalMacdList
+            .stream()
+            .filter(sinal ->
+                sinal.getDtpreg().isEqual(macd.getDtpreg())
+                    &&
+                sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())
+            )
+            .map(sinal -> buildHistograma(macd, sinal))
+            .filter(hist -> !histogramaList.contains(hist))
+            .forEach(histogramaList::add);
+      });
     }
     return histogramaList;
   }

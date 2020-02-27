@@ -58,23 +58,28 @@ public class MACDSemanalCalculaServiceImpl
     final List<MediaMovelExponencialSemanal> listMedia12 = buscaMME12Periodo(codneg);
     final List<MediaMovelExponencialSemanal> listMedia26 = buscaMME26Periodo(codneg);
     if(nonNull(listMedia12) && nonNull(listMedia26)) {
-      for (MediaMovelExponencialSemanal mme12 : listMedia12) {
-        for (MediaMovelExponencialSemanal mme26 : listMedia26) {
-          if (mme12.getDtpregini().isEqual(mme26.getDtpregini())
-              && mme12.getDtpregfim().isEqual(mme26.getDtpregfim())) {
-            BigDecimal premacd = mme12.getMediaMovelExponencial().getPremedult()
-                .subtract(mme26.getMediaMovelExponencial().getPremedult());
-            macdList.add(
-                buildMacd(
-                    mme26.getMediaMovelExponencial().getCodneg(),
-                    mme26.getDtpregini(),
-                    mme26.getDtpregfim(),
-                    premacd
-                )
-            );
-          }
-        }
-      }
+      listMedia12.forEach(mme12 -> {
+        listMedia26
+            .stream()
+            .filter(mme26 ->
+                mme12.getDtpregini().isEqual(mme26.getDtpregini())
+                && mme12.getDtpregfim().isEqual(mme26.getDtpregfim()))
+            .forEach(mme26 -> {
+              BigDecimal premacd =
+                  mme12
+                      .getMediaMovelExponencial()
+                      .getPremedult()
+                      .subtract(mme26.getMediaMovelExponencial().getPremedult());
+          macdList.add(
+              buildMacd(
+                  mme26.getMediaMovelExponencial().getCodneg(),
+                  mme26.getDtpregini(),
+                  mme26.getDtpregfim(),
+                  premacd
+              )
+          );
+        });
+      });
     }
     incluirMacd(macdList);
     return macdList;
@@ -82,7 +87,7 @@ public class MACDSemanalCalculaServiceImpl
 
   private void incluirMacd(List<MacdSemanal> macdList) {
     macdList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(macdSemanal -> nonNull(macdSemanal.getDtpregini()))
         .filter(macdSemanal -> nonNull(macdSemanal.getDtpregfim()))

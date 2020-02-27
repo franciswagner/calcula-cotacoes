@@ -43,17 +43,23 @@ public class MACDDiarioCalculaServiceImpl
     final List<MediaMovelExponencialDiario> listMedia12 = buscaMME12Periodo(codneg);
     final List<MediaMovelExponencialDiario> listMedia26 = buscaMME26Periodo(codneg);
     if(nonNull(listMedia12) && nonNull(listMedia26)) {
-      for (MediaMovelExponencialDiario mme12 : listMedia12) {
-        for (MediaMovelExponencialDiario mme26 : listMedia26) {
-          if (mme12.getDtpreg().isEqual(mme26.getDtpreg())) {
-            BigDecimal premacd = mme12.getMediaMovelExponencial().getPremedult()
-                .subtract(mme26.getMediaMovelExponencial().getPremedult());
-            macdList.add(
-                buildMacd(mme26.getMediaMovelExponencial().getCodneg(), mme26.getDtpreg(),
-                    premacd));
-          }
-        }
-      }
+      listMedia12.forEach(mme12 -> {
+        listMedia26
+            .stream()
+            .filter(mme26 -> mme12.getDtpreg().isEqual(mme26.getDtpreg()))
+            .forEach(mme26 -> {
+              BigDecimal premacd =
+                  mme12.getMediaMovelExponencial().getPremedult()
+                  .subtract(mme26.getMediaMovelExponencial().getPremedult());
+              macdList.add(
+                  buildMacd(
+                      mme26.getMediaMovelExponencial().getCodneg(),
+                      mme26.getDtpreg(),
+                      premacd
+                  )
+              );
+            });
+      });
     }
     inserirMacd(macdList);
     return macdList;
@@ -61,7 +67,7 @@ public class MACDDiarioCalculaServiceImpl
 
   private void inserirMacd(List<MacdDiario> macdList) {
     macdList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(macdDiario -> nonNull(macdDiario.getDtpreg()))
         .filter(macdDiario -> nonNull(macdDiario.getMacd()))

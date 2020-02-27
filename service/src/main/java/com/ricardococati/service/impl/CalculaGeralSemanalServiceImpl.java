@@ -76,7 +76,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private Boolean executeMediaSimplesSemanal(final List<String> listCodneg) throws Exception {
     List<MediaMovelSimplesSemanal> lisMMS = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           lisMMS.addAll(mmsService.executeByCodNeg(codneg));
@@ -87,7 +87,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private Boolean executeMediaExponencialSemanal(final List<String> listCodneg) throws Exception {
     List<MediaMovelExponencialSemanal> lisMME = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           lisMME.addAll(mmeService.executeByCodNeg(codneg));
@@ -98,7 +98,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private Boolean executeMacdSemanal(final List<String> listCodneg) throws Exception {
     List<MacdSemanal> listMacd = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           listMacd.addAll(macdService.executeByCodNeg(codneg));
@@ -109,7 +109,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private Boolean executeSinalMacdSemanal(final List<String> listCodneg) throws Exception {
     List<SinalMacdSemanal> listSinal = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           listSinal.addAll(sinalMacdService.executeByCodNeg(codneg));
@@ -120,7 +120,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private Boolean executeHistogramaSemanal(final List<String> listCodneg) throws Exception {
     List<HistogramaSemanal> listHistograma = new ArrayList<>();
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           listHistograma.addAll(histogramaService.executeByCodNeg(codneg));

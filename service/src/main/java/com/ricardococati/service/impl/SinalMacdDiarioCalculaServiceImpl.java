@@ -48,7 +48,7 @@ public class SinalMacdDiarioCalculaServiceImpl
 
   private void incluirSinalMacd(List<SinalMacdDiario> sinalMacdList) {
     sinalMacdList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(sinalMacdDiario -> nonNull(sinalMacdDiario.getDtpreg()))
         .filter(sinalMacdDiario -> nonNull(sinalMacdDiario.getSinalMacd()))

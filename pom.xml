@@ -34,13 +34,9 @@
     <postgresql.version>42.1.1</postgresql.version>
     <!-- JDBC TEMPLATE VERSION -->
     <spring-jdbc.version>4.3.10.RELEASE</spring-jdbc.version>
-    <!-- ENCODES -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <spring.profiles.active>develop</spring.profiles.active>
-    <docker.image.prefix>springboot</docker.image.prefix>
+    <!-- POSTGRESQL EMBEDDED FOR TESTS -->
     <otj-pg-embedded.version>0.1.1</otj-pg-embedded.version>
+    <!-- FIXTURE FACTORY -->
     <fixture-factory.version>3.1.0</fixture-factory.version>
   </properties>
 
@@ -52,7 +48,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- INTERNAL -->
       <dependency>
         <groupId>com.ricardococati</groupId>
         <artifactId>model</artifactId>
@@ -78,7 +73,6 @@
         <artifactId>message</artifactId>
         <version>${project.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
@@ -86,85 +80,59 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
       </dependency>
-      <!-- OJDBC6 -->
-      <dependency>
-        <groupId>oracle</groupId>
-        <artifactId>ojdbc6</artifactId>
-        <version>${ojdbc6.version}</version>
-      </dependency>
-      <!-- POSTGRESQL-->
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>${postgresql.version}</version>
       </dependency>
-
-      <!-- Lib p/ integração cm Banco de dados -->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
         <version>${spring-jdbc.version}</version>
       </dependency>
-
       <dependency>
         <groupId>br.com.six2six</groupId>
         <artifactId>fixture-factory</artifactId>
         <version>${fixture-factory.version}</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
-    <!-- EXTERNAL -->
-    <!-- SPRING -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-infrastructure</artifactId>
-    </dependency>
-
     <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>com.opentable.components</groupId>
       <artifactId>otj-pg-embedded</artifactId>
       <version>${otj-pg-embedded.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- LOMBOK -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
     </dependency>
-
   </dependencies>
 
   <build>
     <pluginManagement>
       <plugins>
-        <!-- SPRING BOOT-->
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
@@ -173,7 +141,6 @@
             <mainClass>com.ricardococati.Application</mainClass>
           </configuration>
         </plugin>
-        <!-- MAVEN COMPILER PLUGIN -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -182,7 +149,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- MAVEN COMPILER PLUGIN -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -191,7 +157,6 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
-      <!-- MAVEN RELEASE PLUGIN -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>

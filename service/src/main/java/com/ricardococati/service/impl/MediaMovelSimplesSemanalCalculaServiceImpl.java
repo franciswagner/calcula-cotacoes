@@ -48,7 +48,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
 
   private void inserirMMS(List<MediaMovelSimplesSemanal> mediaMovelSimplesList) {
     mediaMovelSimplesList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregini()))
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregfim()))
@@ -61,7 +61,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImpl
       List<CandlestickSemanalDTO> candlestickSemanals, String codneg) {
     List<MediaMovelSimplesSemanal> mediaMovelSimplesList = new ArrayList<>();
     QuantidadePeriodo.getListQuantidadePeriodo()
-        .stream()
+        .parallelStream()
         .filter(periodo -> nonNull(candlestickSemanals))
         .filter(periodo -> candlestickSemanals.size() >= periodo.intValue())
         .map(periodo -> calculaMediaMovelSimples(periodo, candlestickSemanals, codneg))

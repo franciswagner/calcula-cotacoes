@@ -48,7 +48,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
       final List<MediaMovelSimplesDiario> mediaMovelSimplesList
   ) {
     mediaMovelSimplesList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmsDiario -> nonNull(mmsDiario.getDtpreg()))
         .filter(mmsDiario -> nonNull(mmsDiario.getMediaMovelSimples()))
@@ -61,7 +61,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
     List<MediaMovelSimplesDiario> mediaMovelSimplesList = new ArrayList<>();
     QuantidadePeriodo
         .getListQuantidadePeriodo()
-        .stream()
+        .parallelStream()
         .filter(periodo -> nonNull(candlestickDiarios))
         .filter(Objects::nonNull)
         .filter(periodo -> candlestickDiarios.size() >= periodo.intValue())

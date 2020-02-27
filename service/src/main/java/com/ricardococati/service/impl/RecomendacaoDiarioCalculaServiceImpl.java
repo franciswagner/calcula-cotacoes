@@ -13,13 +13,14 @@ import com.ricardococati.repository.dao.RecomendacaoDiarioBuscarDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioExcluirDAO;
 import com.ricardococati.repository.dao.RecomendacaoDiarioInserirDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;
-import com.ricardococati.service.RecomendacaoDiarioCalculaService;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
+import com.ricardococati.service.RecomendacaoDiarioCalculaService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,10 +47,10 @@ public class RecomendacaoDiarioCalculaServiceImpl
   public List<RecomendacaoDiario> executeByCodNeg(
       final List<String> listCodneg, final LocalDate dtLimitePregao) {
     excluirRecomendacao.excluirAllRecomendacao();
-    List<RecomendacaoDiario> diarioList =  new ArrayList<>();
+    List<RecomendacaoDiario> diarioList = new ArrayList<>();
     log.info("Código de negociação: " + listCodneg);
     listCodneg
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
@@ -60,7 +61,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
 
   private void incluirRecomendacao(List<RecomendacaoDiario> diarioList) {
     diarioList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpreg()))
         .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao()))
@@ -74,19 +75,19 @@ public class RecomendacaoDiarioCalculaServiceImpl
         codneg,
         dtLimitePregao
     );
-    for (int indice = 0; indice < recomendacaoList.size(); indice++) {
-      if (indice > 0 && recomendacaoList.size() >= 2) {
-        if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
-            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0){
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
-        } else if(recomendacaoList.get(indice-1).getRecomendacao().getPrecoHistograma()
-            .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0){
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
-        } else {
-          recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
-        }
-      }
-    }
+    IntStream.range(0, recomendacaoList.size())
+        .filter(indice -> indice > 0 && recomendacaoList.size() >= 2)
+        .forEach(indice -> {
+          if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
+              .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0) {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
+          } else if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
+              .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0) {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
+          } else {
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
+          }
+        });
     return recomendacaoList;
   }
 

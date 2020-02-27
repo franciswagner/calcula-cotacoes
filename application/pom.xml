@@ -17,10 +17,10 @@
     <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
     <fixture-factory.version>3.1.0</fixture-factory.version>
     <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
+    <commons-dbcp.version>1.4</commons-dbcp.version>
   </properties>
 
   <dependencies>
-    <!-- INTERNAL -->
     <dependency>
       <groupId>com.ricardococati</groupId>
       <artifactId>service</artifactId>
@@ -37,7 +37,6 @@
       <groupId>com.ricardococati</groupId>
       <artifactId>message</artifactId>
     </dependency>
-    <!-- EXTERNAL -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-config</artifactId>
@@ -47,7 +46,6 @@
       <artifactId>flyway-core</artifactId>
       <version>${flyway-core.version}</version>
     </dependency>
-    <!-- SWAGGER -->
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
@@ -59,9 +57,11 @@
       <version>${springfox-swagger2.version}</version>
       <scope>compile</scope>
     </dependency>
+    <!--COMMONS DATABASE CONNECTION POOL-->
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
+      <version>${commons-dbcp.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>

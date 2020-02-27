@@ -62,18 +62,18 @@ public class HistogramaSemanalCalculaServiceImpl
   ) {
     List<HistogramaSemanal> histogramaList = new ArrayList<>();
     if(nonNull(macdList) && nonNull(sinalMacdList)) {
-      for (MacdSemanal macd : macdList) {
-        for (SinalMacdSemanal sinal : sinalMacdList) {
-          if (sinal.getDtpregini().isEqual(macd.getDtpregini())
-              && sinal.getDtpregfim().isEqual(macd.getDtpregfim())
-              && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())) {
-            HistogramaSemanal hist = buildHistograma(macd, sinal);
-            if (!histogramaList.contains(hist)) {
-              histogramaList.add(hist);
-            }
-          }
-        }
-      }
+      macdList.forEach(macd -> {
+        sinalMacdList
+            .stream()
+            .filter(sinal ->
+                sinal.getDtpregini().isEqual(macd.getDtpregini())
+                && sinal.getDtpregfim().isEqual(macd.getDtpregfim())
+                && sinal.getSinalMacd().getCodneg().equals(macd.getMacd().getCodneg())
+            )
+            .map(sinal -> buildHistograma(macd, sinal))
+            .filter(hist -> !histogramaList.contains(hist))
+            .forEach(histogramaList::add);
+      });
     }
     return histogramaList;
   }

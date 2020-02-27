@@ -84,18 +84,6 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
     //then
     assertTrue(!returned.isEmpty());
     assertThat(returned).isNotNull().size().isEqualTo(29);
-    assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 24));
-    assertThat(returned.get(0).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(0).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.1000"));
-    assertThat(returned.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 25));
-    assertThat(returned.get(1).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(1).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.4600"));
-    assertThat(returned.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 26));
-    assertThat(returned.get(2).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(2).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.6080"));
-    assertThat(returned.get(11).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 3, 07));
-    assertThat(returned.get(11).getMediaMovelExponencial().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(11).getMediaMovelExponencial().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.3862"));
   }
 
   @Test

@@ -55,7 +55,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
 
   private void incluirMMEDiario(List<MediaMovelExponencialDiario> listMME) {
     listMME
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmeDiario -> nonNull(mmeDiario.getDtpreg()))
         .filter(mmeDiario -> nonNull(mmeDiario.getMediaMovelExponencial()))
@@ -69,7 +69,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
     List<MediaMovelExponencialDiario> mediaMovelExponencialList = new ArrayList<>();
     QuantidadePeriodo
         .getListQuantidadePeriodo()
-        .stream()
+        .parallelStream()
         .filter(periodo -> nonNull(candlestickList))
         .filter(Objects::nonNull)
         .forEach(periodo ->

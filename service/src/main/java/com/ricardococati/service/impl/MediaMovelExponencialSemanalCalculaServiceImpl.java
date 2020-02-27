@@ -58,7 +58,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
 
   private void inserirMMESemanal(List<MediaMovelExponencialSemanal> listMME) {
     listMME
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(mmeSemanal -> nonNull(mmeSemanal.getDtpregini()))
         .filter(mmeSemanal -> nonNull(mmeSemanal.getDtpregfim()))
@@ -73,7 +73,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     try {
       QuantidadePeriodo
           .getListQuantidadePeriodo()
-          .stream()
+          .parallelStream()
           .filter(periodo -> nonNull(candlestickList))
           .filter(Objects::nonNull)
           .forEach(periodo ->
