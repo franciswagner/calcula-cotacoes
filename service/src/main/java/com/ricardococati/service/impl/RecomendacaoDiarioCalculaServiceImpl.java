@@ -52,7 +52,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
     listCodneg
         .parallelStream()
         .filter(Objects::nonNull)
-        .forEach(codneg -> {
+        .forEachOrdered(codneg -> {
           diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
           incluirRecomendacao(diarioList);
         });
@@ -61,7 +61,7 @@ public class RecomendacaoDiarioCalculaServiceImpl
 
   private void incluirRecomendacao(List<RecomendacaoDiario> diarioList) {
     diarioList
-        .parallelStream()
+        .stream()
         .filter(Objects::nonNull)
         .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpreg()))
         .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao()))
