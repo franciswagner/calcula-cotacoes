@@ -74,9 +74,4 @@ public class MediaMovelSimplesSemanalSQLUtil {
         .addValue("dtpregfim", dtpregfim);
   }
 
-  public String getDelete() {
-    SQLAppender sql = new SQLAppender(30);
-    sql.appendSQL("	delete from media_movel_simples_semanal ");
-    return sql.getAppendSQLSemQuebra().toString();
-  }
 }

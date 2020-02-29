@@ -3,9 +3,10 @@ package com.ricardococati.repository.dao.mapper;
 import com.ricardococati.model.dto.ControleExecucao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class ControleExecucaoMapper {
 
   public ControleExecucao mapper(ResultSet rs) {
