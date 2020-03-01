@@ -15,11 +15,6 @@ public class CandlestickSemanalBuscarSQLUtil {
     sql.appendSQL("		codneg, ");
     sql.appendSQL("		dtpregini, ");
     sql.appendSQL("		dtpregfim, ");
-    sql.appendSQL("		media_movel_gerada, ");
-    sql.appendSQL("		media_exponecial_gerada, ");
-    sql.appendSQL("		macd_gerada, ");
-    sql.appendSQL("		sinal_macd_gerada, ");
-    sql.appendSQL("		histograma_gerada, ");
     sql.appendSQL("		preabe, ");
     sql.appendSQL("		premax, ");
     sql.appendSQL("		premin, ");
