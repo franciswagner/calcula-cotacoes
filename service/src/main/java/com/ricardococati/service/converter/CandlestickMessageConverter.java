@@ -29,11 +29,6 @@ public class CandlestickMessageConverter {
                 .premax(message.getPremax())
                 .voltot(message.getVoltot())
                 .semana(message.getSemana())
-                .mediaMovelGerada(DEFAULT_VALUE)
-                .mediaExponencialGerada(DEFAULT_VALUE)
-                .macdGerada(DEFAULT_VALUE)
-                .sinalMacdGerada(DEFAULT_VALUE)
-                .histogramaGerada(DEFAULT_VALUE)
                 .build())
         .build();
   }
@@ -61,11 +56,6 @@ public class CandlestickMessageConverter {
                 .premax(message.getPremax())
                 .voltot(message.getVoltot())
                 .semana(message.getSemana())
-                .mediaMovelGerada(DEFAULT_VALUE)
-                .mediaExponencialGerada(DEFAULT_VALUE)
-                .macdGerada(DEFAULT_VALUE)
-                .sinalMacdGerada(DEFAULT_VALUE)
-                .histogramaGerada(DEFAULT_VALUE)
                 .build())
         .build();
   }

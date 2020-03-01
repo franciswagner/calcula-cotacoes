@@ -30,11 +30,6 @@ public class BuscarCandlestickSemanalMapper {
               CandlestickDTO
                   .builder()
                   .codneg(rs.getString("codneg"))
-                  .mediaMovelGerada(rs.getBoolean("media_movel_gerada"))
-                  .mediaExponencialGerada(rs.getBoolean("media_exponecial_gerada"))
-                  .macdGerada(rs.getBoolean("macd_gerada"))
-                  .sinalMacdGerada(rs.getBoolean("sinal_macd_gerada"))
-                  .histogramaGerada(rs.getBoolean("histograma_gerada"))
                   .preabe(rs.getBigDecimal("preabe"))
                   .premax(rs.getBigDecimal("premax"))
                   .premin(rs.getBigDecimal("premin"))

@@ -16,11 +16,6 @@ public class CandlestickDiarioInserirSQLUtil {
     sql.appendSQL("		id_candle_diario, ");
     sql.appendSQL("		codneg, ");
     sql.appendSQL("		dtpreg, ");
-    sql.appendSQL("		media_movel_gerada, ");
-    sql.appendSQL("		media_exponecial_gerada, ");
-    sql.appendSQL("		macd_gerada, ");
-    sql.appendSQL("		sinal_macd_gerada, ");
-    sql.appendSQL("		histograma_gerada, ");
     sql.appendSQL("		preabe, ");
     sql.appendSQL("		premax, ");
     sql.appendSQL("		premin, ");
@@ -31,11 +26,6 @@ public class CandlestickDiarioInserirSQLUtil {
     sql.appendSQL("		:idCandleDiario, ");
     sql.appendSQL("		:codneg, ");
     sql.appendSQL("		:dtpreg, ");
-    sql.appendSQL("		:mediaMovelGerada, ");
-    sql.appendSQL("		:mediaExponencialGerada, ");
-    sql.appendSQL("		:macdGerada, ");
-    sql.appendSQL("		:sinalMacdGerada, ");
-    sql.appendSQL("		:histogramaGerada, ");
     sql.appendSQL("		:preabe, ");
     sql.appendSQL("		:premax, ");
     sql.appendSQL("		:premin, ");
@@ -46,11 +36,6 @@ public class CandlestickDiarioInserirSQLUtil {
     sql.appendSQL(" on conflict (codneg, dtpreg) do update set ");
     sql.appendSQL("		codneg = excluded.codneg, ");
     sql.appendSQL("		dtpreg = excluded.dtpreg, ");
-    sql.appendSQL("		media_movel_gerada = excluded.media_movel_gerada, ");
-    sql.appendSQL("		media_exponecial_gerada = excluded.media_exponecial_gerada, ");
-    sql.appendSQL("		macd_gerada = excluded.macd_gerada, ");
-    sql.appendSQL("		sinal_macd_gerada = excluded.sinal_macd_gerada, ");
-    sql.appendSQL("		histograma_gerada = excluded.histograma_gerada, ");
     sql.appendSQL("		preabe = excluded.preabe, ");
     sql.appendSQL("		premax = excluded.premax, ");
     sql.appendSQL("		premin = excluded.premin, ");
@@ -66,11 +51,6 @@ public class CandlestickDiarioInserirSQLUtil {
         .addValue("idCandleDiario", candlestickDiarioDTO.getIdCandleDiario())
         .addValue("codneg", candlestickDiarioDTO.getCandlestickDTO().getCodneg())
         .addValue("dtpreg", candlestickDiarioDTO.getDtpreg())
-        .addValue("mediaMovelGerada", candlestickDiarioDTO.getCandlestickDTO().getMediaMovelGerada())
-        .addValue("mediaExponencialGerada", candlestickDiarioDTO.getCandlestickDTO().getMediaExponencialGerada())
-        .addValue("macdGerada", candlestickDiarioDTO.getCandlestickDTO().getMacdGerada())
-        .addValue("sinalMacdGerada", candlestickDiarioDTO.getCandlestickDTO().getSinalMacdGerada())
-        .addValue("histogramaGerada", candlestickDiarioDTO.getCandlestickDTO().getHistogramaGerada())
         .addValue("preabe", candlestickDiarioDTO.getCandlestickDTO().getPreabe())
         .addValue("premax", candlestickDiarioDTO.getCandlestickDTO().getPremax())
         .addValue("premin", candlestickDiarioDTO.getCandlestickDTO().getPremin())

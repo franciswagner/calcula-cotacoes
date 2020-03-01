@@ -1,10 +1,11 @@
 package com.ricardococati.repository.dao.templates;
 
+import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.repository.util.BigDecimalCustomizado;
 
 public class CandlestickDTOTemplateLoader implements TemplateLoader {
 
@@ -34,283 +35,183 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
     Fixture.of(CandlestickDTO.class)
         .addTemplate(CANDLESTICK_DTO_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(9.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(12.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(9.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(100000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(9.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_002, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(2.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(13.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(9.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(100000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(2.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_003, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(3.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(14.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(8.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.2));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(200000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(3.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_004, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(4.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(15.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(4.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.3));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(300000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(4.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(4.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_005, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(16.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(5.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.4));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(400000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(16.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.4));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_006, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(8.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(17.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.5));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(500000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(8.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.5));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_007, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(9.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(18.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(7.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.6));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(600000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(9.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(18.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(7.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.6));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_008, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(19.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(8.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.7));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(700000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.7));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_009, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(12.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(12.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(9.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.8));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(800000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(9.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.8));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_010, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(13.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(2.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.9));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(900000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(2.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.9));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_011, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(10.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(14.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(3.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.2));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(200000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(3.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_012, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(15.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(5.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.3));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(300000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_013, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(16.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.4));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(400000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(16.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.4));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_014, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(17.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(8.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.5));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(500000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(8.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.5));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_015, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(17.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(2.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.6));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(600000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(2.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.6));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_016, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(10.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(18.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(3.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.7));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(700000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(18.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(3.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.7));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_017, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(10.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(19.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(4.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.8));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(800000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(4.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.8));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_018, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(19.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(5.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.9));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(900000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(5.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.9));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_019, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(12.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(14.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(6.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.2));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(200000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(12.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(6.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.2));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
         .addTemplate(CANDLESTICK_DTO_VALID_020, new Rule() {{
           add("codneg", "MGLU3");
-          add("preabe", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(13.1));
-          add("premax", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(15.1));
-          add("premin", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(7.0));
-          add("preult", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(11.3));
-          add("voltot", BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas(400000.0));
+          add("preabe", getValueBigDecimalHalfUpArredondado4Casas(13.1));
+          add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
+          add("premin", getValueBigDecimalHalfUpArredondado4Casas(7.0));
+          add("preult", getValueBigDecimalHalfUpArredondado4Casas(11.3));
+          add("voltot", getValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
-          add("mediaMovelGerada", Boolean.TRUE);
-          add("mediaExponencialGerada", Boolean.TRUE);
-          add("macdGerada", Boolean.FALSE);
-          add("sinalMacdGerada", Boolean.TRUE);
-          add("histogramaGerada", Boolean.FALSE);
         }})
     ;
   }

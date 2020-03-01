@@ -19,10 +19,5 @@ public class CandlestickDTO {
   private BigDecimal preult;
   private BigDecimal voltot;
   private Integer semana;
-  private Boolean mediaMovelGerada;
-  private Boolean mediaExponencialGerada;
-  private Boolean macdGerada;
-  private Boolean sinalMacdGerada;
-  private Boolean histogramaGerada;
 
 }
