@@ -20,42 +20,34 @@
   <artifactId>repository</artifactId>
 
   <dependencies>
-    <!-- INTERNAL -->
     <dependency>
       <groupId>com.ricardococati</groupId>
       <artifactId>model</artifactId>
     </dependency>
-
-    <!-- EXTERNAL -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
     </dependency>
-
     <dependency>
       <groupId>com.opentable.components</groupId>
       <artifactId>otj-pg-embedded</artifactId>
       <version>${otj-pg-embedded.version}</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
       <version>${flyway-core.version}</version>
     </dependency>
-
     <dependency>
       <groupId>br.com.six2six</groupId>
       <artifactId>fixture-factory</artifactId>
       <version>${fixture-factory.version}</version>
     </dependency>
-
   </dependencies>
 
   <build>

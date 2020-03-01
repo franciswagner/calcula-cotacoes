@@ -15,9 +15,7 @@
   <properties>
     <flyway-core.version>3.2</flyway-core.version>
     <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
-    <fixture-factory.version>3.1.0</fixture-factory.version>
     <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
-    <commons-dbcp.version>1.4</commons-dbcp.version>
   </properties>
 
   <dependencies>
@@ -57,11 +55,9 @@
       <version>${springfox-swagger2.version}</version>
       <scope>compile</scope>
     </dependency>
-    <!--COMMONS DATABASE CONNECTION POOL-->
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
-      <version>${commons-dbcp.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
@@ -75,7 +71,6 @@
     <dependency>
       <groupId>br.com.six2six</groupId>
       <artifactId>fixture-factory</artifactId>
-      <version>${fixture-factory.version}</version>
     </dependency>
   </dependencies>
   <build>

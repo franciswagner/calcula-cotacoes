@@ -15,6 +15,7 @@
   <properties>
     <fixture-factory.version>3.1.0</fixture-factory.version>
     <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
+    <shedlock-spring.version>4.4.0</shedlock-spring.version>
   </properties>
 
   <dependencies>
@@ -31,6 +32,11 @@
       <groupId>br.com.six2six</groupId>
       <artifactId>fixture-factory</artifactId>
       <version>${fixture-factory.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.javacrumbs.shedlock</groupId>
+      <artifactId>shedlock-spring</artifactId>
+      <version>${shedlock-spring.version}</version>
     </dependency>
   </dependencies>
 
