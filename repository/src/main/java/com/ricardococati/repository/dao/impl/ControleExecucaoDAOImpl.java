@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.ControleExecucao;
+import com.ricardococati.model.entities.ControleExecucao;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;
 import com.ricardococati.repository.dao.mapper.ControleExecucaoMapper;
 import com.ricardococati.repository.dao.sqlutil.ControleExecucaoSQLUtil;

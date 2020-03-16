@@ -1,6 +1,5 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;

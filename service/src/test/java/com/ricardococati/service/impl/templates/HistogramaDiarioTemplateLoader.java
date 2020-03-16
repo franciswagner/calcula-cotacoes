@@ -15,8 +15,8 @@ import static com.ricardococati.service.impl.templates.HistogramaTemplateLoader.
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.Histograma;
+import com.ricardococati.model.entities.HistogramaDiario;
+import com.ricardococati.model.entities.Histograma;
 import java.time.LocalDate;
 
 public class HistogramaDiarioTemplateLoader implements TemplateLoader {

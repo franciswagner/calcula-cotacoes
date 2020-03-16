@@ -2,7 +2,6 @@ package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
-import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_002;
 import static com.ricardococati.repository.dao.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -10,8 +9,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MacdDiario;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MacdDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -20,7 +19,6 @@ import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -108,8 +106,8 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
         .gimme(MACD_DIARIO_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 

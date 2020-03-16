@@ -2,12 +2,9 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
-import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialSemanalSQLUtil;
-import com.ricardococati.repository.util.SQLAppender;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

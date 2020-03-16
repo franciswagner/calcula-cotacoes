@@ -6,16 +6,14 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioBuscarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
-import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -61,12 +59,12 @@ public class CandlestickDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.toParametersCodNeg(any())).thenCallRealMethod();
     when(mapper.mapper(any())).thenCallRealMethod();
     //when
-    List<CandlestickDiarioDTO> result = target.buscaCandleDiarioPorCodNeg(codneg);
+    List<CandlestickDiario> result = target.buscaCandleDiarioPorCodNeg(codneg);
     //then
     assertTrue(!result.isEmpty());
     assertThat(result).isNotNull().size().isEqualTo(1);
-    assertThat(result.get(0).getCandlestickDTO().getCodneg()).isNotNull().isEqualTo("MGLU3");
-    assertThat(result.get(0).getCandlestickDTO().getPreult()).isNotNull().isEqualTo(new BigDecimal("10.10"));
+    assertThat(result.get(0).getCandlestick().getCodneg()).isNotNull().isEqualTo("MGLU3");
+    assertThat(result.get(0).getCandlestick().getPreult()).isNotNull().isEqualTo(new BigDecimal("10.10"));
   }
 
   @Test
@@ -84,15 +82,15 @@ public class CandlestickDiarioBuscarDAOImplTest extends BaseJdbcTest {
     assertThat(result.get(0)).isNotNull().isEqualTo("MGLU3");
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+  private CandlestickDiario buildCandlestickDiarioDTO(
       final String codneg,
       final Double preult,
       final LocalDate dtpreg
   ) {
-    return CandlestickDiarioDTO
+    return CandlestickDiario
         .builder()
         .dtpreg(dtpreg)
-        .candlestickDTO(CandlestickDTO
+        .candlestick(Candlestick
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
             .codneg(codneg)

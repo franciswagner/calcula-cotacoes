@@ -1,32 +1,17 @@
 package com.ricardococati.service.impl;
 
-import static java.util.Objects.nonNull;
-
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.HistogramaSemanal;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
-import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.model.dto.RecomendacaoSemanal;
-import com.ricardococati.model.dto.SinalMacdDiario;
-import com.ricardococati.model.dto.SinalMacdSemanal;
-import com.ricardococati.service.CalculaGeralDiarioService;
+import com.ricardococati.model.entities.HistogramaSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
+import com.ricardococati.model.entities.SinalMacdSemanal;
 import com.ricardococati.service.CalculaGeralSemanalService;
-import com.ricardococati.service.HistogramaDiarioCalculaService;
 import com.ricardococati.service.HistogramaSemanalCalculaService;
-import com.ricardococati.service.MACDDiarioCalculaService;
 import com.ricardococati.service.MACDSemanalCalculaService;
-import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
-import com.ricardococati.service.MediaMovelSimplesDiarioCalculaService;
 import com.ricardococati.service.MediaMovelSimplesSemanalCalculaService;
-import com.ricardococati.service.RecomendacaoDiarioCalculaService;
 import com.ricardococati.service.RecomendacaoSemanalCalculaService;
-import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import com.ricardococati.service.SinalMacdSemanalCalculaService;
 import java.time.LocalDate;
 import java.util.ArrayList;

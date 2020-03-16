@@ -1,7 +1,7 @@
 package com.ricardococati.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ricardococati.model.dto.CandlestickDiarioMessage;
+import com.ricardococati.model.entities.CandlestickDiarioMessage;
 import com.ricardococati.service.CandlestickDiarioInserirService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;

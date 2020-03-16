@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

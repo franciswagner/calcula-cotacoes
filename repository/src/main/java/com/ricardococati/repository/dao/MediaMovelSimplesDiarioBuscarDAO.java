@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import java.time.LocalDate;
 
 public interface MediaMovelSimplesDiarioBuscarDAO {

@@ -2,10 +2,10 @@ package com.ricardococati.service.impl;
 
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.Histograma;
-import com.ricardococati.model.dto.HistogramaSemanal;
-import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.model.dto.SinalMacdSemanal;
+import com.ricardococati.model.entities.Histograma;
+import com.ricardococati.model.entities.HistogramaSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
+import com.ricardococati.model.entities.SinalMacdSemanal;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;

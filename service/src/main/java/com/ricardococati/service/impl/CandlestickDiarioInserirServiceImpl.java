@@ -1,6 +1,6 @@
 package com.ricardococati.service.impl;
 
-import com.ricardococati.model.dto.CandlestickDiarioMessage;
+import com.ricardococati.model.entities.CandlestickDiarioMessage;
 import com.ricardococati.repository.dao.CandlestickDiarioInserirDAO;
 import com.ricardococati.service.CandlestickDiarioInserirService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;

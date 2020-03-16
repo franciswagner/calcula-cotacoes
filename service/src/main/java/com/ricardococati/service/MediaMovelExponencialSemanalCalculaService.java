@@ -1,6 +1,6 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
 import java.util.List;
 
 public interface MediaMovelExponencialSemanalCalculaService {

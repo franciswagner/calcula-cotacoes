@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.RecomendacaoSemanal;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
 import com.ricardococati.repository.dao.RecomendacaoSemanalBuscarDAO;
 import com.ricardococati.repository.dao.mapper.RecomendacaoSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoSemanalBuscarSQLUtil;

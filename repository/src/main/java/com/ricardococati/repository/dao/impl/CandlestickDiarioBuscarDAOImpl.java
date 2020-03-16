@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.dao.CandlestickDiarioBuscarDAO;
 import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioBuscarSQLUtil;
@@ -24,7 +24,7 @@ public class CandlestickDiarioBuscarDAOImpl implements CandlestickDiarioBuscarDA
   private final BuscarCandlestickDiarioMapper mapper;
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg) {
+  public List<CandlestickDiario> buscaCandleDiarioPorCodNeg(final String codneg) {
     return template.query(
         sqlUtil.getSelectByCodNeg(),
         sqlUtil.toParametersCodNeg(codneg),

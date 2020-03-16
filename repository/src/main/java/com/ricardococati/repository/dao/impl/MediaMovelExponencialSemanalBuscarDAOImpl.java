@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialSemanalSQLUtil;

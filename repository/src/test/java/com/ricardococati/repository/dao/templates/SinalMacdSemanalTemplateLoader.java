@@ -15,8 +15,8 @@ import static com.ricardococati.repository.dao.templates.SinalMacdTemplateLoader
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.SinalMacd;
-import com.ricardococati.model.dto.SinalMacdSemanal;
+import com.ricardococati.model.entities.SinalMacd;
+import com.ricardococati.model.entities.SinalMacdSemanal;
 import java.time.LocalDate;
 
 public class SinalMacdSemanalTemplateLoader implements TemplateLoader {

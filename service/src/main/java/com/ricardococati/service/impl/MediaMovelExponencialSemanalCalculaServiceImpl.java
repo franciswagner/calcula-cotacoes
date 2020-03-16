@@ -5,11 +5,11 @@ import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDe
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MediaMovelExponencial;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencial;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalBuscarDAO;
@@ -18,7 +18,6 @@ import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   @Override
   public List<MediaMovelExponencialSemanal> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
-    List<CandlestickSemanalDTO> candlestickList =
+    List<CandlestickSemanal> candlestickList =
         calculaCandlestickService.buscaCandlestickSemanalPorCodNeg(
             buildCandlestickSemanalDTO(codneg));
     List<MediaMovelExponencialSemanal> listMME =
@@ -68,7 +67,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   }
 
   private List<MediaMovelExponencialSemanal> calculaMediaMovelExponencialPorPeriodo(
-      List<CandlestickSemanalDTO> candlestickList) {
+      List<CandlestickSemanal> candlestickList) {
     List<MediaMovelExponencialSemanal> mediaMovelExponencialList = new ArrayList<>();
     try {
       QuantidadePeriodo
@@ -87,7 +86,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
   }
 
   public List<MediaMovelExponencialSemanal> calculaMediaMovelExponencial(
-      int periodo, List<CandlestickSemanalDTO> candlestickList) {
+      int periodo, List<CandlestickSemanal> candlestickList) {
     List<MediaMovelExponencialSemanal> listReturn = new ArrayList<>();
     int qtdPeriodos = candlestickList.size();
     Integer posicao = 0;
@@ -106,11 +105,11 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
         continue;
       }
       listReturn.add(buildMediaMovelExponencial(
-          candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+          candlestickList.get(indice).getCandlestick().getCodneg(),
           candlestickList.get(indice).getDtpregini(),
           candlestickList.get(indice).getDtpregfim(),
           periodo,
-          calculaMME(periodo, candlestickList.get(indice).getCandlestickDTO().getPreult(),
+          calculaMME(periodo, candlestickList.get(indice).getCandlestick().getPreult(),
               listReturn.get(posicao - 1).getMediaMovelExponencial().getPremedult()))
       );
       posicao++;
@@ -120,12 +119,12 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
 
   private MediaMovelSimplesSemanal getPrimeiraMedia(
       final int periodo,
-      final List<CandlestickSemanalDTO> candlestickList,
+      final List<CandlestickSemanal> candlestickList,
       final int indice) {
     try {
       return mediaMovelSimplesDAO
           .buscaMediaSimplesPorCodNegPeriodoDtPreg(
-              candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+              candlestickList.get(indice).getCandlestick().getCodneg(),
               periodo,
               candlestickList.get(indice).getDtpregini(),
               candlestickList.get(indice).getDtpregfim());
@@ -148,11 +147,11 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     );
   }
 
-  private CandlestickSemanalDTO buildCandlestickSemanalDTO(final String codneg) {
-    return CandlestickSemanalDTO
+  private CandlestickSemanal buildCandlestickSemanalDTO(final String codneg) {
+    return CandlestickSemanal
         .builder()
-        .candlestickDTO(
-            CandlestickDTO
+        .candlestick(
+            Candlestick
                 .builder()
                 .codneg(codneg)
                 .build())

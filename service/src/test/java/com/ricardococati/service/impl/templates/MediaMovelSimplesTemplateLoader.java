@@ -1,11 +1,9 @@
 package com.ricardococati.service.impl.templates;
 
-import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
-
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.MediaMovelSimples;
+import com.ricardococati.model.entities.MediaMovelSimples;
 import com.ricardococati.service.util.BigDecimalCustomizado;
 
 public class MediaMovelSimplesTemplateLoader implements TemplateLoader {

@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.HistogramaSemanal;
+import com.ricardococati.model.entities.HistogramaSemanal;
 import com.ricardococati.repository.util.SQLAppender;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;

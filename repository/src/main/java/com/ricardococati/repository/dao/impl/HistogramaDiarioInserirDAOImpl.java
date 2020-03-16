@@ -2,10 +2,9 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.HistogramaDiario;
+import com.ricardococati.model.entities.HistogramaDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.HistogramaDiarioSQLUtil;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

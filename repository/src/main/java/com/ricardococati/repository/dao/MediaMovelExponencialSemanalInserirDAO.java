@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
 
 public interface MediaMovelExponencialSemanalInserirDAO {
 

@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.model.entities.CandlestickSemanal;
 import com.ricardococati.repository.dao.CandlestickSemanalInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +24,12 @@ public class CandlestickSemanalInserirDAOImpl implements CandlestickSemanalInser
   private final CandlestickSemanalInserirSQLUtil sqlUtil;
 
   @Override
-  public Boolean incluirCandlestickSemanal(CandlestickSemanalDTO semanal) {
+  public Boolean incluirCandlestickSemanal(CandlestickSemanal semanal) {
     int retorno = 0;
     if (isNull(semanal)
         || isNull(semanal.getDtpregini())
         || isNull(semanal.getDtpregfim())
-        || isNull(semanal.getCandlestickDTO().getCodneg())) {
+        || isNull(semanal.getCandlestick().getCodneg())) {
       throw new DataIntegrityViolationException("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     }
     try {

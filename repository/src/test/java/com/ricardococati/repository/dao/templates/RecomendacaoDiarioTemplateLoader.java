@@ -15,8 +15,8 @@ import static com.ricardococati.repository.dao.templates.RecomendacaoTemplateLoa
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.Recomendacao;
-import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.entities.Recomendacao;
+import com.ricardococati.model.entities.RecomendacaoDiario;
 import java.time.LocalDate;
 
 public class RecomendacaoDiarioTemplateLoader implements TemplateLoader {

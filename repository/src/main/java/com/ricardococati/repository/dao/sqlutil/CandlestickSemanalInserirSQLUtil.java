@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.model.entities.CandlestickSemanal;
 import com.ricardococati.repository.util.SQLAppender;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
@@ -46,18 +46,18 @@ public class CandlestickSemanalInserirSQLUtil {
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public MapSqlParameterSource toParameters(final CandlestickSemanalDTO candlestickSemanalDTO) {
+  public MapSqlParameterSource toParameters(final CandlestickSemanal candlestickSemanal) {
     return new MapSqlParameterSource()
-        .addValue("idCandleSemanal", candlestickSemanalDTO.getIdCandleSemanal())
-        .addValue("codneg", candlestickSemanalDTO.getCandlestickDTO().getCodneg())
-        .addValue("dtpregini", candlestickSemanalDTO.getDtpregini())
-        .addValue("dtpregfim", candlestickSemanalDTO.getDtpregfim())
-        .addValue("preabe", candlestickSemanalDTO.getCandlestickDTO().getPreabe())
-        .addValue("premax", candlestickSemanalDTO.getCandlestickDTO().getPremax())
-        .addValue("premin", candlestickSemanalDTO.getCandlestickDTO().getPremin())
-        .addValue("preult", candlestickSemanalDTO.getCandlestickDTO().getPreult())
-        .addValue("semana", candlestickSemanalDTO.getCandlestickDTO().getSemana())
-        .addValue("voltot", candlestickSemanalDTO.getCandlestickDTO().getVoltot());
+        .addValue("idCandleSemanal", candlestickSemanal.getIdCandleSemanal())
+        .addValue("codneg", candlestickSemanal.getCandlestick().getCodneg())
+        .addValue("dtpregini", candlestickSemanal.getDtpregini())
+        .addValue("dtpregfim", candlestickSemanal.getDtpregfim())
+        .addValue("preabe", candlestickSemanal.getCandlestick().getPreabe())
+        .addValue("premax", candlestickSemanal.getCandlestick().getPremax())
+        .addValue("premin", candlestickSemanal.getCandlestick().getPremin())
+        .addValue("preult", candlestickSemanal.getCandlestick().getPreult())
+        .addValue("semana", candlestickSemanal.getCandlestick().getSemana())
+        .addValue("voltot", candlestickSemanal.getCandlestick().getVoltot());
   }
 
 }

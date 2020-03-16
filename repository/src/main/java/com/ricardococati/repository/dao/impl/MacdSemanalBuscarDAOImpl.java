@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;

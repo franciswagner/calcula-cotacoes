@@ -1,6 +1,6 @@
 package com.ricardococati.service.impl;
 
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.entities.SplitInplit;
 import com.ricardococati.repository.dao.CandlestickSemanalAtualizarDAO;
 import com.ricardococati.repository.dao.CandlestickDiarioAtualizarDAO;
 import com.ricardococati.service.CandlestickAtualizarService;

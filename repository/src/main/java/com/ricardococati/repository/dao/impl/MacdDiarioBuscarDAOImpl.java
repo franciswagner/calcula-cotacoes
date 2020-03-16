@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.MacdDiario;
+import com.ricardococati.model.entities.MacdDiario;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.mapper.MacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MacdDiarioSQLUtil;

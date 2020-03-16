@@ -9,14 +9,13 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.HistogramaSemanal;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.HistogramaSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.HistogramaSemanalSQLUtil;
-import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import org.junit.Before;
 import org.junit.Rule;
@@ -95,13 +94,13 @@ public class HistogramaSemanalInserirDAOImplTest extends BaseJdbcTest {
         .gimme(HISTOGRAMA_SEMANAL_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
-  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
-    return from(CandlestickSemanalDTO.class)
+  private CandlestickSemanal buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanal.class)
         .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 }

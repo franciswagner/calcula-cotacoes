@@ -29,9 +29,9 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.HistogramaSemanal;
-import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.model.dto.SinalMacdSemanal;
+import com.ricardococati.model.entities.HistogramaSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
+import com.ricardococati.model.entities.SinalMacdSemanal;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdSemanalBuscarDAO;

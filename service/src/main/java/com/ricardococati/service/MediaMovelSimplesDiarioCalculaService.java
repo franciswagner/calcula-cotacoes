@@ -1,6 +1,6 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import java.util.List;
 
 public interface MediaMovelSimplesDiarioCalculaService {

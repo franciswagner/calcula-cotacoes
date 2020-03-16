@@ -1,6 +1,6 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.RecomendacaoSemanal;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
 import java.time.LocalDate;
 import java.util.List;
 

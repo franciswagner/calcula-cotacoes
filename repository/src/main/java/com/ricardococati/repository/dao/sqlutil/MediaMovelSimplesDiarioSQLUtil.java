@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.repository.util.SQLAppender;
 import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

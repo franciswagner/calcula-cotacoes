@@ -9,8 +9,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.SinalMacdDiario;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.SinalMacdDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -117,8 +117,8 @@ public class SinalMacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
         .gimme(SINAL_MACD_DIARIO_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 

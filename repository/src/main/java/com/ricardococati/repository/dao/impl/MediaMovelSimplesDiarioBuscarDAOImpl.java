@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;

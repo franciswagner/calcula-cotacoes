@@ -8,8 +8,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialDiarioSQLUtil;
@@ -136,8 +136,8 @@ public class MediaMovelExponencialDiarioInserirDAOImplTest extends BaseJdbcTest 
         .gimme(MEDIA_MOVEL_EXPONENCIAL_DIARIO_9PERIODOS_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 

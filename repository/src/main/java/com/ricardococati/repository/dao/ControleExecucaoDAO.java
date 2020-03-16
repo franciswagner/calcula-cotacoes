@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.ControleExecucao;
+import com.ricardococati.model.entities.ControleExecucao;
 
 public interface ControleExecucaoDAO {
 

@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
 import com.ricardococati.repository.dao.MacdSemanalInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
 import lombok.RequiredArgsConstructor;

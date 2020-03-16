@@ -2,12 +2,9 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.SinalMacdDiario;
+import com.ricardococati.model.entities.SinalMacdDiario;
 import com.ricardococati.repository.dao.SinalMacdDiarioInserirDAO;
-import com.ricardococati.repository.dao.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.SinalMacdDiarioSQLUtil;
-import com.ricardococati.repository.util.SQLAppender;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

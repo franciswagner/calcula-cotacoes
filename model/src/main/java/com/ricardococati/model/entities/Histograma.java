@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Macd {
+public class Histograma {
 
   private String codneg;
-  private BigDecimal premacd;
+  private BigDecimal prehist;
 
 }

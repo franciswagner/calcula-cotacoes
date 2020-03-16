@@ -1,7 +1,6 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.HistogramaSemanal;
-import java.util.List;
+import com.ricardococati.model.entities.HistogramaSemanal;
 
 public interface HistogramaSemanalInserirDAO {
 

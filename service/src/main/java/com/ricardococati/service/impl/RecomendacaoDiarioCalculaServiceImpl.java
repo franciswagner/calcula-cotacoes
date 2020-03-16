@@ -5,7 +5,7 @@ import static com.ricardococati.model.enums.Decisao.NEUTRO;
 import static com.ricardococati.model.enums.Decisao.VENDE;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.entities.RecomendacaoDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;

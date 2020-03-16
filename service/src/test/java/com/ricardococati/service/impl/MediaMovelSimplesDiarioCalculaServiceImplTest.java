@@ -27,9 +27,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
@@ -64,7 +63,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
   @Test
   public void executeByCodNegOk() {
     //given
-    List<CandlestickDiarioDTO> candlestickList = getListCandlestickDiario();
+    List<CandlestickDiario> candlestickList = getListCandlestickDiario();
     when(diarioService.buscaCandlestickDiarioPorCodNeg(any())).thenReturn(candlestickList);
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
@@ -114,8 +113,8 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
     assertTrue(returned.isEmpty());
   }
 
-  private List<CandlestickDiarioDTO> getListCandlestickDiario() {
-    return from(CandlestickDiarioDTO.class)
+  private List<CandlestickDiario> getListCandlestickDiario() {
+    return from(CandlestickDiario.class)
         .gimme(20, CANDLESTICK_DIARIO_DTO_VALID_001
             , CANDLESTICK_DIARIO_DTO_VALID_002
             , CANDLESTICK_DIARIO_DTO_VALID_003

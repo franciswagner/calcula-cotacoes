@@ -8,8 +8,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -17,7 +17,6 @@ import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
 import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -137,8 +136,8 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
         .gimme(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 

@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
 import java.time.LocalDate;
 import java.util.List;
 

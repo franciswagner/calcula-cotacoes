@@ -3,15 +3,14 @@ package com.ricardococati.repository.dao.impl;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001;
-import static com.ricardococati.repository.dao.templates.MediaMovelExponencial26PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -20,7 +19,6 @@ import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -134,8 +132,8 @@ public class MediaMovelExponencialDiarioBuscarDAOImplTest extends BaseJdbcTest {
         .gimme(MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 

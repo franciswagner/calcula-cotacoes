@@ -1,9 +1,7 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.util.SQLAppender;
-import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
@@ -46,17 +44,17 @@ public class CandlestickDiarioInserirSQLUtil {
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public MapSqlParameterSource toParameters(final CandlestickDiarioDTO candlestickDiarioDTO) {
+  public MapSqlParameterSource toParameters(final CandlestickDiario candlestickDiario) {
     return new MapSqlParameterSource()
-        .addValue("idCandleDiario", candlestickDiarioDTO.getIdCandleDiario())
-        .addValue("codneg", candlestickDiarioDTO.getCandlestickDTO().getCodneg())
-        .addValue("dtpreg", candlestickDiarioDTO.getDtpreg())
-        .addValue("preabe", candlestickDiarioDTO.getCandlestickDTO().getPreabe())
-        .addValue("premax", candlestickDiarioDTO.getCandlestickDTO().getPremax())
-        .addValue("premin", candlestickDiarioDTO.getCandlestickDTO().getPremin())
-        .addValue("preult", candlestickDiarioDTO.getCandlestickDTO().getPreult())
-        .addValue("semana", candlestickDiarioDTO.getCandlestickDTO().getSemana())
-        .addValue("voltot", candlestickDiarioDTO.getCandlestickDTO().getVoltot());
+        .addValue("idCandleDiario", candlestickDiario.getIdCandleDiario())
+        .addValue("codneg", candlestickDiario.getCandlestick().getCodneg())
+        .addValue("dtpreg", candlestickDiario.getDtpreg())
+        .addValue("preabe", candlestickDiario.getCandlestick().getPreabe())
+        .addValue("premax", candlestickDiario.getCandlestick().getPremax())
+        .addValue("premin", candlestickDiario.getCandlestick().getPremin())
+        .addValue("preult", candlestickDiario.getCandlestick().getPreult())
+        .addValue("semana", candlestickDiario.getCandlestick().getSemana())
+        .addValue("voltot", candlestickDiario.getCandlestick().getVoltot());
   }
 
 }

@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MacdSemanal {
+public class MacdDiario {
 
-  private Long idMacdSemanal;
-  private LocalDate dtpregini;
-  private LocalDate dtpregfim;
+  private Long idMacdDiario;
+  private LocalDate dtpreg;
   private Macd macd;
 
 }

@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -6,15 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecomendacaoSemanal {
+public class MediaMovelSimplesSemanal {
 
-  private Long idRecomendacaoSemanal;
+  private Long idMediaMovelSimplesSemanal;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
-  private Recomendacao recomendacao;
+  private MediaMovelSimples mediaMovelSimples;
 
 }

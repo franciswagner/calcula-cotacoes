@@ -2,8 +2,8 @@ package com.ricardococati.repository.dao.mapper;
 
 import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
-import com.ricardococati.model.dto.MediaMovelExponencial;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.MediaMovelExponencial;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Service;

@@ -34,8 +34,8 @@ import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.MediaMovelExponencial;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.MediaMovelExponencial;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import java.time.LocalDate;
 
 public class MediaMovelExponencial12PeriodosDiarioTemplateLoader implements TemplateLoader {

@@ -3,7 +3,7 @@ package com.ricardococati.repository.dao.utils;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.dao.impl.CandlestickDiarioInserirDAOImpl;
 import com.ricardococati.repository.dao.impl.GeraSequenciaDAOImpl;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 public class InserirDadosPrimariosDiarioUtil {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final CandlestickDiarioDTO candlestickDiarioDTO;
+    private final CandlestickDiario candlestickDiario;
     private final CandlestickDiarioInserirSQLUtil candlestickSQLUtil;
     private final GeraSequenciaDAOImpl genericDAO;
 
@@ -25,7 +25,7 @@ public class InserirDadosPrimariosDiarioUtil {
         when(candlestickSQLUtil.getInsert()).thenCallRealMethod();
         when(candlestickSQLUtil.toParameters(any())).thenCallRealMethod();
         when(genericDAO.getSequence(any())).thenReturn(1);
-        incluirDAO.insereCandlestickDiario(candlestickDiarioDTO);
+        incluirDAO.insereCandlestickDiario(candlestickDiario);
     }
 
 }

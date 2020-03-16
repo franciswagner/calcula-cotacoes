@@ -5,18 +5,16 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalAtualizarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -93,15 +91,15 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
         .build();
   }
 
-  private CandlestickSemanalDTO buildCandlestick(
+  private CandlestickSemanal buildCandlestick(
       final LocalDate dtpregini,
       final LocalDate dtpregfim
   ) {
-    return CandlestickSemanalDTO
+    return CandlestickSemanal
         .builder()
         .dtpregini(dtpregini)
         .dtpregfim(dtpregfim)
-        .candlestickDTO(CandlestickDTO
+        .candlestick(Candlestick
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
             .codneg("MGLU3")
@@ -109,13 +107,13 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
         ).build();
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+  private CandlestickDiario buildCandlestickDiarioDTO(
       final LocalDate dtpreg
   ) {
-    return CandlestickDiarioDTO
+    return CandlestickDiario
         .builder()
         .dtpreg(dtpreg)
-        .candlestickDTO(CandlestickDTO
+        .candlestick(Candlestick
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
             .codneg("MGLU3")

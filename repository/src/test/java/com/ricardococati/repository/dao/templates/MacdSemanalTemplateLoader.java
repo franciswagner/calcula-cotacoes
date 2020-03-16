@@ -15,8 +15,8 @@ import static com.ricardococati.repository.dao.templates.MacdTemplateLoader.MACD
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.Macd;
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.Macd;
+import com.ricardococati.model.entities.MacdSemanal;
 import java.time.LocalDate;
 
 public class MacdSemanalTemplateLoader implements TemplateLoader {

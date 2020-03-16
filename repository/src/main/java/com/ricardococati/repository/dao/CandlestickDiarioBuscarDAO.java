@@ -1,12 +1,12 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 import java.time.LocalDate;
 import java.util.List;
 
 public interface CandlestickDiarioBuscarDAO {
 
-  List<CandlestickDiarioDTO> buscaCandleDiarioPorCodNeg(final String codneg);
+  List<CandlestickDiario> buscaCandleDiarioPorCodNeg(final String codneg);
 
   List<String> buscaCandleDiarioPorDtPreg(final LocalDate dtpregLimite);
 

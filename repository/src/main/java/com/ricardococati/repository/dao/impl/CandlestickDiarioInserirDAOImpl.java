@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.dao.CandlestickDiarioInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +24,11 @@ public class CandlestickDiarioInserirDAOImpl implements CandlestickDiarioInserir
   private final CandlestickDiarioInserirSQLUtil sqlUtil;
 
   @Override
-  public Boolean insereCandlestickDiario(final CandlestickDiarioDTO diarioDTO) {
+  public Boolean insereCandlestickDiario(final CandlestickDiario diarioDTO) {
     int retorno = 0;
     if (isNull(diarioDTO)
         || isNull(diarioDTO.getDtpreg())
-        || isNull(diarioDTO.getCandlestickDTO().getCodneg())) {
+        || isNull(diarioDTO.getCandlestick().getCodneg())) {
       throw new DataIntegrityViolationException("Violação de chave na inserção de CANDLESTICK_DIARIO");
     }
     try {

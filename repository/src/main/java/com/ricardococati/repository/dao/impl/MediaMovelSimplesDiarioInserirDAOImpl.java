@@ -2,7 +2,7 @@ package com.ricardococati.repository.dao.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
 import lombok.RequiredArgsConstructor;

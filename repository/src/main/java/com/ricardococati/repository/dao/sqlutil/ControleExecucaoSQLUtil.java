@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.sqlutil;
 
-import com.ricardococati.model.dto.ControleExecucao;
+import com.ricardococati.model.entities.ControleExecucao;
 import com.ricardococati.repository.util.SQLAppender;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;

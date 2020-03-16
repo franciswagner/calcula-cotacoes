@@ -1,6 +1,6 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.CandlestickDiarioMessage;
+import com.ricardococati.model.entities.CandlestickDiarioMessage;
 
 public interface CandlestickDiarioInserirService {
 

@@ -5,7 +5,7 @@ import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBi
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.Histograma;
+import com.ricardococati.model.entities.Histograma;
 
 public class HistogramaTemplateLoader implements TemplateLoader {
 

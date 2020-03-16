@@ -5,7 +5,7 @@ import static com.ricardococati.model.enums.Decisao.NEUTRO;
 import static com.ricardococati.model.enums.Decisao.VENDE;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.RecomendacaoSemanal;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;

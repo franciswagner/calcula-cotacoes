@@ -47,8 +47,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioBuscarDAO;

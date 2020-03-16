@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
@@ -61,7 +61,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
-    CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), LocalDate.now());
+    CandlestickSemanal dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), LocalDate.now());
     //when
     Boolean retorno = target.incluirCandlestickSemanal(dto);
     //then
@@ -74,7 +74,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
-    CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, null, LocalDate.now());
+    CandlestickSemanal dto = buildCandlestick("MGLU3", 10.1, null, LocalDate.now());
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
@@ -87,7 +87,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
-    CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), null);
+    CandlestickSemanal dto = buildCandlestick("MGLU3", 10.1, LocalDate.now(), null);
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
@@ -100,24 +100,24 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     when(genericDAO.getSequence(any())).thenReturn(1);
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
-    CandlestickSemanalDTO dto = buildCandlestick("MGLU3", 10.1, null, null);
+    CandlestickSemanal dto = buildCandlestick("MGLU3", 10.1, null, null);
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
     target.incluirCandlestickSemanal(dto);
   }
 
-  private CandlestickSemanalDTO buildCandlestick(
+  private CandlestickSemanal buildCandlestick(
       final String codneg,
       final Double preult,
       final LocalDate dtpregini,
       final LocalDate dtpregfim
   ) {
-    return CandlestickSemanalDTO
+    return CandlestickSemanal
         .builder()
         .dtpregini(dtpregini)
         .dtpregfim(dtpregfim)
-        .candlestickDTO(CandlestickDTO
+        .candlestick(Candlestick
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
             .codneg(codneg)
@@ -125,13 +125,13 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
         ).build();
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+  private CandlestickDiario buildCandlestickDiarioDTO(
       final LocalDate dtpreg
   ) {
-    return CandlestickDiarioDTO
+    return CandlestickDiario
         .builder()
         .dtpreg(dtpreg)
-        .candlestickDTO(CandlestickDTO
+        .candlestick(Candlestick
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
             .codneg("MGLU3")

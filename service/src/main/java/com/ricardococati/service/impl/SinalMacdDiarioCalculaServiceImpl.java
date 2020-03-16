@@ -4,17 +4,16 @@ import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValu
 import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.Macd;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.SinalMacd;
-import com.ricardococati.model.dto.SinalMacdDiario;
+import com.ricardococati.model.entities.Macd;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.SinalMacd;
+import com.ricardococati.model.entities.SinalMacdDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioInserirDAO;
 import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdDiarioCalculaService;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

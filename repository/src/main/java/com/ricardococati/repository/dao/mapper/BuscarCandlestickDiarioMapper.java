@@ -2,8 +2,8 @@ package com.ricardococati.repository.dao.mapper;
 
 import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ public class BuscarCandlestickDiarioMapper {
     }
   }
 
-  public CandlestickDiarioDTO mapper(ResultSet rs) {
+  public CandlestickDiario mapper(ResultSet rs) {
     try {
-      return CandlestickDiarioDTO
+      return CandlestickDiario
           .builder()
           .idCandleDiario(rs.getLong("id_candle_diario"))
           .dtpreg(retornaDataSeResultSetContemDataSenaoRetornaNulo(rs, "dtpreg"))
-          .candlestickDTO(
-              CandlestickDTO
+          .candlestick(
+              Candlestick
                   .builder()
                   .codneg(rs.getString("codneg"))
                   .preabe(rs.getBigDecimal("preabe"))

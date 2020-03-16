@@ -4,11 +4,11 @@ import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValu
 import static com.ricardococati.service.util.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.MediaMovelExponencial;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.MediaMovelExponencial;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MediaMovelExponencialDiarioInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesDiarioBuscarDAO;
@@ -16,7 +16,6 @@ import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.MediaMovelExponencialDiarioCalculaService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
   @Override
   public List<MediaMovelExponencialDiario> executeByCodNeg(String codneg) {
     log.info("Código de negociação: " + codneg);
-    List<CandlestickDiarioDTO> candlestickList =
+    List<CandlestickDiario> candlestickList =
         diarioService.buscaCandlestickDiarioPorCodNeg(
             buildCandlestickDiarioDTO(codneg));
     List<MediaMovelExponencialDiario> listMME =
@@ -65,7 +64,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
 
   private List<MediaMovelExponencialDiario> calculaMediaMovelExponencialPorPeriodo(
       final String codneg,
-      List<CandlestickDiarioDTO> candlestickList) {
+      List<CandlestickDiario> candlestickList) {
     List<MediaMovelExponencialDiario> mediaMovelExponencialList = new ArrayList<>();
     QuantidadePeriodo
         .getListQuantidadePeriodo()
@@ -81,7 +80,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
   }
 
   public List<MediaMovelExponencialDiario> calculaMediaMovelExponencial(
-      int periodo, List<CandlestickDiarioDTO> candlestickList) {
+      int periodo, List<CandlestickDiario> candlestickList) {
     List<MediaMovelExponencialDiario> listReturn = new ArrayList<>();
     int qtdPeriodos = candlestickList.size();
     Integer posicao = 0;
@@ -93,10 +92,10 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
         continue;
       }
       listReturn.add(buildMediaMovelExponencial(
-          candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+          candlestickList.get(indice).getCandlestick().getCodneg(),
           candlestickList.get(indice).getDtpreg(),
           periodo,
-          calculaMME(periodo, candlestickList.get(indice).getCandlestickDTO().getPreult(),
+          calculaMME(periodo, candlestickList.get(indice).getCandlestick().getPreult(),
               listReturn.get(posicao - 1).getMediaMovelExponencial().getPremedult()))
       );
       posicao++;
@@ -106,13 +105,13 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
 
   private MediaMovelSimplesDiario getPrimeiraMedia(
       final int periodo,
-      final List<CandlestickDiarioDTO> candlestickList,
+      final List<CandlestickDiario> candlestickList,
       final int indice) {
     MediaMovelSimplesDiario mediaMovelSimplesDiario = null;
     try{
       mediaMovelSimplesDiario = mediaMovelSimplesDAO
           .buscaMediaSimplesPorCodNegPeriodoDtPreg(
-              candlestickList.get(indice).getCandlestickDTO().getCodneg(),
+              candlestickList.get(indice).getCandlestick().getCodneg(),
               periodo,
               candlestickList.get(indice).getDtpreg());
     } catch (Exception exc){
@@ -134,9 +133,9 @@ public class MediaMovelExponencialDiarioCalculaServiceImpl
     );
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO(final String codneg) {
-    return CandlestickDiarioDTO.builder()
-        .candlestickDTO(CandlestickDTO.builder().codneg(codneg).build())
+  private CandlestickDiario buildCandlestickDiarioDTO(final String codneg) {
+    return CandlestickDiario.builder()
+        .candlestick(Candlestick.builder().codneg(codneg).build())
         .build();
   }
 

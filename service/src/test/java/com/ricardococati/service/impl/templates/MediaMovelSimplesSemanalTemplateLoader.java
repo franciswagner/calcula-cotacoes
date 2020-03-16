@@ -15,8 +15,8 @@ import static com.ricardococati.service.impl.templates.MediaMovelSimplesTemplate
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.MediaMovelSimples;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.MediaMovelSimples;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
 import java.time.LocalDate;
 
 public class MediaMovelSimplesSemanalTemplateLoader implements TemplateLoader {

@@ -1,7 +1,7 @@
 package com.ricardococati.controller;
 
-import com.ricardococati.model.dto.RecomendacaoDiario;
-import com.ricardococati.model.dto.RecomendacaoSemanal;
+import com.ricardococati.model.entities.RecomendacaoDiario;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
 import com.ricardococati.service.CalculaGeralDiarioService;
 import com.ricardococati.service.CalculaGeralSemanalService;
 import io.swagger.annotations.Api;

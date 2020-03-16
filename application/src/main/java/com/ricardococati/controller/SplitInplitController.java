@@ -1,7 +1,7 @@
 package com.ricardococati.controller;
 
 import com.ricardococati.controller.converter.SplitInplitConverter;
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.entities.SplitInplit;
 import com.ricardococati.service.CandlestickAtualizarService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

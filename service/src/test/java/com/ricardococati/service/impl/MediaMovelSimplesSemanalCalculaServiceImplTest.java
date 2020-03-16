@@ -27,8 +27,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalInserirDAO;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.converter.MediaMovelSimplesConverter;
@@ -63,7 +63,7 @@ public class MediaMovelSimplesSemanalCalculaServiceImplTest {
   @Test
   public void executeByCodNegOk() {
     //given
-    List<CandlestickSemanalDTO> candlestickList = getListCandlestickSemanal();
+    List<CandlestickSemanal> candlestickList = getListCandlestickSemanal();
     when(diarioService.buscaCandlestickSemanalPorCodNeg(any())).thenReturn(candlestickList);
     when(converteMediaMovelSimples
         .converterCandlestickSemanalToMediaMovelSimples(any()))
@@ -113,8 +113,8 @@ public class MediaMovelSimplesSemanalCalculaServiceImplTest {
     assertTrue(returned.isEmpty());
   }
 
-  private List<CandlestickSemanalDTO> getListCandlestickSemanal() {
-    return from(CandlestickSemanalDTO.class)
+  private List<CandlestickSemanal> getListCandlestickSemanal() {
+    return from(CandlestickSemanal.class)
         .gimme(20, CANDLESTICK_SEMANAL_DTO_VALID_001
             , CANDLESTICK_SEMANAL_DTO_VALID_002
             , CANDLESTICK_SEMANAL_DTO_VALID_003

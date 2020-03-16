@@ -1,8 +1,8 @@
 package com.ricardococati.service.impl;
 
-import com.ricardococati.model.dto.ControleExecucao;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.ControleExecucao;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.MacdSemanal;
 import com.ricardococati.repository.dao.CandlestickDiarioBuscarDAO;
 import com.ricardococati.repository.dao.CandlestickSemanalBuscarDAO;
 import com.ricardococati.repository.dao.ControleExecucaoDAO;

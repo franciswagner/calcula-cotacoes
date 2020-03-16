@@ -5,7 +5,7 @@ import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBi
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.CandlestickDTO;
+import com.ricardococati.model.entities.Candlestick;
 
 public class CandlestickDTOTemplateLoader implements TemplateLoader {
 
@@ -32,7 +32,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
 
   @Override
   public void load() {
-    Fixture.of(CandlestickDTO.class)
+    Fixture.of(Candlestick.class)
         .addTemplate(CANDLESTICK_DTO_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(9.1));

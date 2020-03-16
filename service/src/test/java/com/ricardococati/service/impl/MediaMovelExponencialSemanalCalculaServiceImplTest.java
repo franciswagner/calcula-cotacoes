@@ -21,23 +21,21 @@ import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemp
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_018;
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_019;
 import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_020;
-import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
-import com.ricardococati.model.dto.MediaMovelSimples;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelSimples;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalInserirDAO;
 import com.ricardococati.repository.dao.MediaMovelSimplesSemanalBuscarDAO;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.util.BigDecimalCustomizado;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
@@ -72,7 +70,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImplTest {
   @Test
   public void executeByCodNeg() throws Exception {
     //given
-    List<CandlestickSemanalDTO> candlestickList = getListCandlestickSemanal();
+    List<CandlestickSemanal> candlestickList = getListCandlestickSemanal();
     when(semanalService.buscaCandlestickSemanalPorCodNeg(any())).thenReturn(candlestickList);
     final int periodo = 9;
     when(mediaMovelSimplesDAO.buscaMediaSimplesPorCodNegPeriodoDtPreg(any(), any(), any(), any()))
@@ -110,8 +108,8 @@ public class MediaMovelExponencialSemanalCalculaServiceImplTest {
     assertTrue(returned.isEmpty());
   }
 
-  private List<CandlestickSemanalDTO> getListCandlestickSemanal() {
-    return from(CandlestickSemanalDTO.class)
+  private List<CandlestickSemanal> getListCandlestickSemanal() {
+    return from(CandlestickSemanal.class)
         .gimme(20, CANDLESTICK_SEMANAL_DTO_VALID_001
             , CANDLESTICK_SEMANAL_DTO_VALID_002
             , CANDLESTICK_SEMANAL_DTO_VALID_003

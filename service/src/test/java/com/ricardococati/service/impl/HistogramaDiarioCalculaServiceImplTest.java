@@ -29,9 +29,9 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.HistogramaDiario;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.SinalMacdDiario;
+import com.ricardococati.model.entities.HistogramaDiario;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.SinalMacdDiario;
 import com.ricardococati.repository.dao.HistogramaDiarioInserirDAO;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.SinalMacdDiarioBuscarDAO;

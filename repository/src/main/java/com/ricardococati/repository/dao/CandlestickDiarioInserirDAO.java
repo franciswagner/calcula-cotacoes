@@ -1,9 +1,9 @@
 package com.ricardococati.repository.dao;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 
 public interface CandlestickDiarioInserirDAO {
 
-  Boolean insereCandlestickDiario(final CandlestickDiarioDTO candlestickDiarioDTO);
+  Boolean insereCandlestickDiario(final CandlestickDiario candlestickDiario);
 
 }

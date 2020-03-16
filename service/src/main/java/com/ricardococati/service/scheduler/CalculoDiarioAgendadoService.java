@@ -3,7 +3,7 @@ package com.ricardococati.service.scheduler;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.ControleExecucao;
+import com.ricardococati.model.entities.ControleExecucao;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.HistogramaDiarioCalculaService;
 import com.ricardococati.service.MACDDiarioCalculaService;

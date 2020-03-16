@@ -1,6 +1,6 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.HistogramaDiario;
+import com.ricardococati.model.entities.HistogramaDiario;
 import java.util.List;
 
 public interface HistogramaDiarioCalculaService {

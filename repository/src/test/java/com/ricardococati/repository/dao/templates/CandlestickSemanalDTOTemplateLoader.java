@@ -24,9 +24,8 @@ import static com.ricardococati.repository.dao.templates.CandlestickDTOTemplateL
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickSemanal;
 import java.time.LocalDate;
 
 public class CandlestickSemanalDTOTemplateLoader implements TemplateLoader {
@@ -55,126 +54,126 @@ public class CandlestickSemanalDTOTemplateLoader implements TemplateLoader {
 
   @Override
   public void load() {
-    Fixture.of(CandlestickSemanalDTO.class)
+    Fixture.of(CandlestickSemanal.class)
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_001, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate);
           add("dtpregfim", localDate.plusDays(2));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_001));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_001));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_002, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(1));
           add("dtpregfim", localDate.plusDays(2));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_002));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_002));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_003, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(2));
           add("dtpregfim", localDate.plusDays(3));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_003));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_003));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_004, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(3));
           add("dtpregfim", localDate.plusDays(4));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_004));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_004));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_005, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(4));
           add("dtpregfim", localDate.plusDays(5));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_005));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_005));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_006, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(5));
           add("dtpregfim", localDate.plusDays(6));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_006));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_006));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_007, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(6));
           add("dtpregfim", localDate.plusDays(7));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_007));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_007));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_008, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(7));
           add("dtpregfim", localDate.plusDays(8));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_008));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_008));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_009, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(8));
           add("dtpregfim", localDate.plusDays(9));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_009));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_009));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_010, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(9));
           add("dtpregfim", localDate.plusDays(10));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_010));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_010));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_011, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(10));
           add("dtpregfim", localDate.plusDays(11));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_011));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_011));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_012, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(11));
           add("dtpregfim", localDate.plusDays(12));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_012));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_012));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_013, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(12));
           add("dtpregfim", localDate.plusDays(13));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_013));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_013));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_014, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(13));
           add("dtpregfim", localDate.plusDays(14));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_014));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_014));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_015, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(14));
           add("dtpregfim", localDate.plusDays(15));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_015));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_015));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_016, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(15));
           add("dtpregfim", localDate.plusDays(16));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_016));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_016));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_017, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(16));
           add("dtpregfim", localDate.plusDays(17));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_017));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_017));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_018, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(17));
           add("dtpregfim", localDate.plusDays(18));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_018));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_018));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_019, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(18));
           add("dtpregfim", localDate.plusDays(19));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_019));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_019));
         }})
         .addTemplate(CANDLESTICK_SEMANAL_DTO_VALID_020, new Rule() {{
           add("idCandleSemanal", random(Long.class, range(1L, 200L)));
           add("dtpregini", localDate.plusDays(19));
           add("dtpregfim", localDate.plusDays(20));
-          add("candlestickDTO", one(CandlestickDTO.class, CANDLESTICK_DTO_VALID_020));
+          add("candlestick", one(Candlestick.class, CANDLESTICK_DTO_VALID_020));
         }})
     ;
   }

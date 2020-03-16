@@ -1,6 +1,6 @@
 package com.ricardococati.repository.dao.impl;
 
-import com.ricardococati.model.dto.SplitInplit;
+import com.ricardococati.model.entities.SplitInplit;
 import com.ricardococati.repository.dao.CandlestickDiarioAtualizarDAO;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioAtualizarSQLUtil;
 import lombok.RequiredArgsConstructor;

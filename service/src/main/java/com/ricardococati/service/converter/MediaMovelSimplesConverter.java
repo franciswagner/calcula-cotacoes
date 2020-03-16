@@ -1,10 +1,10 @@
 package com.ricardococati.service.converter;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MediaMovelSimples;
-import com.ricardococati.model.dto.MediaMovelSimplesDiario;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MediaMovelSimples;
+import com.ricardococati.model.entities.MediaMovelSimplesDiario;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,20 +13,20 @@ import org.springframework.stereotype.Component;
 public class MediaMovelSimplesConverter {
 
   public MediaMovelSimplesDiario converterCandlestickDiarioToMediaMovelSimples(
-      CandlestickDiarioDTO candlestickDiario) {
+      CandlestickDiario candlestickDiario) {
     return MediaMovelSimplesDiario
         .builder()
         .dtpreg(candlestickDiario.getDtpreg())
         .mediaMovelSimples(
             MediaMovelSimples
                 .builder()
-                .codneg(candlestickDiario.getCandlestickDTO().getCodneg())
+                .codneg(candlestickDiario.getCandlestick().getCodneg())
                 .build())
         .build();
   }
 
   public MediaMovelSimplesSemanal converterCandlestickSemanalToMediaMovelSimples(
-      CandlestickSemanalDTO candlestickSemanal) {
+      CandlestickSemanal candlestickSemanal) {
     return MediaMovelSimplesSemanal
         .builder()
         .dtpregini(candlestickSemanal.getDtpregini())
@@ -34,7 +34,7 @@ public class MediaMovelSimplesConverter {
         .mediaMovelSimples(
             MediaMovelSimples
                 .builder()
-                .codneg(candlestickSemanal.getCandlestickDTO().getCodneg())
+                .codneg(candlestickSemanal.getCandlestick().getCodneg())
                 .build())
         .build();
   }

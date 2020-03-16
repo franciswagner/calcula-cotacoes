@@ -10,9 +10,9 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -113,13 +113,13 @@ public class MacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
         .gimme(MACD_SEMANAL_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
-  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
-    return from(CandlestickSemanalDTO.class)
+  private CandlestickSemanal buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanal.class)
         .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 

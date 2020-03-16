@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SinalMacdSemanal {
+public class CandlestickSemanal {
 
-  private Long idSinalMacdSemanal;
+  private Long idCandleSemanal;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
-  private SinalMacd sinalMacd;
+  private Candlestick candlestick;
 
 }

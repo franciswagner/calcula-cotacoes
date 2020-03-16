@@ -1,6 +1,6 @@
 package com.ricardococati.service.impl;
 
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.entities.CandlestickDiario;
 import com.ricardococati.repository.dao.CandlestickDiarioBuscarDAO;
 import com.ricardococati.service.CandlestickDiarioBuscarService;
 import com.ricardococati.service.converter.CandlestickMessageConverter;
@@ -21,9 +21,9 @@ public class CandlestickDiarioBuscarServiceImpl implements CandlestickDiarioBusc
   private final CandlestickMessageConverter converter;
 
   @Override
-  public List<CandlestickDiarioDTO> buscaCandlestickDiarioPorCodNeg(
-      final CandlestickDiarioDTO candlestickDiarioDTO) {
-    return diarioDAO.buscaCandleDiarioPorCodNeg(candlestickDiarioDTO.getCandlestickDTO().getCodneg());
+  public List<CandlestickDiario> buscaCandlestickDiarioPorCodNeg(
+      final CandlestickDiario candlestickDiario) {
+    return diarioDAO.buscaCandleDiarioPorCodNeg(candlestickDiario.getCandlestick().getCodneg());
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -10,12 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MediaMovelExponencialSemanal {
+public class MacdSemanal {
 
-  private static final long serialVersionUID = 505011356059052924L;
-  private Long idMediaMovelExponencialSemanal;
+  private Long idMacdSemanal;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
-  private MediaMovelExponencial mediaMovelExponencial;
+  private Macd macd;
 
 }

@@ -2,8 +2,8 @@ package com.ricardococati.repository.dao.mapper;
 
 import static com.ricardococati.repository.util.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
-import com.ricardococati.model.dto.Recomendacao;
-import com.ricardococati.model.dto.RecomendacaoDiario;
+import com.ricardococati.model.entities.Recomendacao;
+import com.ricardococati.model.entities.RecomendacaoDiario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Service;

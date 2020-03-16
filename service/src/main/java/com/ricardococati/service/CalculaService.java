@@ -1,8 +1,8 @@
 package com.ricardococati.service;
 
-import com.ricardococati.model.dto.ControleExecucao;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.MacdSemanal;
+import com.ricardococati.model.entities.ControleExecucao;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.MacdSemanal;
 import java.util.List;
 
 public interface CalculaService {

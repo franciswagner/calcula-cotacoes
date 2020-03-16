@@ -4,16 +4,15 @@ import static br.com.six2six.fixturefactory.Fixture.from;
 import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosSemanalTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001;
-import static com.ricardococati.repository.dao.templates.MediaMovelExponencial26PeriodosSemanalTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_SEMANAL_26PERIODOS_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
@@ -23,7 +22,6 @@ import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -142,13 +140,13 @@ public class MediaMovelExponencialSemanalBuscarDAOImplTest extends BaseJdbcTest 
         .gimme(MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001);
   }
 
-  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
-    return from(CandlestickDiarioDTO.class)
+  private CandlestickDiario buildCandlestickDiarioDTO() {
+    return from(CandlestickDiario.class)
         .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
-  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
-    return from(CandlestickSemanalDTO.class)
+  private CandlestickSemanal buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanal.class)
         .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 

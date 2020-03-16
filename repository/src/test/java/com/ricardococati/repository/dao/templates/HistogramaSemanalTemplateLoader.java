@@ -15,8 +15,8 @@ import static com.ricardococati.repository.dao.templates.HistogramaTemplateLoade
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.Histograma;
-import com.ricardococati.model.dto.HistogramaSemanal;
+import com.ricardococati.model.entities.Histograma;
+import com.ricardococati.model.entities.HistogramaSemanal;
 import java.time.LocalDate;
 
 public class HistogramaSemanalTemplateLoader implements TemplateLoader {

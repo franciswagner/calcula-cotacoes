@@ -1,4 +1,4 @@
-package com.ricardococati.model.dto;
+package com.ricardococati.model.entities;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -6,16 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MediaMovelSimplesSemanal {
+public class SinalMacdSemanal {
 
-  private Long idMediaMovelSimplesSemanal;
+  private Long idSinalMacdSemanal;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
-  private MediaMovelSimples mediaMovelSimples;
+  private SinalMacd sinalMacd;
 
 }

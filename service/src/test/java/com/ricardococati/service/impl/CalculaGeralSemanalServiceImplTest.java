@@ -49,12 +49,12 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.ricardococati.model.dto.HistogramaSemanal;
-import com.ricardococati.model.dto.MacdSemanal;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
-import com.ricardococati.model.dto.MediaMovelSimplesSemanal;
-import com.ricardococati.model.dto.RecomendacaoSemanal;
-import com.ricardococati.model.dto.SinalMacdSemanal;
+import com.ricardococati.model.entities.HistogramaSemanal;
+import com.ricardococati.model.entities.MacdSemanal;
+import com.ricardococati.model.entities.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.MediaMovelSimplesSemanal;
+import com.ricardococati.model.entities.RecomendacaoSemanal;
+import com.ricardococati.model.entities.SinalMacdSemanal;
 import com.ricardococati.service.HistogramaSemanalCalculaService;
 import com.ricardococati.service.MACDSemanalCalculaService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;

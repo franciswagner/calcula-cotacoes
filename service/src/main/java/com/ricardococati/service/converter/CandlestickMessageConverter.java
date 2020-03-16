@@ -2,11 +2,11 @@ package com.ricardococati.service.converter;
 
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.CandlestickDTO;
-import com.ricardococati.model.dto.CandlestickDiarioDTO;
-import com.ricardococati.model.dto.CandlestickDiarioMessage;
-import com.ricardococati.model.dto.CandlestickSemanalDTO;
-import com.ricardococati.model.dto.CandlestickSemanalMessage;
+import com.ricardococati.model.entities.Candlestick;
+import com.ricardococati.model.entities.CandlestickDiario;
+import com.ricardococati.model.entities.CandlestickDiarioMessage;
+import com.ricardococati.model.entities.CandlestickSemanal;
+import com.ricardococati.model.entities.CandlestickSemanalMessage;
 import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +15,12 @@ public class CandlestickMessageConverter {
 
   private static final boolean DEFAULT_VALUE = false;
 
-  public CandlestickDiarioDTO convert(CandlestickDiarioMessage message) {
-    return CandlestickDiarioDTO
+  public CandlestickDiario convert(CandlestickDiarioMessage message) {
+    return CandlestickDiario
         .builder()
         .dtpreg(convertStringToLocalDate(message.getDtpreg()))
-        .candlestickDTO(
-            CandlestickDTO
+        .candlestick(
+            Candlestick
                 .builder()
                 .codneg(message.getCodneg())
                 .preabe(message.getPreabe())
@@ -41,13 +41,13 @@ public class CandlestickMessageConverter {
     return parse;
   }
 
-  public CandlestickSemanalDTO convertSemanal(CandlestickSemanalMessage message) {
-    return CandlestickSemanalDTO
+  public CandlestickSemanal convertSemanal(CandlestickSemanalMessage message) {
+    return CandlestickSemanal
         .builder()
         .dtpregini(convertStringToLocalDate(message.getDtpregini()))
         .dtpregfim(convertStringToLocalDate(message.getDtpregfim()))
-        .candlestickDTO(
-            CandlestickDTO
+        .candlestick(
+            Candlestick
                 .builder()
                 .codneg(message.getCodneg())
                 .preabe(message.getPreabe())

@@ -2,10 +2,9 @@ package com.ricardococati.service.impl;
 
 import static java.util.Objects.nonNull;
 
-import com.ricardococati.model.dto.Macd;
-import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.MediaMovelExponencialDiario;
-import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
+import com.ricardococati.model.entities.Macd;
+import com.ricardococati.model.entities.MacdDiario;
+import com.ricardococati.model.entities.MediaMovelExponencialDiario;
 import com.ricardococati.model.enums.QuantidadePeriodo;
 import com.ricardococati.repository.dao.MacdDiarioBuscarDAO;
 import com.ricardococati.repository.dao.MacdDiarioInserirDAO;

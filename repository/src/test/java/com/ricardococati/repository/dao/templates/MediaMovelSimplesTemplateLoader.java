@@ -5,7 +5,7 @@ import static com.ricardococati.repository.util.BigDecimalCustomizado.getValueBi
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.ricardococati.model.dto.MediaMovelSimples;
+import com.ricardococati.model.entities.MediaMovelSimples;
 
 public class MediaMovelSimplesTemplateLoader implements TemplateLoader {
 
