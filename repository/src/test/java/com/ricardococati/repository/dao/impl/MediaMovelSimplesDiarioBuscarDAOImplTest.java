@@ -1,20 +1,22 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelSimplesDiarioTemplateLoader.MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001;
-import static com.ricardococati.repository.dao.templates.MediaMovelSimplesDiarioTemplateLoader.MEDIA_MOVEL_SIMPLES_DIARIO_VALID_002;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelSimplesDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelSimplesDiarioMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelSimplesDiarioSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,6 +41,8 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private GeraSequenciaDAOImpl genericDAO;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirSQLUtil;
 
   @Before
   public void setUp() throws Exception {
@@ -48,6 +52,13 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
         sqlUtil,
         mapper
     );
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(),
+        incluirSQLUtil,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
     incluirMMSAntesDeExecutarTestes();
   }
 
@@ -61,10 +72,7 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    mmsPeriodosList()
-        .stream()
-        .filter(Objects::nonNull)
-        .forEach(incluirDAO::incluirMediaMovelSimples);
+    incluirDAO.incluirMediaMovelSimples(mediaMovelSimples());
   }
 
   @Test
@@ -83,24 +91,6 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
     assertThat(result.getMediaMovelSimples().getCodneg()).isNotNull().isEqualTo("MGLU3");
     assertThat(result.getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
     assertThat(result.getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.11"));
-  }
-
-  @Test
-  public void buscaMediaSimplesPorCodNegPeriodoDtPregDia17() throws Exception {
-    //given
-    when(sqlUtil.getSelectByCodNegPeriodoDtPreg()).thenCallRealMethod();
-    when(sqlUtil.toParametersSelectByCodNegPeriodoDtPreg(any(), any(), any())).thenCallRealMethod();
-    when(mapper.mapper(any())).thenCallRealMethod();
-    //when
-    final LocalDate dtpreg = LocalDate.of(1978, 2, 17);
-    MediaMovelSimplesDiario result =
-        target.buscaMediaSimplesPorCodNegPeriodoDtPreg("MGLU3", 9, dtpreg);
-    //then
-    assertThat(result).isNotNull();
-    assertThat(result.getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 17));
-    assertThat(result.getMediaMovelSimples().getCodneg()).isNotNull().isEqualTo("MGLU3");
-    assertThat(result.getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(result.getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("10.90"));
   }
 
   @Test
@@ -142,10 +132,14 @@ public class MediaMovelSimplesDiarioBuscarDAOImplTest extends BaseJdbcTest {
     target.buscaMediaSimplesPorCodNegPeriodoDtPreg("MGLU3", 9, dtpreg);
   }
 
-  private List<MediaMovelSimplesDiario> mmsPeriodosList(){
+  private MediaMovelSimplesDiario mediaMovelSimples(){
     return from(MediaMovelSimplesDiario.class)
-        .gimme(2,MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001,
-            MEDIA_MOVEL_SIMPLES_DIARIO_VALID_002);
+        .gimme(MEDIA_MOVEL_SIMPLES_DIARIO_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
 }

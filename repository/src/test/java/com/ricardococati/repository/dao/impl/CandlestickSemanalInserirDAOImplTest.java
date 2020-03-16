@@ -6,11 +6,12 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,6 +32,8 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
   private GeraSequenciaDAOImpl genericDAO;
   @Mock
   private CandlestickSemanalInserirSQLUtil sqlUtil;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirDiarioSQLUtil;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
@@ -41,6 +44,15 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
         genericDAO,
         sqlUtil
     );
+    InserirDadosPrimariosSemanalUtil util = new InserirDadosPrimariosSemanalUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestick("MGLU3", 10.1, LocalDate.now(), LocalDate.now()),
+        sqlUtil,
+        genericDAO,
+        incluirDiarioSQLUtil,
+        buildCandlestickDiarioDTO(LocalDate.now())
+    );
+    util.incluiCandleDiarioAntesDeExecutarTestes();
   }
 
   @Test
@@ -66,7 +78,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
-    Boolean retorno = target.incluirCandlestickSemanal(dto);
+    target.incluirCandlestickSemanal(dto);
   }
 
   @Test
@@ -79,7 +91,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
-    Boolean retorno = target.incluirCandlestickSemanal(dto);
+    target.incluirCandlestickSemanal(dto);
   }
 
   @Test
@@ -92,7 +104,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
     this.thrown.expectMessage("Violação de chave na inserção de CANDLESTICK_SEMANAL");
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
-    Boolean retorno = target.incluirCandlestickSemanal(dto);
+    target.incluirCandlestickSemanal(dto);
   }
 
   private CandlestickSemanalDTO buildCandlestick(
@@ -109,6 +121,20 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
             .codneg(codneg)
+            .build()
+        ).build();
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+      final LocalDate dtpreg
+  ) {
+    return CandlestickDiarioDTO
+        .builder()
+        .dtpreg(dtpreg)
+        .candlestickDTO(CandlestickDTO
+            .builder()
+            .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
+            .codneg("MGLU3")
             .build()
         ).build();
   }

@@ -12,6 +12,7 @@ import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioAtualizarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,11 +36,17 @@ public class CandlestickDiarioAtualizarDAOImplTest extends BaseJdbcTest {
   private LocalDate dtpreg;
 
   @Before
-  public void setUp() {
+  public void setUp() throws Exception {
     this.countInteger = 0;
     this.dtpreg = LocalDate.of(1978, 2, 16);
     target = new CandlestickDiarioAtualizarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
-    incluiCandleAntesDeExecutarTestes();
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(dtpreg),
+        incluirSQLUtil,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
   }
 
   private void incluiCandleAntesDeExecutarTestes() {

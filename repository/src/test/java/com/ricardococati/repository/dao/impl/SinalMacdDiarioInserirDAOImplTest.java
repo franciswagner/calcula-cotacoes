@@ -1,15 +1,19 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.SinalMacdDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.SinalMacdDiarioSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -31,6 +35,8 @@ public class SinalMacdDiarioInserirDAOImplTest extends BaseJdbcTest {
   private SinalMacdDiarioSQLUtil sqlUtil;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirSQLUtil;
 
   @Before
   public void setUp() throws Exception {
@@ -40,6 +46,13 @@ public class SinalMacdDiarioInserirDAOImplTest extends BaseJdbcTest {
         genericDAO,
         sqlUtil
     );
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(),
+        incluirSQLUtil,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
   }
 
   @Test
@@ -121,6 +134,11 @@ public class SinalMacdDiarioInserirDAOImplTest extends BaseJdbcTest {
   private SinalMacdDiario buildSinalMacdDiario() {
     return from(SinalMacdDiario.class)
         .gimme(SINAL_MACD_DIARIO_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
 }

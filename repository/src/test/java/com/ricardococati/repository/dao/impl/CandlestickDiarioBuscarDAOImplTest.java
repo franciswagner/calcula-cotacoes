@@ -12,6 +12,8 @@ import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.BuscarCandlestickDiarioMapper;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioBuscarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -39,21 +41,16 @@ public class CandlestickDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private LocalDate dtpreg;
 
   @Before
-  public void setUp() {
+  public void setUp() throws Exception {
     this.dtpreg = LocalDate.now();
     target = new CandlestickDiarioBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
-    incluiCandleAntesDeExecutarTestes();
-  }
-
-  private void incluiCandleAntesDeExecutarTestes() {
-    CandlestickDiarioInserirDAOImpl incluirDAO = new CandlestickDiarioInserirDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
-    when(incluirSQLUtil.getInsert()).thenCallRealMethod();
-    when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
-    when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.insereCandlestickDiario(
-        buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg)
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO("MGLU3", 10.1, dtpreg),
+        incluirSQLUtil,
+        genericDAO
     );
+    util.incluiCandleAntesDeExecutarTestes();
   }
 
   @Test

@@ -6,12 +6,15 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.ricardococati.model.dto.CandlestickDTO;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.SplitInplit;
 import com.ricardococati.model.enums.OperacaoSplitInplit;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalAtualizarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -32,27 +35,27 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
   @Mock
   private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
   @Mock
+  private CandlestickDiarioInserirSQLUtil incluirDiarioSQLUtil;
+  @Mock
   private GeraSequenciaDAOImpl genericDAO;
   private LocalDate dtpregini;
   private LocalDate dtpregfim;
 
   @Before
-  public void setUp() {
+  public void setUp() throws Exception {
     this.dtpregini = LocalDate.of(1978, 2, 16);
     this.dtpregfim = dtpregini.plusDays(6);
     target = new CandlestickSemanalAtualizarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil);
-    incluiCandleAntesDeExecutarTestes();
-  }
-
-  private void incluiCandleAntesDeExecutarTestes() {
-    CandlestickSemanalInserirDAOImpl incluirDAO = new CandlestickSemanalInserirDAOImpl(
-        getNamedParameterJdbcTemplate(), genericDAO, incluirSQLUtil);
-    when(incluirSQLUtil.getInsert()).thenCallRealMethod();
-    when(incluirSQLUtil.toParameters(any())).thenCallRealMethod();
-    when(genericDAO.getSequence(any())).thenReturn(1);
-    incluirDAO.incluirCandlestickSemanal(
-        buildCandlestick(dtpregini, dtpregfim)
+    InserirDadosPrimariosSemanalUtil util = new InserirDadosPrimariosSemanalUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestick(dtpregini, dtpregfim),
+        incluirSQLUtil,
+        genericDAO,
+        incluirDiarioSQLUtil,
+        buildCandlestickDiarioDTO(dtpregini)
     );
+    util.incluiCandleDiarioAntesDeExecutarTestes();
+    util.incluiCandleAntesDeExecutarTestes();
   }
 
   @Test
@@ -98,6 +101,20 @@ public class CandlestickSemanalAtualizarDAOImplTest extends BaseJdbcTest {
         .builder()
         .dtpregini(dtpregini)
         .dtpregfim(dtpregfim)
+        .candlestickDTO(CandlestickDTO
+            .builder()
+            .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
+            .codneg("MGLU3")
+            .build()
+        ).build();
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO(
+      final LocalDate dtpreg
+  ) {
+    return CandlestickDiarioDTO
+        .builder()
+        .dtpreg(dtpreg)
         .candlestickDTO(CandlestickDTO
             .builder()
             .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))

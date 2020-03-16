@@ -9,8 +9,6 @@ import com.ricardococati.model.dto.CandlestickDTO;
 import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Rule;
@@ -40,7 +38,11 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
   public void setUp() {
     this.countInteger = 0;
     this.dtpreg = LocalDate.of(1978, 2, 16);
-    target = new CandlestickDiarioInserirDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, sqlUtil);
+    target = new CandlestickDiarioInserirDAOImpl(
+        getNamedParameterJdbcTemplate(),
+        genericDAO,
+        sqlUtil
+    );
   }
 
   @Test

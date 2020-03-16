@@ -1,19 +1,22 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_002;
 import static com.ricardococati.repository.dao.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_001;
-import static com.ricardococati.repository.dao.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_002;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MacdDiario;
-import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MacdDiarioMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MacdDiarioSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -36,11 +39,24 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private MacdDiarioSQLUtil sqlUtil;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirSQLUtil;
 
   @Before
   public void setUp() throws Exception {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.repository.dao.templates");
-    target = new MacdDiarioBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
+    target = new MacdDiarioBuscarDAOImpl(
+        getNamedParameterJdbcTemplate(),
+        sqlUtil,
+        mapper
+    );
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(),
+        incluirSQLUtil,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
     incluiMacdAntesDeExecutarTestes();
   }
 
@@ -54,7 +70,7 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
     List<MacdDiario> result = target.listMacdByCodNeg("MGLU3");
     //then
     assertTrue(!result.isEmpty());
-    assertThat(result).isNotNull().size().isEqualTo(2);
+    assertThat(result).isNotNull().size().isEqualTo(1);
     assertThat(result.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 16));
     assertThat(result.get(0).getMacd().getCodneg()).isNotNull().isEqualTo("MGLU3");
     assertThat(result.get(0).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("11.11"));
@@ -63,12 +79,13 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
   @Test
   public void buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos() {
     //given
-    LocalDate dtpregLocal = LocalDate.of(1978,2,16);
+    LocalDate dtpregLocal = LocalDate.of(1978, 2, 16);
     when(sqlUtil.getSelectByCodNegEDtpregLimite9Periodos()).thenCallRealMethod();
     when(sqlUtil.toParametersByCodNegDtpregLimite9Periodos(any(), any())).thenCallRealMethod();
     when(mapper.mapper(any())).thenCallRealMethod();
     //when
-    List<MacdDiario> result = target.buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos("MGLU3", dtpregLocal);
+    List<MacdDiario> result = target
+        .buscaMacdMediaSimplesPorCodNegDtPregLimite9Periodos("MGLU3", dtpregLocal);
     //then
     assertTrue(!result.isEmpty());
     assertThat(result).isNotNull().size().isEqualTo(1);
@@ -83,18 +100,17 @@ public class MacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    macdDiarioList()
-        .parallelStream()
-        .filter(Objects::nonNull)
-        .forEach(incluirDAO::incluirMacd);
+    incluirDAO.incluirMacd(macdDiario());
   }
 
-  private List<MacdDiario> macdDiarioList(){
+  private MacdDiario macdDiario() {
     return from(MacdDiario.class)
-        .gimme(2,
-            MACD_DIARIO_VALID_001,
-            MACD_DIARIO_VALID_002
-        );
+        .gimme(MACD_DIARIO_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
 }

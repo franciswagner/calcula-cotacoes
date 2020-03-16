@@ -1,6 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial26PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,10 +10,13 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.MediaMovelExponencialDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialDiarioMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialDiarioSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -35,6 +39,8 @@ public class MediaMovelExponencialDiarioBuscarDAOImplTest extends BaseJdbcTest {
   private MediaMovelExponencialDiarioMapper mapper;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirSQLUtil;
 
   @Before
   public void setUp() throws Exception {
@@ -44,6 +50,13 @@ public class MediaMovelExponencialDiarioBuscarDAOImplTest extends BaseJdbcTest {
         sqlUtil,
         mapper
     );
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(),
+        incluirSQLUtil,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
     incluirMMEAntesDeExecutarTestes();
   }
 
@@ -57,12 +70,7 @@ public class MediaMovelExponencialDiarioBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    mediaMovelExponencialDiarioPeriodosList()
-        .stream()
-        .filter(Objects::nonNull)
-        .forEach(mediaMovelExponencialDiario -> {
-          incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialDiario);
-        });
+    incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialDiario());
   }
 
   @Test
@@ -121,10 +129,14 @@ public class MediaMovelExponencialDiarioBuscarDAOImplTest extends BaseJdbcTest {
     assertTrue(result.isEmpty());
   }
 
-  private List<MediaMovelExponencialDiario> mediaMovelExponencialDiarioPeriodosList(){
+  private MediaMovelExponencialDiario mediaMovelExponencialDiario(){
     return from(MediaMovelExponencialDiario.class)
-        .gimme(2,MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001,
-            MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001);
+        .gimme(MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
 }

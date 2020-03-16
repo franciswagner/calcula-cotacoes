@@ -1,22 +1,27 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
-import static com.ricardococati.repository.dao.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_002;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MacdSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,11 +40,29 @@ public class MacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
   private MacdSemanalSQLUtil sqlUtil;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
+  @Mock
+  private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirDiarioSQLUtil;
 
   @Before
   public void setUp() throws Exception {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.repository.dao.templates");
-    target = new MacdSemanalBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
+    target = new MacdSemanalBuscarDAOImpl(
+        getNamedParameterJdbcTemplate(),
+        sqlUtil,
+        mapper
+    );
+    InserirDadosPrimariosSemanalUtil util = new InserirDadosPrimariosSemanalUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickSemanalDTO(),
+        incluirSQLUtil,
+        genericDAO,
+        incluirDiarioSQLUtil,
+        buildCandlestickDiarioDTO()
+    );
+    util.incluiCandleDiarioAntesDeExecutarTestes();
+    util.incluiCandleAntesDeExecutarTestes();
     incluiMacdAntesDeExecutarTestes();
   }
 
@@ -53,7 +76,7 @@ public class MacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
     List<MacdSemanal> result = target.listMacdByCodNeg("MGLU3");
     //then
     assertTrue(!result.isEmpty());
-    assertThat(result).isNotNull().size().isEqualTo(2);
+    assertThat(result).isNotNull().size().isEqualTo(1);
     assertThat(result.get(0).getDtpregini()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 16));
     assertThat(result.get(0).getMacd().getCodneg()).isNotNull().isEqualTo("MGLU3");
     assertThat(result.get(0).getMacd().getPremacd()).isNotNull().isEqualTo(new BigDecimal("11.11"));
@@ -82,18 +105,22 @@ public class MacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    macdSemanalList()
-        .stream()
-        .filter(Objects::nonNull)
-        .forEach(incluirDAO::incluirMacd);
+    incluirDAO.incluirMacd(macdSemanal());
   }
 
-  private List<MacdSemanal> macdSemanalList(){
+  private MacdSemanal macdSemanal(){
     return from(MacdSemanal.class)
-        .gimme(2,
-            MACD_SEMANAL_VALID_001,
-            MACD_SEMANAL_VALID_002
-        );
+        .gimme(MACD_SEMANAL_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+  }
+
+  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanalDTO.class)
+        .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 
 }

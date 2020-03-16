@@ -1,15 +1,22 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.MacdSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,13 +36,31 @@ public class MacdSemanalInserirDAOImplTest extends BaseJdbcTest {
   private GeraSequenciaDAOImpl genericDAO;
   @Mock
   private MacdSemanalSQLUtil sqlUtil;
+  @Mock
+  private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirDiarioSQLUtil;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
   @Before
   public void setUp() throws Exception {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.repository.dao.templates");
-    target = new MacdSemanalInserirDAOImpl(getNamedParameterJdbcTemplate(), genericDAO, sqlUtil);
+    target = new MacdSemanalInserirDAOImpl(
+        getNamedParameterJdbcTemplate(),
+        genericDAO,
+        sqlUtil
+    );
+    InserirDadosPrimariosSemanalUtil util = new InserirDadosPrimariosSemanalUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickSemanalDTO(),
+        incluirSQLUtil,
+        genericDAO,
+        incluirDiarioSQLUtil,
+        buildCandlestickDiarioDTO()
+    );
+    util.incluiCandleDiarioAntesDeExecutarTestes();
+    util.incluiCandleAntesDeExecutarTestes();
   }
 
   @Test
@@ -67,6 +92,16 @@ public class MacdSemanalInserirDAOImplTest extends BaseJdbcTest {
   private MacdSemanal buildMacd() {
     return from(MacdSemanal.class)
         .gimme(MACD_SEMANAL_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+  }
+
+  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanalDTO.class)
+        .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 
 }

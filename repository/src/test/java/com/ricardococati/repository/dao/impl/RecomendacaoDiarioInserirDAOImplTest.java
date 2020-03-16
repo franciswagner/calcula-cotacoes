@@ -1,14 +1,17 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.RecomendacaoDiarioTemplateLoader.RECOMENDACAO_DIARIO_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.RecomendacaoDiario;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioInserirSQLUtil;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,6 +34,8 @@ public class RecomendacaoDiarioInserirDAOImplTest extends BaseJdbcTest {
   private RecomendacaoDiarioInserirSQLUtil sqlUtil;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirCandle;
 
   @Before
   public void setUp() throws Exception {
@@ -40,6 +45,7 @@ public class RecomendacaoDiarioInserirDAOImplTest extends BaseJdbcTest {
         genericDAO,
         sqlUtil
     );
+    incluiCandleAntesDeExecutarTestes();
   }
 
   @Test
@@ -116,6 +122,20 @@ public class RecomendacaoDiarioInserirDAOImplTest extends BaseJdbcTest {
     this.thrown.expect(DataIntegrityViolationException.class);
     //when
     Boolean retorno = target.incluirRecomendacao(dto);
+  }
+
+  private void incluiCandleAntesDeExecutarTestes() {
+    CandlestickDiarioInserirDAOImpl incluirDAO = new CandlestickDiarioInserirDAOImpl(
+        getNamedParameterJdbcTemplate(), genericDAO, incluirCandle);
+    when(incluirCandle.getInsert()).thenCallRealMethod();
+    when(incluirCandle.toParameters(any())).thenCallRealMethod();
+    when(genericDAO.getSequence(any())).thenReturn(1);
+    incluirDAO.insereCandlestickDiario(getCandlestickDiario());
+  }
+
+  private CandlestickDiarioDTO getCandlestickDiario() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
   private RecomendacaoDiario buildRecomendacao() {

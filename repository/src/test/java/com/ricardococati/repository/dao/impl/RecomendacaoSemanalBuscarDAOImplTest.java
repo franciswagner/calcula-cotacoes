@@ -1,6 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.HistogramaSemanalTemplateLoader.HISTOGRAMA_SEMANAL_VALID_001;
 import static com.ricardococati.repository.dao.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
@@ -13,6 +14,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
 import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.HistogramaSemanal;
 import com.ricardococati.model.dto.MacdSemanal;
@@ -21,12 +23,14 @@ import com.ricardococati.model.dto.RecomendacaoSemanal;
 import com.ricardococati.model.dto.SinalMacdSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.RecomendacaoSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.HistogramaSemanalSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MacdSemanalSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialSemanalSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.RecomendacaoSemanalBuscarSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.SinalMacdSemanalSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosDiarioUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -59,11 +63,24 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   private HistogramaSemanalSQLUtil incluirHistograma;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirCandleDiario;
 
   @Before
   public void setUp() throws Exception {
     FixtureFactoryLoader.loadTemplates("com.ricardococati.repository.dao.templates");
-    target = new RecomendacaoSemanalBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
+    target = new RecomendacaoSemanalBuscarDAOImpl(
+        getNamedParameterJdbcTemplate(),
+        sqlUtil,
+        mapper
+    );
+    InserirDadosPrimariosDiarioUtil util = new InserirDadosPrimariosDiarioUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickDiarioDTO(),
+        incluirCandleDiario,
+        genericDAO
+    );
+    util.incluiCandleAntesDeExecutarTestes();
     incluiCandleAntesDeExecutarTestes();
     incluirMMEAntesDeExecutarTestes();
     incluiMacdAntesDeExecutarTestes();
@@ -219,6 +236,11 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
   private List<HistogramaSemanal> histogramaSemanalList(){
     return from(HistogramaSemanal.class)
         .gimme(1, HISTOGRAMA_SEMANAL_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
   }
 
 }

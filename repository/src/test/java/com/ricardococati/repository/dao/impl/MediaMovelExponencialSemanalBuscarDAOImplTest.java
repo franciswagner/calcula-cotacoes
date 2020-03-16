@@ -1,6 +1,8 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosSemanalTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial26PeriodosSemanalTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_SEMANAL_26PERIODOS_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,10 +11,15 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.model.dto.CandlestickDiarioDTO;
+import com.ricardococati.model.dto.CandlestickSemanalDTO;
 import com.ricardococati.model.dto.MediaMovelExponencialSemanal;
 import com.ricardococati.repository.dao.config.BaseJdbcTest;
 import com.ricardococati.repository.dao.mapper.MediaMovelExponencialSemanalMapper;
+import com.ricardococati.repository.dao.sqlutil.CandlestickDiarioInserirSQLUtil;
+import com.ricardococati.repository.dao.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.repository.dao.sqlutil.MediaMovelExponencialSemanalSQLUtil;
+import com.ricardococati.repository.dao.utils.InserirDadosPrimariosSemanalUtil;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -35,6 +42,10 @@ public class MediaMovelExponencialSemanalBuscarDAOImplTest extends BaseJdbcTest 
   private MediaMovelExponencialSemanalMapper mapper;
   @Mock
   private GeraSequenciaDAOImpl genericDAO;
+  @Mock
+  private CandlestickSemanalInserirSQLUtil incluirSQLUtil;
+  @Mock
+  private CandlestickDiarioInserirSQLUtil incluirDiarioSQLUtil;
 
   @Before
   public void setUp() throws Exception {
@@ -44,6 +55,16 @@ public class MediaMovelExponencialSemanalBuscarDAOImplTest extends BaseJdbcTest 
         sqlUtil,
         mapper
     );
+    InserirDadosPrimariosSemanalUtil util = new InserirDadosPrimariosSemanalUtil(
+        getNamedParameterJdbcTemplate(),
+        buildCandlestickSemanalDTO(),
+        incluirSQLUtil,
+        genericDAO,
+        incluirDiarioSQLUtil,
+        buildCandlestickDiarioDTO()
+    );
+    util.incluiCandleDiarioAntesDeExecutarTestes();
+    util.incluiCandleAntesDeExecutarTestes();
     incluirMMEAntesDeExecutarTestes();
   }
 
@@ -57,12 +78,7 @@ public class MediaMovelExponencialSemanalBuscarDAOImplTest extends BaseJdbcTest 
     when(sqlUtil.getInsert()).thenCallRealMethod();
     when(sqlUtil.toParameters(any())).thenCallRealMethod();
     when(genericDAO.getSequence(any())).thenReturn(1);
-    mediaMovelExponencialSemanalPeriodosList()
-        .stream()
-        .filter(Objects::nonNull)
-        .forEach(mediaMovelExponencialSemanal -> {
-          incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialSemanal);
-        });
+    incluirDAO.incluirMediaMovelExponencial(mediaMovelExponencialSemanal());
   }
 
   @Test
@@ -121,10 +137,19 @@ public class MediaMovelExponencialSemanalBuscarDAOImplTest extends BaseJdbcTest 
     assertTrue(result.isEmpty());
   }
 
-  private List<MediaMovelExponencialSemanal> mediaMovelExponencialSemanalPeriodosList(){
+  private MediaMovelExponencialSemanal mediaMovelExponencialSemanal(){
     return from(MediaMovelExponencialSemanal.class)
-        .gimme(2,MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001,
-            MEDIA_MOVEL_EXPONENCIAL_SEMANAL_26PERIODOS_VALID_001);
+        .gimme(MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001);
+  }
+
+  private CandlestickDiarioDTO buildCandlestickDiarioDTO() {
+    return from(CandlestickDiarioDTO.class)
+        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+  }
+
+  private CandlestickSemanalDTO buildCandlestickSemanalDTO() {
+    return from(CandlestickSemanalDTO.class)
+        .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
   }
 
 }

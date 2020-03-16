@@ -25,7 +25,7 @@ public class MediaMovelExponencialSemanalSQLUtil {
     sql.appendSQL("		:premedult,  ");
     sql.appendSQL("		:periodo ");
     sql.appendSQL("	) ");
-    sql.appendSQL(" on conflict (codneg, dtpregini, dtpregfim, periodo) do update set ");
+    sql.appendSQL(" on conflict (codneg, dtpregini, periodo) do update set ");
     sql.appendSQL("		codneg = excluded.codneg, ");
     sql.appendSQL("		dtpregini = excluded.dtpregini, ");
     sql.appendSQL("		dtpregfim = excluded.dtpregfim, ");
