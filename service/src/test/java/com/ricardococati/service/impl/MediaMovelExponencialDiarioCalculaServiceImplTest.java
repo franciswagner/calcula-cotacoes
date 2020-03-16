@@ -1,26 +1,26 @@
 package com.ricardococati.service.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_002;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_003;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_004;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_005;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_006;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_007;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_008;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_009;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_010;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_011;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_012;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_013;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_014;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_015;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_016;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_017;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_018;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_019;
-import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_020;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_002;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_003;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_004;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_005;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_006;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_007;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_008;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_009;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_010;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_011;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_012;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_013;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_014;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_015;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_016;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_017;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_018;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_019;
+import static com.ricardococati.service.impl.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_020;
 import static com.ricardococati.service.util.BigDecimalCustomizado.getDoubleValueBigDecimalHalfUpArredondado4Casas;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -110,26 +110,26 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
 
   private List<CandlestickDiario> getListCandlestickDiario() {
     return from(CandlestickDiario.class)
-        .gimme(20, CANDLESTICK_DIARIO_DTO_VALID_001
-            , CANDLESTICK_DIARIO_DTO_VALID_002
-            , CANDLESTICK_DIARIO_DTO_VALID_003
-            , CANDLESTICK_DIARIO_DTO_VALID_004
-            , CANDLESTICK_DIARIO_DTO_VALID_005
-            , CANDLESTICK_DIARIO_DTO_VALID_006
-            , CANDLESTICK_DIARIO_DTO_VALID_007
-            , CANDLESTICK_DIARIO_DTO_VALID_008
-            , CANDLESTICK_DIARIO_DTO_VALID_009
-            , CANDLESTICK_DIARIO_DTO_VALID_010
-            , CANDLESTICK_DIARIO_DTO_VALID_011
-            , CANDLESTICK_DIARIO_DTO_VALID_012
-            , CANDLESTICK_DIARIO_DTO_VALID_013
-            , CANDLESTICK_DIARIO_DTO_VALID_014
-            , CANDLESTICK_DIARIO_DTO_VALID_015
-            , CANDLESTICK_DIARIO_DTO_VALID_016
-            , CANDLESTICK_DIARIO_DTO_VALID_017
-            , CANDLESTICK_DIARIO_DTO_VALID_018
-            , CANDLESTICK_DIARIO_DTO_VALID_019
-            , CANDLESTICK_DIARIO_DTO_VALID_020);
+        .gimme(20, CANDLESTICK_DIARIO_VALID_001
+            , CANDLESTICK_DIARIO_VALID_002
+            , CANDLESTICK_DIARIO_VALID_003
+            , CANDLESTICK_DIARIO_VALID_004
+            , CANDLESTICK_DIARIO_VALID_005
+            , CANDLESTICK_DIARIO_VALID_006
+            , CANDLESTICK_DIARIO_VALID_007
+            , CANDLESTICK_DIARIO_VALID_008
+            , CANDLESTICK_DIARIO_VALID_009
+            , CANDLESTICK_DIARIO_VALID_010
+            , CANDLESTICK_DIARIO_VALID_011
+            , CANDLESTICK_DIARIO_VALID_012
+            , CANDLESTICK_DIARIO_VALID_013
+            , CANDLESTICK_DIARIO_VALID_014
+            , CANDLESTICK_DIARIO_VALID_015
+            , CANDLESTICK_DIARIO_VALID_016
+            , CANDLESTICK_DIARIO_VALID_017
+            , CANDLESTICK_DIARIO_VALID_018
+            , CANDLESTICK_DIARIO_VALID_019
+            , CANDLESTICK_DIARIO_VALID_020);
   }
 
   private MediaMovelSimplesDiario buildMediaSimples(

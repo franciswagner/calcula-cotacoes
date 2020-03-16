@@ -1,26 +1,26 @@
 package com.ricardococati.service.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_002;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_003;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_004;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_005;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_006;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_007;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_008;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_009;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_010;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_011;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_012;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_013;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_014;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_015;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_016;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_017;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_018;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_019;
-import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_020;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_002;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_003;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_004;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_005;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_006;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_007;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_008;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_009;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_010;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_011;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_012;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_013;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_014;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_015;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_016;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_017;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_018;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_019;
+import static com.ricardococati.service.impl.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_020;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -110,26 +110,26 @@ public class MediaMovelExponencialSemanalCalculaServiceImplTest {
 
   private List<CandlestickSemanal> getListCandlestickSemanal() {
     return from(CandlestickSemanal.class)
-        .gimme(20, CANDLESTICK_SEMANAL_DTO_VALID_001
-            , CANDLESTICK_SEMANAL_DTO_VALID_002
-            , CANDLESTICK_SEMANAL_DTO_VALID_003
-            , CANDLESTICK_SEMANAL_DTO_VALID_004
-            , CANDLESTICK_SEMANAL_DTO_VALID_005
-            , CANDLESTICK_SEMANAL_DTO_VALID_006
-            , CANDLESTICK_SEMANAL_DTO_VALID_007
-            , CANDLESTICK_SEMANAL_DTO_VALID_008
-            , CANDLESTICK_SEMANAL_DTO_VALID_009
-            , CANDLESTICK_SEMANAL_DTO_VALID_010
-            , CANDLESTICK_SEMANAL_DTO_VALID_011
-            , CANDLESTICK_SEMANAL_DTO_VALID_012
-            , CANDLESTICK_SEMANAL_DTO_VALID_013
-            , CANDLESTICK_SEMANAL_DTO_VALID_014
-            , CANDLESTICK_SEMANAL_DTO_VALID_015
-            , CANDLESTICK_SEMANAL_DTO_VALID_016
-            , CANDLESTICK_SEMANAL_DTO_VALID_017
-            , CANDLESTICK_SEMANAL_DTO_VALID_018
-            , CANDLESTICK_SEMANAL_DTO_VALID_019
-            , CANDLESTICK_SEMANAL_DTO_VALID_020);
+        .gimme(20, CANDLESTICK_SEMANAL_VALID_001
+            , CANDLESTICK_SEMANAL_VALID_002
+            , CANDLESTICK_SEMANAL_VALID_003
+            , CANDLESTICK_SEMANAL_VALID_004
+            , CANDLESTICK_SEMANAL_VALID_005
+            , CANDLESTICK_SEMANAL_VALID_006
+            , CANDLESTICK_SEMANAL_VALID_007
+            , CANDLESTICK_SEMANAL_VALID_008
+            , CANDLESTICK_SEMANAL_VALID_009
+            , CANDLESTICK_SEMANAL_VALID_010
+            , CANDLESTICK_SEMANAL_VALID_011
+            , CANDLESTICK_SEMANAL_VALID_012
+            , CANDLESTICK_SEMANAL_VALID_013
+            , CANDLESTICK_SEMANAL_VALID_014
+            , CANDLESTICK_SEMANAL_VALID_015
+            , CANDLESTICK_SEMANAL_VALID_016
+            , CANDLESTICK_SEMANAL_VALID_017
+            , CANDLESTICK_SEMANAL_VALID_018
+            , CANDLESTICK_SEMANAL_VALID_019
+            , CANDLESTICK_SEMANAL_VALID_020);
   }
 
   private MediaMovelSimplesSemanal buildMediaSimples(

@@ -1,8 +1,8 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
-import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
 import static com.ricardococati.repository.dao.templates.SinalMacdSemanalTemplateLoader.SINAL_MACD_SEMANAL_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -127,12 +127,12 @@ public class SinalMacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   private CandlestickDiario buildCandlestickDiarioDTO() {
     return from(CandlestickDiario.class)
-        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+        .gimme(CANDLESTICK_DIARIO_VALID_001);
   }
 
   private CandlestickSemanal buildCandlestickSemanalDTO() {
     return from(CandlestickSemanal.class)
-        .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
+        .gimme(CANDLESTICK_SEMANAL_VALID_001);
   }
 
 }

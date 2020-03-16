@@ -1,7 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
 import static com.ricardococati.repository.dao.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -138,7 +138,7 @@ public class SinalMacdDiarioInserirDAOImplTest extends BaseJdbcTest {
 
   private CandlestickDiario buildCandlestickDiarioDTO() {
     return from(CandlestickDiario.class)
-        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+        .gimme(CANDLESTICK_DIARIO_VALID_001);
   }
 
 }

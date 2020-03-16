@@ -1,7 +1,7 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
 import static com.ricardococati.repository.dao.templates.HistogramaDiarioTemplateLoader.HISTOGRAMA_DIARIO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001;
@@ -192,7 +192,7 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
 
   private CandlestickDiario getCandlestickDiario() {
     return from(CandlestickDiario.class)
-        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+        .gimme(CANDLESTICK_DIARIO_VALID_001);
   }
 
   private List<MediaMovelExponencialDiario> mediaMovelExponencialDiarioPeriodosList(){

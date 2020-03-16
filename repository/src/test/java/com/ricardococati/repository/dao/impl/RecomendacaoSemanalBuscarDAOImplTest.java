@@ -1,8 +1,8 @@
 package com.ricardococati.repository.dao.impl;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_DTO_VALID_001;
-import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_DTO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.repository.dao.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
 import static com.ricardococati.repository.dao.templates.HistogramaSemanalTemplateLoader.HISTOGRAMA_SEMANAL_VALID_001;
 import static com.ricardococati.repository.dao.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
 import static com.ricardococati.repository.dao.templates.MediaMovelExponencial12PeriodosSemanalTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_SEMANAL_12PERIODOS_VALID_001;
@@ -214,7 +214,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   private CandlestickSemanal getCandlestickSemanal() {
     return from(CandlestickSemanal.class)
-        .gimme(CANDLESTICK_SEMANAL_DTO_VALID_001);
+        .gimme(CANDLESTICK_SEMANAL_VALID_001);
   }
 
   private List<MediaMovelExponencialSemanal> mediaMovelExponencialSemanalPeriodosList(){
@@ -240,7 +240,7 @@ public class RecomendacaoSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   private CandlestickDiario buildCandlestickDiarioDTO() {
     return from(CandlestickDiario.class)
-        .gimme(CANDLESTICK_DIARIO_DTO_VALID_001);
+        .gimme(CANDLESTICK_DIARIO_VALID_001);
   }
 
 }

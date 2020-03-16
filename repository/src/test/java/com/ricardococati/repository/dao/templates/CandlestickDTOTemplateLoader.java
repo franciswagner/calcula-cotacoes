@@ -9,31 +9,31 @@ import com.ricardococati.model.entities.Candlestick;
 
 public class CandlestickDTOTemplateLoader implements TemplateLoader {
 
-  public static final String CANDLESTICK_DTO_VALID_001 = "CANDLESTICK_DTO_VALID_001";
-  public static final String CANDLESTICK_DTO_VALID_002 = "CANDLESTICK_DTO_VALID_002";
-  public static final String CANDLESTICK_DTO_VALID_003 = "CANDLESTICK_DTO_VALID_003";
-  public static final String CANDLESTICK_DTO_VALID_004 = "CANDLESTICK_DTO_VALID_004";
-  public static final String CANDLESTICK_DTO_VALID_005 = "CANDLESTICK_DTO_VALID_005";
-  public static final String CANDLESTICK_DTO_VALID_006 = "CANDLESTICK_DTO_VALID_006";
-  public static final String CANDLESTICK_DTO_VALID_007 = "CANDLESTICK_DTO_VALID_007";
-  public static final String CANDLESTICK_DTO_VALID_008 = "CANDLESTICK_DTO_VALID_008";
-  public static final String CANDLESTICK_DTO_VALID_009 = "CANDLESTICK_DTO_VALID_009";
-  public static final String CANDLESTICK_DTO_VALID_010 = "CANDLESTICK_DTO_VALID_010";
-  public static final String CANDLESTICK_DTO_VALID_011 = "CANDLESTICK_DTO_VALID_011";
-  public static final String CANDLESTICK_DTO_VALID_012 = "CANDLESTICK_DTO_VALID_012";
-  public static final String CANDLESTICK_DTO_VALID_013 = "CANDLESTICK_DTO_VALID_013";
-  public static final String CANDLESTICK_DTO_VALID_014 = "CANDLESTICK_DTO_VALID_014";
-  public static final String CANDLESTICK_DTO_VALID_015 = "CANDLESTICK_DTO_VALID_015";
-  public static final String CANDLESTICK_DTO_VALID_016 = "CANDLESTICK_DTO_VALID_016";
-  public static final String CANDLESTICK_DTO_VALID_017 = "CANDLESTICK_DTO_VALID_017";
-  public static final String CANDLESTICK_DTO_VALID_018 = "CANDLESTICK_DTO_VALID_018";
-  public static final String CANDLESTICK_DTO_VALID_019 = "CANDLESTICK_DTO_VALID_019";
-  public static final String CANDLESTICK_DTO_VALID_020 = "CANDLESTICK_DTO_VALID_020";
+  public static final String CANDLESTICK_VALID_001 = "CANDLESTICK_VALID_001";
+  public static final String CANDLESTICK_VALID_002 = "CANDLESTICK_VALID_002";
+  public static final String CANDLESTICK_VALID_003 = "CANDLESTICK_VALID_003";
+  public static final String CANDLESTICK_VALID_004 = "CANDLESTICK_VALID_004";
+  public static final String CANDLESTICK_VALID_005 = "CANDLESTICK_VALID_005";
+  public static final String CANDLESTICK_VALID_006 = "CANDLESTICK_VALID_006";
+  public static final String CANDLESTICK_VALID_007 = "CANDLESTICK_VALID_007";
+  public static final String CANDLESTICK_VALID_008 = "CANDLESTICK_VALID_008";
+  public static final String CANDLESTICK_VALID_009 = "CANDLESTICK_VALID_009";
+  public static final String CANDLESTICK_VALID_010 = "CANDLESTICK_VALID_010";
+  public static final String CANDLESTICK_VALID_011 = "CANDLESTICK_VALID_011";
+  public static final String CANDLESTICK_VALID_012 = "CANDLESTICK_VALID_012";
+  public static final String CANDLESTICK_VALID_013 = "CANDLESTICK_VALID_013";
+  public static final String CANDLESTICK_VALID_014 = "CANDLESTICK_VALID_014";
+  public static final String CANDLESTICK_VALID_015 = "CANDLESTICK_VALID_015";
+  public static final String CANDLESTICK_VALID_016 = "CANDLESTICK_VALID_016";
+  public static final String CANDLESTICK_VALID_017 = "CANDLESTICK_VALID_017";
+  public static final String CANDLESTICK_VALID_018 = "CANDLESTICK_VALID_018";
+  public static final String CANDLESTICK_VALID_019 = "CANDLESTICK_VALID_019";
+  public static final String CANDLESTICK_VALID_020 = "CANDLESTICK_VALID_020";
 
   @Override
   public void load() {
     Fixture.of(Candlestick.class)
-        .addTemplate(CANDLESTICK_DTO_VALID_001, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_001, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(9.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(12.1));
@@ -42,7 +42,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_002, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_002, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(2.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(13.1));
@@ -51,7 +51,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(100000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_003, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_003, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(3.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
@@ -60,7 +60,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_004, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_004, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(4.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
@@ -69,7 +69,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_005, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_005, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(16.1));
@@ -78,7 +78,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_006, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_006, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(8.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
@@ -87,7 +87,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_007, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_007, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(9.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(18.1));
@@ -96,7 +96,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_008, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_008, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
@@ -105,7 +105,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_009, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_009, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(12.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(12.1));
@@ -114,7 +114,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_010, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_010, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(13.1));
@@ -123,7 +123,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_011, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_011, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
@@ -132,7 +132,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_012, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_012, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
@@ -141,7 +141,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(300000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_013, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_013, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(16.1));
@@ -150,7 +150,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(400000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_014, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_014, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
@@ -159,7 +159,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(500000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_015, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_015, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(6.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(17.1));
@@ -168,7 +168,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(600000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_016, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_016, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(18.1));
@@ -177,7 +177,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(700000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_017, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_017, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(10.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
@@ -186,7 +186,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(800000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_018, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_018, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(11.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(19.1));
@@ -195,7 +195,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(900000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_019, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_019, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(12.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(14.1));
@@ -204,7 +204,7 @@ public class CandlestickDTOTemplateLoader implements TemplateLoader {
           add("voltot", getValueBigDecimalHalfUpArredondado4Casas(200000.0));
           add("semana", 1);
         }})
-        .addTemplate(CANDLESTICK_DTO_VALID_020, new Rule() {{
+        .addTemplate(CANDLESTICK_VALID_020, new Rule() {{
           add("codneg", "MGLU3");
           add("preabe", getValueBigDecimalHalfUpArredondado4Casas(13.1));
           add("premax", getValueBigDecimalHalfUpArredondado4Casas(15.1));
