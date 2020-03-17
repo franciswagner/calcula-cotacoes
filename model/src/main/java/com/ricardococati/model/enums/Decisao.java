@@ -6,9 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Decisao {
 
-  COMPRA("COMPRA"),
-  VENDE("VENDE"),
-  NEUTRO("NEUTRO");
+  TENDENCIA_ALTA("Tendencia de Alta"),
+  TENDENCIA_BAIXA("Tendencia de Baixa"),
+  CONSOLIDANDO("Consolidando");
 
   @Getter
   private String texto;

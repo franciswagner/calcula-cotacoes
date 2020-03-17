@@ -1,8 +1,8 @@
 package com.ricardococati.service.impl;
 
-import static com.ricardococati.model.enums.Decisao.COMPRA;
-import static com.ricardococati.model.enums.Decisao.NEUTRO;
-import static com.ricardococati.model.enums.Decisao.VENDE;
+import static com.ricardococati.model.enums.Decisao.TENDENCIA_ALTA;
+import static com.ricardococati.model.enums.Decisao.CONSOLIDANDO;
+import static com.ricardococati.model.enums.Decisao.TENDENCIA_BAIXA;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.entities.RecomendacaoSemanal;
@@ -81,12 +81,12 @@ public class RecomendacaoSemanalCalculaServiceImpl
         .forEach(indice -> {
           if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
               .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) < 0) {
-            recomendacaoList.get(indice).getRecomendacao().setDecisao(COMPRA.getTexto());
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(TENDENCIA_ALTA.getTexto());
           } else if (recomendacaoList.get(indice - 1).getRecomendacao().getPrecoHistograma()
               .compareTo(recomendacaoList.get(indice).getRecomendacao().getPrecoHistograma()) > 0) {
-            recomendacaoList.get(indice).getRecomendacao().setDecisao(VENDE.getTexto());
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(TENDENCIA_BAIXA.getTexto());
           } else {
-            recomendacaoList.get(indice).getRecomendacao().setDecisao(NEUTRO.getTexto());
+            recomendacaoList.get(indice).getRecomendacao().setDecisao(CONSOLIDANDO.getTexto());
           }
         });
     return recomendacaoList;
