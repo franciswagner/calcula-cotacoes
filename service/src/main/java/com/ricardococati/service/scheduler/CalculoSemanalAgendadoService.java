@@ -1,15 +1,12 @@
 package com.ricardococati.service.scheduler;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
-
 import com.ricardococati.model.entities.ControleExecucao;
+import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.CandlestickSemanalBuscarService;
 import com.ricardococati.service.HistogramaSemanalCalculaService;
 import com.ricardococati.service.MACDSemanalCalculaService;
 import com.ricardococati.service.MediaMovelExponencialSemanalCalculaService;
 import com.ricardococati.service.MediaMovelSimplesSemanalCalculaService;
-import com.ricardococati.service.CalculaService;
 import com.ricardococati.service.SinalMacdSemanalCalculaService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -33,7 +30,7 @@ public class CalculoSemanalAgendadoService {
   private final CalculaService calculaService;
   private final CandlestickSemanalBuscarService semanalService;
   SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-  LocalDate dtpregLimite = LocalDate.of(2017, 01, 01);
+  LocalDate dtpregLimite = LocalDate.of(2001, 01, 01);
 
   @Scheduled(cron = "0 0/1 * * * *")
   public void executaAgendador() {
@@ -41,36 +38,11 @@ public class CalculoSemanalAgendadoService {
     try {
       ControleExecucao controleExecucao = calculaService.carregaControleExecucao();
       if (controleExecucao.getControleExecucaoAtivo()) {
-        if (controleExecucao.getCalcMediaSimplesSemanalExecutado()) {
-          executeMediaSimplesSemanal(controleExecucao);
-          controleExecucao.setCalcMediaSimplesSemanalExecutado(false);
-          controleExecucao.setCalcMediaSimplesSemanalExecutadoDtpreg(dtpregLimite);
-          calculaService.updateControleExecucaoSemanal(controleExecucao);
-        }
-        if (controleExecucao.getCalcMediaExponencialSemanalExecutado()) {
-          executeMediaExponencialSemanal(controleExecucao);
-          controleExecucao.setCalcMediaExponencialSemanalExecutado(false);
-          controleExecucao.setCalcMediaExponencialSemanalExecutadoDtpreg(dtpregLimite);
-          calculaService.updateControleExecucaoSemanal(controleExecucao);
-        }
-        if (controleExecucao.getCalcMacdSemanalExecutado()) {
-          executeMacdSemanal(controleExecucao);
-          controleExecucao.setCalcMacdSemanalExecutado(false);
-          controleExecucao.setCalcMacdSemanalExecutadoDtpreg(dtpregLimite);
-          calculaService.updateControleExecucaoSemanal(controleExecucao);
-        }
-        if (controleExecucao.getCalcSinalMacdSemanalExecutado()) {
-          executeSinalMacdSemanal(controleExecucao);
-          controleExecucao.setCalcSinalMacdSemanalExecutado(false);
-          controleExecucao.setCalcSinalMacdSemanalExecutadoDtpreg(dtpregLimite);
-          calculaService.updateControleExecucaoSemanal(controleExecucao);
-        }
-        if (controleExecucao.getCalcHistogramaSemanalExecutado()) {
-          executeHistogramaSemanal(controleExecucao);
-          controleExecucao.setCalcHistogramaSemanalExecutado(false);
-          controleExecucao.setCalcHistogramaSemanalExecutadoDtpreg(dtpregLimite);
-          calculaService.updateControleExecucaoSemanal(controleExecucao);
-        }
+        executeMediaSimplesSemanal(controleExecucao);
+        executeMediaExponencialSemanal(controleExecucao);
+        executeMacdSemanal(controleExecucao);
+        executeSinalMacdSemanal(controleExecucao);
+        executeHistogramaSemanal(controleExecucao);
       }
     } catch (Exception e) {
       log.error(" Causa: " + e.getCause() + " Mensagem de Erro: " + e.getMessage());
@@ -79,8 +51,7 @@ public class CalculoSemanalAgendadoService {
   }
 
   private void executeMediaSimplesSemanal(final ControleExecucao controleExecucao) {
-    semanalService.buscaCandlestickSemanalPorDtPreg(
-        verificaUltimaExecucao(controleExecucao.getCalcMediaSimplesSemanalExecutadoDtpreg()))
+    semanalService.buscaCandlestickSemanalPorDtPreg(dtpregLimite)
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
@@ -89,8 +60,7 @@ public class CalculoSemanalAgendadoService {
   }
 
   private void executeMediaExponencialSemanal(final ControleExecucao controleExecucao) {
-    semanalService.buscaCandlestickSemanalPorDtPreg(
-        verificaUltimaExecucao(controleExecucao.getCalcMediaExponencialSemanalExecutadoDtpreg()))
+    semanalService.buscaCandlestickSemanalPorDtPreg(dtpregLimite)
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
@@ -99,8 +69,7 @@ public class CalculoSemanalAgendadoService {
   }
 
   private void executeMacdSemanal(final ControleExecucao controleExecucao) {
-    semanalService.buscaCandlestickSemanalPorDtPreg(
-        verificaUltimaExecucao(controleExecucao.getCalcMacdSemanalExecutadoDtpreg()))
+    semanalService.buscaCandlestickSemanalPorDtPreg(dtpregLimite)
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
@@ -109,8 +78,7 @@ public class CalculoSemanalAgendadoService {
   }
 
   private void executeSinalMacdSemanal(final ControleExecucao controleExecucao) {
-    semanalService.buscaCandlestickSemanalPorDtPreg(
-        verificaUltimaExecucao(controleExecucao.getCalcSinalMacdSemanalExecutadoDtpreg()))
+    semanalService.buscaCandlestickSemanalPorDtPreg(dtpregLimite)
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
@@ -119,23 +87,12 @@ public class CalculoSemanalAgendadoService {
   }
 
   private void executeHistogramaSemanal(final ControleExecucao controleExecucao) {
-    semanalService.buscaCandlestickSemanalPorDtPreg(
-        verificaUltimaExecucao(controleExecucao.getCalcHistogramaSemanalExecutadoDtpreg()))
+    semanalService.buscaCandlestickSemanalPorDtPreg(dtpregLimite)
         .stream()
         .filter(Objects::nonNull)
         .forEach(codneg -> {
           histogramaService.executeByCodNeg(codneg);
         });
-  }
-
-  private LocalDate verificaUltimaExecucao(final LocalDate dtUltimaExec) {
-    LocalDate dataRetorno = dtpregLimite;
-    if (isNull(dtUltimaExec)) {
-      return dataRetorno;
-    } else if (nonNull(dtUltimaExec) && dtUltimaExec.isBefore(dataRetorno)) {
-      dataRetorno = dtUltimaExec;
-    }
-    return dataRetorno;
   }
 
 }

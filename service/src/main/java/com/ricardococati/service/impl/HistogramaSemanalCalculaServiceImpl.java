@@ -47,7 +47,7 @@ public class HistogramaSemanalCalculaServiceImpl
 
   private void incluirHistograma(List<HistogramaSemanal> histogramaList) {
     histogramaList
-        .stream()
+        .parallelStream()
         .filter(Objects::nonNull)
         .filter(histogramaSemanal -> nonNull(histogramaSemanal.getDtpregini()))
         .filter(histogramaSemanal -> nonNull(histogramaSemanal.getDtpregfim()))

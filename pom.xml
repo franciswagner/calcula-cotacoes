@@ -40,6 +40,7 @@
     <fixture-factory.version>3.1.0</fixture-factory.version>
     <!--COMMONS DATABASE CONNECTION POOL-->
     <commons-dbcp.version>1.4</commons-dbcp.version>
+    <spring-statemachine-core.version>2.1.0.RELEASE</spring-statemachine-core.version>
   </properties>
 
   <parent>
@@ -107,35 +108,37 @@
         <artifactId>commons-dbcp</artifactId>
         <version>${commons-dbcp.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.opentable.components</groupId>
+        <artifactId>otj-pg-embedded</artifactId>
+        <version>${otj-pg-embedded.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.statemachine</groupId>
+        <artifactId>spring-statemachine-core</artifactId>
+        <version>${spring-statemachine-core.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.kafka</groupId>
-      <artifactId>spring-kafka</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.opentable.components</groupId>
-      <artifactId>otj-pg-embedded</artifactId>
-      <version>${otj-pg-embedded.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <pluginManagement>
@@ -177,6 +180,7 @@
         <artifactId>docker-maven-plugin</artifactId>
         <version>0.4.1</version>
         <configuration>
+          <!--suppress UnresolvedMavenProperty -->
           <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
           <dockerDirectory>src/main/resources/docker</dockerDirectory>
           <resources>
