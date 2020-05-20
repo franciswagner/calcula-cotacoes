@@ -21,16 +21,20 @@ public class CalculaStateMachinaTransitionByEventConfig
       throws Exception {
     transitions
         .withExternal()
-        .source(CalculaStates.MEDIA_MOVEL_SIMPLES).target(CalculaStates.MEDIA_MOVEL_EXPONENCIAL)
+        .source(CalculaStates.MEDIA_MOVEL_SIMPLES)
+        .target(CalculaStates.MEDIA_MOVEL_EXPONENCIAL)
         .event(CalculaEvents.CALCULAR_MEDIA_MOVEL_EXPONENCIAL)
         .and().withExternal()
-        .source(CalculaStates.MEDIA_MOVEL_EXPONENCIAL).target(CalculaStates.MACD)
+        .source(CalculaStates.MEDIA_MOVEL_EXPONENCIAL)
+        .target(CalculaStates.MACD)
         .event(CalculaEvents.CALCULAR_MACD)
         .and().withExternal()
-        .source(CalculaStates.MACD).target(CalculaStates.SINAL_MACD)
+        .source(CalculaStates.MACD)
+        .target(CalculaStates.SINAL_MACD)
         .event(CalculaEvents.CALCULAR_SINAL_MACD)
         .and().withExternal()
-        .source(CalculaStates.SINAL_MACD).target(CalculaStates.HISTOGRAMA)
+        .source(CalculaStates.SINAL_MACD)
+        .target(CalculaStates.HISTOGRAMA)
         .event(CalculaEvents.CALCULAR_HISTOGRAMA);
   }
 
