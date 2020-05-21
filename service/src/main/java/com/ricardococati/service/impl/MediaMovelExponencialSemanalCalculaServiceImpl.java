@@ -72,7 +72,7 @@ public class MediaMovelExponencialSemanalCalculaServiceImpl
     try {
       QuantidadePeriodo
           .getListQuantidadePeriodo()
-          .parallelStream()
+          .stream()
           .filter(periodo -> nonNull(candlestickList))
           .filter(Objects::nonNull)
           .forEach(periodo ->
