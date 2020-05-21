@@ -83,6 +83,9 @@
                     <exclude>com.ricardococati.repository.dao.sqlutil.RecomendacaoDiarioExcluirSQLUtil</exclude>
                     <exclude>com.ricardococati.repository.dao.sqlutil.HistogramaSemanalSQLUtil</exclude>
                     <exclude>com.ricardococati.repository.dao.sqlutil.RecomendacaoSemanalExcluirSQLUtil</exclude>
+                    <exclude>com.ricardococati.repository.dao.impl.AtivoBuscarDAOImpl</exclude>
+                    <exclude>com.ricardococati.repository.dao.sqlutil.AtivoBuscarSQLUtil</exclude>
+                    <exclude>com.ricardococati.repository.dao.sqlutil.UsuarioBuscarSQLUtil</exclude>
                   </excludes>
                   <limits>
                     <limit>
