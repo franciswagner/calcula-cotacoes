@@ -20,7 +20,10 @@ public class RecomendacaoDiarioMapper {
               Recomendacao
                   .builder()
                   .codneg(rs.getString("codneg"))
+                  .precoAbertura(rs.getBigDecimal("preco_abertura"))
                   .precoFechamento(rs.getBigDecimal("preco_fechamento"))
+                  .precoMinimo(rs.getBigDecimal("preco_minimo"))
+                  .precoMaximo(rs.getBigDecimal("preco_maximo"))
                   .precoMME12p(rs.getBigDecimal("preco_mme12p"))
                   .precoMME26p(rs.getBigDecimal("preco_mme26p"))
                   .precoMacd(rs.getBigDecimal("preco_macd"))

@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 public class Recomendacao {
 
   private String codneg;
+  private BigDecimal precoAbertura;
   private BigDecimal precoFechamento;
+  private BigDecimal precoMinimo;
+  private BigDecimal precoMaximo;
   private BigDecimal precoMME12p;
   private BigDecimal precoMME26p;
   private BigDecimal precoMacd;
