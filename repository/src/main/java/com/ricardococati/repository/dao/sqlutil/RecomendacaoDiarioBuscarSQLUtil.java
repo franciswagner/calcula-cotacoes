@@ -14,7 +14,10 @@ public class RecomendacaoDiarioBuscarSQLUtil {
     sql.appendSQL(" select ");
     sql.appendSQL("     cd.codneg, ");
     sql.appendSQL("     cd.dtpreg, ");
+    sql.appendSQL("     cd.preabe as preco_abertura, ");
     sql.appendSQL("     cd.preult as preco_fechamento, ");
+    sql.appendSQL("     cd.premin as preco_minimo, ");
+    sql.appendSQL("     cd.premax as preco_maximo, ");
     sql.appendSQL("     mme12.premedult as preco_mme12p, ");
     sql.appendSQL("     mme26.premedult as preco_mme26p, ");
     sql.appendSQL("     md.premacd as preco_macd, ");
