@@ -40,6 +40,7 @@
     <fixture-factory.version>3.1.0</fixture-factory.version>
     <!--COMMONS DATABASE CONNECTION POOL-->
     <commons-dbcp.version>1.4</commons-dbcp.version>
+    <spring-boot-starter-amqp.version>1.5.7.RELEASE</spring-boot-starter-amqp.version>
   </properties>
 
   <parent>
@@ -106,6 +107,11 @@
         <groupId>commons-dbcp</groupId>
         <artifactId>commons-dbcp</artifactId>
         <version>${commons-dbcp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-amqp</artifactId>
+        <version>${spring-boot-starter-amqp.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
