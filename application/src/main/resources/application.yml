@@ -50,6 +50,21 @@ spring:
     serialization:
       write-dates-as-timestamps: false
 
-queue:
-  diario: recomendacaoDiario
-  semanal: recomendacaoSemanal
+personal:
+  rabbit:
+    config:
+      initialInterval: 5
+      maxInterval: 5
+      multiplier: 1
+      retries: 1
+      successConsumers: 1
+      errorConsumers: 1
+    bindings:
+      -
+        topic: recomendacao.diario.calcula
+        routing-key: recomendacao.diario.calcula.input.rk
+        queue: recomendacao.diario.calcula.input
+      -
+        topic: recomendacao.semanal.calcula
+        routing-key: recomendacao.semanal.calcula.rk
+        queue: recomendacao.semanal.calcula.input
