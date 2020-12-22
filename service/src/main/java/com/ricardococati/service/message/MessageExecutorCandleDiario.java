@@ -1,4 +1,4 @@
-package com.ricardococati.kafka;
+package com.ricardococati.service.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ricardococati.model.entities.CandlestickDiarioMessage;

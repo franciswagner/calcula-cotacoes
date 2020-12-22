@@ -14,15 +14,15 @@
   <dependencies>
     <dependency>
       <groupId>com.ricardococati</groupId>
-      <artifactId>service</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.ricardococati</groupId>
       <artifactId>model</artifactId>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
     </dependency>
   </dependencies>
 

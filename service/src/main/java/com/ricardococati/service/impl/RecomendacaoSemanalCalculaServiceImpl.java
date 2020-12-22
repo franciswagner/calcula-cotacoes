@@ -6,6 +6,7 @@ import static com.ricardococati.model.enums.Decisao.TENDENCIA_BAIXA;
 import static java.util.Objects.nonNull;
 
 import com.ricardococati.model.entities.RecomendacaoSemanal;
+import com.ricardococati.rabbitmq.RecomendacaoSemanalCalculaSender;
 import com.ricardococati.repository.dao.HistogramaSemanalInserirDAO;
 import com.ricardococati.repository.dao.MacdSemanalBuscarDAO;
 import com.ricardococati.repository.dao.MediaMovelExponencialSemanalBuscarDAO;
@@ -42,21 +43,36 @@ public class RecomendacaoSemanalCalculaServiceImpl
   private final RecomendacaoSemanalExcluirDAO excluirRecomendacao;
   private final MediaMovelExponencialSemanalBuscarDAO mediaMovelExponencialDAO;
   private final CalculaService calculaService;
+  private final RecomendacaoSemanalCalculaSender calculaSender;
 
   @Override
   public List<RecomendacaoSemanal> executeByCodNeg(
       final List<String> listCodneg, final LocalDate dtLimitePregao) {
     excluirRecomendacao.excluirAllRecomendacao();
-    List<RecomendacaoSemanal> diarioList = new ArrayList<>();
+    List<RecomendacaoSemanal> semanalList = new ArrayList<>();
     log.info("Código de negociação: " + listCodneg);
     listCodneg
         .parallelStream()
         .filter(Objects::nonNull)
         .forEachOrdered(codneg -> {
-          diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
-          incluirRecomendacao(diarioList);
+          semanalList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
+          incluirRecomendacao(semanalList);
+          sendAmqpMessage(semanalList);
         });
-    return diarioList;
+    return semanalList;
+  }
+
+  private void sendAmqpMessage(List<RecomendacaoSemanal> semanalList) {
+    semanalList
+        .stream()
+        .filter(Objects::nonNull)
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregini()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getDtpregfim()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao()))
+        .filter(mmsSemanal -> nonNull(mmsSemanal.getRecomendacao().getCodneg()))
+        .forEach(recomendacaoSemanal -> {
+          calculaSender.send(recomendacaoSemanal.toString());
+        });
   }
 
   private void incluirRecomendacao(final List<RecomendacaoSemanal> semanalList) {

@@ -1,7 +1,7 @@
 package com.ricardococati.listener;
 
-import com.ricardococati.kafka.MessageExecutorCandleSemanal;
 import com.ricardococati.kafka.Topics;
+import com.ricardococati.service.message.MessageExecutorCandleSemanal;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

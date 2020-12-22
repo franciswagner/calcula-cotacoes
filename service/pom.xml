@@ -26,6 +26,16 @@
     </dependency>
     <dependency>
       <groupId>com.ricardococati</groupId>
+      <artifactId>message</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.ricardococati</groupId>
+          <artifactId>model</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.ricardococati</groupId>
       <artifactId>repository</artifactId>
     </dependency>
     <dependency>
@@ -74,6 +84,8 @@
                     <exclude>com.ricardococati.service.impl.CalculaServiceImpl</exclude>
                     <exclude>com.ricardococati.service.impl.RecomendacaoDiarioCalculaServiceImpl</exclude>
                     <exclude>com.ricardococati.service.impl.CandlestickDiarioInserirServiceImpl</exclude>
+                    <exclude>com.ricardococati.service.message.MessageExecutorCandleDiario</exclude>
+                    <exclude>com.ricardococati.service.message.MessageExecutorCandleSemanal</exclude>
                   </excludes>
                   <limits>
                     <limit>

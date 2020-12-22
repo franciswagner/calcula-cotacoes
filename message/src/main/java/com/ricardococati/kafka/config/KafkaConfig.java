@@ -1,4 +1,4 @@
-package com.ricardococati.config;
+package com.ricardococati.kafka.config;
 
 import java.util.HashMap;
 import java.util.Map;

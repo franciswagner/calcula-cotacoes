@@ -1,9 +1,7 @@
 package com.ricardococati.model.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 public enum OperacaoSplitInplit {
 
   SPLIT("/"), INPLIT("*");
@@ -11,4 +9,7 @@ public enum OperacaoSplitInplit {
   @Getter
   private String tipoOperacao;
 
+  OperacaoSplitInplit(final String tipoOperacao) {
+    this.tipoOperacao = tipoOperacao;
+  }
 }
