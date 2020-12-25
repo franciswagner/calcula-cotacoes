@@ -1,4 +1,4 @@
-package com.ricardococati.calculacotacoes.adapters.repositories;
+package com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia;
 
 public interface GeraSequenciaDAO {
 
