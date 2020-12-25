@@ -11,15 +11,10 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<!-- MAVEN COMPILER PLUGIN VERSION -->
 		<maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-		<!-- MAVEN RELEASE PLUGIN VERSION -->
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-		<!-- POSTGRESQL EMBEDDED FOR TESTS -->
 		<otj-pg-embedded.version>0.1.1</otj-pg-embedded.version>
-		<!-- FIXTURE FACTORY -->
 		<fixture-factory.version>3.1.0</fixture-factory.version>
-		<!--COMMONS DATABASE CONNECTION POOL-->
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 	</properties>
 
@@ -27,7 +22,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<dependencies>
