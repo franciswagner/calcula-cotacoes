@@ -1,13 +1,11 @@
 package com.ricardococati.calculacotacoes;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
-@SpringBootTest
-class CalculaCotacoesApplicationTests {
+public class CalculaCotacoesApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void main() {
 	}
 
 }

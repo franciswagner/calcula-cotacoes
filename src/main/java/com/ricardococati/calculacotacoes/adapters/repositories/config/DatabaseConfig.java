@@ -1,4 +1,4 @@
-package com.ricardococati.calculacotacoes.config;
+package com.ricardococati.calculacotacoes.adapters.repositories.config;
 
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
