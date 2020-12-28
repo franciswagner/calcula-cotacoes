@@ -177,6 +177,7 @@
                   <excludes>
                     <exclude>com.ricardococati.calculacotacoes.Application</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.message.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.queue.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.schedulers.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.utils.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.ativo.*</exclude>
