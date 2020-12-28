@@ -110,7 +110,7 @@
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring-boot.version}</version>
           <configuration>
-            <mainClass>com.ricardococati.calculacotacoes.CalculaCotacoesApplication</mainClass>
+            <mainClass>com.ricardococati.calculacotacoes.Application</mainClass>
           </configuration>
         </plugin>
         <plugin>
@@ -175,15 +175,21 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
-                    <exclude>com.ricardococati.calculacotacoes.CalculaCotacoesApplication</exclude>
-                    <exclude>com.ricardococati.calculacotacoes.entities.*</exclude>
-                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.config.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.Application</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.message.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.schedulers.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.utils.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.ativo.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.controle.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.histograma.*</exclude>
                     <exclude>com.ricardococati.calculacotacoes.adapters.repositories.usuario.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.config.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.entities.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.candlestick.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.calculageral.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.recomendacao.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.utils.*</exclude>
                   </excludes>
                   <limits>
                     <limit>

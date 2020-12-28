@@ -1,8 +1,8 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.histograma;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.HistogramaDiarioTemplateLoader.HISTOGRAMA_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.HistogramaDiarioTemplateLoader.HISTOGRAMA_DIARIO_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -12,7 +12,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlut
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.histograma.impl.HistogramaDiarioInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.histograma.sqlutil.HistogramaDiarioSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaDiario;
 import com.ricardococati.calculacotacoes.adapters.repositories.utils.InserirDadosPrimariosDiarioUtil;
@@ -42,7 +42,7 @@ public class HistogramaDiarioInserirDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new HistogramaDiarioInserirDAOImpl(
         getNamedParameterJdbcTemplate(),
         genericDAO,

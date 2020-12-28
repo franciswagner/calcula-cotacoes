@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.candlestick;
 
-import static com.ricardococati.calculacotacoes.adapters.repositories.utils.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
+import static com.ricardococati.calculacotacoes.utils.geral.BigDecimalCustomizado.sendDoubleGetValueBigDecimalArredonda4Casas;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.impl.CandlestickDiarioInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.Candlestick;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import java.time.LocalDate;
@@ -83,7 +83,7 @@ public class CandlestickDiarioInserirDAOImplTest extends BaseJdbcTest {
         .dtpreg(dtpreg)
         .candlestick(Candlestick
             .builder()
-            .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
+            .preult(sendDoubleGetValueBigDecimalArredonda4Casas(preult))
             .codneg(codneg)
             .build()
         ).build();

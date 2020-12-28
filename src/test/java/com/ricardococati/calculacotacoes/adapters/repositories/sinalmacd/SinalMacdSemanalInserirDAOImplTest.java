@@ -1,9 +1,9 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.SinalMacdSemanalTemplateLoader.SINAL_MACD_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.SinalMacdSemanalTemplateLoader.SINAL_MACD_SEMANAL_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -14,7 +14,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlut
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.impl.SinalMacdSemanalInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.sqlutil.SinalMacdSemanalSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.sinalmacd.SinalMacdSemanal;
@@ -47,7 +47,7 @@ public class SinalMacdSemanalInserirDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new SinalMacdSemanalInserirDAOImpl(
         getNamedParameterJdbcTemplate(),
         genericDAO,

@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.macd.mapper;
 
-import static com.ricardococati.calculacotacoes.adapters.repositories.utils.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
+import static com.ricardococati.calculacotacoes.utils.data.TratamentoResultSetCampoData.retornaDataSeResultSetContemDataSenaoRetornaNulo;
 
 import com.ricardococati.calculacotacoes.entities.domains.macd.Macd;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdSemanal;

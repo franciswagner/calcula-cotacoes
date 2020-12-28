@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.candlestick;
 
-import static com.ricardococati.calculacotacoes.adapters.repositories.utils.BigDecimalCustomizado.getValueBigDecimalHalfUpArredondado4Casas;
+import static com.ricardococati.calculacotacoes.utils.geral.BigDecimalCustomizado.sendDoubleGetValueBigDecimalArredonda4Casas;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -9,7 +9,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.impl.
 import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlutil.CandlestickDiarioInserirSQLUtil;
 import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlutil.CandlestickSemanalInserirSQLUtil;
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.Candlestick;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickSemanal;
@@ -121,7 +121,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
         .dtpregfim(dtpregfim)
         .candlestick(Candlestick
             .builder()
-            .preult(getValueBigDecimalHalfUpArredondado4Casas(preult))
+            .preult(sendDoubleGetValueBigDecimalArredonda4Casas(preult))
             .codneg(codneg)
             .build()
         ).build();
@@ -135,7 +135,7 @@ public class CandlestickSemanalInserirDAOImplTest extends BaseJdbcTest {
         .dtpreg(dtpreg)
         .candlestick(Candlestick
             .builder()
-            .preult(getValueBigDecimalHalfUpArredondado4Casas(10.1))
+            .preult(sendDoubleGetValueBigDecimalArredonda4Casas(10.1))
             .codneg("MGLU3")
             .build()
         ).build();

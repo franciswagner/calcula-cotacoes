@@ -1,9 +1,9 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.macd;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.MacdSemanalTemplateLoader.MACD_SEMANAL_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -17,7 +17,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.macd.impl.MacdSem
 import com.ricardococati.calculacotacoes.adapters.repositories.macd.impl.MacdSemanalInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.macd.mapper.MacdSemanalMapper;
 import com.ricardococati.calculacotacoes.adapters.repositories.macd.sqlutil.MacdSemanalSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdSemanal;
@@ -50,7 +50,7 @@ public class MacdSemanalBuscarDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new MacdSemanalBuscarDAOImpl(
         getNamedParameterJdbcTemplate(),
         sqlUtil,

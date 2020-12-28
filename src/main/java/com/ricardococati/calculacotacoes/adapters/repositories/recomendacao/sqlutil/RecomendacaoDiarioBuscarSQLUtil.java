@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.sqlutil;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.utils.SQLAppender;
+import com.ricardococati.calculacotacoes.utils.sql.SQLAppender;
 import com.ricardococati.calculacotacoes.entities.enums.QuantidadePeriodo;
 import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

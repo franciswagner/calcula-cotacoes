@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.histograma.sqlutil;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.utils.SQLAppender;
+import com.ricardococati.calculacotacoes.utils.sql.SQLAppender;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaSemanal;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;

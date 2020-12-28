@@ -1,12 +1,12 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.recomendacao;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.HistogramaDiarioTemplateLoader.HISTOGRAMA_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.MediaMovelExponencial12PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.MediaMovelExponencial26PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.HistogramaDiarioTemplateLoader.HISTOGRAMA_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.MacdDiarioTemplateLoader.MACD_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.MediaMovelExponencial12PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_12PERIODOS_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.MediaMovelExponencial26PeriodosDiarioTemplateLoader.MEDIA_MOVEL_EXPONENCIAL_DIARIO_26PERIODOS_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -27,7 +27,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.mapp
 import com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.sqlutil.RecomendacaoDiarioBuscarSQLUtil;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.impl.SinalMacdDiarioInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.sqlutil.SinalMacdDiarioSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaDiario;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdDiario;
@@ -69,7 +69,7 @@ public class RecomendacaoDiarioBuscarDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new RecomendacaoDiarioBuscarDAOImpl(getNamedParameterJdbcTemplate(), sqlUtil, mapper);
     incluiCandleAntesDeExecutarTestes();
     incluirMMEAntesDeExecutarTestes();

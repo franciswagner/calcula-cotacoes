@@ -1,9 +1,9 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.recomendacao;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.RecomendacaoSemanalTemplateLoader.RECOMENDACAO_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickSemanalDTOTemplateLoader.CANDLESTICK_SEMANAL_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.RecomendacaoSemanalTemplateLoader.RECOMENDACAO_SEMANAL_VALID_001;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -14,7 +14,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.candlestick.sqlut
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.impl.RecomendacaoSemanalInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.sqlutil.RecomendacaoSemanalInserirSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoSemanal;
@@ -47,7 +47,7 @@ public class RecomendacaoSemanalInserirDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new RecomendacaoSemanalInserirDAOImpl(
         getNamedParameterJdbcTemplate(),
         genericDAO,

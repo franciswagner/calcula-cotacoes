@@ -1,8 +1,8 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
-import static com.ricardococati.calculacotacoes.adapters.repositories.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTemplateLoader.CANDLESTICK_DIARIO_VALID_001;
+import static com.ricardococati.calculacotacoes.templates.SinalMacdDiarioTemplateLoader.SINAL_MACD_DIARIO_VALID_001;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -15,7 +15,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.impl.Si
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.impl.SinalMacdDiarioInserirDAOImpl;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.mapper.SinalMacdDiarioMapper;
 import com.ricardococati.calculacotacoes.adapters.repositories.sinalmacd.sqlutil.SinalMacdDiarioSQLUtil;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.sinalmacd.SinalMacdDiario;
 import com.ricardococati.calculacotacoes.adapters.repositories.utils.InserirDadosPrimariosDiarioUtil;
@@ -47,7 +47,7 @@ public class SinalMacdDiarioBuscarDAOImplTest extends BaseJdbcTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.adapters.repositories.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     target = new SinalMacdDiarioBuscarDAOImpl(
         getNamedParameterJdbcTemplate(),
         sqlUtil,

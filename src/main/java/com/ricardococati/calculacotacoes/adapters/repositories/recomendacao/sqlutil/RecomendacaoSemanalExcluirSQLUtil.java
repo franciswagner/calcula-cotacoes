@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.sqlutil;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.utils.SQLAppender;
+import com.ricardococati.calculacotacoes.utils.sql.SQLAppender;
 import org.springframework.stereotype.Component;
 
 @Component

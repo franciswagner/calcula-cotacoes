@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.controle.sqlutil;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.utils.SQLAppender;
+import com.ricardococati.calculacotacoes.utils.sql.SQLAppender;
 import com.ricardococati.calculacotacoes.entities.domains.controle.ControleExecucao;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;

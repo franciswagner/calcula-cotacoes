@@ -1,7 +1,7 @@
 package com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia;
 
 import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
-import com.ricardococati.calculacotacoes.adapters.repositories.config.BaseJdbcTest;
+import com.ricardococati.calculacotacoes.config.BaseJdbcTest;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
