@@ -32,7 +32,7 @@ public class RecomendacaoSemanalTemplateLoader implements TemplateLoader {
   public static final String RECOMENDACAO_SEMANAL_VALID_009 = "RECOMENDACAO_SEMANAL_VALID_009";
   public static final String RECOMENDACAO_SEMANAL_VALID_010 = "RECOMENDACAO_SEMANAL_VALID_010";
   public static final String RECOMENDACAO_SEMANAL_VALID_011 = "RECOMENDACAO_SEMANAL_VALID_011";
-  private LocalDate localDate = LocalDate.of(1978, 2, 16);
+  private LocalDate localDate = LocalDate.of(1978, 2, 15);
 
   @Override
   public void load() {
@@ -40,7 +40,7 @@ public class RecomendacaoSemanalTemplateLoader implements TemplateLoader {
         .addTemplate(RECOMENDACAO_SEMANAL_VALID_001,
             new Rule() {{
               add("idRecomendacaoSemanal", random(Long.class, range(1L, 200L)));
-              add("dtpregini", localDate);
+              add("dtpregini", localDate.plusDays(1));
               add("dtpregfim", localDate.plusDays(2));
               add("recomendacao", one(Recomendacao.class, RECOMENDACAO_VALID_001));
             }})
