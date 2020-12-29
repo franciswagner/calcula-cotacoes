@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ricardococati</groupId>
   <artifactId>calcula-cotacoes</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>
-
-  <modules>
-    <module>application</module>
-    <module>model</module>
-    <module>repository</module>
-    <module>service</module>
-    <module>message</module>
-  </modules>
+  <version>2.0.0-SNAPSHOT</version>
+  <name>calcula-cotacoes</name>
+  <description>Projeto de cálculo das cotações da BMF</description>
 
   <properties>
-    <!-- JAVA VERSION -->
     <java.version>11</java.version>
-    <!-- SPRING BOOT VERSION -->
     <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-    <!-- SPRING CLOUD VERSION -->
     <spring-cloud.version>Brixton.RELEASE</spring-cloud.version>
-    <!-- LOMBOK VERSION -->
     <lombok.version>1.18.16</lombok.version>
-    <!-- MAVEN COMPILER PLUGIN VERSION -->
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <!-- MAVEN RELEASE PLUGIN VERSION -->
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-    <!-- POSTGRESQL -->
     <postgresql.version>42.1.1</postgresql.version>
-    <!-- JDBC TEMPLATE VERSION -->
     <spring-jdbc.version>4.3.10.RELEASE</spring-jdbc.version>
-    <!-- POSTGRESQL EMBEDDED FOR TESTS -->
-    <otj-pg-embedded.version>0.1.1</otj-pg-embedded.version>
-    <!-- FIXTURE FACTORY -->
+    <otj-pg-embedded.version>0.11.3</otj-pg-embedded.version>
     <fixture-factory.version>3.1.0</fixture-factory.version>
-    <!--COMMONS DATABASE CONNECTION POOL-->
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <spring-boot-starter-amqp.version>1.5.7.RELEASE</spring-boot-starter-amqp.version>
+    <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
+    <flyway-core.version>3.2</flyway-core.version>
+    <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
+    <jackson-datatype-jsr310.version>2.10.5</jackson-datatype-jsr310.version>
   </properties>
 
   <parent>
@@ -49,67 +35,48 @@
     <version>1.5.3.RELEASE</version>
   </parent>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>model</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>repository</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>service</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>application</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>message</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>${postgresql.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>${spring-jdbc.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>br.com.six2six</groupId>
-        <artifactId>fixture-factory</artifactId>
-        <version>${fixture-factory.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-dbcp</groupId>
-        <artifactId>commons-dbcp</artifactId>
-        <version>${commons-dbcp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-amqp</artifactId>
-        <version>${spring-boot-starter-amqp.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${postgresql.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring-jdbc.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>br.com.six2six</groupId>
+      <artifactId>fixture-factory</artifactId>
+      <version>${fixture-factory.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>${commons-dbcp.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+      <version>${spring-boot-starter-amqp.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${springfox-swagger2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${springfox-swagger2.version}</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -130,9 +97,14 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson-datatype-jsr310.version}</version>
     </dependency>
   </dependencies>
 
@@ -144,7 +116,7 @@
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring-boot.version}</version>
           <configuration>
-            <mainClass>com.ricardococati.Application</mainClass>
+            <mainClass>com.ricardococati.calculacotacoes.Application</mainClass>
           </configuration>
         </plugin>
         <plugin>
@@ -187,6 +159,64 @@
             </resource>
           </resources>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-check</id>
+            <phase>test</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <excludes>
+                    <exclude>com.ricardococati.calculacotacoes.Application</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.message.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.queue.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.schedulers.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.utils.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.ativo.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.controle.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.recomendacao.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.histograma.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.adapters.repositories.usuario.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.config.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.entities.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.candlestick.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.calculageral.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.usecases.recomendacao.*</exclude>
+                    <exclude>com.ricardococati.calculacotacoes.utils.*</exclude>
+                  </excludes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.70</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
