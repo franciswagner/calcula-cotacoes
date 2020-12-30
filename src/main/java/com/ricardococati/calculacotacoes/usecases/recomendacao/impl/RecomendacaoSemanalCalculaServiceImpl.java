@@ -47,16 +47,16 @@ public class RecomendacaoSemanalCalculaServiceImpl
   public List<RecomendacaoSemanal> executeByCodNeg(
       final List<String> listCodneg, final LocalDate dtLimitePregao) {
     excluirRecomendacao.excluirAllRecomendacao();
-    List<RecomendacaoSemanal> diarioList = new ArrayList<>();
+    List<RecomendacaoSemanal> semanalList = new ArrayList<>();
     log.info("Código de negociação: " + listCodneg);
     listCodneg
         .parallelStream()
         .filter(Objects::nonNull)
         .forEachOrdered(codneg -> {
-          diarioList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
-          incluirRecomendacao(diarioList);
+          semanalList.addAll(calculaRecomendacao(codneg, dtLimitePregao));
+          incluirRecomendacao(semanalList);
         });
-    return diarioList;
+    return semanalList;
   }
 
   private void incluirRecomendacao(final List<RecomendacaoSemanal> semanalList) {

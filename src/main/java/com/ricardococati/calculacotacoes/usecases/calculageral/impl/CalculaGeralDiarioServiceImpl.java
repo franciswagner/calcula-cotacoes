@@ -1,10 +1,12 @@
 package com.ricardococati.calculacotacoes.usecases.calculageral.impl;
 
+import com.ricardococati.calculacotacoes.adapters.queue.QueuePublisher;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaDiario;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdDiario;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialDiario;
 import com.ricardococati.calculacotacoes.entities.domains.mediasimples.MediaMovelSimplesDiario;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoDiario;
+import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.sinalmacd.SinalMacdDiario;
 import com.ricardococati.calculacotacoes.usecases.calculageral.CalculaGeralDiarioService;
 import com.ricardococati.calculacotacoes.usecases.histograma.HistogramaDiarioCalculaService;
@@ -29,12 +31,14 @@ import org.springframework.stereotype.Service;
 public class CalculaGeralDiarioServiceImpl implements
     CalculaGeralDiarioService {
 
+  public static final String RECOMENDACAO_DIARIO_CALCULA_INPUT = "recomendacao.diario.calcula.input";
   private final MediaMovelSimplesDiarioCalculaService mmsService;
   private final MediaMovelExponencialDiarioCalculaService mmeService;
   private final MACDDiarioCalculaService macdService;
   private final SinalMacdDiarioCalculaService sinalMacdService;
   private final HistogramaDiarioCalculaService histogramaService;
   private final RecomendacaoDiarioCalculaService recomendacaoService;
+  private final QueuePublisher queuePublisher;
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
@@ -55,6 +59,7 @@ public class CalculaGeralDiarioServiceImpl implements
       log.error("Erro ao gerar recomendação: {} ", ex.getMessage());
       throw ex;
     }
+    enqueueRecomendacao(recomendacaoDiarioList);
     return recomendacaoDiarioList;
   }
 
@@ -101,6 +106,16 @@ public class CalculaGeralDiarioServiceImpl implements
         .filter(Objects::nonNull)
         .forEach(codneg -> listHistograma.addAll(histogramaService.executeByCodNeg(codneg)));
     return !listHistograma.isEmpty();
+  }
+
+  private void enqueueRecomendacao(final List<RecomendacaoDiario> recomendacaoDiarioList) {
+    recomendacaoDiarioList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(recomendacaoSemanal -> {
+          log.info("Enviado a fila: ", recomendacaoSemanal);
+          queuePublisher.enqueue(recomendacaoSemanal, RECOMENDACAO_DIARIO_CALCULA_INPUT);
+        });
   }
 
 }

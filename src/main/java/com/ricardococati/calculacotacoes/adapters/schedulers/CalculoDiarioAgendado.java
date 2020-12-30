@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CalculoDiarioAgendadoService {
+public class CalculoDiarioAgendado {
 
   private final MediaMovelExponencialDiarioCalculaService calculaMediaMovelExponencial;
   private final MediaMovelSimplesDiarioCalculaService calculaMediaMovelSimples;

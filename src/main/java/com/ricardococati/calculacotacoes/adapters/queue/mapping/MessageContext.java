@@ -1,4 +1,4 @@
-package com.ricardococati.calculacotacoes.adapters.queue;
+package com.ricardococati.calculacotacoes.adapters.queue.mapping;
 
 import com.ricardococati.calculacotacoes.adapters.queue.mapping.Binding;
 

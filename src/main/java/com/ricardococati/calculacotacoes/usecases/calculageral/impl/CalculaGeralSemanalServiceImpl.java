@@ -1,5 +1,6 @@
 package com.ricardococati.calculacotacoes.usecases.calculageral.impl;
 
+import com.ricardococati.calculacotacoes.adapters.queue.QueuePublisher;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialSemanal;
@@ -29,12 +30,14 @@ import org.springframework.stereotype.Service;
 public class CalculaGeralSemanalServiceImpl implements
     CalculaGeralSemanalService {
 
+  public static final String RECOMENDACAO_SEMANAL_CALCULA_INPUT = "recomendacao.semanal.calcula.input";
   private final MediaMovelSimplesSemanalCalculaService mmsService;
   private final MediaMovelExponencialSemanalCalculaService mmeService;
   private final MACDSemanalCalculaService macdService;
   private final SinalMacdSemanalCalculaService sinalMacdService;
   private final HistogramaSemanalCalculaService histogramaService;
   private final RecomendacaoSemanalCalculaService recomendacaoService;
+  private final QueuePublisher queuePublisher;
 
   @Override
   public List<RecomendacaoSemanal> executeByCodNeg(
@@ -55,6 +58,7 @@ public class CalculaGeralSemanalServiceImpl implements
       log.error("Erro ao gerar recomendação: {} ", ex.getMessage());
       throw ex;
     }
+    enqueueRecomendacao(recomendacaoSemanalList);
     return recomendacaoSemanalList;
   }
 
@@ -111,6 +115,16 @@ public class CalculaGeralSemanalServiceImpl implements
           listHistograma.addAll(histogramaService.executeByCodNeg(codneg));
         });
     return !listHistograma.isEmpty();
+  }
+
+  private void enqueueRecomendacao(final List<RecomendacaoSemanal> recomendacaoSemanalList) {
+    recomendacaoSemanalList
+        .stream()
+        .filter(Objects::nonNull)
+        .forEach(recomendacaoSemanal -> {
+          log.info("Enviado a fila: ", recomendacaoSemanal);
+          queuePublisher.enqueue(recomendacaoSemanal, RECOMENDACAO_SEMANAL_CALCULA_INPUT);
+        });
   }
 
 }
