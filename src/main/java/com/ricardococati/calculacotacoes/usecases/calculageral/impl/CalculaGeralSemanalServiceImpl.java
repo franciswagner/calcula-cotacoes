@@ -1,6 +1,8 @@
 package com.ricardococati.calculacotacoes.usecases.calculageral.impl;
 
-import com.ricardococati.calculacotacoes.adapters.queue.QueuePublisher;
+import static com.ricardococati.calculacotacoes.adapters.message.topic.TopicosDiarioSemanal.TOPIC_RECOMENDACAO_SEMANAL;
+
+import com.ricardococati.calculacotacoes.adapters.message.action.RecomendacaoActionListener;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialSemanal;
@@ -37,7 +39,7 @@ public class CalculaGeralSemanalServiceImpl implements
   private final SinalMacdSemanalCalculaService sinalMacdService;
   private final HistogramaSemanalCalculaService histogramaService;
   private final RecomendacaoSemanalCalculaService recomendacaoService;
-  private final QueuePublisher queuePublisher;
+  private final RecomendacaoActionListener actionListener;
 
   @Override
   public List<RecomendacaoSemanal> executeByCodNeg(
@@ -58,7 +60,7 @@ public class CalculaGeralSemanalServiceImpl implements
       log.error("Erro ao gerar recomendação: {} ", ex.getMessage());
       throw ex;
     }
-    enqueueRecomendacao(recomendacaoSemanalList);
+    sendRecomendacao(recomendacaoSemanalList);
     return recomendacaoSemanalList;
   }
 
@@ -117,13 +119,13 @@ public class CalculaGeralSemanalServiceImpl implements
     return !listHistograma.isEmpty();
   }
 
-  private void enqueueRecomendacao(final List<RecomendacaoSemanal> recomendacaoSemanalList) {
+  private void sendRecomendacao(final List<RecomendacaoSemanal> recomendacaoSemanalList) {
     recomendacaoSemanalList
         .stream()
         .filter(Objects::nonNull)
         .forEach(recomendacaoSemanal -> {
           log.info("Enviado a fila: ", recomendacaoSemanal);
-          queuePublisher.enqueue(recomendacaoSemanal, RECOMENDACAO_SEMANAL_CALCULA_INPUT);
+          actionListener.onAfterSave(recomendacaoSemanal, TOPIC_RECOMENDACAO_SEMANAL.getTopicName());
         });
   }
 

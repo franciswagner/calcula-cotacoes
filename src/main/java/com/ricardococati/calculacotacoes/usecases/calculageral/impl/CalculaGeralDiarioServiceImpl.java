@@ -1,12 +1,13 @@
 package com.ricardococati.calculacotacoes.usecases.calculageral.impl;
 
-import com.ricardococati.calculacotacoes.adapters.queue.QueuePublisher;
+import static com.ricardococati.calculacotacoes.adapters.message.topic.TopicosDiarioSemanal.TOPIC_RECOMENDACAO_DIARIO;
+
+import com.ricardococati.calculacotacoes.adapters.message.action.RecomendacaoActionListener;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaDiario;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdDiario;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialDiario;
 import com.ricardococati.calculacotacoes.entities.domains.mediasimples.MediaMovelSimplesDiario;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoDiario;
-import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.sinalmacd.SinalMacdDiario;
 import com.ricardococati.calculacotacoes.usecases.calculageral.CalculaGeralDiarioService;
 import com.ricardococati.calculacotacoes.usecases.histograma.HistogramaDiarioCalculaService;
@@ -31,14 +32,13 @@ import org.springframework.stereotype.Service;
 public class CalculaGeralDiarioServiceImpl implements
     CalculaGeralDiarioService {
 
-  public static final String RECOMENDACAO_DIARIO_CALCULA_INPUT = "recomendacao.diario.calcula.input";
   private final MediaMovelSimplesDiarioCalculaService mmsService;
   private final MediaMovelExponencialDiarioCalculaService mmeService;
   private final MACDDiarioCalculaService macdService;
   private final SinalMacdDiarioCalculaService sinalMacdService;
   private final HistogramaDiarioCalculaService histogramaService;
   private final RecomendacaoDiarioCalculaService recomendacaoService;
-  private final QueuePublisher queuePublisher;
+  private final RecomendacaoActionListener actionListener;
 
   @Override
   public List<RecomendacaoDiario> executeByCodNeg(
@@ -59,7 +59,7 @@ public class CalculaGeralDiarioServiceImpl implements
       log.error("Erro ao gerar recomendação: {} ", ex.getMessage());
       throw ex;
     }
-    enqueueRecomendacao(recomendacaoDiarioList);
+    sendRecomendacao(recomendacaoDiarioList);
     return recomendacaoDiarioList;
   }
 
@@ -108,13 +108,13 @@ public class CalculaGeralDiarioServiceImpl implements
     return !listHistograma.isEmpty();
   }
 
-  private void enqueueRecomendacao(final List<RecomendacaoDiario> recomendacaoDiarioList) {
+  private void sendRecomendacao(final List<RecomendacaoDiario> recomendacaoDiarioList) {
     recomendacaoDiarioList
         .stream()
         .filter(Objects::nonNull)
         .forEach(recomendacaoSemanal -> {
-          log.info("Enviado a fila: ", recomendacaoSemanal);
-          queuePublisher.enqueue(recomendacaoSemanal, RECOMENDACAO_DIARIO_CALCULA_INPUT);
+          log.info("Enviado ao tópico: ", recomendacaoSemanal);
+          actionListener.onAfterSave(recomendacaoSemanal, TOPIC_RECOMENDACAO_DIARIO.getTopicName());
         });
   }
 

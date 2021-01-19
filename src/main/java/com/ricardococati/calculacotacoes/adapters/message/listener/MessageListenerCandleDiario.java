@@ -1,13 +1,14 @@
-package com.ricardococati.calculacotacoes.adapters.message;
+package com.ricardococati.calculacotacoes.adapters.message.listener;
 
 import static com.ricardococati.calculacotacoes.entities.contantes.Topics.CANDLESTICK_DIARIO;
 
+import com.ricardococati.calculacotacoes.adapters.message.executor.MessageExecutorCandleDiario;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class MessageListenerCandleDiario {
 

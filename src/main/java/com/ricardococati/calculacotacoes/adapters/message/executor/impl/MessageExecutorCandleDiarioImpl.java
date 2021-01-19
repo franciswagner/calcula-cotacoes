@@ -1,21 +1,23 @@
-package com.ricardococati.calculacotacoes.adapters.message;
+package com.ricardococati.calculacotacoes.adapters.message.executor.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ricardococati.calculacotacoes.adapters.message.executor.MessageExecutorCandleDiario;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiarioMessage;
 import com.ricardococati.calculacotacoes.usecases.candlestick.CandlestickDiarioInserirService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class MessageExecutorCandleDiario {
+public class MessageExecutorCandleDiarioImpl implements MessageExecutorCandleDiario {
 
   private final ObjectMapper objectMapper;
   private final CandlestickDiarioInserirService service;
 
+  @Override
   public void execute(final String payload) {
     final CandlestickDiarioMessage domain = payloadToDomain(payload);
     log.info("payload: " + payload);

@@ -2,7 +2,7 @@ package com.ricardococati.calculacotacoes.adapters.repositories.mediasimples.imp
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
+import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.GeraSequenciaDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.mediasimples.MediaMovelSimplesSemanalInserirDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.mediasimples.sqlutil.MediaMovelSimplesSemanalSQLUtil;
 import com.ricardococati.calculacotacoes.entities.domains.mediasimples.MediaMovelSimplesSemanal;
@@ -21,7 +21,7 @@ public class MediaMovelSimplesSemanalInserirDAOImpl implements MediaMovelSimples
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GeraSequenciaDAOImpl genericDAO;
+  private final GeraSequenciaDAO genericDAO;
   private final MediaMovelSimplesSemanalSQLUtil sqlUtil;
 
   @Override

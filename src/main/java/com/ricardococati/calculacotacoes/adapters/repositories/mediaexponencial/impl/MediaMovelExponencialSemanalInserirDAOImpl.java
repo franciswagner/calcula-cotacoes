@@ -2,7 +2,7 @@ package com.ricardococati.calculacotacoes.adapters.repositories.mediaexponencial
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
+import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.GeraSequenciaDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.mediaexponencial.MediaMovelExponencialSemanalInserirDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.mediaexponencial.sqlutil.MediaMovelExponencialSemanalSQLUtil;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialSemanal;
@@ -22,7 +22,7 @@ public class MediaMovelExponencialSemanalInserirDAOImpl
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GeraSequenciaDAOImpl genericDAO;
+  private final GeraSequenciaDAO genericDAO;
   private final MediaMovelExponencialSemanalSQLUtil sqlUtil;
 
   @Override

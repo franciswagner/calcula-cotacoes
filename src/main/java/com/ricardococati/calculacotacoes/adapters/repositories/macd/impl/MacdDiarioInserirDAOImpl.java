@@ -2,7 +2,7 @@ package com.ricardococati.calculacotacoes.adapters.repositories.macd.impl;
 
 import static java.util.Objects.isNull;
 
-import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.impl.GeraSequenciaDAOImpl;
+import com.ricardococati.calculacotacoes.adapters.repositories.gerasequencia.GeraSequenciaDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.macd.MacdDiarioInserirDAO;
 import com.ricardococati.calculacotacoes.adapters.repositories.macd.sqlutil.MacdDiarioSQLUtil;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdDiario;
@@ -21,7 +21,7 @@ public class MacdDiarioInserirDAOImpl implements MacdDiarioInserirDAO {
   @Qualifier("namedParameterJdbcTemplate")
   private final NamedParameterJdbcTemplate template;
 
-  private final GeraSequenciaDAOImpl genericDAO;
+  private final GeraSequenciaDAO genericDAO;
   private final MacdDiarioSQLUtil sqlUtil;
 
   @Override
