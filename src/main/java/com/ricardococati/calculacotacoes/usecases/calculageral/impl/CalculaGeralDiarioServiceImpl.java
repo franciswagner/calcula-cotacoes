@@ -1,6 +1,6 @@
 package com.ricardococati.calculacotacoes.usecases.calculageral.impl;
 
-import static com.ricardococati.calculacotacoes.adapters.message.topic.TopicosDiarioSemanal.TOPIC_RECOMENDACAO_DIARIO;
+import static com.ricardococati.calculacotacoes.adapters.message.topic.TopicosDiarioSemanal.TOPIC_RECOMENDACAO_DIARIA;
 
 import com.ricardococati.calculacotacoes.adapters.message.action.RecomendacaoActionListener;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaDiario;
@@ -114,7 +114,7 @@ public class CalculaGeralDiarioServiceImpl implements
         .filter(Objects::nonNull)
         .forEach(recomendacaoSemanal -> {
           log.info("Enviado ao tópico: ", recomendacaoSemanal);
-          actionListener.onAfterSave(recomendacaoSemanal, TOPIC_RECOMENDACAO_DIARIO.getTopicName());
+          actionListener.onAfterSave(recomendacaoSemanal, TOPIC_RECOMENDACAO_DIARIA.getTopicName());
         });
   }
 
