@@ -64,7 +64,7 @@ public class MediaMovelExponencialDiarioCalculaServiceImplTest {
 
   @Before
   public void setUp() {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     this.dtpreg = LocalDate.of(1978, 2, 16);
   }
 

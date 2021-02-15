@@ -58,7 +58,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
 
   @Before
   public void setUp() {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
   }
 
   @Test

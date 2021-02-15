@@ -49,6 +49,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.calculacotacoes.adapters.message.action.RecomendacaoActionListener;
 import com.ricardococati.calculacotacoes.entities.domains.histograma.HistogramaSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.macd.MacdSemanal;
 import com.ricardococati.calculacotacoes.entities.domains.mediaexponencial.MediaMovelExponencialSemanal;
@@ -91,6 +92,8 @@ public class CalculaGeralSemanalServiceImplTest {
   private HistogramaSemanalCalculaService histogramaService;
   @Mock
   private RecomendacaoSemanalCalculaService recomendacaoService;
+  @Mock
+  private RecomendacaoActionListener actionListener;
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
@@ -98,7 +101,7 @@ public class CalculaGeralSemanalServiceImplTest {
 
   @Before
   public void setUp() {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
     this.dtpreg = LocalDate.of(1978, 2, 16);
   }
 

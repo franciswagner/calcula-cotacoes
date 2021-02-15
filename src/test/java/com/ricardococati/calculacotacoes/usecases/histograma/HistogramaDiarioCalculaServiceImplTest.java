@@ -60,7 +60,7 @@ public class HistogramaDiarioCalculaServiceImplTest {
 
   @Before
   public void setUp() throws Exception {
-    FixtureFactoryLoader.loadTemplates("com.ricardococati.service.impl.templates");
+    FixtureFactoryLoader.loadTemplates("com.ricardococati.calculacotacoes.templates");
   }
 
   @Test
