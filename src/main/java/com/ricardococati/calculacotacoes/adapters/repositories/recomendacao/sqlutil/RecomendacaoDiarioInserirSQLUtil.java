@@ -20,6 +20,7 @@ public class RecomendacaoDiarioInserirSQLUtil {
     sql.appendSQL("		preco_macd, ");
     sql.appendSQL("		preco_sinal_macd, ");
     sql.appendSQL("		preco_histograma, ");
+    sql.appendSQL("		voltot, ");
     sql.appendSQL("		decisao ");
     sql.appendSQL("	) values ( ");
     sql.appendSQL("		:idRecomendacao,  ");
@@ -31,6 +32,7 @@ public class RecomendacaoDiarioInserirSQLUtil {
     sql.appendSQL("		:precoMacd, ");
     sql.appendSQL("		:precoSinalMacd, ");
     sql.appendSQL("		:precoHistograma, ");
+    sql.appendSQL("		:voltot, ");
     sql.appendSQL("		:decisao ");
     sql.appendSQL("	) ");
     sql.appendSQL(" on conflict (codneg, dtpreg) do update set ");
@@ -42,6 +44,7 @@ public class RecomendacaoDiarioInserirSQLUtil {
     sql.appendSQL("		preco_macd = excluded.preco_macd, ");
     sql.appendSQL("		preco_sinal_macd = excluded.preco_sinal_macd, ");
     sql.appendSQL("		preco_histograma = excluded.preco_histograma, ");
+    sql.appendSQL("		voltot = excluded.voltot, ");
     sql.appendSQL("		decisao = excluded.decisao ");
     return sql.getAppendSQLSemQuebra().toString();
   }
@@ -57,6 +60,7 @@ public class RecomendacaoDiarioInserirSQLUtil {
         .addValue("precoMacd", diario.getRecomendacao().getPrecoMacd())
         .addValue("precoSinalMacd", diario.getRecomendacao().getPrecoSinalMacd())
         .addValue("precoHistograma", diario.getRecomendacao().getPrecoHistograma())
+        .addValue("voltot", diario.getRecomendacao().getVoltot())
         .addValue("decisao", diario.getRecomendacao().getDecisao());
   }
 

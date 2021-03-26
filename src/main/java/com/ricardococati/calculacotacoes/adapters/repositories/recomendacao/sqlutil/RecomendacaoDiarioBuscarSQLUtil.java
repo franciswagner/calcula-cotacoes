@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 public class RecomendacaoDiarioBuscarSQLUtil {
 
   public String getSelectByCodNegDtPreg() {
+    final Integer fast12 = QuantidadePeriodo.FAST_12.getQuantidade();
+    final Integer slow26 = QuantidadePeriodo.SLOW_26.getQuantidade();
     SQLAppender sql = new SQLAppender(100);
     sql.appendSQL(" select ");
     sql.appendSQL("     cd.codneg, ");
@@ -22,17 +24,21 @@ public class RecomendacaoDiarioBuscarSQLUtil {
     sql.appendSQL("     mme26.premedult as preco_mme26p, ");
     sql.appendSQL("     md.premacd as preco_macd, ");
     sql.appendSQL("     smd.presinal as preco_sinal_macd, ");
-    sql.appendSQL("     hd.prehist as preco_histograma ");
+    sql.appendSQL("     hd.prehist as preco_histograma, ");
+    sql.appendSQL("     cd.voltot as voltot ");
     sql.appendSQL(" from candlestick_diario cd ");
-    sql.appendSQL(" inner join histograma_diario hd on hd.codneg = cd.codneg and hd.dtpreg = cd.dtpreg ");
-    sql.appendSQL(" inner join macd_diario md on md.codneg = hd.codneg and md.dtpreg = hd.dtpreg ");
-    sql.appendSQL(" inner join sinal_macd_diario smd on smd.codneg = hd.codneg and smd.dtpreg = hd.dtpreg ");
-    sql.appendSQL(" inner join media_movel_exponencial_diario mme12 on ");
-    sql.appendSQL("     mme12.codneg = hd.codneg and mme12.dtpreg = hd.dtpreg and mme12.periodo = "
-        + QuantidadePeriodo.FAST_12.getQuantidade());
-    sql.appendSQL(" inner join media_movel_exponencial_diario mme26 on ");
-    sql.appendSQL("     mme26.codneg = hd.codneg and mme26.dtpreg = hd.dtpreg and mme26.periodo = "
-        + QuantidadePeriodo.SLOW_26.getQuantidade());
+    sql.appendSQL(" inner join histograma_diario hd on hd.codneg = cd.codneg ");
+    sql.appendSQL("                                 and hd.dtpreg = cd.dtpreg ");
+    sql.appendSQL(" inner join macd_diario md on md.codneg = hd.codneg ");
+    sql.appendSQL("                           and md.dtpreg = hd.dtpreg ");
+    sql.appendSQL(" inner join sinal_macd_diario smd on smd.codneg = hd.codneg ");
+    sql.appendSQL("                                  and smd.dtpreg = hd.dtpreg ");
+    sql.appendSQL(" inner join media_movel_exponencial_diario mme12 on mme12.codneg = hd.codneg ");
+    sql.appendSQL("                                                 and mme12.dtpreg = hd.dtpreg ");
+    sql.appendSQL("                                                 and mme12.periodo = " + fast12);
+    sql.appendSQL(" inner join media_movel_exponencial_diario mme26 on mme26.codneg = hd.codneg ");
+    sql.appendSQL("                                                 and mme26.dtpreg = hd.dtpreg ");
+    sql.appendSQL("                                                 and mme26.periodo = " + slow26);
     sql.appendSQL(" where hd.codneg = :codneg ");
     sql.appendSQL(" and hd.dtpreg >= :dtpreg ");
     sql.appendSQL(" order by hd.dtpreg asc ");

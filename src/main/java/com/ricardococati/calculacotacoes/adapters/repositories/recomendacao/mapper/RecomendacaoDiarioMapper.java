@@ -29,6 +29,7 @@ public class RecomendacaoDiarioMapper {
                   .precoMacd(rs.getBigDecimal("preco_macd"))
                   .precoSinalMacd(rs.getBigDecimal("preco_sinal_macd"))
                   .precoHistograma(rs.getBigDecimal("preco_histograma"))
+                  .voltot(rs.getBigDecimal("voltot"))
                   .build())
           .build();
     } catch (SQLException e) {

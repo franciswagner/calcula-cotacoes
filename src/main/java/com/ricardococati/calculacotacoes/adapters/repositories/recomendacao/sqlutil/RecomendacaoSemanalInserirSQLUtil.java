@@ -21,6 +21,7 @@ public class RecomendacaoSemanalInserirSQLUtil {
     sql.appendSQL("		preco_macd, ");
     sql.appendSQL("		preco_sinal_macd, ");
     sql.appendSQL("		preco_histograma, ");
+    sql.appendSQL("		voltot, ");
     sql.appendSQL("		decisao ");
     sql.appendSQL("	) values ( ");
     sql.appendSQL("		:idRecomendacao,  ");
@@ -33,6 +34,7 @@ public class RecomendacaoSemanalInserirSQLUtil {
     sql.appendSQL("		:precoMacd, ");
     sql.appendSQL("		:precoSinalMacd, ");
     sql.appendSQL("		:precoHistograma, ");
+    sql.appendSQL("		:voltot, ");
     sql.appendSQL("		:decisao ");
     sql.appendSQL("	) ");
     sql.appendSQL(" on conflict (codneg, dtpregini) do update set ");
@@ -45,23 +47,25 @@ public class RecomendacaoSemanalInserirSQLUtil {
     sql.appendSQL("		preco_macd = excluded.preco_macd, ");
     sql.appendSQL("		preco_sinal_macd = excluded.preco_sinal_macd, ");
     sql.appendSQL("		preco_histograma = excluded.preco_histograma, ");
+    sql.appendSQL("		voltot = excluded.voltot, ");
     sql.appendSQL("		decisao = excluded.decisao ");
     return sql.getAppendSQLSemQuebra().toString();
   }
 
-  public MapSqlParameterSource toParameters(final RecomendacaoSemanal diario) {
+  public MapSqlParameterSource toParameters(final RecomendacaoSemanal semanal) {
     return new MapSqlParameterSource()
-        .addValue("idRecomendacao", diario.getIdRecomendacaoSemanal())
-        .addValue("codneg", diario.getRecomendacao().getCodneg())
-        .addValue("dtpregini", diario.getDtpregini())
-        .addValue("dtpregfim", diario.getDtpregfim())
-        .addValue("precoFechamento", diario.getRecomendacao().getPrecoFechamento())
-        .addValue("precoMME12p", diario.getRecomendacao().getPrecoMME12p())
-        .addValue("precoMME26p", diario.getRecomendacao().getPrecoMME26p())
-        .addValue("precoMacd", diario.getRecomendacao().getPrecoMacd())
-        .addValue("precoSinalMacd", diario.getRecomendacao().getPrecoSinalMacd())
-        .addValue("precoHistograma", diario.getRecomendacao().getPrecoHistograma())
-        .addValue("decisao", diario.getRecomendacao().getDecisao());
+        .addValue("idRecomendacao", semanal.getIdRecomendacaoSemanal())
+        .addValue("codneg", semanal.getRecomendacao().getCodneg())
+        .addValue("dtpregini", semanal.getDtpregini())
+        .addValue("dtpregfim", semanal.getDtpregfim())
+        .addValue("precoFechamento", semanal.getRecomendacao().getPrecoFechamento())
+        .addValue("precoMME12p", semanal.getRecomendacao().getPrecoMME12p())
+        .addValue("precoMME26p", semanal.getRecomendacao().getPrecoMME26p())
+        .addValue("precoMacd", semanal.getRecomendacao().getPrecoMacd())
+        .addValue("precoSinalMacd", semanal.getRecomendacao().getPrecoSinalMacd())
+        .addValue("precoHistograma", semanal.getRecomendacao().getPrecoHistograma())
+        .addValue("voltot", semanal.getRecomendacao().getVoltot())
+        .addValue("decisao", semanal.getRecomendacao().getDecisao());
   }
 
 }
