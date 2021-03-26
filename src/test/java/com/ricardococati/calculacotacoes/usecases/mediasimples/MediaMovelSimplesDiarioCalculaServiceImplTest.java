@@ -24,6 +24,8 @@ import static com.ricardococati.calculacotacoes.templates.CandlestickDiarioDTOTe
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.when;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
@@ -31,6 +33,7 @@ import com.ricardococati.calculacotacoes.adapters.repositories.mediasimples.Medi
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.CandlestickDiario;
 import com.ricardococati.calculacotacoes.entities.domains.mediasimples.MediaMovelSimplesDiario;
 import com.ricardococati.calculacotacoes.usecases.candlestick.CandlestickDiarioBuscarService;
+import com.ricardococati.calculacotacoes.usecases.mediasimples.impl.CalculaMediaSimplesImpl;
 import com.ricardococati.calculacotacoes.usecases.mediasimples.impl.MediaMovelSimplesDiarioCalculaServiceImpl;
 import com.ricardococati.calculacotacoes.utils.converters.MediaMovelSimplesConverter;
 import java.math.BigDecimal;
@@ -55,6 +58,8 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
   private MediaMovelSimplesConverter converteMediaMovelSimples;
   @Mock
   private MediaMovelSimplesDiarioInserirDAO mmsDAO;
+  @Mock
+  private CalculaMediaSimplesImpl mediaSimples;
 
   @Before
   public void setUp() {
@@ -69,6 +74,8 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
     when(converteMediaMovelSimples
         .converterCandlestickDiarioToMediaMovelSimples(any()))
         .thenCallRealMethod();
+    when(mediaSimples.calcula(anyInt(), anyInt(), anyList())).thenCallRealMethod();
+
     //when
     List<MediaMovelSimplesDiario> returned = target.executeByCodNeg("MGLU3");
     //then
@@ -76,16 +83,16 @@ public class MediaMovelSimplesDiarioCalculaServiceImplTest {
     assertThat(returned).isNotNull().size().isEqualTo(29);
     assertThat(returned.get(0).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 24));
     assertThat(returned.get(0).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(0).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.4111"));
+    assertThat(returned.get(0).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.3625"));
     assertThat(returned.get(1).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 25));
     assertThat(returned.get(1).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(1).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5000"));
+    assertThat(returned.get(1).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.4500"));
     assertThat(returned.get(2).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 2, 26));
     assertThat(returned.get(2).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(9);
-    assertThat(returned.get(2).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5111"));
+    assertThat(returned.get(2).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5500"));
     assertThat(returned.get(28).getDtpreg()).isNotNull().isEqualTo(LocalDate.of(1978, 3, 07));
     assertThat(returned.get(28).getMediaMovelSimples().getPeriodo()).isNotNull().isEqualTo(13);
-    assertThat(returned.get(28).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5615"));
+    assertThat(returned.get(28).getMediaMovelSimples().getPremedult()).isNotNull().isEqualTo(new BigDecimal("11.5833"));
   }
 
   @Test

@@ -2,6 +2,7 @@ package com.ricardococati.calculacotacoes.usecases.mediasimples.impl;
 
 import static com.ricardococati.calculacotacoes.utils.geral.BigDecimalCustomizado.sendDoubleGetValueBigDecimalArredonda4Casas;
 import static java.util.Objects.nonNull;
+import static java.util.stream.Collectors.toList;
 
 import com.ricardococati.calculacotacoes.adapters.repositories.mediasimples.MediaMovelSimplesDiarioInserirDAO;
 import com.ricardococati.calculacotacoes.entities.domains.candlestick.Candlestick;
@@ -9,6 +10,7 @@ import com.ricardococati.calculacotacoes.entities.domains.candlestick.Candlestic
 import com.ricardococati.calculacotacoes.entities.domains.mediasimples.MediaMovelSimplesDiario;
 import com.ricardococati.calculacotacoes.entities.enums.QuantidadePeriodo;
 import com.ricardococati.calculacotacoes.usecases.candlestick.CandlestickDiarioBuscarService;
+import com.ricardococati.calculacotacoes.usecases.mediasimples.CalculaMediaSimples;
 import com.ricardococati.calculacotacoes.usecases.mediasimples.MediaMovelSimplesDiarioCalculaService;
 import com.ricardococati.calculacotacoes.utils.converters.MediaMovelSimplesConverter;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Data
 @Service
 @RequiredArgsConstructor
 public class MediaMovelSimplesDiarioCalculaServiceImpl
@@ -31,6 +32,7 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
   private final CandlestickDiarioBuscarService diarioService;
   private final MediaMovelSimplesConverter converteMediaMovelSimples;
   private final MediaMovelSimplesDiarioInserirDAO mmsDAO;
+  private final CalculaMediaSimples mediaSimples;
 
   @Override
   public List<MediaMovelSimplesDiario> executeByCodNeg(final String codigoNegocio) {
@@ -71,28 +73,33 @@ public class MediaMovelSimplesDiarioCalculaServiceImpl
 
   private List<MediaMovelSimplesDiario> calculaMediaMovelSimples(
       int periodo, List<CandlestickDiario> candlestickDiario, String codneg) {
-    return IntStream.range(periodo - 1, candlestickDiario.size())
-        .mapToObj(indice -> calcula(periodo, indice, candlestickDiario, codneg))
-        .collect(Collectors.toList());
+    return IntStream
+        .range(periodo - 1, candlestickDiario.size())
+        .mapToObj(posicao -> calcula(periodo, posicao, candlestickDiario, codneg))
+        .collect(toList());
   }
 
   private MediaMovelSimplesDiario calcula(
-      int periodo, int posicao, List<CandlestickDiario> candlestickDiarioList, String codneg) {
+      final int periodo,
+      final int posicao,
+      final List<CandlestickDiario> candlestickDiarioList,
+      final String codneg) {
     double soma = 0.0;
     MediaMovelSimplesDiario mediaMovelSimples =
         converteMediaMovelSimples
             .converterCandlestickDiarioToMediaMovelSimples(buildCandlestickDiarioDTO(codneg));
     mediaMovelSimples.getMediaMovelSimples().setPeriodo(periodo);
-    for (int indice = posicao - (periodo - 1); indice <= posicao; indice++) {
-      CandlestickDiario candlestickDiario = candlestickDiarioList.get(indice);
-      soma += candlestickDiario.getCandlestick().getPreult().doubleValue();
-      if (indice == posicao) {
-        mediaMovelSimples.setDtpreg(candlestickDiario.getDtpreg());
-        mediaMovelSimples.getMediaMovelSimples().setPremedult(
-            sendDoubleGetValueBigDecimalArredonda4Casas(soma / periodo)
-        );
-      }
-    }
+    final int rangeInicio = posicao - (periodo - 1);
+    mediaMovelSimples.setDtpreg(candlestickDiarioList.get(posicao).getDtpreg());
+    mediaMovelSimples.getMediaMovelSimples().setPremedult(
+        mediaSimples.calcula(
+            rangeInicio,
+            posicao,
+            candlestickDiarioList
+                .stream()
+                .map(CandlestickDiario::getCandlestick)
+                .map(Candlestick::getPreult)
+                .collect(toList())));
     return mediaMovelSimples;
   }
 

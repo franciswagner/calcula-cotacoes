@@ -124,7 +124,7 @@ public class CalculaGeralSemanalServiceImpl implements
         .stream()
         .filter(Objects::nonNull)
         .forEach(recomendacaoSemanal -> {
-          log.info("Enviado a fila: ", recomendacaoSemanal);
+          log.info("Enviado ao tópico:  " + TOPIC_RECOMENDACAO_SEMANAL.getTopicName()  + " Recomendações "+ recomendacaoSemanal);
           actionListener.onAfterSave(recomendacaoSemanal, TOPIC_RECOMENDACAO_SEMANAL.getTopicName());
         });
   }
