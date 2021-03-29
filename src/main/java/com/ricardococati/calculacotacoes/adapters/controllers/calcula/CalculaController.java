@@ -1,4 +1,4 @@
-package com.ricardococati.calculacotacoes.adapters.controllers;
+package com.ricardococati.calculacotacoes.adapters.controllers.calcula;
 
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoDiario;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoSemanal;
@@ -32,21 +32,21 @@ public class CalculaController {
   private final CalculaGeralDiarioService geralDiarioService;
   private final CalculaGeralSemanalService geralSemanalService;
 
-  @ApiOperation(value = "Efetua todos os cálculos(Diário) para um codigo de negócio"
-      + " e retorna as recomendações")
+  @ApiOperation(value = "Efetua todos os cálculos(Diário) por "
+              + "codigo de negocio(String), gerando retorno até a "
+              + "data do pregão(DD-MM-YYYY) ")
   @ApiResponses(
       value = {
-          @ApiResponse(code = 200, message = "OK"),
-          @ApiResponse(code = 400, message = "Bad Request"),
-          @ApiResponse(code = 500, message = "Internal Server Error")
-      }
-  )
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 500, message = "Internal Server Error")
+      })
   @ResponseStatus(HttpStatus.OK)
   @PostMapping(value = "/geral-diario")
   public ResponseEntity<List<RecomendacaoDiario>> calculaGeralDiarioPorListCodNegEDtPreg(
       @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dtLimitePregao,
-      @RequestParam(required = false) List<String> listCodneg
-  ) throws Exception {
+      @RequestParam(required = false) List<String> listCodneg)
+      throws Exception {
     log.info("Excutando cálculo ");
     List<RecomendacaoDiario> listReturn =
         geralDiarioService.executeByCodNeg(listCodneg, dtLimitePregao);
@@ -54,8 +54,9 @@ public class CalculaController {
     return ResponseEntity.ok().body(listReturn);
   }
 
-  @ApiOperation(value = "Efetua todos os cálculos(Semanal) para um codigo de negócio"
-      + " e retorna as recomendações")
+  @ApiOperation(value = "Efetua todos os cálculos(Semanal) por "
+              + "codigo de negocio(String), gerando retorno até a "
+              + "data do pregão(DD-MM-YYYY) ")
   @ApiResponses(
       value = {
           @ApiResponse(code = 200, message = "OK"),

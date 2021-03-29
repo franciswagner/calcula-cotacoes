@@ -1,4 +1,4 @@
-package com.ricardococati.calculacotacoes.adapters.controllers;
+package com.ricardococati.calculacotacoes.adapters.controllers.splitinplit;
 
 import com.ricardococati.calculacotacoes.utils.converters.SplitInplitConverter;
 import com.ricardococati.calculacotacoes.entities.domains.split.SplitInplit;

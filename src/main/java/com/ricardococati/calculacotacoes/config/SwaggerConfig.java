@@ -36,7 +36,7 @@ public class SwaggerConfig {
   }
 
   private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("Carga BMF - Arquivo de Cotações").version("1.0.0").build();
+    return new ApiInfoBuilder().title("Calcula cotações e gera recomendações!").version("1.0.0").build();
   }
 
 }

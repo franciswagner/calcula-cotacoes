@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.ricardococati.calculacotacoes.adapters.controllers.splitinplit.SplitInplitController;
 import com.ricardococati.calculacotacoes.utils.converters.SplitInplitConverter;
 import com.ricardococati.calculacotacoes.usecases.candlestick.CandlestickAtualizarService;
 import org.junit.Test;

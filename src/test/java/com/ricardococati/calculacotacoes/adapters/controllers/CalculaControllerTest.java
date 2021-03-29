@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.ricardococati.calculacotacoes.adapters.controllers.calcula.CalculaController;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoDiario;
 import com.ricardococati.calculacotacoes.entities.domains.recomendacao.RecomendacaoSemanal;
 import com.ricardococati.calculacotacoes.usecases.calculageral.CalculaGeralDiarioService;
